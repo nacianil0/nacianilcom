@@ -1,0 +1,1 @@
+portal konumu: C:\Users\anil.akman\source\repos\Portal

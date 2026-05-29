@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "created_at": "2026-05-29T18:28:59.782Z",
+  "lifetime": {
+    "total_tokens_estimated": 33418,
+    "total_reads": 0,
+    "total_writes": 14,
+    "total_sessions": 3,
+    "anatomy_hits": 0,
+    "anatomy_misses": 0,
+    "repeated_reads_blocked": 0,
+    "estimated_savings_vs_bare_cli": 0
+  },
+  "sessions": [
+    {
+      "id": "session-2026-05-29-2130",
+      "started": "2026-05-29T18:30:29.669Z",
+      "ended": "2026-05-29T18:50:26.067Z",
+      "reads": [],
+      "writes": [
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/INDEX.md",
+          "tokens_estimated": 3294,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-01-scaffold.md",
+          "tokens_estimated": 1908,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-02-design-system.md",
+          "tokens_estimated": 2337,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-03-content-core.md",
+          "tokens_estimated": 2566,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-04-public-reading.md",
+          "tokens_estimated": 2371,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-05-seo-sitemap-redirects.md",
+          "tokens_estimated": 2160,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-06-studio-mvp.md",
+          "tokens_estimated": 2446,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-07-scheduled-publish-cache.md",
+          "tokens_estimated": 2120,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-08-security-hardening.md",
+          "tokens_estimated": 2538,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-09-prompts-auto-routing.md",
+          "tokens_estimated": 2338,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-10-visual-studio.md",
+          "tokens_estimated": 2213,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-11-monthly-planning.md",
+          "tokens_estimated": 2335,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-12-resume-portfolio.md",
+          "tokens_estimated": 2516,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/docs/work-packages/WP-13-deploy-docs.md",
+          "tokens_estimated": 2276,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 33418,
+        "reads_count": 0,
+        "writes_count": 14,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 0
+      }
+    }
+  ],
+  "daemon_usage": [],
+  "waste_flags": [],
+  "optimization_report": {
+    "last_generated": null,
+    "patterns": []
+  }
+}

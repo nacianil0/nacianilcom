@@ -1,0 +1,49 @@
+# Cerebrum
+
+> OpenWolf's learning memory. Updated automatically as the AI learns from interactions.
+> Do not edit manually unless correcting an error.
+> Last updated: 2026-05-29
+
+## User Preferences
+
+<!-- How the user likes things done. Code style, tools, patterns, communication. -->
+
+- Kullanıcı **Türkçe** iletişim kuruyor; master plan TR + İngilizce teknik terim karışımı. Üretilen plan/doküman çıktılarını bu dile uydur (Türkçe gövde + İngilizce teknik terim + İngilizce section başlıkları).
+- **Plan-first**: kullanıcı planlama istediğinde kod yazma/implemente etme. Bu oturumda açıkça belirtti: "Şu an kod yazmanı veya projeyi implemente etmeni istemiyorum." Önce uygulanabilir, sıralı, bağımsız çalıştırılabilir plan üret.
+
+## Key Learnings
+
+- **Project:** nacianilcom
+- **Master plan** = `nacianil-claude-code-prompt.md` (v6 — cleanup). nacianil.com: (1) public kişisel yayın + CV/portfolio sitesi, (2) yalnız-local authoring "studio". Repo şu an **greenfield** (yalnız master plan + OpenWolf scaffold; `apps/`, `packages/`, `content/` HENÜZ yok).
+- **Canonical execution order** master planda **§32 Execution Plan (Faz 0–10)**.
+- Plan `docs/work-packages/`'a **13 WP + INDEX** olarak bölündü (INDEX.md tüm sıra/bağımlılık/MVP haritasını taşır).
+- **content-core (WP-03)** = tüm zod şemalarının (plans/inbox dahil) + `isPublic`/`buildUrl`/`normalizeSlug`/`runQC`/taxonomy-internal-link/redirect doğrulayıcının **tek kaynağı**. Sonraki WP'ler import eder, kopyalamaz (§33).
+- **Sabit kararlar:** `packages/ui` framework-light (next/link|image|font yok, §3); içerik DB'siz MDX+JSON Git'te (§2); `isPublic` tek truth-table (§9); Mermaid `.mmd→.svg`+sanitize Studio'da local, web statik SVG okur (§15/§31); `/→/tr` yalnız app/page.tsx + next.config redirects() yalnız redirects.json + trailingSlash:false (§20); CSP nonce zorunlu değil + Report-Only→enforce, KV/nonce/rate-limit MVP dışı (§29); Studio asla deploy edilmez 127.0.0.1 (§28).
+- **`<DASHBOARD_PATH>`** zorunlu referans, **WP-02**'de gerekli; yoksa Faz 1 başlamadan durup sorulmalı (§5). **Çözülmüş yol:** `C:\Users\anil.akman\source\repos\Portal` — duyuru detay: `Eroglu.HR.UI/UI/src/page/Dashboard/AnnouncementDetailPage.tsx`.
+
+## Do-Not-Repeat
+
+<!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
+<!-- Format: [YYYY-MM-DD] Description of what went wrong and what to do instead. -->
+
+- **[2026-05-29] `workspace:*` protocol only works for local workspace packages.** Using `"typescript": "workspace:*"` in a sub-package's devDependencies fails because `typescript` is an npm package, not a local workspace package. Fix: use explicit version strings (`"typescript": "^5.7.2"`) in sub-packages.
+- **[2026-05-29] ESLint flat config needs explicit globals for Node.js/browser environments.** `__dirname`, `process` (Node.js) and `document` (browser) cause `no-undef` errors. Fix: `import globals from 'globals'` and set `languageOptions.globals: globals.node` for server files, `globals.browser` for client files. The `globals` package must be a **direct** devDependency (pnpm strict mode does not allow transitive-only access).
+- **[2026-05-29] `next lint` is deprecated in Next.js 15.x.** Use `eslint .` with `eslint.config.mjs` instead. For flat config, use `FlatCompat` from `@eslint/eslintrc` to bridge `eslint-config-next`.
+- **[2026-05-29] ESLint `import/no-anonymous-default-export` warning for eslint.config.mjs.** Assign the config array to a named variable before exporting: `const eslintConfig = [...]; export default eslintConfig;`
+
+## Key Learnings
+
+- **pnpm was not pre-installed** on this machine. Installed via `npm install -g pnpm@9`. Node.js v24.14.0 is the actual runtime (`.nvmrc` says 20 but not enforced).
+- **pnpm version**: 9.15.9 installed, 11.5.0 available. Stay on 9.x for this project unless explicitly upgraded.
+- **apps/studio uses two tsconfigs**: `tsconfig.json` (noEmit typecheck, covers src/ + vite.config.ts) and `tsconfig.server.json` (CommonJS build, covers server/). This is necessary because client needs DOM libs while server needs Node types.
+- **Next.js 15 modifies apps/web/tsconfig.json automatically** on first lint/build, adding `allowJs`, `noEmit`, `incremental`. This is expected behavior; do not revert those fields.
+- **Fastify server must bind to 127.0.0.1 (§28)** — never 0.0.0.0. Vite dev server also set to 127.0.0.1.
+
+## Decision Log
+
+<!-- Significant technical decisions with rationale. Why X was chosen over Y. -->
+
+- **[2026-05-29] Master plan 13 work package'a bölündü** (Faz 0–10 → WP-01..13). Büyük iki faz ayrıldı: **Faz 6 → WP-07 (scheduled publish + cache) + WP-08 (security hardening + a11y/perf)**; **Faz 9 → WP-11 (Monthly Plan) + WP-12 (Resume/Portfolio)**. Diğerleri ~1:1. Gerekçe: her WP ayrı Claude Code chat'inde self-contained çalışabilsin; çok küçük/çok büyük paket olmasın (kullanıcı isteği).
+- **[2026-05-29] MVP = WP-01..08 (+ canlıya çıkış için WP-13).** WP-09 (prompts/auto-routing), WP-10 (visual studio), WP-11 (monthly plan), WP-12 (resume/portfolio) MVP sonrası planlı. §4 öncelik sırasıyla uyumlu.
+- **[2026-05-29] WP dosyaları Türkçe içerik + İngilizce section başlığı + "Claude Code start prompt" (Türkçe) ile yazıldı.** Gerekçe: master plan dili + kullanıcı dili Türkçe; section adlarını kullanıcı İngilizce verdi. Start prompt'lar kopyala-yapıştır yeni chat'te çalışacak şekilde self-contained.
+- **[2026-05-29] `/cv`,`/work` route'ları WP-12'de; visual-block presentational bileşenleri WP-04'te; technical-writing bileşenleri WP-02'de; Mermaid pipeline+sanitize WP-10'da** — render/authoring/validation sorumlulukları bilinçli ayrıldı (INDEX §6).

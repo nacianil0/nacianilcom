@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Vercel
+.vercel/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/settings.json
+*.swp
+*.swo
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Temp
+.tmp/
+tmp/
+
+# OpenWolf runtime (tracked: .wolf/*)
+# Only exclude designqc captures if they grow large
+.wolf/designqc-captures/

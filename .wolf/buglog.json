@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-05-29T19:22:41.564Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/package.json",
+      "root_cause": "Had \"workspace:*\"",
+      "fix": "Changed to \"^5.7.2\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-29T19:24:44.436Z"
+    }
+  ]
+}
