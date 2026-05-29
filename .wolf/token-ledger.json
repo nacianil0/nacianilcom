@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-05-29T18:28:59.782Z",
   "lifetime": {
-    "total_tokens_estimated": 33418,
-    "total_reads": 0,
-    "total_writes": 14,
+    "total_tokens_estimated": 48375,
+    "total_reads": 2,
+    "total_writes": 67,
     "total_sessions": 3,
-    "anatomy_hits": 0,
-    "anatomy_misses": 0,
+    "anatomy_hits": 1,
+    "anatomy_misses": 1,
     "repeated_reads_blocked": 0,
-    "estimated_savings_vs_bare_cli": 0
+    "estimated_savings_vs_bare_cli": 200
   },
   "sessions": [
     {
@@ -96,6 +96,300 @@
         "writes_count": 14,
         "repeated_reads_blocked": 0,
         "anatomy_lookups": 0
+      }
+    },
+    {
+      "id": "session-2026-05-29-2205",
+      "started": "2026-05-29T19:05:51.938Z",
+      "ended": "2026-05-29T19:31:12.448Z",
+      "reads": [
+        {
+          "file": "C:/dev/nacianilcom/nacianil-claude-code-prompt.md",
+          "tokens_estimated": 10737,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/dev/nacianilcom/readme.txt",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "C:/dev/nacianilcom/.gitignore",
+          "tokens_estimated": 140,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/pnpm-workspace.yaml",
+          "tokens_estimated": 12,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/.nvmrc",
+          "tokens_estimated": 1,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/.editorconfig",
+          "tokens_estimated": 63,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/.prettierrc",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/tsconfig.base.json",
+          "tokens_estimated": 160,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/package.json",
+          "tokens_estimated": 173,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/content-core/package.json",
+          "tokens_estimated": 177,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/content-core/tsconfig.json",
+          "tokens_estimated": 41,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/content-core/src/index.ts",
+          "tokens_estimated": 33,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/content-core/eslint.config.mjs",
+          "tokens_estimated": 119,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/ui/package.json",
+          "tokens_estimated": 186,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/ui/tsconfig.json",
+          "tokens_estimated": 48,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/ui/src/index.ts",
+          "tokens_estimated": 40,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/ui/tailwind.preset.ts",
+          "tokens_estimated": 28,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/ui/eslint.config.mjs",
+          "tokens_estimated": 119,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/web/package.json",
+          "tokens_estimated": 166,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/web/tsconfig.json",
+          "tokens_estimated": 106,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/web/next.config.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/web/eslint.config.mjs",
+          "tokens_estimated": 95,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/web/app/layout.tsx",
+          "tokens_estimated": 90,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/web/app/page.tsx",
+          "tokens_estimated": 49,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/package.json",
+          "tokens_estimated": 283,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/tsconfig.json",
+          "tokens_estimated": 69,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/tsconfig.server.json",
+          "tokens_estimated": 97,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/vite.config.ts",
+          "tokens_estimated": 74,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/index.html",
+          "tokens_estimated": 87,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/src/main.tsx",
+          "tokens_estimated": 82,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/src/App.tsx",
+          "tokens_estimated": 53,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/server/index.ts",
+          "tokens_estimated": 138,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/eslint.config.mjs",
+          "tokens_estimated": 119,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/messages/tr.json",
+          "tokens_estimated": 1,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/messages/en.json",
+          "tokens_estimated": 1,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/content/taxonomy.json",
+          "tokens_estimated": 11,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/content/redirects.json",
+          "tokens_estimated": 1,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/content/_ideas/.gitkeep",
+          "tokens_estimated": 0,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/content/_inbox/.gitkeep",
+          "tokens_estimated": 0,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/content/_inbox/unresolved/.gitkeep",
+          "tokens_estimated": 0,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/content/plans/.gitkeep",
+          "tokens_estimated": 0,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/content/series/.gitkeep",
+          "tokens_estimated": 0,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/content/resume/.gitkeep",
+          "tokens_estimated": 0,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/content/standalone/.gitkeep",
+          "tokens_estimated": 42,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/web/package.json",
+          "tokens_estimated": 8,
+          "action": "edit"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/content-core/package.json",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "C:/dev/nacianilcom/packages/ui/package.json",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/package.json",
+          "tokens_estimated": 110,
+          "action": "edit"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/eslint.config.mjs",
+          "tokens_estimated": 210,
+          "action": "create"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/web/package.json",
+          "tokens_estimated": 7,
+          "action": "edit"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/studio/package.json",
+          "tokens_estimated": 16,
+          "action": "edit"
+        },
+        {
+          "file": "C:/dev/nacianilcom/apps/web/eslint.config.mjs",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp01_done.md",
+          "tokens_estimated": 456,
+          "action": "create"
+        },
+        {
+          "file": "C:/Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/feedback_pnpm_workspace_protocol.md",
+          "tokens_estimated": 224,
+          "action": "create"
+        },
+        {
+          "file": "C:/Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md",
+          "tokens_estimated": 84,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 10737,
+        "output_tokens_estimated": 4220,
+        "reads_count": 2,
+        "writes_count": 53,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
       }
     }
   ],

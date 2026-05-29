@@ -84,3 +84,7 @@
 | 22:25 | Edited apps/studio/package.json | 1→2 lines | ~16 |
 | 22:26 | Edited apps/web/eslint.config.mjs | 1→3 lines | ~26 |
 | 22:30 | WP-01 complete — pnpm -w typecheck ✓ / lint ✓ / build ✓; all 4 workspaces pass | — | all pass | ~50 |
+| 22:30 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp01_done.md | — | ~426 |
+| 22:30 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/feedback_pnpm_workspace_protocol.md | — | ~209 |
+| 22:30 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | — | ~78 |
+| 22:31 | Session end: 53 writes across 27 files (.gitignore, pnpm-workspace.yaml, .nvmrc, .editorconfig, .prettierrc) | 2 reads | ~14957 tok |

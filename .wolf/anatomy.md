@@ -1,7 +1,13 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-29T19:26:16.690Z
-> Files: 60 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-29T19:30:57.728Z
+> Files: 63 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
+
+- `feedback_pnpm_workspace_protocol.md` (~216 tok)
+- `MEMORY.md` — Memory Index (~73 tok)
+- `project_wp01_done.md` — What was built (~419 tok)
 
 ## ./
 
