@@ -1,46 +1,85 @@
-# Dependencies
+# nacianil.com monorepo — apps/web (Next.js), apps/studio (Vite+Fastify), packages/*, content/
+
+# --- Dependencies ---
 node_modules/
 .pnpm-store/
+.pnp
+.pnp.*
 
-# Build outputs
-.next/
+# --- Build outputs ---
 dist/
 build/
 out/
+.next/
+.vercel/output/
 *.tsbuildinfo
 
-# Env files
+# Studio: Vite client + tsc server bundle
+apps/studio/dist/
+
+# --- Environment & secrets (never commit real values) ---
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
-# Vercel
-.vercel/
-
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Editor
-.vscode/settings.json
-*.swp
-*.swo
-
-# Playwright
+# --- Test & QA ---
+coverage/
+.nyc_output/
+*.lcov
 test-results/
 playwright-report/
+blob-report/
 playwright/.cache/
+.wolf/designqc-captures/
 
-# Logs
+# --- Tooling caches ---
+.turbo/
+.cache/
+.eslintcache
+.stylelintcache
+.prettier-cache
 *.log
 npm-debug.log*
 pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Temp
-.tmp/
-tmp/
+# --- OS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+desktop.ini
+$RECYCLE.BIN/
 
-# OpenWolf runtime (tracked: .wolf/*)
-# Only exclude designqc captures if they grow large
-.wolf/designqc-captures/
+# --- Editors (share extensions/tasks via ! rules if needed) ---
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.swo
+*~
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/tasks.json
+
+# Cursor / Claude — local overrides only (rules stay tracked under .claude/)
+.cursor/
+.claude/settings.local.json
+
+# --- OpenWolf ---
+# Tracked: anatomy, cerebrum, buglog, hooks/*.js, OPENWOLF.md, config, etc. (WP-01)
+# Ignored: high-churn session/runtime artifacts (not deploy inputs)
+.wolf/token-ledger.json
+.wolf/hooks/_session.json
+
+# --- Project-specific (WP-12+) ---
+# Local Playwright PDF output — not source CV in sources/
+content/resume/output/
