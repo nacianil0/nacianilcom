@@ -16,6 +16,38 @@
       "related_bugs": [],
       "occurrences": 2,
       "last_seen": "2026-05-29T19:24:44.436Z"
+    },
+    {
+      "id": "bug-002",
+      "timestamp": "2026-05-29T19:43:59.722Z",
+      "error_message": "Type error",
+      "file": "packages/ui/tailwind.preset.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-29T19:43:59.722Z"
+    },
+    {
+      "id": "bug-003",
+      "timestamp": "2026-05-29T19:45:36.339Z",
+      "error_message": "Missing import: ./main.css",
+      "file": "apps/studio/src/main.tsx",
+      "root_cause": "Module(s) not imported: ./main.css",
+      "fix": "Added import(s) for ./main.css",
+      "tags": [
+        "auto-detected",
+        "missing-import",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-29T19:45:36.339Z"
     }
   ]
 }

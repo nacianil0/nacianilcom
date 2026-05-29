@@ -20,6 +20,7 @@
 - **content-core (WP-03)** = tüm zod şemalarının (plans/inbox dahil) + `isPublic`/`buildUrl`/`normalizeSlug`/`runQC`/taxonomy-internal-link/redirect doğrulayıcının **tek kaynağı**. Sonraki WP'ler import eder, kopyalamaz (§33).
 - **Sabit kararlar:** `packages/ui` framework-light (next/link|image|font yok, §3); içerik DB'siz MDX+JSON Git'te (§2); `isPublic` tek truth-table (§9); Mermaid `.mmd→.svg`+sanitize Studio'da local, web statik SVG okur (§15/§31); `/→/tr` yalnız app/page.tsx + next.config redirects() yalnız redirects.json + trailingSlash:false (§20); CSP nonce zorunlu değil + Report-Only→enforce, KV/nonce/rate-limit MVP dışı (§29); Studio asla deploy edilmez 127.0.0.1 (§28).
 - **`<DASHBOARD_PATH>`** zorunlu referans, **WP-02**'de gerekli; yoksa Faz 1 başlamadan durup sorulmalı (§5). **Çözülmüş yol:** `C:\Users\anil.akman\source\repos\Portal` — duyuru detay: `Eroglu.HR.UI/UI/src/page/Dashboard/AnnouncementDetailPage.tsx`.
+- **CV kaynakları:** `content/resume/sources/README.md` — PDF + kariyer/katkı notları. EGH: Dashboard modülü (Portal, uçtan uca); Travel `/dashboard/travel/*` altında entegre; İK projesi aktif. Portal memory: `C:\Users\anil.akman\source\repos\Portal\memory\`. Canonical `resume.json` → WP-12.
 
 ## Do-Not-Repeat
 
@@ -30,6 +31,9 @@
 - **[2026-05-29] ESLint flat config needs explicit globals for Node.js/browser environments.** `__dirname`, `process` (Node.js) and `document` (browser) cause `no-undef` errors. Fix: `import globals from 'globals'` and set `languageOptions.globals: globals.node` for server files, `globals.browser` for client files. The `globals` package must be a **direct** devDependency (pnpm strict mode does not allow transitive-only access).
 - **[2026-05-29] `next lint` is deprecated in Next.js 15.x.** Use `eslint .` with `eslint.config.mjs` instead. For flat config, use `FlatCompat` from `@eslint/eslintrc` to bridge `eslint-config-next`.
 - **[2026-05-29] ESLint `import/no-anonymous-default-export` warning for eslint.config.mjs.** Assign the config array to a named variable before exporting: `const eslintConfig = [...]; export default eslintConfig;`
+- **[2026-05-29] Tailwind v3 preset cast: `presets: [preset as Config]` fails if preset doesn't have `content`.** Use `preset as unknown as Config` for Tailwind preset objects (presets don't need `content`). Apply in both apps/web and apps/studio tailwind.config.ts.
+- **[2026-05-29] `packages/ui` typecheck from consumer apps requires built `dist/` OR source-first exports.** Set `"types": "./src/index.ts"` in package.json exports so TypeScript resolves from source without needing a prior build. Fixes `pnpm -w typecheck` from failing when dist/ is stale.
+- **[2026-05-29] `@import url()` must precede `@tailwind` directives in CSS.** PostCSS/CSS spec requires all `@import` statements before other at-rules. Put Google Fonts `@import url(...)` as the first line in any CSS file that also has `@tailwind base/components/utilities`.
 
 ## Key Learnings
 
@@ -38,6 +42,13 @@
 - **apps/studio uses two tsconfigs**: `tsconfig.json` (noEmit typecheck, covers src/ + vite.config.ts) and `tsconfig.server.json` (CommonJS build, covers server/). This is necessary because client needs DOM libs while server needs Node types.
 - **Next.js 15 modifies apps/web/tsconfig.json automatically** on first lint/build, adding `allowJs`, `noEmit`, `incremental`. This is expected behavior; do not revert those fields.
 - **Fastify server must bind to 127.0.0.1 (§28)** — never 0.0.0.0. Vite dev server also set to 127.0.0.1.
+
+## Key Learnings
+
+- **WP-02 design system complete.** Token set: `packages/ui/tokens.css` (CSS vars + RGB channels for Tailwind opacity). Tailwind preset: `packages/ui/tailwind.preset.ts`. Technical-writing components: Callout/Definition/Example/Warning/Takeaway/CodeBlock in `packages/ui/src/components/`. Framework-light primitives: `LinkPrimitiveProps`, `ImagePrimitiveProps` (no Next.js deps). Web wrappers: `apps/web/src/ui/WebLink|WebImage`. Studio wrappers: `apps/studio/src/ui/StudioLink|StudioImage`. i18n: `apps/{web,studio}/messages/{tr,en}.json` + `packages/content-core/src/i18n.ts`.
+- **Portal dashboard UX reference (§5):** Title `text-[36-46px] leading-[1.06]` serif + trailing accent period; masthead `font-mono text-[10px] uppercase tracking-[0.22em]`; metadata inline with `h-[10px] w-px` hairline separators; cover `aspect-[16/9] object-contain` + blurred bleed stage; body `text-[14.5px] leading-[1.7]`. Observations documented in `docs/design-reference.md`.
+- **Fonts for web:** `next/font/google` (Newsreader/Inter/JetBrains Mono — SIL OFL) injected as CSS variables `--font-serif`, `--font-sans`, `--font-mono` on `<html>` className. Studio uses Google Fonts CDN @import (local-only use is acceptable).
+- **CodeBlock has `"use client"` directive** — uses `useState`/`navigator.clipboard`. In Next.js RSC contexts the import site must be a client component or wrapped; in Vite the directive is ignored as a string.
 
 ## Decision Log
 
