@@ -1,0 +1,31 @@
+/* nacianil.com design tokens — light-only (§5)
+ * No dark theme. prefers-color-scheme dark is intentionally not overridden. */
+:root {
+  /* Hex values for direct CSS usage */
+  --color-surface: #f7f5f2;
+  --color-card: #fcfbf9;
+  --color-hairline: #e8e3dc;
+  --color-ink: #1b1a18;
+  --color-ink-secondary: #625d56;
+  --color-accent: #9b2335;
+  --color-positive: #3f7a52;
+  --color-negative: #a23b2e;
+
+  /* RGB channels for Tailwind opacity utilities */
+  --color-surface-rgb: 247 245 242;
+  --color-card-rgb: 252 251 249;
+  --color-hairline-rgb: 232 227 220;
+  --color-ink-rgb: 27 26 24;
+  --color-ink-secondary-rgb: 98 93 86;
+  --color-accent-rgb: 155 35 53;
+  --color-positive-rgb: 63 122 82;
+  --color-negative-rgb: 162 59 46;
+
+  /* Radius */
+  --radius-card: 14px;
+
+  /* Font families — set by app font loader (next/font or @font-face) */
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: system-ui, sans-serif;
+  --font-mono: "Courier New", monospace;
+}

@@ -1,2 +1,26 @@
-// Tailwind preset stub — real design tokens added in WP-02
-export const preset = {} as const;
+export const preset = {
+  theme: {
+    extend: {
+      colors: {
+        surface: 'rgb(var(--color-surface-rgb) / <alpha-value>)',
+        card: 'rgb(var(--color-card-rgb) / <alpha-value>)',
+        hairline: 'rgb(var(--color-hairline-rgb) / <alpha-value>)',
+        ink: {
+          DEFAULT: 'rgb(var(--color-ink-rgb) / <alpha-value>)',
+          secondary: 'rgb(var(--color-ink-secondary-rgb) / <alpha-value>)',
+        },
+        accent: 'rgb(var(--color-accent-rgb) / <alpha-value>)',
+        positive: 'rgb(var(--color-positive-rgb) / <alpha-value>)',
+        negative: 'rgb(var(--color-negative-rgb) / <alpha-value>)',
+      },
+      borderRadius: {
+        card: 'var(--radius-card, 14px)',
+      },
+      fontFamily: {
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', '"Courier New"', 'monospace'],
+      },
+    },
+  },
+};

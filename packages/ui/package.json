@@ -7,21 +7,28 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./src/index.ts",
       "import": "./dist/index.js"
     },
-    "./tailwind": "./tailwind.preset.ts"
+    "./tailwind": "./tailwind.preset.ts",
+    "./tokens.css": "./tokens.css"
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src"
   },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
+    "@types/react": "^19.0.0",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
     "eslint": "^9.18.0",
+    "globals": "^16.0.0",
+    "react": "^19.0.0",
     "typescript": "^5.7.2"
   }
 }

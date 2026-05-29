@@ -28,6 +28,9 @@
 | 21:47 | Created docs/work-packages/WP-13-deploy-docs.md | — | ~2124 |
 | 21:50 | Session end: 14 writes across 14 files (INDEX.md, WP-01-scaffold.md, WP-02-design-system.md, WP-03-content-core.md, WP-04-public-reading.md) | 0 reads | ~33418 tok |
 | — | Resolved DASHBOARD_PATH → Portal repo; updated INDEX, WP-02, master plan intro | docs/work-packages/*, nacianil-claude-code-prompt.md | done | ~800 |
+| — | Resume sources: PDF → sources/; career README (Kansuk/EGH/projects) | content/resume/sources/ | done | ~600 |
+| — | Resume README: Portal Dashboard + Travel integration notes from repos memory | content/resume/sources/README.md | done | ~500 |
+| — | Rewrote .gitignore (monorepo/env/cache/OpenWolf); untracked token-ledger, _session, settings.local | .gitignore | done | ~400 |
 
 ## Session: 2026-05-29 22:05
 
@@ -88,3 +91,54 @@
 | 22:30 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/feedback_pnpm_workspace_protocol.md | — | ~209 |
 | 22:30 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | — | ~78 |
 | 22:31 | Session end: 53 writes across 27 files (.gitignore, pnpm-workspace.yaml, .nvmrc, .editorconfig, .prettierrc) | 2 reads | ~14957 tok |
+
+## Session: 2026-05-29 22:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-29 22:37
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:43 | Edited packages/ui/tsconfig.json | 9→10 lines | ~60 |
+| 22:43 | Edited packages/ui/package.json | expanded (+7 lines) | ~228 |
+| 22:43 | Edited packages/ui/eslint.config.mjs | 14→18 lines | ~131 |
+| 22:43 | Created packages/ui/tokens.css | — | ~279 |
+| 22:43 | Edited packages/ui/tailwind.preset.ts | expanded (+24 lines) | ~268 |
+| 22:44 | Created packages/ui/src/primitives/index.ts | — | ~124 |
+| 22:44 | Created packages/ui/src/components/Callout.tsx | — | ~174 |
+| 22:44 | Created packages/ui/src/components/Definition.tsx | — | ~156 |
+| 22:44 | Created packages/ui/src/components/Example.tsx | — | ~192 |
+| 22:44 | Created packages/ui/src/components/Warning.tsx | — | ~186 |
+| 22:44 | Created packages/ui/src/components/Takeaway.tsx | — | ~176 |
+| 22:44 | Created packages/ui/src/components/CodeBlock.tsx | — | ~611 |
+| 22:44 | Created packages/ui/src/index.ts | — | ~149 |
+| 22:44 | Edited apps/web/package.json | 26→30 lines | ~199 |
+| 22:44 | Created apps/web/tailwind.config.ts | — | ~93 |
+| 22:44 | Created apps/web/postcss.config.mjs | — | ~22 |
+| 22:44 | Created apps/web/app/globals.css | — | ~231 |
+| 22:44 | Created apps/web/app/layout.tsx | — | ~274 |
+| 22:45 | Created apps/web/src/ui/WebLink.tsx | — | ~119 |
+| 22:45 | Created apps/web/src/ui/WebImage.tsx | — | ~139 |
+| 22:45 | Created apps/web/messages/tr.json | — | ~151 |
+| 22:45 | Created apps/web/messages/en.json | — | ~155 |
+| 22:45 | Edited apps/studio/package.json | 21→25 lines | ~199 |
+| 22:45 | Created apps/studio/tailwind.config.ts | — | ~86 |
+| 22:45 | Created apps/studio/postcss.config.mjs | — | ~22 |
+| 22:45 | Created apps/studio/src/main.css | — | ~339 |
+| 22:45 | Edited apps/studio/src/main.tsx | added 1 import(s) | ~37 |
+| 22:45 | Created apps/studio/src/ui/StudioLink.tsx | — | ~111 |
+| 22:45 | Created apps/studio/src/ui/StudioImage.tsx | — | ~121 |
+| 22:45 | Created apps/studio/messages/tr.json | — | ~151 |
+| 22:45 | Created apps/studio/messages/en.json | — | ~155 |
+| 22:46 | Created packages/content-core/src/i18n.ts | — | ~373 |
+| 22:47 | Created docs/design-reference.md | — | ~1987 |
+| 22:47 | Created packages/content-core/src/index.ts | — | ~77 |
+| 22:49 | Created apps/web/src/ui/WebImage.tsx | — | ~200 |
+| 22:49 | Created apps/web/tailwind.config.ts | — | ~115 |
+| 22:49 | Created apps/studio/tailwind.config.ts | — | ~107 |
+| 22:50 | Created apps/web/postcss.config.mjs | — | ~32 |
+| 22:50 | Created apps/web/tailwind.config.ts | — | ~96 |
+| 22:51 | Created apps/studio/src/main.css | — | ~346 |
+| 22:52 | Edited packages/ui/package.json | 8→8 lines | ~52 |
