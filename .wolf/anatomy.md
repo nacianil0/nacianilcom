@@ -1,13 +1,14 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-29T19:52:25.506Z
-> Files: 34 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-29T23:41:00.451Z
+> Files: 67 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
 
 ## ./
 
+- `package.json` — Node.js package manifest (~188 tok)
 
 ## .claude/
 
@@ -93,11 +94,70 @@
 
 ## packages/content-core/
 
+- `package.json` — Node.js package manifest (~206 tok)
+- `tsconfig.build.json` (~33 tok)
+- `tsconfig.json` — TypeScript configuration (~46 tok)
+- `vitest.config.ts` — /*.test.ts'], (~48 tok)
 
 ## packages/content-core/src/
 
 - `i18n.ts` — Supported UI locales (§23) (~373 tok)
-- `index.ts` — content-core: zod schemas, parsers, QC, slug/url/redirect/taxonomy/isPublic (~77 tok)
+- `index.ts` — Schemas (~493 tok)
+- `isPublic.ts` — Exports isPublic (~50 tok)
+
+## packages/content-core/src/__tests__/
+
+- `buildUrl.test.ts` — Declares slug (~742 tok)
+- `isPublic.test.ts` — Declares PAST (~484 tok)
+- `links.test.ts` — NOW: blocking (~1064 tok)
+- `normalizeSlug.test.ts` (~537 tok)
+- `redirects.test.ts` — NOW: makeRedirect (~1031 tok)
+- `taxonomy.test.ts` — Declares taxonomy (~694 tok)
+
+## packages/content-core/src/derive/
+
+- `canonical.ts` — Exports HreflangEntry, CanonicalResult, CanonicalUrlInput, deriveCanonical (~456 tok)
+- `prevNext.ts` — Exports PrevNext, derivePrevNext, deriveSeriesPosition (~173 tok)
+- `readingTime.ts` — Exports calcReadingTime (~59 tok)
+
+## packages/content-core/src/links/
+
+- `checker.ts` — Exports LinkIssue, checkInternalLinks (~313 tok)
+- `resolver.ts` — Exports InternalLinkKind, ArticleLookup, SeriesLookup, CaseLookup + 4 more (~483 tok)
+
+## packages/content-core/src/parse/
+
+- `json.ts` — Exports ParseJsonResult, parseJson (~159 tok)
+- `mdx.ts` — Exports ParseMdxResult, parseMdx (~249 tok)
+
+## packages/content-core/src/qc/
+
+- `runQC.ts` — Exports QCGroup, QCSeverity, QCIssue, QCReport + 2 more (~1097 tok)
+
+## packages/content-core/src/redirects/
+
+- `resolver.ts` — Exports ArticlePublicPath, RedirectIssue, resolveRedirects (~742 tok)
+
+## packages/content-core/src/schemas/
+
+- `frontmatter.ts` — Zod schemas: FaqItemSchema, FrontmatterSchema (~110 tok)
+- `inbox.ts` — Zod schemas: InboxKindSchema, InboxStatusSchema, InboxItemSchema (~195 tok)
+- `index.ts` (~268 tok)
+- `meta.ts` — Zod schemas: AssetSchema, MetaSchema (~265 tok)
+- `plans.ts` — Zod schemas: ScoresSchema, TopicSchema, MonthlyPlanSchema (~415 tok)
+- `redirects.ts` — Zod schemas: RedirectItemSchema, RedirectsSchema (~103 tok)
+- `references.ts` — Zod schemas: ReferenceItemSchema, ReferencesSchema (~109 tok)
+- `series.ts` — Zod schemas: BilingualTextSchema, SeriesSchema (~127 tok)
+- `taxonomy.ts` — Zod schemas: BilingualLabelSchema, CategorySchema, TagSchema, TaxonomySchema (~168 tok)
+
+## packages/content-core/src/taxonomy/
+
+- `validator.ts` — Exports TaxonomyIssue, validateTaxonomy (~246 tok)
+
+## packages/content-core/src/url/
+
+- `buildUrl.ts` — Exports UrlKind, BuildUrlSlugs, buildUrl (~365 tok)
+- `normalizeSlug.ts` — Exports normalizeSlug (~140 tok)
 
 ## packages/ui/
 

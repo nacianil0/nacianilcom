@@ -148,3 +148,44 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+
+## Session: 2026-05-29 02:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 02:37 | Created packages/content-core/package.json | — | ~217 |
+| 02:37 | Created packages/content-core/tsconfig.json | — | ~46 |
+| 02:37 | Created packages/content-core/tsconfig.build.json | — | ~33 |
+| 02:37 | Created packages/content-core/vitest.config.ts | — | ~48 |
+| 02:37 | Edited package.json | 7→8 lines | ~73 |
+| 02:37 | Created packages/content-core/src/schemas/meta.ts | — | ~265 |
+| 02:37 | Created packages/content-core/src/schemas/frontmatter.ts | — | ~110 |
+| 02:37 | Created packages/content-core/src/schemas/references.ts | — | ~109 |
+| 02:37 | Created packages/content-core/src/schemas/series.ts | — | ~127 |
+| 02:37 | Created packages/content-core/src/schemas/taxonomy.ts | — | ~168 |
+| 02:37 | Created packages/content-core/src/schemas/redirects.ts | — | ~103 |
+| 02:37 | Created packages/content-core/src/schemas/plans.ts | — | ~415 |
+| 02:37 | Created packages/content-core/src/schemas/inbox.ts | — | ~195 |
+| 02:37 | Created packages/content-core/src/schemas/index.ts | — | ~268 |
+| 02:37 | Created packages/content-core/src/isPublic.ts | — | ~50 |
+| 02:37 | Created packages/content-core/src/url/normalizeSlug.ts | — | ~140 |
+| 02:37 | Created packages/content-core/src/url/buildUrl.ts | — | ~365 |
+| 02:38 | Created packages/content-core/src/parse/json.ts | — | ~159 |
+| 02:38 | Created packages/content-core/src/parse/mdx.ts | — | ~249 |
+| 02:38 | Created packages/content-core/src/derive/readingTime.ts | — | ~59 |
+| 02:38 | Created packages/content-core/src/derive/prevNext.ts | — | ~173 |
+| 02:38 | Created packages/content-core/src/derive/canonical.ts | — | ~460 |
+| 02:38 | Created packages/content-core/src/taxonomy/validator.ts | — | ~246 |
+| 02:38 | Created packages/content-core/src/links/resolver.ts | — | ~483 |
+| 02:38 | Created packages/content-core/src/links/checker.ts | — | ~313 |
+| 02:38 | Created packages/content-core/src/redirects/resolver.ts | — | ~742 |
+| 02:39 | Created packages/content-core/src/qc/runQC.ts | — | ~1097 |
+| 02:39 | Created packages/content-core/src/index.ts | — | ~493 |
+| 02:39 | Created packages/content-core/src/__tests__/isPublic.test.ts | — | ~484 |
+| 02:39 | Created packages/content-core/src/__tests__/normalizeSlug.test.ts | — | ~537 |
+| 02:39 | Created packages/content-core/src/__tests__/buildUrl.test.ts | — | ~742 |
+| 02:39 | Created packages/content-core/src/__tests__/links.test.ts | — | ~1064 |
+| 02:40 | Created packages/content-core/src/__tests__/taxonomy.test.ts | — | ~694 |
+| 02:40 | Created packages/content-core/src/__tests__/redirects.test.ts | — | ~1031 |
+| 02:40 | Edited packages/content-core/package.json | — | ~0 |
+| 02:41 | Edited packages/content-core/src/derive/canonical.ts | inline fix | ~14 |

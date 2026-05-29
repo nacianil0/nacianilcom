@@ -27,6 +27,7 @@
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
 <!-- Format: [YYYY-MM-DD] Description of what went wrong and what to do instead. -->
 
+- **[2026-05-30] `@types/gray-matter` doesn't exist on npm.** gray-matter ships its own TypeScript definitions — do not add `@types/gray-matter` to devDependencies.
 - **[2026-05-29] `workspace:*` protocol only works for local workspace packages.** Using `"typescript": "workspace:*"` in a sub-package's devDependencies fails because `typescript` is an npm package, not a local workspace package. Fix: use explicit version strings (`"typescript": "^5.7.2"`) in sub-packages.
 - **[2026-05-29] ESLint flat config needs explicit globals for Node.js/browser environments.** `__dirname`, `process` (Node.js) and `document` (browser) cause `no-undef` errors. Fix: `import globals from 'globals'` and set `languageOptions.globals: globals.node` for server files, `globals.browser` for client files. The `globals` package must be a **direct** devDependency (pnpm strict mode does not allow transitive-only access).
 - **[2026-05-29] `next lint` is deprecated in Next.js 15.x.** Use `eslint .` with `eslint.config.mjs` instead. For flat config, use `FlatCompat` from `@eslint/eslintrc` to bridge `eslint-config-next`.
@@ -45,6 +46,10 @@
 
 ## Key Learnings
 
+- **WP-03 content-core complete (2026-05-30).** All §9 schemas (meta/frontmatter/references/series/taxonomy/redirects/plans/inbox) + isPublic truth table + normalizeSlug TR chars + buildUrl TR/EN stable URLs + canonical/hreflang + taxonomy validator + InternalLink resolver+checker + redirect resolver (cycle detection) + runQC skeleton + 82 unit tests. `pnpm -w test && typecheck && lint && build` all clean.
+- **`@types/gray-matter` does NOT exist on npm** — gray-matter v4 ships its own .d.ts, no @types needed.
+- **tsconfig.build.json pattern for packages with tests:** use a `tsconfig.json` (noEmit, includes src) for typecheck, and a `tsconfig.build.json` (extends tsconfig, noEmit:false, excludes `src/__tests__`) for the actual build output. This keeps tests type-checkable without polluting dist/.
+- **vitest in content-core:** installed at package level (`"vitest": "^3.1.1"` in devDeps), test script `"vitest run"`, config at `vitest.config.ts`. Root workspace gets `"test": "pnpm -r test"`.
 - **WP-02 design system complete.** Token set: `packages/ui/tokens.css` (CSS vars + RGB channels for Tailwind opacity). Tailwind preset: `packages/ui/tailwind.preset.ts`. Technical-writing components: Callout/Definition/Example/Warning/Takeaway/CodeBlock in `packages/ui/src/components/`. Framework-light primitives: `LinkPrimitiveProps`, `ImagePrimitiveProps` (no Next.js deps). Web wrappers: `apps/web/src/ui/WebLink|WebImage`. Studio wrappers: `apps/studio/src/ui/StudioLink|StudioImage`. i18n: `apps/{web,studio}/messages/{tr,en}.json` + `packages/content-core/src/i18n.ts`.
 - **Portal dashboard UX reference (§5):** Title `text-[36-46px] leading-[1.06]` serif + trailing accent period; masthead `font-mono text-[10px] uppercase tracking-[0.22em]`; metadata inline with `h-[10px] w-px` hairline separators; cover `aspect-[16/9] object-contain` + blurred bleed stage; body `text-[14.5px] leading-[1.7]`. Observations documented in `docs/design-reference.md`.
 - **Fonts for web:** `next/font/google` (Newsreader/Inter/JetBrains Mono — SIL OFL) injected as CSS variables `--font-serif`, `--font-sans`, `--font-mono` on `<html>` className. Studio uses Google Fonts CDN @import (local-only use is acceptable).
