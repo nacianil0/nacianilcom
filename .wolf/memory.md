@@ -570,3 +570,5 @@
 | 00:31 | Added timeout around Clipboard API so fallback copy feedback cannot hang | packages/ui/src/components/CodeBlock.tsx | ready for final checks | ~300 |
 | 00:33 | Rebuilt web and started final production preview after clipboard timeout fix | apps/web, .wolf/start-web-3006*.log | preview listening on 127.0.0.1:3006 | ~600 |
 | 00:34 | Adjusted fallback copy to always show copied feedback after fallback attempt | packages/ui/src/components/CodeBlock.tsx | ui build and web typecheck passed | ~350 |
+| 00:36 | designqc: captured 6 screenshots (259KB, ~15000 tok) | / | ready for eval | ~0 |
+| 00:36 | Final browser/designqc verification of CodeBlock on target article | .wolf/designqc-captures, apps/web | zebra/highlight/wrap/copy/mobile scroll checked | ~900 |

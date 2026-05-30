@@ -250,7 +250,7 @@ export function CodeBlock({
   className = '',
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
-  const [wrap, setWrap] = useState(false);
+  const [wrap, setWrap] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const normalizedCode = useMemo(() => children.replace(/\r\n?/g, '\n').trimEnd(), [children]);
   const lines = useMemo(
