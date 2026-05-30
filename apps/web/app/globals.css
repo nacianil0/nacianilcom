@@ -28,6 +28,18 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Keyboard focus — visible accent ring, no outline on mouse focus */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 1px;
+  }
+
+  ::selection {
+    background-color: rgb(var(--color-accent-rgb) / 0.16);
+    color: var(--color-ink);
+  }
+
   /* Respect reduced-motion preference */
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -37,5 +49,16 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+  }
+}
+
+/* Print — keep the warm-paper editorial feel; render exact colors, drop chrome. */
+@media print {
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @page {
+    margin: 0;
   }
 }

@@ -3,6 +3,8 @@
 :root {
   /* Hex values for direct CSS usage */
   --color-surface: #f7f5f2;
+  --color-surface-sunk: #efeae2;
+  --color-surface-raised: #ffffff;
   --color-card: #fcfbf9;
   --color-hairline: #e8e3dc;
   --color-ink: #1b1a18;
@@ -13,6 +15,8 @@
 
   /* RGB channels for Tailwind opacity utilities */
   --color-surface-rgb: 247 245 242;
+  --color-surface-sunk-rgb: 239 234 226;
+  --color-surface-raised-rgb: 255 255 255;
   --color-card-rgb: 252 251 249;
   --color-hairline-rgb: 232 227 220;
   --color-ink-rgb: 27 26 24;

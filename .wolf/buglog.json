@@ -200,7 +200,12 @@
       "file": "apps/web/src/__tests__/security.test.ts",
       "root_cause": "RedirectItemSchema.permanent is z.literal(true) not z.boolean() — passing permanent: false fails TypeScript",
       "fix": "Changed permanent: false to permanent: true in test fixtures",
-      "tags": ["type-error", "test", "redirect-schema", "literal-type"],
+      "tags": [
+        "type-error",
+        "test",
+        "redirect-schema",
+        "literal-type"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-30T12:00:00.000Z"
@@ -212,7 +217,12 @@
       "file": "apps/studio/src/__tests__/router.test.ts",
       "root_cause": "content-core dist/ was stale (InboxItemSchema not rebuilt after adding new optional fields). Runtime uses dist/index.js via exports.import, not src/",
       "fix": "Added resolve.alias in vitest.config.ts pointing @nacianilcom/content-core to src/index.ts; rebuilt content-core dist/ with pnpm --filter build",
-      "tags": ["vitest", "content-core", "stale-dist", "workspace-alias"],
+      "tags": [
+        "vitest",
+        "content-core",
+        "stale-dist",
+        "workspace-alias"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-30T12:00:00.000Z"
@@ -224,7 +234,12 @@
       "file": "apps/studio/package.json",
       "root_cause": "@fastify/static 8.x is vulnerable to path traversal and route guard bypass; 8.x designed for Fastify 4.x but studio uses Fastify 5.x",
       "fix": "Upgraded @fastify/static from ^8.0.0 to ^9.1.1",
-      "tags": ["security", "dependency", "fastify", "path-traversal"],
+      "tags": [
+        "security",
+        "dependency",
+        "fastify",
+        "path-traversal"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-30T12:00:00.000Z"
@@ -292,6 +307,254 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-30T09:01:25.893Z"
+    },
+    {
+      "id": "bug-020",
+      "timestamp": "2026-05-30T09:14:03.106Z",
+      "error_message": "Significant refactor of ",
+      "file": "packages/content-core/src/qc/runQC.ts",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 5→33 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:14:03.106Z"
+    },
+    {
+      "id": "bug-021",
+      "timestamp": "2026-05-30T09:16:09.196Z",
+      "error_message": "Significant refactor of ",
+      "file": "packages/content-core/src/visual/validator.ts",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 7→7 lines (4 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:16:09.196Z"
+    },
+    {
+      "id": "bug-022",
+      "timestamp": "2026-05-30T09:20:29.434Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/studio/server/index.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:20:29.434Z"
+    },
+    {
+      "id": "bug-023",
+      "timestamp": "2026-05-30T09:22:22.960Z",
+      "error_message": "CSS fix: id",
+      "file": "apps/studio/src/App.tsx",
+      "root_cause": "id: 'inbox', label: 'AI Inbox' → 'plan', label: 'Monthly Plan'",
+      "fix": "Changed id: 'inbox', label: 'AI Inbox' → 'plan', label: 'Monthly Plan'",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:22:22.960Z"
+    },
+    {
+      "id": "bug-024",
+      "timestamp": "2026-05-30T09:46:27.208Z",
+      "error_message": "Missing error handling in resumeDir",
+      "file": "apps/web/src/content/loader.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:46:27.208Z"
+    },
+    {
+      "id": "bug-025",
+      "timestamp": "2026-05-30T09:49:15.388Z",
+      "error_message": "CSS fix: id",
+      "file": "apps/studio/src/App.tsx",
+      "root_cause": "id: 'plan', label: 'Monthly Plan' → 'resume', label: 'Resume Studio'",
+      "fix": "Changed id: 'plan', label: 'Monthly Plan' → 'resume', label: 'Resume Studio'",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:49:15.388Z"
+    },
+    {
+      "id": "bug-026",
+      "timestamp": "2026-05-30T09:49:40.940Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "apps/studio/server/index.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:49:40.940Z"
+    },
+    {
+      "id": "bug-027",
+      "timestamp": "2026-05-30T09:49:54.863Z",
+      "error_message": "Type error",
+      "file": "apps/web/app/sitemap.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:49:54.863Z"
+    },
+    {
+      "id": "bug-028",
+      "timestamp": "2026-05-30T09:53:41.265Z",
+      "error_message": "Type error",
+      "file": "apps/studio/server/index.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:53:41.265Z"
+    },
+    {
+      "id": "bug-029",
+      "timestamp": "2026-05-30T10:40:00.791Z",
+      "error_message": "Incorrect value in code",
+      "file": "content/resume/portfolio/kurumsal-dashboard/case.json",
+      "root_cause": "Had \"Holding genelinde 1.000+ çalışanın kullandığı, te",
+      "fix": "Changed to \"Holding genelinde çalışanların kullandığı, tek ot",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 6,
+      "last_seen": "2026-05-30T10:40:30.317Z"
+    },
+    {
+      "id": "bug-030",
+      "timestamp": "2026-05-30T10:55:45.021Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/app/[lang]/cv/page.tsx",
+      "root_cause": "13 lines replaced/restructured",
+      "fix": "Rewrote 33→17 lines (13 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T10:55:45.021Z"
+    },
+    {
+      "id": "bug-031",
+      "timestamp": "2026-05-30T10:57:27.103Z",
+      "error_message": "CSS fix: background-color",
+      "file": "apps/web/app/globals.css",
+      "root_cause": "background-color: var(--color-surface) → rgb(var(--color-accent-rgb) / 0.16)",
+      "fix": "Changed background-color: var(--color-surface) → rgb(var(--color-accent-rgb) / 0.16)",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T10:57:27.103Z"
+    },
+    {
+      "id": "bug-032",
+      "timestamp": "2026-05-30T10:57:32.418Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/components/SiteNav.tsx",
+      "root_cause": "Had \"sticky top-0 z-20 border-b border-hairline bg-sur",
+      "fix": "Changed to \"sticky top-0 z-20 border-b border-hairline bg-sur",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T10:57:32.418Z"
+    },
+    {
+      "id": "bug-033",
+      "timestamp": "2026-05-30T10:57:36.846Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/components/SiteFooter.tsx",
+      "root_cause": "Had \"mt-24 border-t border-ink bg-surface px-6 py-10 s",
+      "fix": "Changed to \"mt-24 border-t border-ink bg-surface px-6 py-10 s",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T10:57:36.846Z"
+    },
+    {
+      "id": "bug-034",
+      "timestamp": "2026-05-30T14:00:00.000Z",
+      "error_message": "next build: PageNotFoundError: Cannot find module for page: /[lang]/work (during Collecting page data)",
+      "file": "apps/web/.next",
+      "root_cause": "Stale .next cache after a structural route change — app/[lang]/page.tsx changed from a redirect() (no generateStaticParams) to a real SSG page; the prior build's page manifest no longer matched.",
+      "fix": "Remove-Item -Recurse -Force apps/web/.next then rebuild. Clean rebuild generates all 29 pages. typecheck/lint/compile pass regardless; only the cached page-data collection fails.",
+      "tags": ["nextjs", "build", "stale-cache", "ssg", "PageNotFoundError"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T14:00:00.000Z"
+    },
+    {
+      "id": "bug-035",
+      "timestamp": "2026-05-30T14:00:00.000Z",
+      "error_message": "New @nacianilcom/ui exports (editorial primitives) invisible to apps/web at build time",
+      "file": "packages/ui/package.json",
+      "root_cause": "ui exports.import -> ./dist/index.js and web has no transpilePackages, so new src components must be compiled to dist before next build resolves them. TypeScript typecheck passes via the types->./src/index.ts condition, masking the gap until build.",
+      "fix": "pnpm -r build builds ui before web (topological order), refreshing dist. Run pnpm --filter @nacianilcom/ui build (or full pnpm -w build) after editing ui source. Tailwind scans ui SRC for classes regardless of dist.",
+      "tags": ["pnpm", "ui", "stale-dist", "monorepo", "exports"],
+      "related_bugs": ["bug-014"],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T14:00:00.000Z"
     }
   ]
 }

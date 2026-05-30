@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { buildUrl } from '@nacianilcom/content-core';
 import type { Locale } from '@nacianilcom/content-core';
+import { pageShellClass } from '../lib/layout';
 
 interface SiteNavProps {
   lang: Locale;
@@ -9,43 +10,40 @@ interface SiteNavProps {
 
 export function SiteNav({ lang, altLangUrl }: SiteNavProps) {
   const altLang: Locale = lang === 'tr' ? 'en' : 'tr';
+  const nav = [
+    { href: buildUrl(lang, 'seriesList'), label: lang === 'tr' ? 'Yazılar' : 'Writing' },
+    { href: buildUrl(lang, 'work'), label: lang === 'tr' ? 'Projeler' : 'Work' },
+    { href: buildUrl(lang, 'cv'), label: 'CV' },
+  ];
 
   return (
     <nav
-      aria-label="Site navigasyonu"
-      className="sticky top-0 z-10 border-b border-hairline bg-surface/95 backdrop-blur-sm"
+      aria-label={lang === 'tr' ? 'Site navigasyonu' : 'Site navigation'}
+      className="sticky top-0 z-20 border-b border-hairline bg-surface/90 backdrop-blur-sm print:hidden"
     >
-      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-3">
+      <div className={`${pageShellClass} flex items-center justify-between gap-3 py-3.5 sm:gap-5`}>
         <Link
-          href={buildUrl(lang, 'seriesList')}
-          className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-ink-secondary transition-colors hover:text-ink"
+          href={buildUrl(lang, 'home')}
+          className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-ink transition-colors hover:text-accent"
         >
-          nacianil.com
+          Naci Anıl Akman
         </Link>
 
-        <div className="flex items-center gap-4">
-          <Link
-            href={buildUrl(lang, 'seriesList')}
-            className="font-sans text-sm text-ink-secondary transition-colors hover:text-ink"
-          >
-            {lang === 'tr' ? 'Yazılar' : 'Articles'}
-          </Link>
-          <Link
-            href={buildUrl(lang, 'work')}
-            className="font-sans text-sm text-ink-secondary transition-colors hover:text-ink"
-          >
-            {lang === 'tr' ? 'Projeler' : 'Work'}
-          </Link>
-          <Link
-            href={buildUrl(lang, 'cv')}
-            className="font-sans text-sm text-ink-secondary transition-colors hover:text-ink"
-          >
-            CV
-          </Link>
+        <div className="flex items-center gap-3 sm:gap-5">
+          {nav.map((n) => (
+            <Link
+              key={n.label}
+              href={n.href}
+              className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary transition-colors hover:text-ink"
+            >
+              {n.label}
+            </Link>
+          ))}
           <Link
             href={altLangUrl}
             lang={altLang}
-            className="rounded border border-hairline px-2.5 py-1 font-sans text-xs font-medium uppercase tracking-wider text-ink-secondary transition-colors hover:border-ink-secondary hover:text-ink"
+            hrefLang={altLang}
+            className="border border-hairline px-2 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary transition-colors hover:border-ink hover:text-ink"
             aria-label={altLang === 'tr' ? 'Türkçeye geç' : 'Switch to English'}
           >
             {altLang.toUpperCase()}

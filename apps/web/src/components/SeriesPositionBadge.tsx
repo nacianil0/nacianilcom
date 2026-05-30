@@ -1,3 +1,5 @@
+import { MonoLabel } from '@nacianilcom/ui';
+
 interface SeriesPositionBadgeProps {
   position: number;
   total: number;
@@ -6,11 +8,10 @@ interface SeriesPositionBadgeProps {
 
 export function SeriesPositionBadge({ position, total, seriesTitle }: SeriesPositionBadgeProps) {
   return (
-    <p
-      className="font-sans text-xs font-medium uppercase tracking-wider text-accent"
-      aria-label={`${seriesTitle} — ${position}. bölüm / ${total}`}
-    >
-      {seriesTitle} &mdash; {position} / {total}
-    </p>
+    <span aria-label={`${seriesTitle} — ${position} / ${total}`}>
+      <MonoLabel tone="accent">
+        {seriesTitle} <span className="text-ink-secondary">· {position}/{total}</span>
+      </MonoLabel>
+    </span>
   );
 }

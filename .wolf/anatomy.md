@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T09:55:51.555Z
-> Files: 184 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T11:02:50.625Z
+> Files: 198 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
@@ -19,6 +19,7 @@
 
 ## .claude/
 
+- `launch.json` (~65 tok)
 
 ## .claude/rules/
 
@@ -112,7 +113,7 @@
 
 ## apps/web/app/
 
-- `globals.css` — Styles: 5 rules (~231 tok)
+- `globals.css` — Styles: 6 rules (~393 tok)
 - `layout.tsx` — newsreader (~502 tok)
 - `page.tsx` — §20: root redirect — single source, not duplicated in next.config (~51 tok)
 - `robots.ts` — Declares robots (~71 tok)
@@ -121,15 +122,15 @@
 ## apps/web/app/[lang]/
 
 - `layout.tsx` — VALID_LANGS (~411 tok)
-- `page.tsx` — LangHomePage (~99 tok)
+- `page.tsx` — VALID_LANGS (~1562 tok)
 
 ## apps/web/app/[lang]/cv/
 
-- `page.tsx` — VALID_LANGS (~3936 tok)
+- `page.tsx` — VALID_LANGS (~3777 tok)
 
 ## apps/web/app/[lang]/cv/print/
 
-- `page.tsx` — VALID_LANGS (~1984 tok)
+- `page.tsx` — VALID_LANGS (~2354 tok)
 
 ## apps/web/app/[lang]/feed.xml/
 
@@ -137,23 +138,23 @@
 
 ## apps/web/app/[lang]/series/
 
-- `page.tsx` — VALID_LANGS (~1426 tok)
+- `page.tsx` — VALID_LANGS (~1209 tok)
 
 ## apps/web/app/[lang]/series/[seriesSlug]/
 
-- `page.tsx` — VALID_LANGS (~2427 tok)
+- `page.tsx` — VALID_LANGS (~1894 tok)
 
 ## apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/
 
-- `page.tsx` — VALID_LANGS (~3220 tok)
+- `page.tsx` — VALID_LANGS (~2983 tok)
 
 ## apps/web/app/[lang]/work/
 
-- `page.tsx` — VALID_LANGS (~1597 tok)
+- `page.tsx` — VALID_LANGS (~1315 tok)
 
 ## apps/web/app/[lang]/work/[caseSlug]/
 
-- `page.tsx` — VALID_LANGS (~1836 tok)
+- `page.tsx` — VALID_LANGS (~1719 tok)
 
 ## apps/web/app/api/cron/
 
@@ -179,12 +180,15 @@
 
 ## apps/web/src/components/
 
-- `MetadataRow.tsx` — DIFFICULTY_KEY (~364 tok)
-- `PrevNextNav.tsx` — PrevNextNav (~585 tok)
-- `ReferencesSection.tsx` — ReferencesSection (~438 tok)
-- `SeriesPositionBadge.tsx` — SeriesPositionBadge (~126 tok)
-- `SiteNav.tsx` — SiteNav (~573 tok)
-- `TOC.tsx` — TOC (~376 tok)
+- `Crumbs.tsx` — Portal-style breadcrumb trail for the masthead bar. First link carries a back-arrow. (~351 tok)
+- `ListRow.tsx` — Left mono rail cell — a 2-digit index or short date. (~469 tok)
+- `MetadataRow.tsx` — DIFFICULTY_KEY (~282 tok)
+- `PrevNextNav.tsx` — PrevNextNav (~606 tok)
+- `ReferencesSection.tsx` — ReferencesSection (~487 tok)
+- `SeriesPositionBadge.tsx` — SeriesPositionBadge (~137 tok)
+- `SiteFooter.tsx` — SiteFooter (~642 tok)
+- `SiteNav.tsx` — SiteNav (~563 tok)
+- `TOC.tsx` — TOC (~424 tok)
 
 ## apps/web/src/content/
 
@@ -192,6 +196,7 @@
 
 ## apps/web/src/lib/
 
+- `dateRange.ts` — Format a "YYYY-MM" (or "YYYY") string as a short localized month-year. (~233 tok)
 - `jsonld.ts` — Exports websiteJsonLd, personJsonLd, breadcrumbJsonLd, ArticleJsonLdOptions + 4 more (~696 tok)
 - `messages.ts` — Exports WebMessages, getMessages (~146 tok)
 - `revalidate-targets.ts` — Explicit tag/path matrix for a published article. (~418 tok)
@@ -225,15 +230,15 @@
 
 ## content/resume/
 
-- `resume.json` (~3348 tok)
+- `resume.json` (~4310 tok)
 
 ## content/resume/portfolio/kurumsal-dashboard/
 
-- `case.json` — klasörü açarak Dashboard modülünü kurdum. Login sonrası merkez ekran: uygulama kataloğu (izin bazlı) (~1214 tok)
+- `case.json` — klasörü açarak Dashboard modülünü kurdum. Login sonrası merkez ekran: uygulama kataloğu (izin bazlı) (~1201 tok)
 
 ## content/resume/portfolio/seyahat-projesi/
 
-- `case.json` (~1196 tok)
+- `case.json` (~1180 tok)
 
 ## content/series/
 
@@ -337,7 +342,7 @@
 - `plans.ts` — Zod schemas: ScoresSchema, TopicSchema, MonthlyPlanSchema (~415 tok)
 - `redirects.ts` — Zod schemas: RedirectItemSchema, RedirectsSchema (~103 tok)
 - `references.ts` — Zod schemas: ReferenceItemSchema, ReferencesSchema (~109 tok)
-- `resume.ts` — Zod schemas: VisibilitySchema, ContactItemSchema, BasicsSchema, ExperienceItemSchema + 10 more (~1066 tok)
+- `resume.ts` — Zod schemas: VisibilitySchema, ContactItemSchema, BasicsSchema, ExperienceItemSchema + 10 more (~1077 tok)
 - `series.ts` — Zod schemas: BilingualTextSchema, SeriesSchema (~127 tok)
 - `taxonomy.ts` — Zod schemas: BilingualLabelSchema, CategorySchema, TagSchema, TaxonomySchema (~168 tok)
 
@@ -362,13 +367,13 @@
 
 - `eslint.config.mjs` — ', 'node_modules/**'] }, (~136 tok)
 - `package.json` — Node.js package manifest (~238 tok)
-- `tailwind.preset.ts` — Exports preset (~276 tok)
-- `tokens.css` — Styles: 20 vars (~279 tok)
+- `tailwind.preset.ts` — Exports preset (~327 tok)
+- `tokens.css` — Styles: 24 vars (~323 tok)
 - `tsconfig.json` — TypeScript configuration (~64 tok)
 
 ## packages/ui/src/
 
-- `index.ts` — packages/ui — framework-light design tokens + component core (§3) (~239 tok)
+- `index.ts` — packages/ui — framework-light design tokens + component core (§3) (~407 tok)
 
 ## packages/ui/src/components/
 
@@ -382,6 +387,21 @@
 - `Takeaway.tsx` — Takeaway (~176 tok)
 - `VisualBlock.tsx` — VisualBlock (~324 tok)
 - `Warning.tsx` — Warning (~186 tok)
+
+## packages/ui/src/components/editorial/
+
+- `Chip.tsx` — Square mono tag chip for stacks / tags (no radius — Swiss-Industrial). (~155 tok)
+- `Frame.tsx` — Aspect-ratio utility, e.g. 'aspect-[16/9]'. Omit for intrinsic height. (~186 tok)
+- `Masthead.tsx` — Breadcrumb / back-link slot (left of the rule). (~723 tok)
+- `MetaRow.tsx` — Each entry becomes a meta cell; falsy entries are dropped. Hairlines are inserted between. (~304 tok)
+- `MonoLabel.tsx` — Swiss-Industrial mono uppercase label — the project's signature meta voice. (~185 tok)
+- `Rule.tsx` — Hairline (default) or strong ink rule. Vertical variant is the inline meta separator. (~185 tok)
+- `SectionRail.tsx` — Optional right-aligned label (e.g. a count) past the rail. (~308 tok)
+- `SpecRow.tsx` — Left mono label (spec-sheet key). (~216 tok)
+
+## packages/ui/src/lib/
+
+- `cn.ts` — Minimal className combiner — joins truthy strings. No external deps (§3 framework-light). (~64 tok)
 
 ## packages/ui/src/primitives/
 

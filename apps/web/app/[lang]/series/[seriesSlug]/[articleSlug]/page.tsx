@@ -12,6 +12,7 @@ import {
   isPublic,
 } from '@nacianilcom/content-core';
 import type { Locale } from '@nacianilcom/content-core';
+import { Masthead } from '@nacianilcom/ui';
 import {
   loadSeries,
   loadMeta,
@@ -24,6 +25,8 @@ import {
 } from '../../../../../src/content/loader';
 import { getMdxComponents } from '../../../../../src/mdx/components';
 import { SiteNav } from '../../../../../src/components/SiteNav';
+import { SiteFooter } from '../../../../../src/components/SiteFooter';
+import { Crumbs } from '../../../../../src/components/Crumbs';
 import { MetadataRow } from '../../../../../src/components/MetadataRow';
 import { SeriesPositionBadge } from '../../../../../src/components/SeriesPositionBadge';
 import { ReferencesSection } from '../../../../../src/components/ReferencesSection';
@@ -35,9 +38,7 @@ import { articleJsonLd, breadcrumbJsonLd, faqJsonLd } from '../../../../../src/l
 
 const VALID_LANGS = new Set(['tr', 'en']);
 
-// Allow on-demand ISR for future-scheduled articles that become public after build
 export const dynamicParams = true;
-// Re-render at most once per hour; explicit revalidation overrides this
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
@@ -177,7 +178,6 @@ export default async function ArticlePage({
       ? { slugBase: nextMeta.slugBase, title: nextMdx.frontmatter.title }
       : null;
 
-  // JSON-LD
   const { canonical } = deriveCanonical(locale, { kind: 'article', seriesSlug, articleSlug }, ['tr', 'en']);
   const canonicalUrl = `${SITE_URL}${canonical}`;
   const seriesCanonicalUrl = `${SITE_URL}${buildUrl(locale, 'seriesLanding', { seriesSlug })}`;
@@ -210,42 +210,25 @@ export default async function ArticlePage({
       {faqs && faqs.length > 0 && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
       )}
-      <div className="min-h-screen bg-surface">
+
+      <div className="flex min-h-screen flex-col bg-surface">
         <SiteNav lang={locale} altLangUrl={altLangUrl} />
 
-        <div className="mx-auto max-w-screen-xl px-6 py-12">
-          <div className="grid grid-cols-1 gap-12 xl:grid-cols-[minmax(0,720px)_200px]">
-            {/* Article column */}
-            <article data-reading aria-labelledby="article-title">
-              {/* Breadcrumb */}
-              <nav aria-label="Breadcrumb" className="mb-8">
-                <ol className="flex items-center gap-2 font-sans text-xs text-ink-secondary/60">
-                  <li>
-                    <Link
-                      href={buildUrl(locale, 'seriesList')}
-                      className="transition-colors hover:text-ink-secondary"
-                    >
-                      {locale === 'tr' ? 'Yazılar' : 'Articles'}
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li>
-                    <Link
-                      href={seriesUrl}
-                      className="transition-colors hover:text-ink-secondary"
-                    >
-                      {seriesTitle}
-                    </Link>
-                  </li>
-                  <li aria-hidden="true">/</li>
-                  <li aria-current="page" className="text-ink-secondary">
-                    {mdxData.frontmatter.title}
-                  </li>
-                </ol>
-              </nav>
+        <Masthead
+          crumbs={
+            <Crumbs
+              items={[
+                { label: locale === 'tr' ? 'Yazılar' : 'Writing', href: buildUrl(locale, 'seriesList') },
+                { label: seriesTitle, href: seriesUrl },
+              ]}
+            />
+          }
+        />
 
-              {/* Hero */}
-              <header className="mb-8 border-l-[3px] border-accent pl-5">
+        <main className="mx-auto w-full max-w-[1100px] flex-1 px-6 py-12 sm:px-10 lg:px-14">
+          <div className="grid grid-cols-1 gap-12 xl:grid-cols-[minmax(0,760px)_180px]">
+            <article data-reading aria-labelledby="article-title">
+              <header>
                 <SeriesPositionBadge
                   position={position}
                   total={series.articleOrder.length}
@@ -253,27 +236,27 @@ export default async function ArticlePage({
                 />
                 <h1
                   id="article-title"
-                  className="mt-2 font-serif text-[2.125rem] font-semibold leading-[1.15] text-ink"
+                  className="mt-3 font-serif text-[34px] font-semibold leading-[1.08] tracking-[-0.01em] text-ink sm:text-[44px]"
                 >
                   {mdxData.frontmatter.title}
+                  <span className="text-accent">.</span>
                 </h1>
               </header>
 
-              {/* Metadata row */}
-              <MetadataRow
-                meta={meta}
-                readingTimeMinutes={readingTimeMinutes}
-                lang={locale}
-                messages={messages}
-              />
+              <div className="mt-5">
+                <MetadataRow
+                  meta={meta}
+                  readingTimeMinutes={readingTimeMinutes}
+                  lang={locale}
+                  messages={messages}
+                />
+              </div>
 
-              {/* Summary */}
-              <p className="mt-6 font-sans text-base leading-[1.75] text-ink-secondary border-l-2 border-hairline pl-4">
+              <p className="mt-6 border-l-2 border-accent pl-4 font-sans text-[15.5px] leading-[1.7] text-ink-secondary">
                 {mdxData.frontmatter.summary}
               </p>
 
-              {/* MDX content */}
-              <div className="prose prose-sm mt-8 max-w-none sm:prose">
+              <div className="prose mt-8 max-w-none">
                 <MDXRemote
                   source={mdxData.content}
                   components={components}
@@ -285,10 +268,8 @@ export default async function ArticlePage({
                 />
               </div>
 
-              {/* References */}
               <ReferencesSection references={references} messages={messages} />
 
-              {/* Prev / Next */}
               <PrevNextNav
                 prev={prevRef}
                 next={nextRef}
@@ -297,25 +278,25 @@ export default async function ArticlePage({
                 messages={messages}
               />
 
-              {/* Back to series */}
-              <div className="mt-8 border-t border-hairline pt-6">
+              <div className="mt-10 border-t border-hairline pt-6">
                 <Link
                   href={seriesUrl}
-                  className="font-sans text-sm text-ink-secondary transition-colors hover:text-ink"
+                  className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary transition-colors hover:text-ink"
                 >
                   ← {messages.backToSeries}: {seriesTitle}
                 </Link>
               </div>
             </article>
 
-            {/* Optional sticky TOC — desktop only */}
             <aside className="hidden xl:block">
-              <div className="sticky top-20">
-                <TOC />
+              <div className="sticky top-24">
+                <TOC label={locale === 'tr' ? 'İçindekiler' : 'Contents'} />
               </div>
             </aside>
           </div>
-        </div>
+        </main>
+
+        <SiteFooter lang={locale} />
       </div>
     </>
   );

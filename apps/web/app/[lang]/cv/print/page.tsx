@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Locale } from '@nacianilcom/content-core';
+import { SectionRail, SpecRow, Chip } from '@nacianilcom/ui';
 import { loadResume } from '../../../../src/content/loader';
+import { fmtRange } from '../../../../src/lib/dateRange';
 
 const VALID_LANGS = new Set(['tr', 'en']);
 
@@ -23,143 +25,161 @@ export default async function CvPrintPage({
   const resume = await loadResume(locale, 'pdf');
   if (!resume) notFound();
 
-  const publicEmail = resume.contact.find(c => c.key === 'email');
+  const tr = locale === 'tr';
+  const publicEmail = resume.contact.find((c) => c.key === 'email')?.value;
+  const role = resume.basics.title;
+  const location = resume.basics.location;
 
   return (
-    <div className="bg-white text-black" style={{ fontFamily: 'Inter, Arial, sans-serif' }}>
-      <main
-        className="mx-auto px-12 py-10"
-        style={{ maxWidth: '800px', minHeight: '100vh' }}
-      >
-        {/* ── Header ── */}
-        <header className="mb-8 flex items-start gap-6 border-b border-gray-200 pb-8">
-          {resume.basics.photo && (
-            <Image
-              src={resume.basics.photo}
-              alt={resume.basics.name}
-              width={80}
-              height={80}
-              className="rounded-full object-cover"
-              style={{ flexShrink: 0 }}
-            />
-          )}
-          <div style={{ flex: 1 }}>
-            <h1 style={{ fontSize: '28px', fontWeight: 700, lineHeight: 1.15, margin: 0 }}>
-              {resume.basics.name}
-            </h1>
-            <p style={{ fontSize: '14px', color: '#555', marginTop: '4px' }}>
-              {resume.basics.title}
-            </p>
-            {publicEmail?.value && (
-              <p style={{ fontSize: '12px', color: '#777', marginTop: '4px' }}>
-                {publicEmail.value}
+    <div className="min-h-screen bg-surface text-ink">
+      <main className="mx-auto w-full max-w-[820px] px-[16mm] py-[14mm]">
+        {/* Header */}
+        <header className="border-b-2 border-ink pb-6">
+          <div className="flex items-start justify-between gap-6">
+            <div className="min-w-0">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-secondary">
+                {role}
+                {location ? ` · ${location}` : ''}
               </p>
-            )}
-            {resume.links.length > 0 && (
-              <div style={{ marginTop: '6px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                {resume.links.map(l => (
-                  <span key={l.label} style={{ fontSize: '11px', color: '#555' }}>
-                    {l.label}: {l.url}
-                  </span>
-                ))}
+              <h1 className="mt-1.5 font-serif text-[30px] font-semibold leading-[1.05] text-ink">
+                {resume.basics.name}
+                <span className="text-accent">.</span>
+              </h1>
+            </div>
+            {resume.basics.photo && (
+              <div className="relative h-[76px] w-[76px] shrink-0 overflow-hidden border border-hairline bg-surface-sunk">
+                <Image src={resume.basics.photo} alt={resume.basics.name} fill sizes="76px" className="object-cover" priority />
               </div>
             )}
           </div>
-        </header>
 
-        {/* ── Summary ── */}
-        <section style={{ marginBottom: '24px' }}>
-          <p style={{ fontSize: '13px', lineHeight: 1.7, color: '#333' }}>
+          <p className="mt-4 max-w-[600px] font-sans text-[12.5px] leading-[1.7] text-ink-secondary">
             {resume.basics.summary}
           </p>
-        </section>
 
-        {/* ── Experience ── */}
-        {resume.experience.length > 0 && (
-          <section style={{ marginBottom: '24px' }}>
-            <h2 style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888', marginBottom: '12px' }}>
-              {locale === 'tr' ? 'Deneyim' : 'Experience'}
-            </h2>
-            {resume.experience.map(exp => (
-              <div key={exp.id} style={{ marginBottom: '16px', borderLeft: '2px solid #e5e7eb', paddingLeft: '14px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                  <strong style={{ fontSize: '13px' }}>{exp.company}</strong>
-                  <span style={{ fontSize: '11px', color: '#888' }}>
-                    {exp.startDate} — {exp.endDate ?? (locale === 'tr' ? 'Halen' : 'Present')}
-                  </span>
-                </div>
-                <p style={{ fontSize: '12px', color: '#555', margin: '2px 0 4px' }}>{exp.role}</p>
-                <p style={{ fontSize: '12px', lineHeight: 1.65, color: '#444' }}>{exp.description}</p>
-                {exp.highlights.length > 0 && (
-                  <ul style={{ margin: '6px 0 0', paddingLeft: '16px' }}>
-                    {exp.highlights.map((h, i) => (
-                      <li key={i} style={{ fontSize: '12px', color: '#444', lineHeight: 1.6, marginBottom: '3px' }}>
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {exp.stack.length > 0 && (
-                  <p style={{ fontSize: '10px', color: '#999', marginTop: '6px' }}>
-                    {exp.stack.join(' · ')}
-                  </p>
-                )}
-              </div>
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] tracking-[0.03em] text-ink-secondary">
+            {publicEmail && <span>{publicEmail}</span>}
+            {resume.links.map((l) => (
+              <span key={l.label}>
+                {l.label}: {l.url.replace(/^https?:\/\//, '')}
+              </span>
             ))}
-          </section>
-        )}
+          </div>
+        </header>
 
-        {/* ── Skills ── */}
-        {resume.skills.length > 0 && (
-          <section style={{ marginBottom: '24px' }}>
-            <h2 style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888', marginBottom: '12px' }}>
-              {locale === 'tr' ? 'Yetenekler' : 'Skills'}
-            </h2>
-            {resume.skills.map(group => (
-              <div key={group.group} style={{ marginBottom: '8px', display: 'flex', gap: '12px' }}>
-                <span style={{ fontSize: '11px', fontWeight: 600, color: '#444', minWidth: '80px' }}>
-                  {group.group}
-                </span>
-                <span style={{ fontSize: '11px', color: '#555' }}>{group.items.join(', ')}</span>
+        <div className="mt-8 flex flex-col gap-8">
+          {/* Experience */}
+          {resume.experience.length > 0 && (
+            <SectionRail label={tr ? 'Deneyim' : 'Experience'} id="print-experience">
+              <div className="flex flex-col">
+                {resume.experience.map((exp) => (
+                  <div
+                    key={exp.id}
+                    className="break-inside-avoid border-b border-hairline py-4 first:pt-0 last:border-b-0"
+                  >
+                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+                      <h3 className="font-serif text-[16px] font-medium text-ink">{exp.company}</h3>
+                      <span className="shrink-0 font-mono text-[9.5px] uppercase tracking-[0.14em] tabular-nums text-ink-secondary">
+                        {fmtRange(exp.startDate, exp.endDate, locale)}
+                      </span>
+                    </div>
+                    <p className="mt-0.5 font-mono text-[9.5px] uppercase tracking-[0.14em] text-accent">
+                      {exp.role}
+                    </p>
+                    <p className="mt-2 font-sans text-[12px] leading-[1.6] text-ink-secondary">{exp.description}</p>
+                    {exp.highlights.length > 0 && (
+                      <ul className="mt-2 flex flex-col gap-1">
+                        {exp.highlights.map((h, j) => (
+                          <li key={j} className="flex gap-2.5 font-sans text-[11.5px] leading-[1.55] text-ink-secondary">
+                            <span aria-hidden="true" className="mt-[8px] h-px w-2.5 shrink-0 bg-accent" />
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {exp.stack.length > 0 && (
+                      <p className="mt-2 font-mono text-[10px] tracking-[0.02em] text-ink-secondary/80">
+                        {exp.stack.join('  ·  ')}
+                      </p>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
-          </section>
-        )}
+            </SectionRail>
+          )}
 
-        {/* ── Education ── */}
-        {resume.education.length > 0 && (
-          <section style={{ marginBottom: '24px' }}>
-            <h2 style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888', marginBottom: '12px' }}>
-              {locale === 'tr' ? 'Eğitim' : 'Education'}
-            </h2>
-            {resume.education.map(edu => (
-              <div key={edu.id} style={{ marginBottom: '8px', borderLeft: '2px solid #e5e7eb', paddingLeft: '14px' }}>
-                <strong style={{ fontSize: '13px' }}>{edu.institution}</strong>
-                <p style={{ fontSize: '12px', color: '#555', margin: '2px 0 0' }}>
-                  {edu.degree} — {edu.field}
-                  {edu.year && <span style={{ marginLeft: '8px', color: '#999' }}>{edu.year}</span>}
-                </p>
+          {/* Skills */}
+          {resume.skills.length > 0 && (
+            <SectionRail label={tr ? 'Yetenekler' : 'Skills'} id="print-skills">
+              <div className="break-inside-avoid">
+                {resume.skills.map((group) => (
+                  <SpecRow key={group.group} label={group.group}>
+                    <p className="font-sans text-[12px] leading-[1.6] text-ink-secondary">{group.items.join('  ·  ')}</p>
+                  </SpecRow>
+                ))}
               </div>
-            ))}
-          </section>
-        )}
+            </SectionRail>
+          )}
 
-        {/* ── Credentials ── */}
-        {resume.credentials.length > 0 && (
-          <section style={{ marginBottom: '24px' }}>
-            <h2 style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.15em', color: '#888', marginBottom: '12px' }}>
-              {locale === 'tr' ? 'Sertifikalar & Belgeler' : 'Certifications & Credentials'}
-            </h2>
-            <ul style={{ paddingLeft: '16px', margin: 0 }}>
-              {resume.credentials.map(cred => (
-                <li key={cred.id} style={{ fontSize: '12px', color: '#444', lineHeight: 1.7, marginBottom: '4px' }}>
-                  <strong>{cred.title}</strong>{' — '}<span style={{ color: '#888' }}>{cred.issuer}</span>
-                  {cred.year && <span style={{ marginLeft: '6px', color: '#aaa' }}>{cred.year}</span>}
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+          {/* Projects */}
+          {resume.projects.length > 0 && (
+            <SectionRail label={tr ? 'Projeler' : 'Projects'} id="print-projects">
+              <div className="flex flex-col">
+                {resume.projects.map((proj) => (
+                  <div key={proj.id} className="break-inside-avoid border-b border-hairline py-3 first:pt-0 last:border-b-0">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <h3 className="font-serif text-[14px] font-medium text-ink">{proj.title}</h3>
+                      {proj.url && (
+                        <span className="shrink-0 font-mono text-[10px] tracking-[0.02em] text-ink-secondary">
+                          {proj.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1 font-sans text-[11.5px] leading-[1.55] text-ink-secondary">{proj.summary}</p>
+                  </div>
+                ))}
+              </div>
+            </SectionRail>
+          )}
+
+          {/* Education */}
+          {resume.education.length > 0 && (
+            <SectionRail label={tr ? 'Eğitim' : 'Education'} id="print-education">
+              <div className="break-inside-avoid">
+                {resume.education.map((edu) => (
+                  <SpecRow key={edu.id} label={edu.year ? String(edu.year) : tr ? 'Eğitim' : 'Education'}>
+                    <p className="font-serif text-[14px] font-medium text-ink">{edu.institution}</p>
+                    <p className="mt-0.5 font-sans text-[11.5px] leading-[1.5] text-ink-secondary">
+                      {edu.degree} · {edu.field}
+                    </p>
+                  </SpecRow>
+                ))}
+              </div>
+            </SectionRail>
+          )}
+
+          {/* Credentials */}
+          {resume.credentials.length > 0 && (
+            <SectionRail label={tr ? 'Sertifikalar' : 'Certifications'} id="print-credentials">
+              <ul className="break-inside-avoid flex flex-col" role="list">
+                {resume.credentials.map((cred) => (
+                  <li
+                    key={cred.id}
+                    className="grid grid-cols-[1fr_auto] items-baseline gap-4 border-b border-hairline py-2.5 last:border-b-0"
+                  >
+                    <div className="min-w-0">
+                      <span className="font-sans text-[12px] text-ink">{cred.title}</span>
+                      <span className="ml-2 font-sans text-[11px] text-ink-secondary">{cred.issuer}</span>
+                    </div>
+                    {cred.year && (
+                      <span className="shrink-0 font-mono text-[10px] tabular-nums text-ink-secondary">{cred.year}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </SectionRail>
+          )}
+        </div>
       </main>
     </div>
   );

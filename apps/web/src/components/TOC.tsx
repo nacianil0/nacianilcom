@@ -7,7 +7,11 @@ interface TocItem {
   level: number;
 }
 
-export function TOC() {
+interface TOCProps {
+  label?: string;
+}
+
+export function TOC({ label = 'İçindekiler' }: TOCProps) {
   const [items, setItems] = useState<TocItem[]>([]);
 
   useEffect(() => {
@@ -15,7 +19,7 @@ export function TOC() {
     if (!article) return;
     const headings = article.querySelectorAll('h2[id], h3[id]');
     const collected: TocItem[] = [];
-    headings.forEach(h => {
+    headings.forEach((h) => {
       const id = h.getAttribute('id');
       if (!id) return;
       collected.push({
@@ -30,16 +34,16 @@ export function TOC() {
   if (items.length < 2) return null;
 
   return (
-    <nav aria-label="İçindekiler">
-      <p className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-ink-secondary/60">
-        İçindekiler
-      </p>
-      <ul className="space-y-1.5">
-        {items.map(item => (
+    <nav aria-label={label}>
+      <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-secondary">{label}</p>
+      <ul className="space-y-1 border-l border-hairline">
+        {items.map((item) => (
           <li key={item.id}>
             <a
               href={`#${item.id}`}
-              className={`block font-sans text-xs leading-relaxed text-ink-secondary transition-colors hover:text-ink ${item.level === 3 ? 'pl-3' : ''}`}
+              className={`-ml-px block border-l border-transparent py-0.5 font-sans text-[12px] leading-snug text-ink-secondary transition-colors hover:border-accent hover:text-ink ${
+                item.level === 3 ? 'pl-6' : 'pl-3'
+              }`}
             >
               {item.text}
             </a>

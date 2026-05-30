@@ -444,3 +444,55 @@
 | 12:55 | WP-12+13 complete — 29 static pages (CV/work/case study); 126 tests pass; typecheck+lint+build all clean; README.md; smoke script | multiple | all pass | ~8000 |
 | 12:55 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp12_13_done.md | — | ~409 |
 | 12:55 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | 1→2 lines | ~116 |
+| 12:56 | Session end: 28 writes across 17 files (resume.ts, visibility.ts, index.ts, resume.test.ts, resume.json) | 26 reads | ~45801 tok |
+
+## Session: 2026-05-30 13:29
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 13:39 | Created content/resume/resume.json | — | ~4310 |
+| 13:39 | Edited packages/content-core/src/schemas/resume.ts | 8→9 lines | ~70 |
+| 13:40 | Edited content/resume/portfolio/kurumsal-dashboard/case.json | inline fix | ~55 |
+| 13:40 | Edited content/resume/portfolio/kurumsal-dashboard/case.json | inline fix | ~63 |
+| 13:40 | Edited content/resume/portfolio/kurumsal-dashboard/case.json | inline fix | ~60 |
+| 13:40 | Edited content/resume/portfolio/kurumsal-dashboard/case.json | inline fix | ~72 |
+| 13:40 | Edited content/resume/portfolio/seyahat-projesi/case.json | inline fix | ~69 |
+| 13:40 | Edited content/resume/portfolio/seyahat-projesi/case.json | inline fix | ~69 |
+| 13:40 | Edited packages/ui/tokens.css | 19→23 lines | ~214 |
+| 13:40 | Edited packages/ui/tailwind.preset.ts | 3→7 lines | ~91 |
+| 13:43 | Created packages/ui/src/lib/cn.ts | — | ~64 |
+| 13:43 | Created packages/ui/src/components/editorial/MonoLabel.tsx | — | ~185 |
+| 13:43 | Created packages/ui/src/components/editorial/Rule.tsx | — | ~185 |
+| 13:43 | Created packages/ui/src/components/editorial/MetaRow.tsx | — | ~304 |
+| 13:43 | Created packages/ui/src/components/editorial/SectionRail.tsx | — | ~318 |
+| 13:43 | Created packages/ui/src/components/editorial/SpecRow.tsx | — | ~216 |
+| 13:43 | Created packages/ui/src/components/editorial/Chip.tsx | — | ~155 |
+| 13:43 | Created packages/ui/src/components/editorial/Frame.tsx | — | ~186 |
+| 13:43 | Created packages/ui/src/components/editorial/Masthead.tsx | — | ~723 |
+| 13:43 | Edited packages/ui/src/index.ts | expanded (+11 lines) | ~270 |
+| 13:46 | Created apps/web/src/components/SiteNav.tsx | — | ~559 |
+| 13:46 | Created apps/web/src/components/SiteFooter.tsx | — | ~638 |
+| 13:46 | Created apps/web/src/components/Crumbs.tsx | — | ~351 |
+| 13:46 | Created apps/web/src/components/ListRow.tsx | — | ~469 |
+| 13:46 | Created apps/web/src/components/MetadataRow.tsx | — | ~282 |
+| 13:46 | Created apps/web/src/components/SeriesPositionBadge.tsx | — | ~137 |
+| 13:47 | Created apps/web/src/components/PrevNextNav.tsx | — | ~606 |
+| 13:47 | Created apps/web/src/components/ReferencesSection.tsx | — | ~487 |
+| 13:48 | Created apps/web/app/[lang]/page.tsx | — | ~1562 |
+| 13:49 | Created apps/web/app/[lang]/series/page.tsx | — | ~1209 |
+| 13:50 | Created apps/web/app/[lang]/series/[seriesSlug]/page.tsx | — | ~1894 |
+| 13:51 | Created apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/page.tsx | — | ~2968 |
+| 13:51 | Created apps/web/app/[lang]/work/page.tsx | — | ~1315 |
+| 13:52 | Created apps/web/app/[lang]/work/[caseSlug]/page.tsx | — | ~1719 |
+| 13:54 | Created apps/web/app/[lang]/cv/page.tsx | — | ~3925 |
+| 13:55 | Created apps/web/src/lib/dateRange.ts | — | ~233 |
+| 13:55 | Edited apps/web/app/[lang]/cv/page.tsx | modified generateStaticParams() | ~187 |
+| 13:56 | Created apps/web/app/[lang]/cv/print/page.tsx | — | ~2354 |
+| 13:56 | Created apps/web/src/components/TOC.tsx | — | ~424 |
+| 13:57 | Edited apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/page.tsx | 5→5 lines | ~61 |
+| 13:57 | Edited apps/web/app/globals.css | modified where() | ~304 |
+| 13:57 | Edited apps/web/src/components/SiteNav.tsx | "sticky top-0 z-20 border-" → "sticky top-0 z-20 border-" | ~30 |
+| 13:57 | Edited apps/web/src/components/SiteFooter.tsx | "mt-24 border-t border-ink" → "mt-24 border-t border-ink" | ~30 |
+| 13:59 | Edited packages/ui/src/components/editorial/SectionRail.tsx | 4→3 lines | ~20 |
+| 14:02 | Created .claude/launch.json | — | ~58 |
+| 14:02 | Edited .claude/launch.json | 4→5 lines | ~47 |

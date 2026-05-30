@@ -55,6 +55,7 @@ export const ProjectSummarySchema = z.object({
   title: z.string(),
   summary: z.string(),
   caseSlug: z.string().optional(),
+  url: z.string().url().optional(),
   stack: z.array(z.string()),
   visibility: VisibilitySchema,
 });

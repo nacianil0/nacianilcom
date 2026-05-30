@@ -1,10 +1,11 @@
 {
   "tr": {
     "basics": {
-      "name": "Naci Anil Akman",
+      "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "summary": ".NET ve React ile kurumsal portal ve dashboard çözümleri geliştiren full stack developer. Holding ölçeğinde çok şirketli, çok ülkeli sistemlerde uçtan uca ürün geliştirme ve AI/API entegrasyonu deneyimi.",
-      "photo": "/photo/naci.jpg"
+      "summary": ".NET ve React ile kurumsal portal ve dashboard çözümleri geliştiren full stack developer. Holding ölçeğinde çok şirketli, çok ülkeli sistemlerde uçtan uca ürün geliştirme; RESTful API tasarımı ve yapay zeka / LLM entegrasyonu deneyimi.",
+      "photo": "/photo/naci.jpg",
+      "location": "İstanbul, Türkiye"
     },
     "contact": [
       { "key": "email", "value": "nacianilakman@gmail.com", "visibility": "public" },
@@ -17,62 +18,68 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "Holding genelinde kullanılan kurumsal erişim platformunu (Dashboard) ve seyahat yönetim sistemini geliştiriyorum. Türkiye ve Mısır'daki grup şirketlerinde kullanılan sistemlerde uçtan uca ürün sahipliği.",
+        "description": "Holding genelinde kullanılan kurumsal erişim platformunu (Dashboard) ve seyahat yönetim sistemini geliştiriyorum. Türkiye ve Mısır'daki grup şirketlerinde tek oturum, ortak yetkilendirme ve aynı ürün diliyle çalışan sistemlerde uçtan uca sorumluluk taşıyorum.",
         "highlights": [
-          "Dashboard platformunu (Portal) sıfırdan kurdum; duyuru, yemek menüsü, uygulama kataloğu ve yetki yönetimini tek ürün çatısı altında topladım.",
-          "Seyahat modülünü bağımsız shell'den Dashboard altyapısına entegre ederek tek oturum ve ortak yetkilendirme sağladım.",
-          "İK (HR) projesinde Türkiye ve Mısır operasyonlarını kapsayan çok şirketli yapı kuruyorum."
+          "Dashboard platformunu (Portal) sıfırdan kurdum; duyuru, yemek menüsü, uygulama kataloğu ve yetki yönetimini tek ürün çatısında topladım.",
+          "Seyahat modülünü bağımsız bir uygulamadan Dashboard altyapısına taşıyarak tek oturum ve ortak yetkilendirme sağladım.",
+          "İK projesinde Türkiye ve Mısır operasyonlarını kapsayan çok şirketli yapıyı kuruyorum."
         ],
-        "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "SQL Server", "Entity Framework"],
+        "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "Entity Framework Core", "SQL Server"],
         "visibility": "public"
       },
       {
-        "id": "kansuk-2026",
+        "id": "kansuk-2025",
         "company": "Kansuk İlaç",
         "role": "Full Stack Developer",
-        "startDate": "2024-01",
+        "startDate": "2025-10",
         "endDate": "2026-02",
-        "description": "İlaç sektörüne yönelik kurumsal yazılım geliştirme.",
+        "description": "Şirket içi İK portalı ve yönetim sistemleri geliştirdim. ASP.NET MVC ile performans değerlendirme, izin takibi ve çalışan yönetimi modülleri kurdum; Access ve masaüstü uygulamalarını web tabanlı sistemlere taşıyarak üretim süreçlerine otomasyon ve dijital dönüşüm desteği sağladım.",
         "highlights": [],
-        "stack": ["React", "TypeScript", ".NET", "C#"],
-        "visibility": "public",
-        "needsReview": true
+        "stack": ["C#", ".NET", "ASP.NET MVC", "Entity Framework", "SQL Server", "React"],
+        "visibility": "public"
       },
       {
         "id": "digitallica",
         "company": "Digitallica",
         "role": "Full Stack Developer",
-        "startDate": "2022-01",
-        "endDate": "2023-12",
-        "description": "Dijital dönüşüm projelerinde full stack geliştirme.",
+        "startDate": "2021-05",
+        "endDate": "2025-10",
+        "description": "Çok kiracılı (multi-tenant) modüler eğitim platformu Oriento'yu .NET ve React ile uçtan uca geliştirdim: çalışan onboarding/offboarding, interaktif eğitim, görev yönetimi ve raporlamayı tek üründe topladım; RESTful API'ler ve Entity Framework ile veri katmanını yönettim. Turkcell iş birliğiyle çocuklar için internet güvenliği oyunu (Galaksel), yapay zeka destekli ödül platformu (Awarder AI) ve chatbot (LunaBuddy) projelerinde yer aldım.",
         "highlights": [],
-        "stack": ["React", "TypeScript", ".NET", "C#"],
-        "visibility": "public",
-        "needsReview": true
+        "stack": ["React", "TypeScript", ".NET", "C#", "Entity Framework", "Tailwind CSS", "WordPress"],
+        "visibility": "public"
       }
     ],
     "education": [
       {
-        "id": "uni-diploma",
-        "institution": "Üniversite",
+        "id": "iu-betoo",
+        "institution": "İstanbul Üniversitesi — Hasan Ali Yücel Eğitim Fakültesi",
         "degree": "Lisans",
-        "field": "Bilgisayar Mühendisliği",
-        "visibility": "public",
-        "needsReview": true
+        "field": "Bilgisayar ve Öğretim Teknolojileri Öğretmenliği",
+        "year": 2020,
+        "visibility": "public"
       }
     ],
     "skills": [
       {
         "group": "Backend",
-        "items": ["C#", ".NET", "ASP.NET Core", "Entity Framework", "REST API", "SQL Server", "PostgreSQL"]
+        "items": ["C#", ".NET", "ASP.NET Core", "ASP.NET MVC", "Entity Framework", "REST API", "SignalR"]
       },
       {
         "group": "Frontend",
-        "items": ["React", "TypeScript", "JavaScript", "Next.js", "Tailwind CSS", "MDX"]
+        "items": ["React", "TypeScript", "JavaScript", "Next.js", "Redux", "Tailwind CSS", "MDX"]
+      },
+      {
+        "group": "Veritabanı",
+        "items": ["SQL Server", "PostgreSQL", "MySQL", "T-SQL"]
+      },
+      {
+        "group": "AI & LLM",
+        "items": ["RAG", "Embedding", "Vektör veritabanları", "Chroma"]
       },
       {
         "group": "Araçlar",
-        "items": ["Git", "Docker", "Vite", "Vitest", "Playwright"]
+        "items": ["Git", "Docker", "Visual Studio", "Postman", "UiPath RPA"]
       }
     ],
     "projects": [
@@ -91,6 +98,14 @@
         "caseSlug": "seyahat-projesi",
         "stack": ["React", "TypeScript", ".NET", "ASP.NET Core"],
         "visibility": "public"
+      },
+      {
+        "id": "oriento",
+        "title": "Oriento — Onboarding & Eğitim Platformu",
+        "summary": "Çok kiracılı, modüler çalışan onboarding/offboarding ve eğitim platformu. Digitallica'da .NET ve React ile uçtan uca geliştirdim.",
+        "url": "https://orientoapp.com",
+        "stack": ["React", "TypeScript", ".NET", "Entity Framework"],
+        "visibility": "public"
       }
     ],
     "links": [
@@ -99,38 +114,43 @@
     ],
     "credentials": [
       {
-        "id": "ms-20480",
-        "title": "Programming in HTML5 with JavaScript and CSS3 (20480)",
-        "issuer": "Microsoft",
-        "sourcePath": "sources/8-sertifikalar/20480-microsoft-web.pdf",
-        "visibility": "public"
-      },
-      {
         "id": "ms-20483",
-        "title": "Programming in C# (20483)",
-        "issuer": "Microsoft",
+        "title": "Programming in C# (Microsoft 20483)",
+        "issuer": "BilgeAdam Akademi",
+        "year": 2018,
         "sourcePath": "sources/8-sertifikalar/20483-microsoft-csharp.pdf",
         "visibility": "public"
       },
       {
         "id": "ms-20486",
-        "title": "Developing ASP.NET MVC Web Applications (20486)",
-        "issuer": "Microsoft",
+        "title": "Developing ASP.NET MVC Web Applications (Microsoft 20486)",
+        "issuer": "BilgeAdam Akademi",
+        "year": 2018,
         "sourcePath": "sources/8-sertifikalar/20486-microsoft-aspnet.pdf",
         "visibility": "public"
       },
       {
-        "id": "bilgeadam-katilim",
-        "title": "BilgeAdam Katılım Sertifikası",
-        "issuer": "BilgeAdam",
-        "sourcePath": "sources/8-sertifikalar/bilgeadam-katilim.pdf",
+        "id": "ms-20480",
+        "title": "Programming in HTML5 with JavaScript and CSS3 (Microsoft 20480)",
+        "issuer": "BilgeAdam Akademi",
+        "year": 2018,
+        "sourcePath": "sources/8-sertifikalar/20480-microsoft-web.pdf",
         "visibility": "public"
       },
       {
         "id": "bilgeadam-proje",
-        "title": "BilgeAdam Proje Bitirme Sertifikası",
-        "issuer": "BilgeAdam",
+        "title": "Microsoft Sertifikalı Yazılım Geliştirici — Proje Bitirme",
+        "issuer": "BilgeAdam Akademi",
+        "year": 2018,
         "sourcePath": "sources/8-sertifikalar/bilgeadam-proje-bitirme.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "bilgeadam-katilim",
+        "title": "Microsoft Sertifikalı Yazılım Geliştirici — Katılım",
+        "issuer": "BilgeAdam Akademi",
+        "year": 2018,
+        "sourcePath": "sources/8-sertifikalar/bilgeadam-katilim.pdf",
         "visibility": "public"
       },
       {
@@ -143,7 +163,7 @@
       {
         "id": "askerlik",
         "title": "Askerlik Terhis Belgesi",
-        "issuer": "T.C. Milli Savunma Bakanlığı",
+        "issuer": "T.C. Millî Savunma Bakanlığı",
         "sourcePath": "sources/11-askerlik/askerlik.pdf",
         "visibility": "private"
       }
@@ -151,10 +171,11 @@
   },
   "en": {
     "basics": {
-      "name": "Naci Anil Akman",
+      "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "summary": "Full stack developer building enterprise portal and dashboard solutions with .NET and React. End-to-end product development experience across multi-company, multi-country systems at holding scale, including AI/API integration.",
-      "photo": "/photo/naci.jpg"
+      "summary": "Full stack developer building enterprise portal and dashboard solutions with .NET and React. End-to-end product development across multi-company, multi-country systems at holding scale; experience in RESTful API design and AI / LLM integration.",
+      "photo": "/photo/naci.jpg",
+      "location": "İstanbul, Türkiye"
     },
     "contact": [
       { "key": "email", "value": "nacianilakman@gmail.com", "visibility": "public" },
@@ -167,62 +188,68 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "Building the enterprise access platform (Dashboard) and travel management system used across the holding group. End-to-end product ownership for systems serving Turkey and Egypt operations.",
+        "description": "Building the enterprise access platform (Dashboard) and travel management system used across the holding group. End-to-end ownership of systems that run on single sign-on, shared authorization, and one product language for group companies in Turkey and Egypt.",
         "highlights": [
           "Built the Dashboard platform (Portal) from scratch, consolidating announcements, meal menu, application catalog, and permission management under one product.",
-          "Integrated the Travel module from a standalone shell into the Dashboard infrastructure, enabling single sign-on and unified authorization.",
-          "Building the HR project with multi-company architecture covering Turkey and Egypt operations."
+          "Migrated the Travel module from a standalone app onto the Dashboard infrastructure, enabling single sign-on and unified authorization.",
+          "Building the HR project with a multi-company architecture spanning Turkey and Egypt operations."
         ],
-        "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "SQL Server", "Entity Framework"],
+        "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "Entity Framework Core", "SQL Server"],
         "visibility": "public"
       },
       {
-        "id": "kansuk-2026",
+        "id": "kansuk-2025",
         "company": "Kansuk İlaç",
         "role": "Full Stack Developer",
-        "startDate": "2024-01",
+        "startDate": "2025-10",
         "endDate": "2026-02",
-        "description": "Enterprise software development for the pharmaceutical sector.",
+        "description": "Developed internal HR portal and management systems. Built performance review, leave tracking, and employee management modules with ASP.NET MVC; migrated Access and desktop applications to web-based systems, supporting automation and digital transformation across production processes.",
         "highlights": [],
-        "stack": ["React", "TypeScript", ".NET", "C#"],
-        "visibility": "public",
-        "needsReview": true
+        "stack": ["C#", ".NET", "ASP.NET MVC", "Entity Framework", "SQL Server", "React"],
+        "visibility": "public"
       },
       {
         "id": "digitallica",
         "company": "Digitallica",
         "role": "Full Stack Developer",
-        "startDate": "2022-01",
-        "endDate": "2023-12",
-        "description": "Full stack development for digital transformation projects.",
+        "startDate": "2021-05",
+        "endDate": "2025-10",
+        "description": "Built Oriento, a multi-tenant modular training platform, end to end with .NET and React: consolidated employee onboarding/offboarding, interactive training, task management, and reporting into one product, and managed the data layer with RESTful APIs and Entity Framework. In collaboration with Turkcell, contributed to an internet-safety game for children (Galaksel), an AI-assisted award platform (Awarder AI), and a chatbot (LunaBuddy).",
         "highlights": [],
-        "stack": ["React", "TypeScript", ".NET", "C#"],
-        "visibility": "public",
-        "needsReview": true
+        "stack": ["React", "TypeScript", ".NET", "C#", "Entity Framework", "Tailwind CSS", "WordPress"],
+        "visibility": "public"
       }
     ],
     "education": [
       {
-        "id": "uni-diploma",
-        "institution": "University",
-        "degree": "Bachelor of Science",
-        "field": "Computer Engineering",
-        "visibility": "public",
-        "needsReview": true
+        "id": "iu-betoo",
+        "institution": "İstanbul University — Hasan Ali Yücel Faculty of Education",
+        "degree": "Bachelor's Degree",
+        "field": "Computer Education and Instructional Technologies Teaching",
+        "year": 2020,
+        "visibility": "public"
       }
     ],
     "skills": [
       {
         "group": "Backend",
-        "items": ["C#", ".NET", "ASP.NET Core", "Entity Framework", "REST API", "SQL Server", "PostgreSQL"]
+        "items": ["C#", ".NET", "ASP.NET Core", "ASP.NET MVC", "Entity Framework", "REST API", "SignalR"]
       },
       {
         "group": "Frontend",
-        "items": ["React", "TypeScript", "JavaScript", "Next.js", "Tailwind CSS", "MDX"]
+        "items": ["React", "TypeScript", "JavaScript", "Next.js", "Redux", "Tailwind CSS", "MDX"]
+      },
+      {
+        "group": "Database",
+        "items": ["SQL Server", "PostgreSQL", "MySQL", "T-SQL"]
+      },
+      {
+        "group": "AI & LLM",
+        "items": ["RAG", "Embeddings", "Vector databases", "Chroma"]
       },
       {
         "group": "Tools",
-        "items": ["Git", "Docker", "Vite", "Vitest", "Playwright"]
+        "items": ["Git", "Docker", "Visual Studio", "Postman", "UiPath RPA"]
       }
     ],
     "projects": [
@@ -237,9 +264,17 @@
       {
         "id": "seyahat-projesi",
         "title": "Travel Management System",
-        "summary": "Travel request, approval, and management system integrated into the Dashboard platform. Covers Turkey and Egypt operations across the entire holding group.",
+        "summary": "Travel request, approval, and management system integrated into the Dashboard platform. Covers Turkey and Egypt operations across the holding group.",
         "caseSlug": "seyahat-projesi",
         "stack": ["React", "TypeScript", ".NET", "ASP.NET Core"],
+        "visibility": "public"
+      },
+      {
+        "id": "oriento",
+        "title": "Oriento — Onboarding & Training Platform",
+        "summary": "Multi-tenant, modular employee onboarding/offboarding and training platform. Built end to end with .NET and React at Digitallica.",
+        "url": "https://orientoapp.com",
+        "stack": ["React", "TypeScript", ".NET", "Entity Framework"],
         "visibility": "public"
       }
     ],
@@ -249,51 +284,56 @@
     ],
     "credentials": [
       {
-        "id": "ms-20480",
-        "title": "Programming in HTML5 with JavaScript and CSS3 (20480)",
-        "issuer": "Microsoft",
-        "sourcePath": "sources/8-sertifikalar/20480-microsoft-web.pdf",
-        "visibility": "public"
-      },
-      {
         "id": "ms-20483",
-        "title": "Programming in C# (20483)",
-        "issuer": "Microsoft",
+        "title": "Programming in C# (Microsoft 20483)",
+        "issuer": "BilgeAdam Academy",
+        "year": 2018,
         "sourcePath": "sources/8-sertifikalar/20483-microsoft-csharp.pdf",
         "visibility": "public"
       },
       {
         "id": "ms-20486",
-        "title": "Developing ASP.NET MVC Web Applications (20486)",
-        "issuer": "Microsoft",
+        "title": "Developing ASP.NET MVC Web Applications (Microsoft 20486)",
+        "issuer": "BilgeAdam Academy",
+        "year": 2018,
         "sourcePath": "sources/8-sertifikalar/20486-microsoft-aspnet.pdf",
         "visibility": "public"
       },
       {
-        "id": "bilgeadam-katilim",
-        "title": "BilgeAdam Participation Certificate",
-        "issuer": "BilgeAdam",
-        "sourcePath": "sources/8-sertifikalar/bilgeadam-katilim.pdf",
+        "id": "ms-20480",
+        "title": "Programming in HTML5 with JavaScript and CSS3 (Microsoft 20480)",
+        "issuer": "BilgeAdam Academy",
+        "year": 2018,
+        "sourcePath": "sources/8-sertifikalar/20480-microsoft-web.pdf",
         "visibility": "public"
       },
       {
         "id": "bilgeadam-proje",
-        "title": "BilgeAdam Project Completion Certificate",
-        "issuer": "BilgeAdam",
+        "title": "Microsoft Certified Developer — Project Completion",
+        "issuer": "BilgeAdam Academy",
+        "year": 2018,
         "sourcePath": "sources/8-sertifikalar/bilgeadam-proje-bitirme.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "bilgeadam-katilim",
+        "title": "Microsoft Certified Developer — Participation",
+        "issuer": "BilgeAdam Academy",
+        "year": 2018,
+        "sourcePath": "sources/8-sertifikalar/bilgeadam-katilim.pdf",
         "visibility": "public"
       },
       {
         "id": "ehliyet",
         "title": "Driver's License",
-        "issuer": "Republic of Turkey",
+        "issuer": "Republic of Türkiye",
         "sourcePath": "sources/9-ehliyet-ve-kan-grubu/ehliyet.pdf",
         "visibility": "private"
       },
       {
         "id": "askerlik",
         "title": "Military Discharge Certificate",
-        "issuer": "Republic of Turkey, Ministry of National Defense",
+        "issuer": "Republic of Türkiye, Ministry of National Defense",
         "sourcePath": "sources/11-askerlik/askerlik.pdf",
         "visibility": "private"
       }

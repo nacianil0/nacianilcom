@@ -3,8 +3,11 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Locale } from '@nacianilcom/content-core';
 import { buildUrl } from '@nacianilcom/content-core';
+import { Masthead, MonoLabel, SectionRail, Chip } from '@nacianilcom/ui';
 import { loadCase, listCaseSlugs } from '../../../../src/content/loader';
 import { SiteNav } from '../../../../src/components/SiteNav';
+import { SiteFooter } from '../../../../src/components/SiteFooter';
+import { Crumbs } from '../../../../src/components/Crumbs';
 import { SITE_URL, SITE_NAME, localeToOgLocale } from '../../../../src/lib/site';
 import { personJsonLd, breadcrumbJsonLd } from '../../../../src/lib/jsonld';
 
@@ -40,7 +43,7 @@ export async function generateMetadata({
   const canonicalUrl = locale === 'tr' ? trUrl : enUrl;
 
   return {
-    title: `${c.title} — Naci Anil Akman`,
+    title: `${c.title} — Naci Anıl Akman`,
     description: c.summary,
     alternates: {
       canonical: canonicalUrl,
@@ -85,7 +88,9 @@ export default async function CaseStudyPage({
     { key: 'problem', label: locale === 'tr' ? 'Problem' : 'Problem', content: c.problem },
     { key: 'context', label: locale === 'tr' ? 'Bağlam' : 'Context', content: c.context },
     { key: 'role', label: locale === 'tr' ? 'Rol' : 'Role', content: c.role },
-    ...(c.constraints ? [{ key: 'constraints', label: locale === 'tr' ? 'Kısıtlar' : 'Constraints', content: c.constraints }] : []),
+    ...(c.constraints
+      ? [{ key: 'constraints', label: locale === 'tr' ? 'Kısıtlar' : 'Constraints', content: c.constraints }]
+      : []),
     { key: 'solution', label: locale === 'tr' ? 'Çözüm' : 'Solution', content: c.solution },
     { key: 'impact', label: locale === 'tr' ? 'Etki' : 'Impact', content: c.impact },
   ];
@@ -95,72 +100,58 @@ export default async function CaseStudyPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
-      <div className="min-h-screen bg-surface">
+      <div className="flex min-h-screen flex-col bg-surface">
         <SiteNav lang={locale} altLangUrl={altLangUrl} />
 
-        <main className="mx-auto max-w-[720px] px-6 py-16">
-          {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex items-center gap-2 font-sans text-xs text-ink-secondary/60">
-              <li>
-                <Link href={workUrl} className="transition-colors hover:text-ink-secondary">
-                  {locale === 'tr' ? 'Projeler' : 'Work'}
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-ink-secondary">{c.title}</li>
-            </ol>
-          </nav>
+        <Masthead
+          crumbs={<Crumbs items={[{ label: locale === 'tr' ? 'Projeler' : 'Work', href: workUrl }]} />}
+        />
 
-          {/* Hero */}
-          <header className="mb-10 border-l-[3px] border-accent pl-5">
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-secondary/60">
-              {locale === 'tr' ? 'Case Study' : 'Case Study'}
-            </p>
-            <h1 className="font-serif text-[2.125rem] font-semibold leading-[1.15] text-ink">
-              {c.title}
-            </h1>
-            <p className="mt-3 font-sans text-base leading-[1.75] text-ink-secondary border-l-2 border-hairline pl-4 ml-[-21px] ml-0">
+        <main className="mx-auto w-full max-w-[1100px] flex-1 px-6 py-12 sm:px-10 lg:px-14">
+          <article data-reading className="mx-auto max-w-[760px]" aria-labelledby="case-title">
+            <header>
+              <MonoLabel tone="accent">Case Study</MonoLabel>
+              <h1
+                id="case-title"
+                className="mt-3 font-serif text-[32px] font-semibold leading-[1.08] tracking-[-0.01em] text-ink sm:text-[42px]"
+              >
+                {c.title}
+                <span className="text-accent">.</span>
+              </h1>
+            </header>
+
+            <p className="mt-6 border-l-2 border-accent pl-4 font-sans text-[16px] leading-[1.7] text-ink-secondary">
               {c.summary}
             </p>
-          </header>
 
-          {/* Stack */}
-          {c.stack.length > 0 && (
-            <div className="mb-8 flex flex-wrap gap-2">
-              {c.stack.map(s => (
-                <span key={s} className="rounded border border-hairline px-2.5 py-1 font-mono text-[10px] text-ink-secondary/60">
-                  {s}
-                </span>
+            {c.stack.length > 0 && (
+              <div className="mt-6 flex flex-wrap gap-1.5">
+                {c.stack.map((s) => (
+                  <Chip key={s}>{s}</Chip>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-12 flex flex-col gap-12">
+              {sections.map(({ key, label, content }) => (
+                <SectionRail key={key} label={label} id={`case-${key}`}>
+                  <p className="font-sans text-[15.5px] leading-[1.75] text-ink-secondary">{content}</p>
+                </SectionRail>
               ))}
             </div>
-          )}
 
-          {/* Sections */}
-          <div className="space-y-8" data-reading>
-            {sections.map(({ key, label, content }) => (
-              <section key={key} aria-labelledby={`section-${key}`}>
-                <h2
-                  id={`section-${key}`}
-                  className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-secondary/60"
-                >
-                  {label}
-                </h2>
-                <p className="font-sans text-[14.5px] leading-[1.7] text-ink-secondary">{content}</p>
-              </section>
-            ))}
-          </div>
-
-          {/* Back */}
-          <div className="mt-10 border-t border-hairline pt-6">
-            <Link
-              href={workUrl}
-              className="font-sans text-sm text-ink-secondary transition-colors hover:text-ink"
-            >
-              ← {locale === 'tr' ? 'Projelere dön' : 'Back to Work'}
-            </Link>
-          </div>
+            <div className="mt-12 border-t border-hairline pt-6">
+              <Link
+                href={workUrl}
+                className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary transition-colors hover:text-ink"
+              >
+                ← {locale === 'tr' ? 'Projelere dön' : 'Back to Work'}
+              </Link>
+            </div>
+          </article>
         </main>
+
+        <SiteFooter lang={locale} />
       </div>
     </>
   );

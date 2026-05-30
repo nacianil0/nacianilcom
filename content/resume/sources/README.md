@@ -46,9 +46,33 @@ Travel artık bağımsız shell değil; `modules/travel/` runtime kaynağı, rou
 
 ## Kaynak dosyalar
 
-| Dosya | Açıklama |
-|--------|----------|
-| `naci-anil-akman-27V0.pdf` | Özgeçmiş PDF — ön-doldurma kaynağı; tek başına güncel sayılmaz |
+| Dosya / klasör | Tür | WP-12'de kullanım | Önerilen visibility |
+|----------------|-----|-------------------|---------------------|
+| `my-photo.jpg` | Profil fotoğrafı | `basics.photo` → `/[lang]/cv` | **public** |
+| `naci-anil-akman-27V0.pdf` | Özgeçmiş PDF (eski) | `sources/` parse → ön-doldurma; güncel sayılmaz | — (kaynak) |
+| `7-diploma/diploma.pdf` | Diploma | `education[]` + isteğe `credentials[]` | **public** (metin); PDF indirme **pdf** veya link yok |
+| `8-sertifikalar/20480-microsoft-web.pdf` | Microsoft sertifika | `credentials[]` / `education[]` | **public** |
+| `8-sertifikalar/20483-microsoft-csharp.pdf` | Microsoft sertifika | aynı | **public** |
+| `8-sertifikalar/20486-microsoft-aspnet.pdf` | Microsoft sertifika | aynı | **public** |
+| `8-sertifikalar/bilgeadam-katilim.pdf` | BilgeAdam katılım | aynı | **public** |
+| `8-sertifikalar/bilgeadam-proje-bitirme.pdf` | BilgeAdam proje bitirme | aynı | **public** |
+| `9-ehliyet-ve-kan-grubu/ehliyet.pdf` | Ehliyet | `credentials[]` veya `contact`/not | **private** (varsayılan) veya yalnız **pdf** |
+| `11-askerlik/askerlik.pdf` | Askerlik belgesi | `credentials[]` | **private** — public web/PDF'e basılmaz |
+
+> **Not:** Kan grubu dosyası klasör adında geçiyor; henüz ayrı dosya yok. Eklenirse **private**.
+> **Not:** `sources/` ham dosyalar Git'te kalır; public site ham PDF sunmaz — yalnız `resume.json` + visibility filtresi (§30).
+
+### Klasör yapısı (mevcut)
+
+```
+sources/
+├── my-photo.jpg
+├── naci-anil-akman-27V0.pdf
+├── 7-diploma/diploma.pdf
+├── 8-sertifikalar/          (Microsoft 20480/20483/20486 + BilgeAdam x2)
+├── 9-ehliyet-ve-kan-grubu/ehliyet.pdf
+└── 11-askerlik/askerlik.pdf
+```
 
 ## Case-study adayları (WP-12 → `../portfolio/<slug>/case.json`)
 

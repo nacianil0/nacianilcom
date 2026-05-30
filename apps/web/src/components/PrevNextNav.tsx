@@ -21,34 +21,34 @@ export function PrevNextNav({ prev, next, seriesSlug, lang, messages }: PrevNext
 
   return (
     <nav
-      aria-label="Yazı navigasyonu"
-      className="mt-10 grid grid-cols-1 gap-3 border-t border-hairline pt-8 sm:grid-cols-2"
+      aria-label={lang === 'tr' ? 'Yazı navigasyonu' : 'Article navigation'}
+      className="mt-12 grid grid-cols-1 gap-px border border-hairline bg-hairline sm:grid-cols-2"
     >
-      <div>
+      <div className="bg-surface">
         {prev && (
           <Link
             href={buildUrl(lang, 'article', { seriesSlug, articleSlug: prev.slugBase })}
-            className="group flex flex-col gap-1 rounded-card border border-hairline bg-card px-4 py-3 transition-colors hover:border-ink-secondary/40"
+            className="group flex h-full flex-col gap-2 px-5 py-4 transition-colors hover:bg-surface-raised"
           >
-            <span className="font-sans text-xs text-ink-secondary/60">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary">
               ← {messages.previousArticle}
             </span>
-            <span className="font-sans text-sm font-medium text-ink group-hover:text-accent transition-colors line-clamp-2">
+            <span className="line-clamp-2 font-serif text-[15px] font-medium leading-snug text-ink transition-colors group-hover:text-accent">
               {prev.title}
             </span>
           </Link>
         )}
       </div>
-      <div className="flex justify-end">
+      <div className="bg-surface">
         {next && (
           <Link
             href={buildUrl(lang, 'article', { seriesSlug, articleSlug: next.slugBase })}
-            className="group flex w-full flex-col gap-1 rounded-card border border-hairline bg-card px-4 py-3 text-right transition-colors hover:border-ink-secondary/40"
+            className="group flex h-full flex-col items-end gap-2 px-5 py-4 text-right transition-colors hover:bg-surface-raised"
           >
-            <span className="font-sans text-xs text-ink-secondary/60">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary">
               {messages.nextArticle} →
             </span>
-            <span className="font-sans text-sm font-medium text-ink group-hover:text-accent transition-colors line-clamp-2">
+            <span className="line-clamp-2 font-serif text-[15px] font-medium leading-snug text-ink transition-colors group-hover:text-accent">
               {next.title}
             </span>
           </Link>

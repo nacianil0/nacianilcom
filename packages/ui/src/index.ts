@@ -15,4 +15,15 @@ export { Comparison } from './components/Comparison';
 export { LayeredModel } from './components/LayeredModel';
 export { Pyramid } from './components/Pyramid';
 
+// Editorial layout primitives — Portal-aligned Swiss-Industrial system (CV / work / series)
+export { Masthead } from './components/editorial/Masthead';
+export { MonoLabel } from './components/editorial/MonoLabel';
+export { MetaRow } from './components/editorial/MetaRow';
+export { SectionRail } from './components/editorial/SectionRail';
+export { SpecRow } from './components/editorial/SpecRow';
+export { Chip } from './components/editorial/Chip';
+export { Frame } from './components/editorial/Frame';
+export { Rule } from './components/editorial/Rule';
+export { cn } from './lib/cn';
+
 export type { LinkPrimitiveProps, ImagePrimitiveProps } from './primitives/index';

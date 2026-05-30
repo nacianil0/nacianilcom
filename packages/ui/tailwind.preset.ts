@@ -2,7 +2,11 @@ export const preset = {
   theme: {
     extend: {
       colors: {
-        surface: 'rgb(var(--color-surface-rgb) / <alpha-value>)',
+        surface: {
+          DEFAULT: 'rgb(var(--color-surface-rgb) / <alpha-value>)',
+          sunk: 'rgb(var(--color-surface-sunk-rgb) / <alpha-value>)',
+          raised: 'rgb(var(--color-surface-raised-rgb) / <alpha-value>)',
+        },
         card: 'rgb(var(--color-card-rgb) / <alpha-value>)',
         hairline: 'rgb(var(--color-hairline-rgb) / <alpha-value>)',
         ink: {

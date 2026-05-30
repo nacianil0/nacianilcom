@@ -59,7 +59,7 @@ importers:
         version: 9.39.4
       '@mermaid-js/mermaid-cli':
         specifier: ^11.4.2
-        version: 11.15.0(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(puppeteer@24.43.1(typescript@5.9.3))(tsx@4.22.3)(yaml@2.9.0)
+        version: 11.15.0(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(playwright-core@1.60.0)(puppeteer@24.43.1(typescript@5.9.3))(tsx@4.22.3)(yaml@2.9.0)
       '@types/node':
         specifier: ^22.0.0
         version: 22.19.19
@@ -90,6 +90,9 @@ importers:
       globals:
         specifier: ^16.0.0
         version: 16.5.0
+      playwright:
+        specifier: ^1.60.0
+        version: 1.60.0
       postcss:
         specifier: ^8.5.3
         version: 8.5.15
@@ -2725,6 +2728,11 @@ packages:
   fraction.js@5.3.4:
     resolution: {integrity: sha512-1X1NTtiJphryn/uLQz3whtY6jK3fTqoE3ohKs0tT+Ujr1W59oopxmoEh7Lu5p6vBaPbgoM0bzveAW4Qi5RyWDQ==}
 
+  fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -3600,6 +3608,16 @@ packages:
   pirates@4.0.7:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
     engines: {node: '>= 6'}
+
+  playwright-core@1.60.0:
+    resolution: {integrity: sha512-9bW6zvX/m0lEbgTKJ6YppOKx8H3VOPBMOCFh2irXFOT4BbHgrx5hPjwJYLT40Lu+4qtD36qKc/Hn56StUW57IA==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  playwright@1.60.0:
+    resolution: {integrity: sha512-hheHdokM8cdqCb0lcE3s+zT4t4W+vvjpGxsZlDnikarzx8tSzMebh3UiFtgqwFwnTnjYQcsyMF8ei2mCO/tpeA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   points-on-curve@0.2.0:
     resolution: {integrity: sha512-0mYKnYYe9ZcqMCWhUjItv/oHjvgEsfKvnUTg8sAtnHr3GVy7rGkXCb6d5cSyqrWqL4k81b9CPg3urd+T7aop3A==}
@@ -5130,11 +5148,11 @@ snapshots:
       mermaid: 11.15.0
     optional: true
 
-  '@mermaid-js/mermaid-cli@11.15.0(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(puppeteer@24.43.1(typescript@5.9.3))(tsx@4.22.3)(yaml@2.9.0)':
+  '@mermaid-js/mermaid-cli@11.15.0(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(playwright-core@1.60.0)(puppeteer@24.43.1(typescript@5.9.3))(tsx@4.22.3)(yaml@2.9.0)':
     dependencies:
       '@fortawesome/fontawesome-free': 7.2.0
       '@mermaid-js/layout-elk': 0.2.1(mermaid@11.15.0)
-      '@mermaid-js/mermaid-zenuml': 0.2.3(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(mermaid@11.15.0)(tsx@4.22.3)(yaml@2.9.0)
+      '@mermaid-js/mermaid-zenuml': 0.2.3(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(mermaid@11.15.0)(playwright-core@1.60.0)(tsx@4.22.3)(yaml@2.9.0)
       chalk: 5.6.2
       commander: 13.1.0
       import-meta-resolve: 4.2.0
@@ -5152,9 +5170,9 @@ snapshots:
       - tsx
       - yaml
 
-  '@mermaid-js/mermaid-zenuml@0.2.3(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(mermaid@11.15.0)(tsx@4.22.3)(yaml@2.9.0)':
+  '@mermaid-js/mermaid-zenuml@0.2.3(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(mermaid@11.15.0)(playwright-core@1.60.0)(tsx@4.22.3)(yaml@2.9.0)':
     dependencies:
-      '@zenuml/core': 3.49.0(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(tsx@4.22.3)(yaml@2.9.0)
+      '@zenuml/core': 3.49.0(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(playwright-core@1.60.0)(tsx@4.22.3)(yaml@2.9.0)
       mermaid: 11.15.0
     transitivePeerDependencies:
       - '@babel/core'
@@ -5835,7 +5853,7 @@ snapshots:
       loupe: 3.2.1
       tinyrainbow: 2.0.0
 
-  '@zenuml/core@3.49.0(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(tsx@4.22.3)(yaml@2.9.0)':
+  '@zenuml/core@3.49.0(@babel/core@7.29.7)(@babel/template@7.29.7)(@types/react@19.2.15)(playwright-core@1.60.0)(tsx@4.22.3)(yaml@2.9.0)':
     dependencies:
       '@floating-ui/react': 0.27.19(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@headlessui/react': 2.2.10(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -5859,6 +5877,7 @@ snapshots:
       tailwindcss: 3.4.19(tsx@4.22.3)(yaml@2.9.0)
     optionalDependencies:
       '@napi-rs/canvas': 0.1.100
+      playwright-core: 1.60.0
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -6752,8 +6771,8 @@ snapshots:
       '@typescript-eslint/parser': 8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
       eslint: 9.39.4(jiti@1.21.7)
       eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.4(jiti@1.21.7))
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@1.21.7))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7))
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.4(jiti@1.21.7))
       eslint-plugin-react: 7.37.5(eslint@9.39.4(jiti@1.21.7))
       eslint-plugin-react-hooks: 5.2.0(eslint@9.39.4(jiti@1.21.7))
@@ -6772,7 +6791,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.4(jiti@1.21.7)):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7)):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.3
@@ -6783,22 +6802,22 @@ snapshots:
       tinyglobby: 0.2.16
       unrs-resolver: 1.12.2
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@1.21.7))
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7))
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.13.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@1.21.7)):
+  eslint-module-utils@2.13.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3)
       eslint: 9.39.4(jiti@1.21.7)
       eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.4(jiti@1.21.7))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7))
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@1.21.7)):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7)):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9
@@ -6809,7 +6828,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.39.4(jiti@1.21.7)
       eslint-import-resolver-node: 0.3.10
-      eslint-module-utils: 2.13.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@1.21.7))
+      eslint-module-utils: 2.13.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.9.3))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7)))(eslint@9.39.4(jiti@1.21.7))
       hasown: 2.0.4
       is-core-module: 2.16.2
       is-glob: 4.0.3
@@ -7111,6 +7130,9 @@ snapshots:
       is-callable: 1.2.7
 
   fraction.js@5.3.4: {}
+
+  fsevents@2.3.2:
+    optional: true
 
   fsevents@2.3.3:
     optional: true
@@ -8228,6 +8250,14 @@ snapshots:
       thread-stream: 2.7.0
 
   pirates@4.0.7: {}
+
+  playwright-core@1.60.0: {}
+
+  playwright@1.60.0:
+    dependencies:
+      playwright-core: 1.60.0
+    optionalDependencies:
+      fsevents: 2.3.2
 
   points-on-curve@0.2.0: {}
 

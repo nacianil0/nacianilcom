@@ -1,5 +1,6 @@
 import { formatDate, formatReadingTime } from '@nacianilcom/content-core';
 import type { Locale, Meta } from '@nacianilcom/content-core';
+import { MetaRow } from '@nacianilcom/ui';
 import type { WebMessages } from '../lib/messages';
 
 interface MetadataRowProps {
@@ -21,21 +22,15 @@ export function MetadataRow({ meta, readingTimeMinutes, lang, messages }: Metada
   const timeLabel = formatReadingTime(readingTimeMinutes, lang);
 
   return (
-    <div
-      className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans text-xs text-ink-secondary"
-      aria-label="Yazı bilgileri"
-    >
-      <span>{timeLabel}</span>
-      <Hairline />
-      <span>{difficultyLabel}</span>
-      <Hairline />
-      <time dateTime={meta.publishDate}>{dateLabel}</time>
-      <Hairline />
-      <span className="uppercase tracking-wider">{meta.category}</span>
-    </div>
+    <MetaRow
+      items={[
+        <time key="date" dateTime={meta.publishDate}>
+          {dateLabel}
+        </time>,
+        timeLabel,
+        difficultyLabel,
+        meta.category,
+      ]}
+    />
   );
-}
-
-function Hairline() {
-  return <span aria-hidden="true" className="inline-block h-[10px] w-px bg-hairline" />;
 }
