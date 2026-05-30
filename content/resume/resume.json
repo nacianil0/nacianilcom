@@ -53,12 +53,12 @@
         "role": "Full Stack Developer",
         "startDate": "2021-05",
         "endDate": "2025-10",
-        "description": "Müşteriler için web uygulamaları geliştirdik; ajans/startup temposunda dış ürün geliştirme deneyimi edindim. Asıl odak noktamız çok kiracılı (multi-tenant) işe alıştırma ve eğitim platformu Oriento'yu; Digitallica ekibinde .NET ve React ile baştan sona birlikte geliştirdik.",
+        "description": "Müşteriler için web uygulamaları geliştirdik; ajans/startup temposunda dış ürün geliştirme deneyimi edindim. Asıl odak, çok kiracılı (multi-tenant) işe alıştırma ve eğitim platformu Oriento; Digitallica bünyesinde .NET ve React ile baştan sona geliştirdik.",
         "highlights": [
-          "Oriento'da ekip olarak baştan sona görev aldık: onboarding/offboarding, interaktif eğitim, görev yönetimi ve raporlama. Referanslar arasında ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark ve Assan Grubu var.",
+          "Oriento'yu Digitallica bünyesinde baştan sona geliştirdik: onboarding/offboarding, interaktif eğitim, görev yönetimi ve raporlama. Referanslar arasında ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark ve Assan Grubu var.",
           "FNSS için on-prem kurulan sürümden yola çıkarak bulut ortamına uyarlanmış ayrı bir versiyon geliştirdik; farklı rollerde yönetim, oryantasyon, onboarding ve offboarding süreçleri ile personel görevlerinin buddy eşleştirmesi ve takibi.",
           "REST API ve Entity Framework ile veri katmanını kurduk; modülleri farklı müşterilere uyarlanabilir biçimde tasarladık.",
-          "Turkcell iş birliğiyle yürütülen projelerde ekip olarak çalıştık: çocuklar için internet güvenliği oyunu (Galaksel), yapay zeka destekli ödül platformu (Awarder AI) ve bir sohbet botu (LunaBuddy)."
+          "Turkcell iş birliğiyle yürütülen projelerde çalıştık: çocuklar için internet güvenliği oyunu (Galaksel), yapay zeka destekli ödül platformu (Awarder AI) ve bir sohbet botu (LunaBuddy)."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "Entity Framework", "Tailwind CSS", "WordPress"],
         "visibility": "public",
@@ -149,7 +149,7 @@
       {
         "id": "oriento",
         "title": "Oriento — İşe Alıştırma & Eğitim Platformu",
-        "summary": "Müşteri odaklı, çok kiracılı (multi-tenant) işe alıştırma ve eğitim platformu. Digitallica ekibinde .NET ve React ile baştan sona birlikte geliştirdik. ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark ve Assan Grubu gibi firmalarda kullanıldı. FNSS tarafında on-prem kurulan sürümden yola çıkarak bulut ortamına uyarlanmış ayrı bir versiyon geliştirdik; farklı rollerde yönetim, oryantasyon, onboarding ve offboarding süreçleri ile personel görevlerinin buddy eşleştirmesi ve takibi sağlanıyor.",
+        "summary": "Müşteri odaklı, çok kiracılı (multi-tenant) işe alıştırma ve eğitim platformu. Digitallica bünyesinde .NET ve React ile baştan sona geliştirdik. ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark ve Assan Grubu gibi firmalarda kullanıldı. FNSS tarafında on-prem kurulan sürümden yola çıkarak bulut ortamına uyarlanmış ayrı bir versiyon geliştirdik; farklı rollerde yönetim, oryantasyon, onboarding ve offboarding süreçleri ile personel görevlerinin buddy eşleştirmesi ve takibi sağlanıyor.",
         "url": "https://orientoapp.com",
         "stack": ["React", "TypeScript", ".NET", "Entity Framework"],
         "visibility": "public"
@@ -270,12 +270,12 @@
         "role": "Full Stack Developer",
         "startDate": "2021-05",
         "endDate": "2025-10",
-        "description": "We built web apps for clients and I learned how product work goes at agency/startup speed. My main focus was Oriento, a multi-tenant onboarding and training platform that our team built end to end with .NET and React at Digitallica.",
+        "description": "We built web apps for clients and I learned how product work goes at agency/startup speed. My main focus was Oriento, a multi-tenant onboarding and training platform we built end to end with .NET and React at Digitallica.",
         "highlights": [
-          "Worked on Oriento end to end as a team: onboarding/offboarding, interactive training, task management, and reporting. Clients included ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark, and Assan Group.",
+          "Built Oriento end to end at Digitallica: onboarding/offboarding, interactive training, task management, and reporting. Clients included ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark, and Assan Group.",
           "For FNSS, we built a cloud version based on the existing on-prem deployment: role-based administration, orientation plus onboarding and offboarding workflows, and employee tasks with buddy pairing and tracking.",
           "We set up the data layer with REST APIs and Entity Framework, and designed the modules so they could be adapted per client.",
-          "Worked on Turkcell partnership projects as a team: an internet-safety game for kids (Galaksel), an AI-assisted rewards platform (Awarder AI), and a chatbot (LunaBuddy)."
+          "Worked on Turkcell partnership projects: an internet-safety game for kids (Galaksel), an AI-assisted rewards platform (Awarder AI), and a chatbot (LunaBuddy)."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "Entity Framework", "Tailwind CSS", "WordPress"],
         "visibility": "public",
@@ -366,7 +366,7 @@
       {
         "id": "oriento",
         "title": "Oriento — Onboarding & Training Platform",
-        "summary": "A customer-facing multi-tenant onboarding and training platform. Our team at Digitallica built it end to end with .NET and React. Used by clients including ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark, and Assan Group. For FNSS, we built a cloud version based on the existing on-prem deployment: role-based administration, orientation plus onboarding and offboarding workflows, and employee tasks with buddy pairing and tracking.",
+        "summary": "A customer-facing multi-tenant onboarding and training platform. Built end to end with .NET and React at Digitallica. Used by clients including ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark, and Assan Group. For FNSS, we built a cloud version based on the existing on-prem deployment: role-based administration, orientation plus onboarding and offboarding workflows, and employee tasks with buddy pairing and tracking.",
         "url": "https://orientoapp.com",
         "stack": ["React", "TypeScript", ".NET", "Entity Framework"],
         "visibility": "public"
