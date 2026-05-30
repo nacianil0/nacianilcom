@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { Newsreader, Inter, JetBrains_Mono } from 'next/font/google';
 import '@nacianilcom/ui/tokens.css';
 import './globals.css';
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
