@@ -12,7 +12,7 @@ import { Crumbs } from '../../../src/components/Crumbs';
 import { fmtRange } from '../../../src/lib/dateRange';
 import { pageShellClass, specRowGridClass, specDateColClass, compactRowGridClass } from '../../../src/lib/layout';
 import { brandLabel } from '../../../src/lib/brandLabel';
-import { credentialAssets, credentialPdfFilename } from '../../../src/lib/credentials';
+import { resumeDocumentAssets, resumeDocumentPdfFilename } from '../../../src/lib/credentials';
 import { CredentialRow } from '../../../src/components/CredentialRow';
 import { SITE_URL, SITE_NAME, localeToOgLocale } from '../../../src/lib/site';
 import { personJsonLd, breadcrumbJsonLd } from '../../../src/lib/jsonld';
@@ -128,50 +128,55 @@ export default async function CvPage({
         </Masthead>
 
         <main className={`${pageShellClass} flex-1 py-14`}>
-          {/* Profile band — photo + contact left, name right */}
-          <div className="grid grid-cols-1 gap-6 border-b border-hairline pb-8 sm:grid-cols-[7rem_minmax(0,1fr)_auto] sm:items-center sm:gap-x-8">
-            {resume.basics.photo && (
-              <div className="relative mx-auto h-28 w-28 shrink-0 overflow-hidden rounded-xl border border-ink/15 bg-surface-sunk shadow-sm ring-1 ring-hairline sm:mx-0 sm:h-[7.5rem] sm:w-[7.5rem]">
-                <Image
-                  src={resume.basics.photo}
-                  alt={resume.basics.name}
-                  fill
-                  sizes="120px"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            )}
-            <div className="flex min-w-0 flex-col items-center gap-3 sm:items-start">
+          {/* Profile band — name left, photo + links right */}
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-6 border-b border-hairline pb-10 sm:gap-10">
+            <div className="min-w-0 pt-1">
+              <h1 className="font-serif text-[30px] font-semibold leading-[1.05] tracking-[-0.01em] text-ink sm:text-[38px]">
+                {resume.basics.name}
+                <span className="text-accent">.</span>
+              </h1>
               {publicEmail && (
                 <a
                   href={`mailto:${publicEmail}`}
-                  className="font-mono text-[11px] tracking-[0.04em] text-ink-secondary transition-colors hover:text-accent"
+                  className="mt-3 inline-block font-mono text-[11px] tracking-[0.04em] text-ink-secondary transition-colors hover:text-accent"
                 >
                   {publicEmail}
                 </a>
               )}
-              {resume.links.length > 0 && (
-                <div className="flex flex-wrap justify-center gap-1.5 sm:justify-start">
-                  {resume.links.map((l) => (
-                    <a
-                      key={l.label}
-                      href={l.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 border border-hairline bg-surface px-2 py-0.5 font-mono text-[10px] tracking-[0.1em] text-ink-secondary transition-colors hover:border-ink hover:text-ink"
-                    >
-                      {brandLabel(l.label)}
-                      <span aria-hidden="true">↗</span>
-                    </a>
-                  ))}
-                </div>
-              )}
             </div>
-            <h1 className="text-center font-serif text-[30px] font-semibold leading-[1.05] tracking-[-0.01em] text-ink sm:text-right sm:text-[34px]">
-              {resume.basics.name}
-              <span className="text-accent">.</span>
-            </h1>
+
+            {(resume.basics.photo || resume.links.length > 0) && (
+              <div className="flex shrink-0 flex-col items-center gap-2.5">
+                {resume.basics.photo && (
+                  <div className="relative h-[7.25rem] w-[7.25rem] overflow-hidden rounded-xl border border-ink/15 bg-surface-sunk shadow-sm ring-1 ring-hairline sm:h-[7.75rem] sm:w-[7.75rem]">
+                    <Image
+                      src={resume.basics.photo}
+                      alt={resume.basics.name}
+                      fill
+                      sizes="124px"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                )}
+                {resume.links.length > 0 && (
+                  <div className="flex flex-nowrap items-center justify-center gap-2">
+                    {resume.links.map((l) => (
+                      <a
+                        key={l.label}
+                        href={l.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 whitespace-nowrap font-mono text-[10px] tracking-[0.1em] text-ink-secondary transition-colors hover:text-accent"
+                      >
+                        {brandLabel(l.label)}
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="mt-12 flex flex-col gap-16">
@@ -314,19 +319,44 @@ export default async function CvPage({
             {/* Education */}
             {resume.education.length > 0 && (
               <SectionRail dividerTop label={tr ? 'Eğitim' : 'Education'} id="cv-education">
-                <div className="flex flex-col">
-                  {resume.education.map((edu) => (
-                    <div key={edu.id} className={specRowGridClass}>
-                      <div className="min-w-0">
-                        <p className="font-serif text-[16px] font-medium leading-tight text-ink">{edu.institution}</p>
-                        <p className="mt-0.5 font-sans text-[13.5px] leading-[1.5] text-ink-secondary">
-                          {edu.degree} · {edu.field}
-                        </p>
-                      </div>
-                      {edu.year ? <span className={specDateColClass}>{edu.year}</span> : <span aria-hidden="true" />}
-                    </div>
-                  ))}
-                </div>
+                <ul className="flex flex-col" role="list">
+                  {resume.education.map((edu) => {
+                    const assets = resumeDocumentAssets(edu);
+                    const docLabels = {
+                      expand: tr ? 'Belgeyi göster' : 'Show document',
+                      collapse: tr ? 'Belgeyi gizle' : 'Hide document',
+                      download: tr ? 'PDF indir' : 'Download PDF',
+                      previewAlt: edu.institution,
+                    };
+                    if (assets) {
+                      return (
+                        <CredentialRow
+                          key={edu.id}
+                          id={edu.id}
+                          title={edu.institution}
+                          issuer={`${edu.degree} · ${edu.field}`}
+                          variant="education"
+                          {...(edu.year != null ? { year: edu.year } : {})}
+                          pdfUrl={assets.pdfUrl}
+                          previewUrl={assets.previewUrl}
+                          pdfFilename={resumeDocumentPdfFilename(edu.institution)}
+                          labels={docLabels}
+                        />
+                      );
+                    }
+                    return (
+                      <li key={edu.id} className={specRowGridClass}>
+                        <div className="min-w-0">
+                          <p className="font-serif text-[16px] font-medium leading-tight text-ink">{edu.institution}</p>
+                          <p className="mt-0.5 font-sans text-[13.5px] leading-[1.5] text-ink-secondary">
+                            {edu.degree} · {edu.field}
+                          </p>
+                        </div>
+                        {edu.year ? <span className={specDateColClass}>{edu.year}</span> : <span aria-hidden="true" />}
+                      </li>
+                    );
+                  })}
+                </ul>
               </SectionRail>
             )}
 
@@ -335,7 +365,7 @@ export default async function CvPage({
               <SectionRail dividerTop label={tr ? 'Sertifikalar' : 'Certifications'} id="cv-credentials">
                 <ul className="flex flex-col" role="list">
                   {resume.credentials.map((cred) => {
-                    const assets = credentialAssets(cred);
+                    const assets = resumeDocumentAssets(cred);
                     if (assets) {
                       return (
                         <CredentialRow
@@ -346,7 +376,7 @@ export default async function CvPage({
                           {...(cred.year != null ? { year: cred.year } : {})}
                           pdfUrl={assets.pdfUrl}
                           previewUrl={assets.previewUrl}
-                          pdfFilename={credentialPdfFilename(cred)}
+                          pdfFilename={resumeDocumentPdfFilename(cred.title)}
                           labels={{
                             expand: tr ? 'Belgeyi göster' : 'Show document',
                             collapse: tr ? 'Belgeyi gizle' : 'Hide document',

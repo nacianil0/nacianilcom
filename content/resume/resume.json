@@ -86,6 +86,7 @@
         "degree": "Lisans",
         "field": "Bilgisayar ve Öğretim Teknolojileri Öğretmenliği",
         "year": 2020,
+        "sourcePath": "sources/7-diploma/diploma.pdf",
         "visibility": "public"
       }
     ],
@@ -285,6 +286,7 @@
         "degree": "Bachelor's Degree",
         "field": "Computer Education and Instructional Technologies Teaching",
         "year": 2020,
+        "sourcePath": "sources/7-diploma/diploma.pdf",
         "visibility": "public"
       }
     ],

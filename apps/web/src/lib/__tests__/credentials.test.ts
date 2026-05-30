@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { credentialAssets, credentialPdfFilename } from '../credentials';
+import { resumeDocumentAssets, resumeDocumentPdfFilename } from '../credentials';
 
-describe('credentialAssets', () => {
+describe('resumeDocumentAssets', () => {
   it('returns public URLs for certificate source paths', () => {
     expect(
-      credentialAssets({
+      resumeDocumentAssets({
         id: 'ms-20483',
         sourcePath: 'sources/8-sertifikalar/20483-microsoft-csharp.pdf',
       }),
@@ -14,9 +14,21 @@ describe('credentialAssets', () => {
     });
   });
 
-  it('returns null for non-certificate sources', () => {
+  it('returns public URLs for diploma source paths', () => {
     expect(
-      credentialAssets({
+      resumeDocumentAssets({
+        id: 'iu-betoo',
+        sourcePath: 'sources/7-diploma/diploma.pdf',
+      }),
+    ).toEqual({
+      pdfUrl: '/credentials/iu-betoo.pdf',
+      previewUrl: '/credentials/previews/iu-betoo.webp',
+    });
+  });
+
+  it('returns null for non-document sources', () => {
+    expect(
+      resumeDocumentAssets({
         id: 'ehliyet',
         sourcePath: 'sources/9-ehliyet-ve-kan-grubu/ehliyet.pdf',
       }),
@@ -24,9 +36,9 @@ describe('credentialAssets', () => {
   });
 });
 
-describe('credentialPdfFilename', () => {
+describe('resumeDocumentPdfFilename', () => {
   it('builds a safe download filename from title', () => {
-    expect(credentialPdfFilename({ title: 'Programming in C# (Microsoft 20483)' })).toBe(
+    expect(resumeDocumentPdfFilename('Programming in C# (Microsoft 20483)')).toBe(
       'Programming-in-C-(Microsoft-20483).pdf',
     );
   });

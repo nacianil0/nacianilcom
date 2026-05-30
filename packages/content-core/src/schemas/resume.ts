@@ -56,6 +56,7 @@ export const EducationItemSchema = z.object({
   degree: z.string(),
   field: z.string(),
   year: z.number().int().optional(),
+  sourcePath: z.string().optional(),
   visibility: VisibilitySchema,
   needsReview: z.boolean().optional(),
 });

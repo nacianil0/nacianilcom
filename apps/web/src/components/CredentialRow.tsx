@@ -12,6 +12,7 @@ export interface CredentialRowProps {
   pdfUrl: string;
   previewUrl: string;
   pdfFilename: string;
+  variant?: 'default' | 'education';
   labels: {
     expand: string;
     collapse: string;
@@ -28,12 +29,21 @@ export function CredentialRow({
   pdfUrl,
   previewUrl,
   pdfFilename,
+  variant = 'default',
   labels,
 }: CredentialRowProps) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
-  const triggerId = `cred-${id}`;
+  const triggerId = `doc-${id}`;
+  const titleClass =
+    variant === 'education'
+      ? 'font-serif text-[16px] font-medium leading-tight text-ink transition-colors group-hover:text-accent'
+      : 'font-sans text-[14.5px] leading-snug text-ink transition-colors group-hover:text-accent';
+  const issuerClass =
+    variant === 'education'
+      ? 'mt-0.5 font-sans text-[13.5px] leading-[1.5] text-ink-secondary'
+      : 'mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-secondary';
 
   return (
     <li className="border-b border-hairline py-6 first:pt-0 last:border-b-0">
@@ -55,10 +65,8 @@ export function CredentialRow({
                 {open ? '−' : '+'}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="font-sans text-[14.5px] leading-snug text-ink transition-colors group-hover:text-accent">
-                  {title}
-                </p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-secondary">
+                <p className={titleClass}>{title}</p>
+                <p className={issuerClass}>
                   {issuer}
                   {year ? (
                     <span className="sm:hidden">
