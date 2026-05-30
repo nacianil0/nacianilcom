@@ -144,6 +144,22 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-30T00:00:13.168Z"
+    },
+    {
+      "id": "bug-010",
+      "timestamp": "2026-05-30T00:34:17.660Z",
+      "error_message": "CSS fix: updatedDate",
+      "file": "apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/page.tsx",
+      "root_cause": "updatedDate: meta.updatedDate, → meta.updatedDate",
+      "fix": "Changed updatedDate: meta.updatedDate, → meta.updatedDate",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T00:34:17.660Z"
     }
   ]
 }

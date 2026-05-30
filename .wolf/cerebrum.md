@@ -61,6 +61,16 @@
 - **MDXRemote RSC:** import from `next-mdx-remote/rsc`. Pass `rehypeSlug` in `options.mdxOptions.rehypePlugins` for heading IDs. The component is server-rendered; no hydration overhead for static MDX.
 - **@tailwindcss/typography:** installed as devDep in apps/web, configured with custom prose CSS vars for design token colors. `prose` class on the MDX content wrapper.
 
+## Key Learnings
+
+- **WP-05 bilingual SEO complete (2026-05-30).** generateMetadata on all routes (article/series/series-list/lang-layout); canonical+hreflang+x-default+og:locale+alternateLocale; JSON-LD (TechArticle/CollectionPage/WebSite+Person/BreadcrumbList/FAQPage); sitemap.ts with hreflang alternates; robots.ts; per-lang feed.xml RSS; next/og edge route 1200×630 OG image; next.config redirects() from content/redirects.json; trailingSlash:false.
+- **WP-06 Studio MVP complete (2026-05-30).** Fastify 127.0.0.1 CJS server; content API (list/read meta/mdx/taxonomy/redirects/catalog); publish API (meta.json update → simple-git commit/push → HMAC revalidate call); /api/revalidate HMAC+timingSafeEqual+zod+30s window+safe error; studio React screens: DraftReview (@mdx-js/mdx evaluate), SeoCheck (runQC client-side), Publisher (conditional on QC pass), Prompts; 10 prompt templates in apps/studio/prompts/.
+- **DraftReview architecture**: Studio server (CJS) stays simple — only file I/O. Client (Vite) imports @nacianilcom/content-core (ESM) + @mdx-js/mdx for MDX rendering. No ESM deps in CJS server.
+- **HMAC revalidate security**: signature = HMAC-SHA256(secret, rawBody) as hex; compare with timingSafeEqual(Buffer.from(sig), Buffer.from(expected)) after length check; timestamp window 30s; Zod body validation; safe error responses (no stack traces).
+- **exactOptionalPropertyTypes fix pattern**: When meta.updatedDate (string|undefined) is optional, spread conditionally: `...(meta.updatedDate ? { updatedDate: meta.updatedDate } : {})`.
+- **Next.js hreflang output**: Next.js generates `hrefLang` (camelCase) not `hreflang` (lowercase) in HTML output — both are valid per HTML spec. alternates.languages maps correctly.
+- **Studio @mdx-js/mdx bundle**: ~829KB minified (large but acceptable for local studio). gray-matter uses eval() → Vite warns but does not block.
+
 ## Decision Log
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->

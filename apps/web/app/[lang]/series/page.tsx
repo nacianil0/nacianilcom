@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { buildUrl, formatReadingTime } from '@nacianilcom/content-core';
@@ -5,8 +6,54 @@ import type { Locale } from '@nacianilcom/content-core';
 import { loadPublicSeriesWithArticles } from '../../../src/content/loader';
 import { SiteNav } from '../../../src/components/SiteNav';
 import { getMessages } from '../../../src/lib/messages';
+import { SITE_URL, SITE_NAME, localeToOgLocale } from '../../../src/lib/site';
 
 const VALID_LANGS = new Set(['tr', 'en']);
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!VALID_LANGS.has(lang)) return {};
+
+  const locale = lang as Locale;
+  const altLocale: Locale = locale === 'tr' ? 'en' : 'tr';
+  const trUrl = `${SITE_URL}${buildUrl('tr', 'seriesList')}`;
+  const enUrl = `${SITE_URL}${buildUrl('en', 'seriesList')}`;
+  const canonicalUrl = locale === 'tr' ? trUrl : enUrl;
+  const title = locale === 'tr' ? 'Yazılar' : 'Articles';
+  const description =
+    locale === 'tr'
+      ? 'Teknik kavramları seri yapısında, adım adım inceleyen yazılar.'
+      : 'Technical concepts explored step by step, organized as series.';
+  const ogImageUrl = `/og?${new URLSearchParams({ title, description, lang: locale, kind: 'page' })}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: { tr: trUrl, en: enUrl, 'x-default': trUrl },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: SITE_NAME,
+      locale: localeToOgLocale(locale),
+      alternateLocale: localeToOgLocale(altLocale),
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImageUrl],
+    },
+  };
+}
 
 export default async function SeriesListPage({
   params,

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -7,6 +8,7 @@ import {
   calcReadingTime,
   derivePrevNext,
   deriveSeriesPosition,
+  deriveCanonical,
   isPublic,
 } from '@nacianilcom/content-core';
 import type { Locale } from '@nacianilcom/content-core';
@@ -28,6 +30,8 @@ import { ReferencesSection } from '../../../../../src/components/ReferencesSecti
 import { PrevNextNav } from '../../../../../src/components/PrevNextNav';
 import { TOC } from '../../../../../src/components/TOC';
 import { getMessages } from '../../../../../src/lib/messages';
+import { SITE_URL, SITE_NAME, localeToOgLocale } from '../../../../../src/lib/site';
+import { articleJsonLd, breadcrumbJsonLd, faqJsonLd } from '../../../../../src/lib/jsonld';
 
 const VALID_LANGS = new Set(['tr', 'en']);
 
@@ -49,6 +53,69 @@ export async function generateStaticParams() {
   }
 
   return params;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string; seriesSlug: string; articleSlug: string }>;
+}): Promise<Metadata> {
+  const { lang, seriesSlug, articleSlug } = await params;
+  if (!VALID_LANGS.has(lang)) return {};
+
+  const locale = lang as Locale;
+  const altLocale: Locale = locale === 'tr' ? 'en' : 'tr';
+  const now = new Date();
+
+  const articleInfo = await findArticleIdBySlug(seriesSlug, articleSlug);
+  if (!articleInfo) return { title: 'Not found' };
+
+  const { id: articleId, meta } = articleInfo;
+  if (!isPublic(meta, now)) return { title: 'Not found' };
+
+  const [series, mdxData] = await Promise.all([
+    loadSeries(seriesSlug),
+    loadMdx(seriesSlug, articleId, lang),
+  ]);
+  if (!series || !mdxData) return { title: 'Not found' };
+
+  const { canonical, hreflang } = deriveCanonical(
+    locale,
+    { kind: 'article', seriesSlug, articleSlug },
+    ['tr', 'en']
+  );
+  const canonicalUrl = `${SITE_URL}${canonical}`;
+  const langs: Record<string, string> = {};
+  for (const h of hreflang) langs[h.lang] = `${SITE_URL}${h.url}`;
+
+  const title = mdxData.frontmatter.title;
+  const description = mdxData.frontmatter.summary;
+  const ogImageUrl = `/og?${new URLSearchParams({ title, description, lang: locale, kind: 'article' })}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: canonicalUrl, languages: langs },
+    openGraph: {
+      type: 'article',
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: SITE_NAME,
+      locale: localeToOgLocale(locale),
+      alternateLocale: localeToOgLocale(altLocale),
+      publishedTime: meta.publishDate,
+      modifiedTime: meta.updatedDate,
+      tags: meta.tags,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImageUrl],
+    },
+  };
 }
 
 export default async function ArticlePage({
@@ -105,113 +172,146 @@ export default async function ArticlePage({
       ? { slugBase: nextMeta.slugBase, title: nextMdx.frontmatter.title }
       : null;
 
+  // JSON-LD
+  const { canonical } = deriveCanonical(locale, { kind: 'article', seriesSlug, articleSlug }, ['tr', 'en']);
+  const canonicalUrl = `${SITE_URL}${canonical}`;
+  const seriesCanonicalUrl = `${SITE_URL}${buildUrl(locale, 'seriesLanding', { seriesSlug })}`;
+
+  const artLd = articleJsonLd({
+    schemaType: meta.schemaType,
+    title: mdxData.frontmatter.title,
+    description: mdxData.frontmatter.summary,
+    url: canonicalUrl,
+    publishDate: meta.publishDate,
+    ...(meta.updatedDate ? { updatedDate: meta.updatedDate } : {}),
+    lang: locale,
+    tags: meta.tags,
+    seriesTitle,
+    seriesUrl: seriesCanonicalUrl,
+  });
+
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: locale === 'tr' ? 'Yazılar' : 'Articles', url: `${SITE_URL}${buildUrl(locale, 'seriesList')}` },
+    { name: seriesTitle, url: seriesCanonicalUrl },
+    { name: mdxData.frontmatter.title, url: canonicalUrl },
+  ]);
+
+  const faqs = mdxData.frontmatter.faq;
+
   return (
-    <div className="min-h-screen bg-surface">
-      <SiteNav lang={locale} altLangUrl={altLangUrl} />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(artLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      {faqs && faqs.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
+      )}
+      <div className="min-h-screen bg-surface">
+        <SiteNav lang={locale} altLangUrl={altLangUrl} />
 
-      <div className="mx-auto max-w-screen-xl px-6 py-12">
-        <div className="grid grid-cols-1 gap-12 xl:grid-cols-[minmax(0,720px)_200px]">
-          {/* Article column */}
-          <article data-reading aria-labelledby="article-title">
-            {/* Breadcrumb */}
-            <nav aria-label="Breadcrumb" className="mb-8">
-              <ol className="flex items-center gap-2 font-sans text-xs text-ink-secondary/60">
-                <li>
-                  <Link
-                    href={buildUrl(locale, 'seriesList')}
-                    className="transition-colors hover:text-ink-secondary"
-                  >
-                    {locale === 'tr' ? 'Yazılar' : 'Articles'}
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li>
-                  <Link
-                    href={seriesUrl}
-                    className="transition-colors hover:text-ink-secondary"
-                  >
-                    {seriesTitle}
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" className="text-ink-secondary">
+        <div className="mx-auto max-w-screen-xl px-6 py-12">
+          <div className="grid grid-cols-1 gap-12 xl:grid-cols-[minmax(0,720px)_200px]">
+            {/* Article column */}
+            <article data-reading aria-labelledby="article-title">
+              {/* Breadcrumb */}
+              <nav aria-label="Breadcrumb" className="mb-8">
+                <ol className="flex items-center gap-2 font-sans text-xs text-ink-secondary/60">
+                  <li>
+                    <Link
+                      href={buildUrl(locale, 'seriesList')}
+                      className="transition-colors hover:text-ink-secondary"
+                    >
+                      {locale === 'tr' ? 'Yazılar' : 'Articles'}
+                    </Link>
+                  </li>
+                  <li aria-hidden="true">/</li>
+                  <li>
+                    <Link
+                      href={seriesUrl}
+                      className="transition-colors hover:text-ink-secondary"
+                    >
+                      {seriesTitle}
+                    </Link>
+                  </li>
+                  <li aria-hidden="true">/</li>
+                  <li aria-current="page" className="text-ink-secondary">
+                    {mdxData.frontmatter.title}
+                  </li>
+                </ol>
+              </nav>
+
+              {/* Hero */}
+              <header className="mb-8 border-l-[3px] border-accent pl-5">
+                <SeriesPositionBadge
+                  position={position}
+                  total={series.articleOrder.length}
+                  seriesTitle={seriesTitle}
+                />
+                <h1
+                  id="article-title"
+                  className="mt-2 font-serif text-[2.125rem] font-semibold leading-[1.15] text-ink"
+                >
                   {mdxData.frontmatter.title}
-                </li>
-              </ol>
-            </nav>
+                </h1>
+              </header>
 
-            {/* Hero */}
-            <header className="mb-8 border-l-[3px] border-accent pl-5">
-              <SeriesPositionBadge
-                position={position}
-                total={series.articleOrder.length}
-                seriesTitle={seriesTitle}
+              {/* Metadata row */}
+              <MetadataRow
+                meta={meta}
+                readingTimeMinutes={readingTimeMinutes}
+                lang={locale}
+                messages={messages}
               />
-              <h1
-                id="article-title"
-                className="mt-2 font-serif text-[2.125rem] font-semibold leading-[1.15] text-ink"
-              >
-                {mdxData.frontmatter.title}
-              </h1>
-            </header>
 
-            {/* Metadata row */}
-            <MetadataRow
-              meta={meta}
-              readingTimeMinutes={readingTimeMinutes}
-              lang={locale}
-              messages={messages}
-            />
+              {/* Summary */}
+              <p className="mt-6 font-sans text-base leading-[1.75] text-ink-secondary border-l-2 border-hairline pl-4">
+                {mdxData.frontmatter.summary}
+              </p>
 
-            {/* Summary */}
-            <p className="mt-6 font-sans text-base leading-[1.75] text-ink-secondary border-l-2 border-hairline pl-4">
-              {mdxData.frontmatter.summary}
-            </p>
+              {/* MDX content */}
+              <div className="prose prose-sm mt-8 max-w-none sm:prose">
+                <MDXRemote
+                  source={mdxData.content}
+                  components={components}
+                  options={{
+                    mdxOptions: {
+                      rehypePlugins: [rehypeSlug],
+                    },
+                  }}
+                />
+              </div>
 
-            {/* MDX content */}
-            <div className="prose prose-sm mt-8 max-w-none sm:prose">
-              <MDXRemote
-                source={mdxData.content}
-                components={components}
-                options={{
-                  mdxOptions: {
-                    rehypePlugins: [rehypeSlug],
-                  },
-                }}
+              {/* References */}
+              <ReferencesSection references={references} messages={messages} />
+
+              {/* Prev / Next */}
+              <PrevNextNav
+                prev={prevRef}
+                next={nextRef}
+                seriesSlug={seriesSlug}
+                lang={locale}
+                messages={messages}
               />
-            </div>
 
-            {/* References */}
-            <ReferencesSection references={references} messages={messages} />
+              {/* Back to series */}
+              <div className="mt-8 border-t border-hairline pt-6">
+                <Link
+                  href={seriesUrl}
+                  className="font-sans text-sm text-ink-secondary transition-colors hover:text-ink"
+                >
+                  ← {messages.backToSeries}: {seriesTitle}
+                </Link>
+              </div>
+            </article>
 
-            {/* Prev / Next */}
-            <PrevNextNav
-              prev={prevRef}
-              next={nextRef}
-              seriesSlug={seriesSlug}
-              lang={locale}
-              messages={messages}
-            />
-
-            {/* Back to series */}
-            <div className="mt-8 border-t border-hairline pt-6">
-              <Link
-                href={seriesUrl}
-                className="font-sans text-sm text-ink-secondary transition-colors hover:text-ink"
-              >
-                ← {messages.backToSeries}: {seriesTitle}
-              </Link>
-            </div>
-          </article>
-
-          {/* Optional sticky TOC — desktop only */}
-          <aside className="hidden xl:block">
-            <div className="sticky top-20">
-              <TOC />
-            </div>
-          </aside>
+            {/* Optional sticky TOC — desktop only */}
+            <aside className="hidden xl:block">
+              <div className="sticky top-20">
+                <TOC />
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

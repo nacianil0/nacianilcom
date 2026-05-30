@@ -251,3 +251,57 @@
 | 03:00 | Edited packages/content-core/src/schemas/meta.ts | inline fix | ~19 |
 | 03:01 | Edited packages/content-core/src/schemas/meta.ts | 5→5 lines | ~39 |
 | 03:03 | WP-04 complete — pnpm -w typecheck ✓ / lint ✓ / build ✓ / test 82/82 ✓; 16 static pages generated | multiple | all pass | ~500 |
+| 03:05 | Session end: 45 writes across 26 files (VisualBlock.tsx, taxonomy.json, Comparison.tsx, LayeredModel.tsx, Pyramid.tsx) | 10 reads | ~19343 tok |
+
+## Session: 2026-05-30 03:08
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 03:25 | Created apps/web/src/lib/site.ts | — | ~79 |
+| 03:26 | Created apps/web/src/lib/jsonld.ts | — | ~696 |
+| 03:26 | Created apps/web/app/og/route.tsx | — | ~1112 |
+| 03:26 | Created apps/web/app/robots.ts | — | ~71 |
+| 03:26 | Created apps/web/app/sitemap.ts | — | ~611 |
+| 03:26 | Created apps/web/app/[lang]/feed.xml/route.ts | — | ~827 |
+| 03:26 | Created apps/web/next.config.ts | — | ~208 |
+| 03:27 | Created apps/web/app/layout.tsx | — | ~502 |
+| 03:27 | Created apps/web/app/[lang]/layout.tsx | — | ~486 |
+| 03:27 | Created apps/web/app/[lang]/layout.tsx | — | ~411 |
+| 03:27 | Created apps/web/app/[lang]/series/page.tsx | — | ~1417 |
+| 03:28 | Created apps/web/app/[lang]/series/[seriesSlug]/page.tsx | — | ~2295 |
+| 03:29 | Created apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/page.tsx | — | ~3146 |
+| 03:29 | Created apps/web/package.json | — | ~249 |
+| 03:29 | Created apps/web/app/api/revalidate/route.ts | — | ~474 |
+| 03:29 | Created apps/studio/package.json | — | ~351 |
+| 03:30 | Created apps/studio/server/index.ts | — | ~2248 |
+| 03:30 | Created apps/studio/src/App.tsx | — | ~660 |
+| 03:30 | Created apps/studio/src/screens/DraftReview.tsx | — | ~1756 |
+| 03:31 | Created apps/studio/src/screens/SeoCheck.tsx | — | ~2203 |
+| 03:31 | Created apps/studio/src/screens/Publisher.tsx | — | ~2415 |
+| 03:32 | Created apps/studio/src/screens/Prompts.tsx | — | ~877 |
+| 03:32 | Created apps/studio/prompts/idea-series-plan.md | — | ~296 |
+| 03:32 | Created apps/studio/prompts/article-brief.md | — | ~301 |
+| 03:32 | Created apps/studio/prompts/outline.md | — | ~237 |
+| 03:32 | Created apps/studio/prompts/tr-draft.md | — | ~208 |
+| 03:33 | Created apps/studio/prompts/tr-final-mdx.md | — | ~351 |
+| 03:33 | Created apps/studio/prompts/en-adaptation.md | — | ~254 |
+| 03:33 | Created apps/studio/prompts/visual-diagram-suggestion.md | — | ~295 |
+| 03:33 | Created apps/studio/prompts/seo-qc-review.md | — | ~254 |
+| 03:33 | Created apps/studio/prompts/resume-case-study.md | — | ~254 |
+| 03:33 | Created apps/studio/prompts/monthly-plan.md | — | ~249 |
+| 03:34 | Edited apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/page.tsx | 12→12 lines | ~106 |
+| 03:34 | Edited apps/studio/src/screens/DraftReview.tsx | inline fix | ~22 |
+| 03:34 | Edited apps/studio/src/screens/DraftReview.tsx | inline fix | ~11 |
+
+## Session: 2026-05-30 WP-05+06
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 10:00 | WP-05: site.ts, jsonld.ts | apps/web/src/lib/ | SITE_URL, JSON-LD builders | 800 |
+| 10:05 | WP-05: og/route.tsx, sitemap.ts, robots.ts, feed.xml/route.ts | apps/web/app/ | Edge OG 1200×630; sitemap hreflang; RSS per-lang | 2000 |
+| 10:10 | WP-05: next.config.ts redirects, layouts+pages generateMetadata | apps/web/ | canonical+hreflang+x-default+og:locale on all routes | 4000 |
+| 10:15 | WP-06: /api/revalidate (HMAC+zod+timestamp+safe-error) | apps/web/app/api/ | Secured revalidate endpoint | 600 |
+| 10:20 | WP-06: studio server (content API + publish + git + prompts) | apps/studio/server/ | Fastify 127.0.0.1 CJS; simple-git publish | 2000 |
+| 10:25 | WP-06: studio screens (DraftReview/SeoCheck/Publisher/Prompts) | apps/studio/src/screens/ | @mdx-js/mdx evaluate; runQC client-side | 3000 |
+| 10:30 | WP-06: 10 prompt templates | apps/studio/prompts/ | §19 core set complete | 500 |
+| 10:35 | pnpm -w typecheck/lint/build | — | ALL CLEAN; 19 static pages | 200 |

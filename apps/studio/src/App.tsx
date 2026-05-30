@@ -1,8 +1,63 @@
+import { useState } from 'react';
+import { DraftReview } from './screens/DraftReview';
+import { SeoCheck } from './screens/SeoCheck';
+import { Publisher } from './screens/Publisher';
+import { Prompts } from './screens/Prompts';
+
+type Screen = 'review' | 'qc' | 'publish' | 'prompts';
+
+const NAV: Array<{ id: Screen; label: string }> = [
+  { id: 'review', label: 'Draft Review' },
+  { id: 'qc', label: 'SEO / QC Check' },
+  { id: 'publish', label: 'Publisher' },
+  { id: 'prompts', label: 'Prompts' },
+];
+
 export default function App() {
+  const [screen, setScreen] = useState<Screen>('review');
+
   return (
-    <div>
-      <h1>nacianil Studio</h1>
-      <p>Local authoring studio — 127.0.0.1 only. Studio logic added in WP-06.</p>
+    <div className="flex h-screen flex-col bg-surface text-ink">
+      {/* Top bar */}
+      <header className="flex items-center justify-between border-b border-hairline bg-card px-6 py-3">
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-secondary/60">
+            nacianil
+          </span>
+          <span className="font-serif text-base font-semibold text-ink">Studio</span>
+        </div>
+        <span className="font-mono text-[10px] text-negative">127.0.0.1 — local only</span>
+      </header>
+
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar nav */}
+        <nav className="w-44 flex-shrink-0 border-r border-hairline bg-card py-4">
+          <ul className="space-y-0.5 px-2">
+            {NAV.map(({ id, label }) => (
+              <li key={id}>
+                <button
+                  onClick={() => setScreen(id)}
+                  className={`w-full rounded px-3 py-2 text-left font-sans text-sm transition-colors ${
+                    screen === id
+                      ? 'bg-accent/10 font-medium text-accent'
+                      : 'text-ink-secondary hover:bg-hairline/50 hover:text-ink'
+                  }`}
+                >
+                  {label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Main content */}
+        <main className="flex-1 overflow-auto p-6">
+          {screen === 'review' && <DraftReview />}
+          {screen === 'qc' && <SeoCheck />}
+          {screen === 'publish' && <Publisher />}
+          {screen === 'prompts' && <Prompts />}
+        </main>
+      </div>
     </div>
   );
 }
