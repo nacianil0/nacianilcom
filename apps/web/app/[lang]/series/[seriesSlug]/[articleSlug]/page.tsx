@@ -261,6 +261,8 @@ export default async function ArticlePage({
                   source={mdxData.content}
                   components={components}
                   options={{
+                    // Author-controlled MDX in git; CodeBlock uses `{`…`}` children.
+                    blockJS: false,
                     mdxOptions: {
                       rehypePlugins: [rehypeSlug],
                     },
