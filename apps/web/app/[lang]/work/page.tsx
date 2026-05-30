@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Locale } from '@nacianilcom/content-core';
 import { buildUrl } from '@nacianilcom/content-core';
 import { Masthead, MonoLabel } from '@nacianilcom/ui';
-import { loadPublicCases } from '../../../src/content/loader';
+import { loadResume } from '../../../src/content/loader';
 import { SiteNav } from '../../../src/components/SiteNav';
 import { SiteFooter } from '../../../src/components/SiteFooter';
 import { Crumbs } from '../../../src/components/Crumbs';
@@ -34,8 +34,8 @@ export async function generateMetadata({
   const title = locale === 'tr' ? 'Projeler — Naci Anıl Akman' : 'Work — Naci Anıl Akman';
   const description =
     locale === 'tr'
-      ? 'Holding ölçeğinde kurumsal portal ve dashboard case study’leri.'
-      : 'Case studies for enterprise portal and dashboard systems at holding scale.';
+      ? 'Kurumsal portal, seyahat, avans ve müşteri ürünlerinde seçili projeler.'
+      : 'Selected projects across enterprise portals, travel, advance workflows, and client products.';
 
   return {
     title,
@@ -65,7 +65,9 @@ export default async function WorkPage({
   if (!VALID_LANGS.has(lang)) notFound();
 
   const locale = lang as Locale;
-  const cases = await loadPublicCases(locale);
+  const resume = await loadResume(locale, 'web');
+  if (!resume) notFound();
+  const projects = resume.projects;
   const altLangUrl = buildUrl(locale === 'tr' ? 'en' : 'tr', 'work');
 
   const canonicalUrl = `${SITE_URL}${buildUrl(locale, 'work')}`;
@@ -88,34 +90,54 @@ export default async function WorkPage({
           crumbs={<Crumbs items={[{ label: locale === 'tr' ? 'Ana sayfa' : 'Home', href: buildUrl(locale, 'home') }]} />}
           aside={
             <MonoLabel>
-              {cases.length} {locale === 'tr' ? 'çalışma' : 'case studies'}
+              {projects.length} {locale === 'tr' ? 'proje' : 'projects'}
             </MonoLabel>
           }
           title={locale === 'tr' ? 'Projeler' : 'Work'}
           lead={
             locale === 'tr'
-              ? 'Kurumsal sistemlerde uçtan uca ürün geliştirme case study’leri.'
-              : 'End-to-end product development case studies in enterprise systems.'
+              ? 'Holding içi kurumsal sistemlerden müşteri ürünlerine — seçili projeler ve vaka çalışmaları.'
+              : 'From in-house enterprise systems to client products — selected projects and case studies.'
           }
         />
 
         <main className="mx-auto w-full max-w-[1100px] flex-1 px-6 py-14 sm:px-10 lg:px-14">
-          {cases.length === 0 ? (
+          {projects.length === 0 ? (
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-secondary">
-              {locale === 'tr' ? 'Henüz yayınlanmış proje yok.' : 'No published case studies yet.'}
+              {locale === 'tr' ? 'Henüz yayınlanmış proje yok.' : 'No published projects yet.'}
             </p>
           ) : (
             <ul className="border-t border-hairline" role="list">
-              {cases.map((c, i) => (
-                <ListRow
-                  key={c.slug}
-                  href={buildUrl(locale, 'workCase', { caseSlug: c.slug })}
-                  index={String(i + 1).padStart(2, '0')}
-                  title={c.title}
-                  description={c.summary}
-                  meta={<MonoLabel>{locale === 'tr' ? 'Case study →' : 'Case study →'}</MonoLabel>}
-                />
-              ))}
+              {projects.map((proj, i) => {
+                const externalUrl = proj.url;
+                const caseHref = proj.caseSlug
+                  ? buildUrl(locale, 'workCase', { caseSlug: proj.caseSlug })
+                  : null;
+                const href = caseHref ?? externalUrl;
+                if (!href) return null;
+
+                const externalLabel = externalUrl
+                  ? externalUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')
+                  : null;
+
+                return (
+                  <ListRow
+                    key={proj.id}
+                    href={href}
+                    external={Boolean(!caseHref && externalUrl)}
+                    index={String(i + 1).padStart(2, '0')}
+                    title={proj.title}
+                    description={proj.summary}
+                    meta={
+                      caseHref ? (
+                        <MonoLabel>{locale === 'tr' ? 'Vaka çalışması →' : 'Case study →'}</MonoLabel>
+                      ) : externalLabel ? (
+                        <MonoLabel>{externalLabel} ↗</MonoLabel>
+                      ) : null
+                    }
+                  />
+                );
+              })}
             </ul>
           )}
         </main>
