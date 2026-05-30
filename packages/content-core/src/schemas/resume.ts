@@ -28,10 +28,27 @@ export const ExperienceItemSchema = z.object({
   description: z.string(),
   highlights: z.array(z.string()),
   stack: z.array(z.string()),
+  logo: z.string().optional(),
   visibility: VisibilitySchema,
   needsReview: z.boolean().optional(),
 });
 export type ExperienceItem = z.infer<typeof ExperienceItemSchema>;
+
+export const EarlierExperienceEntrySchema = z.object({
+  company: z.string(),
+  role: z.string(),
+  startDate: z.string(),
+  endDate: z.string().optional(),
+  note: z.string().optional(),
+});
+export type EarlierExperienceEntry = z.infer<typeof EarlierExperienceEntrySchema>;
+
+export const EarlierExperienceGroupSchema = z.object({
+  summary: z.string().optional(),
+  entries: z.array(EarlierExperienceEntrySchema),
+  visibility: VisibilitySchema,
+});
+export type EarlierExperienceGroup = z.infer<typeof EarlierExperienceGroupSchema>;
 
 export const EducationItemSchema = z.object({
   id: z.string(),
@@ -83,6 +100,7 @@ export const ResumeSchema = z.object({
   basics: BasicsSchema,
   contact: z.array(ContactItemSchema),
   experience: z.array(ExperienceItemSchema),
+  earlierExperience: EarlierExperienceGroupSchema.optional(),
   education: z.array(EducationItemSchema),
   skills: z.array(SkillGroupSchema),
   projects: z.array(ProjectSummarySchema),

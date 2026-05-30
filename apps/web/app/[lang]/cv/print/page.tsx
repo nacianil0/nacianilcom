@@ -4,6 +4,8 @@ import type { Locale } from '@nacianilcom/content-core';
 import { SectionRail, SpecRow, Chip } from '@nacianilcom/ui';
 import { loadResume } from '../../../../src/content/loader';
 import { fmtRange } from '../../../../src/lib/dateRange';
+import { brandLabel } from '../../../../src/lib/brandLabel';
+import { compactRowGridClass, specDateColClass } from '../../../../src/lib/layout';
 
 const VALID_LANGS = new Set(['tr', 'en']);
 
@@ -61,7 +63,7 @@ export default async function CvPrintPage({
             {publicEmail && <span>{publicEmail}</span>}
             {resume.links.map((l) => (
               <span key={l.label}>
-                {l.label}: {l.url.replace(/^https?:\/\//, '')}
+                {brandLabel(l.label)}: {l.url.replace(/^https?:\/\//, '')}
               </span>
             ))}
           </div>
@@ -78,7 +80,14 @@ export default async function CvPrintPage({
                     className="break-inside-avoid border-b border-hairline py-4 first:pt-0 last:border-b-0"
                   >
                     <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-                      <h3 className="font-serif text-[16px] font-medium text-ink">{exp.company}</h3>
+                      <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                        {exp.logo && (
+                          <div className="relative h-6 w-[4.5rem] shrink-0">
+                            <Image src={exp.logo} alt="" fill sizes="72px" className="object-contain object-left" />
+                          </div>
+                        )}
+                        <h3 className="font-serif text-[16px] font-medium text-ink">{exp.company}</h3>
+                      </div>
                       <span className="shrink-0 font-mono text-[9.5px] uppercase tracking-[0.14em] tabular-nums text-ink-secondary">
                         {fmtRange(exp.startDate, exp.endDate, locale)}
                       </span>
@@ -105,6 +114,30 @@ export default async function CvPrintPage({
                   </div>
                 ))}
               </div>
+              </SectionRail>
+            )}
+
+          {resume.earlierExperience && resume.earlierExperience.entries.length > 0 && (
+            <SectionRail label={tr ? 'Önceki Deneyimler' : 'Earlier Experience'} id="print-earlier">
+              {resume.earlierExperience.summary && (
+                <p className="mb-3 font-sans text-[11.5px] leading-[1.6] text-ink-secondary">
+                  {resume.earlierExperience.summary}
+                </p>
+              )}
+              <ul className="flex flex-col" role="list">
+                {resume.earlierExperience.entries.map((entry) => (
+                  <li key={`${entry.company}-${entry.startDate}`} className={compactRowGridClass}>
+                    <div className="min-w-0">
+                      <p className="font-sans text-[12px] leading-snug text-ink">{entry.company}</p>
+                      <p className="mt-0.5 font-mono text-[9.5px] tracking-[0.12em] text-ink-secondary">
+                        {entry.role}
+                        {entry.note ? ` · ${entry.note}` : ''}
+                      </p>
+                    </div>
+                    <span className={specDateColClass}>{fmtRange(entry.startDate, entry.endDate, locale)}</span>
+                  </li>
+                ))}
+              </ul>
             </SectionRail>
           )}
 

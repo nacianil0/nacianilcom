@@ -10,7 +10,8 @@ import { SiteNav } from '../../../src/components/SiteNav';
 import { SiteFooter } from '../../../src/components/SiteFooter';
 import { Crumbs } from '../../../src/components/Crumbs';
 import { fmtRange } from '../../../src/lib/dateRange';
-import { pageShellClass, specRowGridClass, specDateColClass } from '../../../src/lib/layout';
+import { pageShellClass, specRowGridClass, specDateColClass, compactRowGridClass } from '../../../src/lib/layout';
+import { brandLabel } from '../../../src/lib/brandLabel';
 import { SITE_URL, SITE_NAME, localeToOgLocale } from '../../../src/lib/site';
 import { personJsonLd, breadcrumbJsonLd } from '../../../src/lib/jsonld';
 
@@ -157,9 +158,9 @@ export default async function CvPage({
                       href={l.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 border border-hairline bg-surface px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-secondary transition-colors hover:border-ink hover:text-ink"
+                      className="inline-flex items-center gap-1 border border-hairline bg-surface px-2 py-0.5 font-mono text-[10px] tracking-[0.1em] text-ink-secondary transition-colors hover:border-ink hover:text-ink"
                     >
-                      {l.label}
+                      {brandLabel(l.label)}
                       <span aria-hidden="true">↗</span>
                     </a>
                   ))}
@@ -176,7 +177,20 @@ export default async function CvPage({
                   {resume.experience.map((exp) => (
                     <div key={exp.id} className={specRowGridClass}>
                       <div className="min-w-0">
-                        <h3 className="font-serif text-[19px] font-medium leading-tight text-ink">{exp.company}</h3>
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                          {exp.logo && (
+                            <div className="relative h-7 w-[5.25rem] shrink-0">
+                              <Image
+                                src={exp.logo}
+                                alt=""
+                                fill
+                                sizes="84px"
+                                className="object-contain object-left"
+                              />
+                            </div>
+                          )}
+                          <h3 className="font-serif text-[19px] font-medium leading-tight text-ink">{exp.company}</h3>
+                        </div>
                         <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-accent">{exp.role}</p>
                         <p className="mt-3 font-sans text-[14.5px] leading-[1.7] text-ink-secondary">{exp.description}</p>
                         {exp.highlights.length > 0 && (
@@ -201,6 +215,30 @@ export default async function CvPage({
                     </div>
                   ))}
                 </div>
+              </SectionRail>
+            )}
+
+            {resume.earlierExperience && resume.earlierExperience.entries.length > 0 && (
+              <SectionRail dividerTop label={tr ? 'Önceki Deneyimler' : 'Earlier Experience'} id="cv-earlier">
+                {resume.earlierExperience.summary && (
+                  <p className="mb-4 max-w-[640px] font-sans text-[13.5px] leading-[1.65] text-ink-secondary">
+                    {resume.earlierExperience.summary}
+                  </p>
+                )}
+                <ul className="flex flex-col" role="list">
+                  {resume.earlierExperience.entries.map((entry) => (
+                    <li key={`${entry.company}-${entry.startDate}`} className={compactRowGridClass}>
+                      <div className="min-w-0">
+                        <p className="font-sans text-[14px] leading-snug text-ink">{entry.company}</p>
+                        <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-secondary">
+                          {entry.role}
+                          {entry.note ? ` · ${entry.note}` : ''}
+                        </p>
+                      </div>
+                      <span className={specDateColClass}>{fmtRange(entry.startDate, entry.endDate, locale)}</span>
+                    </li>
+                  ))}
+                </ul>
               </SectionRail>
             )}
 

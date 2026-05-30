@@ -18,13 +18,15 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "Holding genelinde kullanılan kurumsal erişim platformunu (Dashboard) ve seyahat yönetim sistemini geliştiriyorum. Türkiye ve Mısır'daki grup şirketlerinde tek oturum, ortak yetkilendirme ve aynı ürün diliyle çalışan sistemlerde uçtan uca sorumluluk taşıyorum.",
+        "description": "Holding genelinde kullanılan kurumsal erişim platformunu (Dashboard), seyahat yönetim sistemini ve İK avans modülünü geliştiriyorum. Türkiye ve Mısır'daki grup şirketlerinde tek oturum, ortak yetkilendirme ve aynı ürün diliyle çalışan sistemlerde uçtan uca sorumluluk taşıyorum.",
         "highlights": [
           "Dashboard platformunu (Portal) sıfırdan kurdum; duyuru, yemek menüsü, uygulama kataloğu ve yetki yönetimini tek ürün çatısında topladım.",
           "Seyahat modülünü bağımsız bir uygulamadan Dashboard altyapısına taşıyarak tek oturum ve ortak yetkilendirme sağladım.",
-          "İK projesinde Türkiye ve Mısır operasyonlarını kapsayan çok şirketli yapıyı kuruyorum."
+          "Avans modülünde çift AI (Gemini + OpenAI yedek) fiş/fatura OCR akışını kurdum: çoklu belge tespiti, tutar ve konum çıkarımı, güven skoru ve görsel overlay ile doğrulama.",
+          "Karmaşık avans sürecini (talep–teslim–fiş onayı–taksit–geri ödeme, kısmi teslimat, çok şirketli yetki) uçtan uca netleştirip operasyonel hale getirdim."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "Entity Framework Core", "SQL Server"],
+        "logo": "/logo/eroglu-holding.png",
         "visibility": "public"
       },
       {
@@ -50,6 +52,33 @@
         "visibility": "public"
       }
     ],
+    "earlierExperience": {
+      "summary": "Digitallica öncesinde farklı şirketlerde kısa dönemli roller; JavaScript, HTML/CSS, Delphi ve Oracle ile web geliştirme.",
+      "entries": [
+        {
+          "company": "Bizmed — Sinerji Bilişim",
+          "role": "Junior Yazılım Geliştirici",
+          "startDate": "2021-01",
+          "endDate": "2021-04",
+          "note": "Delphi, Oracle"
+        },
+        {
+          "company": "Arcadias Tech",
+          "role": "Junior Yazılım Geliştirici",
+          "startDate": "2020-10",
+          "endDate": "2021-01",
+          "note": "JavaScript, HTML/CSS"
+        },
+        {
+          "company": "Yüce Yazılım",
+          "role": "Stajyer Yazılım Geliştirici",
+          "startDate": "2020-05",
+          "endDate": "2020-07",
+          "note": "Otomotiv B2C — front-end & back-end"
+        }
+      ],
+      "visibility": "public"
+    },
     "education": [
       {
         "id": "iu-betoo",
@@ -79,7 +108,7 @@
       },
       {
         "group": "Araçlar",
-        "items": ["Git", "Docker", "Visual Studio", "Postman", "UiPath RPA"]
+        "items": ["Git", "Docker", "Visual Studio", "Postman"]
       }
     ],
     "projects": [
@@ -188,13 +217,15 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "Building the enterprise access platform (Dashboard) and travel management system used across the holding group. End-to-end ownership of systems that run on single sign-on, shared authorization, and one product language for group companies in Turkey and Egypt.",
+        "description": "Building the enterprise access platform (Dashboard), travel management system, and HR advance module used across the holding group. End-to-end ownership of systems that run on single sign-on, shared authorization, and one product language for group companies in Turkey and Egypt.",
         "highlights": [
           "Built the Dashboard platform (Portal) from scratch, consolidating announcements, meal menu, application catalog, and permission management under one product.",
           "Migrated the Travel module from a standalone app onto the Dashboard infrastructure, enabling single sign-on and unified authorization.",
-          "Building the HR project with a multi-company architecture spanning Turkey and Egypt operations."
+          "Built a dual-AI (Gemini + OpenAI fallback) receipt/invoice OCR pipeline in the Advance module: multi-document detection, amount and position extraction, confidence scoring, and visual overlay verification.",
+          "Untangled the Advance domain end to end (request–delivery–receipt approval–installments–repayment, partial delivery, multi-company authorization) and made it operational."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "Entity Framework Core", "SQL Server"],
+        "logo": "/logo/eroglu-holding.png",
         "visibility": "public"
       },
       {
@@ -220,6 +251,33 @@
         "visibility": "public"
       }
     ],
+    "earlierExperience": {
+      "summary": "Short-term roles at different companies before Digitallica; web development with JavaScript, HTML/CSS, Delphi, and Oracle.",
+      "entries": [
+        {
+          "company": "Bizmed — Sinerji Bilişim",
+          "role": "Junior Software Developer",
+          "startDate": "2021-01",
+          "endDate": "2021-04",
+          "note": "Delphi, Oracle"
+        },
+        {
+          "company": "Arcadias Tech",
+          "role": "Junior Software Developer",
+          "startDate": "2020-10",
+          "endDate": "2021-01",
+          "note": "JavaScript, HTML/CSS"
+        },
+        {
+          "company": "Yüce Yazılım",
+          "role": "Software Development Intern",
+          "startDate": "2020-05",
+          "endDate": "2020-07",
+          "note": "Automotive B2C — front-end & back-end"
+        }
+      ],
+      "visibility": "public"
+    },
     "education": [
       {
         "id": "iu-betoo",
@@ -249,7 +307,7 @@
       },
       {
         "group": "Tools",
-        "items": ["Git", "Docker", "Visual Studio", "Postman", "UiPath RPA"]
+        "items": ["Git", "Docker", "Visual Studio", "Postman"]
       }
     ],
     "projects": [

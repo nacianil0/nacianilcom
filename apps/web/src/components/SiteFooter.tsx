@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { buildUrl } from '@nacianilcom/content-core';
 import type { Locale } from '@nacianilcom/content-core';
 import { pageShellClass } from '../lib/layout';
+import { brandLabel } from '../lib/brandLabel';
 
 interface SiteFooterProps {
   lang: Locale;
@@ -16,7 +17,7 @@ export function SiteFooter({ lang }: SiteFooterProps) {
   const year = new Date().getFullYear();
 
   const linkClass =
-    'font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary transition-colors hover:text-ink';
+    'font-mono text-[10px] tracking-[0.18em] text-ink-secondary transition-colors hover:text-ink';
 
   return (
     <footer className="mt-24 border-t border-ink bg-surface print:hidden">
@@ -37,10 +38,10 @@ export function SiteFooter({ lang }: SiteFooterProps) {
               </Link>
             ))}
             <a href="https://github.com/nacianilakman" target="_blank" rel="noopener noreferrer" className={linkClass}>
-              GitHub
+              {brandLabel('GitHub')}
             </a>
             <a href="https://www.linkedin.com/in/nacianilakman" target="_blank" rel="noopener noreferrer" className={linkClass}>
-              LinkedIn
+              {brandLabel('LinkedIn')}
             </a>
           </nav>
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary/70">

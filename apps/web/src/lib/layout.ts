@@ -11,3 +11,7 @@ export const specRowGridClass =
 
 export const specDateColClass =
   'font-mono text-[10px] uppercase tracking-[0.16em] tabular-nums text-ink-secondary sm:pt-0.5 sm:text-right';
+
+/** Compact prior-role row — tighter rhythm than main experience entries. */
+export const compactRowGridClass =
+  'grid grid-cols-1 gap-0.5 border-b border-hairline py-3 sm:grid-cols-[minmax(0,1fr)_11rem] sm:items-baseline sm:gap-x-8 last:border-b-0';

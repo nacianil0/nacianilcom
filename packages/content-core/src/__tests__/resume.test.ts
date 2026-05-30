@@ -80,6 +80,21 @@ describe('filterResumeByVisibility — web mode', () => {
   it('excludes pdf-only links in web mode', () => {
     expect(filtered.links.find(l => l.label === 'LinkedIn')).toBeUndefined();
   });
+
+  it('excludes private earlierExperience in web mode', () => {
+    const withEarlier = filterResumeByVisibility(
+      {
+        ...makeResume(),
+        earlierExperience: {
+          summary: 'Earlier roles',
+          entries: [{ company: 'Acme', role: 'Dev', startDate: '2019-01' }],
+          visibility: 'private',
+        },
+      },
+      'web',
+    );
+    expect(withEarlier.earlierExperience).toBeUndefined();
+  });
 });
 
 describe('filterResumeByVisibility — pdf mode', () => {
