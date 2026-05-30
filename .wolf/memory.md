@@ -496,3 +496,34 @@
 | 13:59 | Edited packages/ui/src/components/editorial/SectionRail.tsx | 4→3 lines | ~20 |
 | 14:02 | Created .claude/launch.json | — | ~58 |
 | 14:02 | Edited .claude/launch.json | 4→5 lines | ~47 |
+
+## Session: 2026-05-30 18:23
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 18:32 | Edited packages/content-core/src/schemas/resume.ts | 7→11 lines | ~113 |
+| 18:34 | Created content/resume/resume.json | — | ~5877 |
+| 18:36 | Created apps/web/src/lib/origin.ts | — | ~386 |
+| 18:37 | Created apps/web/src/lib/qr.ts | — | ~184 |
+| 18:37 | Created apps/web/src/components/QrTag.tsx | — | ~287 |
+| 18:38 | Created apps/web/app/[lang]/cv/print/page.tsx | — | ~3160 |
+| 18:39 | Created apps/web/app/[lang]/cv/page.tsx | — | ~5768 |
+| 18:43 | Edited apps/web/app/[lang]/cv/print/page.tsx | 2→2 lines | ~38 |
+| 18:43 | Edited apps/web/app/[lang]/cv/print/page.tsx | 2→2 lines | ~39 |
+| 18:43 | Edited apps/web/app/[lang]/cv/print/page.tsx | 2→2 lines | ~36 |
+| 18:43 | Edited apps/web/app/[lang]/cv/print/page.tsx | 2→2 lines | ~41 |
+| 18:44 | Edited apps/web/app/[lang]/cv/print/page.tsx | 2→2 lines | ~50 |
+
+## Session: 2026-05-30 (CV/PDF hardening)
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 18:40 | Recruiter-grade CV content: tagline+primaryStack, impact highlights (Eroglu/Kansuk/Digitallica), skills regroup (AI&API + Architecture & Product Ownership), needsReview on Kansuk+Digitallica | content/resume/resume.json | rewritten TR+EN | ~4000 |
+| 18:42 | Added basics.tagline + basics.primaryStack optional fields; rebuilt dist | packages/content-core/src/schemas/resume.ts | dist refreshed | ~200 |
+| 18:50 | Dynamic single-A4 print CV: force-dynamic, noindex, QR+live link, dropped logos/earlierExp, capped highlights (4/2/2) | apps/web/app/[lang]/cv/print/page.tsx | TR 1098px / EN 1077px <= A4 1123px | ~2500 |
+| 18:52 | resolveSiteOrigin() (runtime->env->SITE_URL) + qrSvg + QrTag | apps/web/src/lib/origin.ts, qr.ts, components/QrTag.tsx | runtime-origin priority verified via x-forwarded-host | ~700 |
+| 18:55 | Stronger web hero + reorder (Selected Projects above Skills) | apps/web/app/[lang]/cv/page.tsx | verified in preview, no console errors | ~2000 |
+| 19:00 | typecheck + lint + clean build | apps/web | all clean; print=dynamic, cv=SSG | — |
+| 18:51 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp12_13_done.md | expanded (+6 lines) | ~409 |
+| 18:57 | Edited .claude/launch.json | expanded (+7 lines) | ~108 |
+| 18:57 | Created apps/web/app/[lang]/cv/print/page.tsx | — | ~3096 |

@@ -7,6 +7,13 @@
       "runtimeArgs": ["--filter", "@nacianilcom/web", "start"],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "web-dev",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@nacianilcom/web", "dev"],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }

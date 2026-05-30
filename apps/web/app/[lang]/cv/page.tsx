@@ -40,8 +40,8 @@ export async function generateMetadata({
   const title = 'CV — Naci Anıl Akman';
   const description =
     locale === 'tr'
-      ? 'Full Stack Developer. .NET, React ve kurumsal portal/dashboard uzmanlığı.'
-      : 'Full Stack Developer. .NET, React and enterprise portal/dashboard expertise.';
+      ? 'Full Stack Developer. .NET ve React ile kurumsal portal/dashboard sistemleri ve ürünleşebilir web uygulamaları; uçtan uca ürün sahipliği.'
+      : 'Full Stack Developer. Enterprise portal/dashboard systems and productizable web apps with .NET and React; end-to-end product ownership.';
 
   return {
     title,
@@ -93,8 +93,14 @@ export default async function CvPage({
   const publicEmail = resume.contact.find((c) => c.key === 'email')?.value;
   const role = resume.basics.title;
   const location = resume.basics.location;
+  const currentCompany = resume.experience[0]?.company;
 
   const tr = locale === 'tr';
+
+  const actionClass =
+    'inline-flex items-center gap-1.5 border border-hairline bg-surface px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-secondary transition-colors hover:border-ink hover:text-ink';
+  const contactClass =
+    'inline-flex items-center gap-1 font-mono text-[11px] tracking-[0.04em] text-ink-secondary transition-colors hover:text-accent';
 
   return (
     <>
@@ -119,59 +125,77 @@ export default async function CvPage({
           }
           className="pb-10 sm:pb-12"
         >
-          <div className="mt-8 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-6 sm:mt-9 sm:gap-10">
+          <div className="mt-8 grid grid-cols-1 items-start gap-8 sm:mt-9 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-12">
             <div className="min-w-0">
-              <h1 className="font-serif text-[30px] font-semibold leading-[1.05] tracking-[-0.01em] text-ink sm:text-[38px]">
+              <MonoLabel>
+                {role}
+                {location ? ` · ${location}` : ''}
+              </MonoLabel>
+              <h1 className="mt-3 font-serif text-[33px] font-semibold leading-[1.03] tracking-[-0.01em] text-ink sm:text-[44px]">
                 {resume.basics.name}
                 <span className="text-accent">.</span>
               </h1>
-              {publicEmail && (
-                <a
-                  href={`mailto:${publicEmail}`}
-                  className="mt-2.5 inline-block font-mono text-[11px] tracking-[0.04em] text-ink-secondary transition-colors hover:text-accent"
-                >
-                  {publicEmail}
-                </a>
+              {resume.basics.tagline && (
+                <p className="mt-4 max-w-[660px] font-serif text-[18px] leading-[1.4] text-ink sm:text-[20px]">
+                  {resume.basics.tagline}
+                </p>
               )}
-              <p className="mt-5 max-w-[640px] font-sans text-[15px] leading-[1.7] text-ink-secondary">
+              <p className="mt-4 max-w-[620px] font-sans text-[14.5px] leading-[1.75] text-ink-secondary">
                 {resume.basics.summary}
               </p>
-              <div className="mt-4">
-                <MonoLabel>
-                  {role}
-                  {location ? ` · ${location}` : ''}
-                </MonoLabel>
+
+              {resume.basics.primaryStack && resume.basics.primaryStack.length > 0 && (
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                  {resume.basics.primaryStack.map((s) => (
+                    <Chip key={s}>{s}</Chip>
+                  ))}
+                </div>
+              )}
+
+              <div className="mt-7 flex flex-wrap items-center gap-2.5">
+                <Link href={buildUrl(locale, 'cvPrint')} target="_blank" rel="noopener" className={actionClass}>
+                  {tr ? 'PDF indir' : 'Download PDF'}
+                  <span aria-hidden="true">↓</span>
+                </Link>
+                <Link href={buildUrl(locale, 'work')} className={actionClass}>
+                  {tr ? 'Projeler' : 'Selected work'}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                {publicEmail && (
+                  <a href={`mailto:${publicEmail}`} className={contactClass}>
+                    {publicEmail}
+                  </a>
+                )}
+                {resume.links.map((l) => (
+                  <a key={l.label} href={l.url} target="_blank" rel="noopener noreferrer" className={contactClass}>
+                    {brandLabel(l.label)}
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
               </div>
             </div>
 
-            {(resume.basics.photo || resume.links.length > 0) && (
-              <div className="flex shrink-0 flex-col items-center gap-2.5 sm:items-end">
+            {(resume.basics.photo || currentCompany) && (
+              <div className="flex shrink-0 flex-row items-center gap-4 sm:flex-col sm:items-end sm:gap-3.5">
                 {resume.basics.photo && (
-                  <div className="relative h-[7.25rem] w-[7.25rem] overflow-hidden rounded-xl border border-ink/15 bg-surface-sunk shadow-sm ring-1 ring-hairline sm:h-[7.75rem] sm:w-[7.75rem]">
+                  <div className="relative h-[7.5rem] w-[7.5rem] overflow-hidden rounded-xl border border-ink/15 bg-surface-sunk shadow-sm ring-1 ring-hairline sm:h-[8.5rem] sm:w-[8.5rem]">
                     <Image
                       src={resume.basics.photo}
                       alt={resume.basics.name}
                       fill
-                      sizes="124px"
+                      sizes="136px"
                       className="object-cover"
                       priority
                     />
                   </div>
                 )}
-                {resume.links.length > 0 && (
-                  <div className="flex flex-nowrap items-center justify-center gap-2 sm:justify-end">
-                    {resume.links.map((l) => (
-                      <a
-                        key={l.label}
-                        href={l.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 whitespace-nowrap font-mono text-[10px] tracking-[0.1em] text-ink-secondary transition-colors hover:text-accent"
-                      >
-                        {brandLabel(l.label)}
-                        <span aria-hidden="true">↗</span>
-                      </a>
-                    ))}
+                {currentCompany && (
+                  <div className="text-left sm:text-right">
+                    <MonoLabel>{tr ? 'Şu an' : 'Currently'}</MonoLabel>
+                    <p className="mt-1 font-serif text-[15px] leading-tight text-ink">{currentCompany}</p>
                   </div>
                 )}
               </div>
@@ -180,10 +204,15 @@ export default async function CvPage({
         </Masthead>
 
         <main className={`${pageShellClass} flex-1 py-12 sm:py-14`}>
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-14">
             {/* Experience */}
             {resume.experience.length > 0 && (
-              <SectionRail dividerTop label={tr ? 'Deneyim' : 'Experience'} id="cv-experience">
+              <SectionRail
+                dividerTop
+                label={tr ? 'Deneyim' : 'Experience'}
+                id="cv-experience"
+                aside={String(resume.experience.length).padStart(2, '0')}
+              >
                 <div className="flex flex-col">
                   {resume.experience.map((exp) => (
                     <div key={exp.id} className={specRowGridClass}>
@@ -231,6 +260,73 @@ export default async function CvPage({
               </SectionRail>
             )}
 
+            {/* Selected Projects — promoted above skills for visibility */}
+            {resume.projects.length > 0 && (
+              <SectionRail
+                dividerTop
+                label={tr ? 'Seçili Projeler' : 'Selected Projects'}
+                id="cv-projects"
+                aside={String(resume.projects.length).padStart(2, '0')}
+              >
+                <div className="flex flex-col">
+                  {resume.projects.map((proj) => {
+                    const external = proj.url ? proj.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : null;
+                    return (
+                      <div key={proj.id} className={specRowGridClass}>
+                        <div className="min-w-0">
+                          <h3 className="font-serif text-[18px] font-medium leading-tight text-ink">{proj.title}</h3>
+                          <p className="mt-2 font-sans text-[14px] leading-[1.6] text-ink-secondary">{proj.summary}</p>
+                          {proj.stack.length > 0 && (
+                            <div className="mt-3 flex flex-wrap gap-1.5">
+                              {proj.stack.map((s) => (
+                                <Chip key={s}>{s}</Chip>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        <div className={`${specDateColClass} flex flex-col items-start gap-1 sm:items-end`}>
+                          {proj.caseSlug ? (
+                            <Link
+                              href={buildUrl(locale, 'workCase', { caseSlug: proj.caseSlug })}
+                              className="text-accent transition-opacity hover:opacity-70"
+                            >
+                              {tr ? 'Vaka çalışması →' : 'Case study →'}
+                            </Link>
+                          ) : proj.url ? (
+                            <a
+                              href={proj.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="normal-case tracking-normal text-accent transition-opacity hover:opacity-70"
+                            >
+                              {external} ↗
+                            </a>
+                          ) : null}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </SectionRail>
+            )}
+
+            {/* Skills */}
+            {resume.skills.length > 0 && (
+              <SectionRail dividerTop label={tr ? 'Yetenekler' : 'Skills'} id="cv-skills">
+                <div>
+                  {resume.skills.map((group) => (
+                    <SpecRow key={group.group} label={group.group}>
+                      <div className="flex flex-wrap gap-1.5">
+                        {group.items.map((item) => (
+                          <Chip key={item}>{item}</Chip>
+                        ))}
+                      </div>
+                    </SpecRow>
+                  ))}
+                </div>
+              </SectionRail>
+            )}
+
             {resume.earlierExperience && resume.earlierExperience.entries.length > 0 && (
               <SectionRail dividerTop label={tr ? 'Önceki Deneyimler' : 'Earlier Experience'} id="cv-earlier">
                 {resume.earlierExperience.summary && (
@@ -252,68 +348,6 @@ export default async function CvPage({
                     </li>
                   ))}
                 </ul>
-              </SectionRail>
-            )}
-
-            {/* Skills */}
-            {resume.skills.length > 0 && (
-              <SectionRail dividerTop label={tr ? 'Yetenekler' : 'Skills'} id="cv-skills">
-                <div>
-                  {resume.skills.map((group) => (
-                    <SpecRow key={group.group} label={group.group}>
-                      <div className="flex flex-wrap gap-1.5">
-                        {group.items.map((item) => (
-                          <Chip key={item}>{item}</Chip>
-                        ))}
-                      </div>
-                    </SpecRow>
-                  ))}
-                </div>
-              </SectionRail>
-            )}
-
-            {/* Projects */}
-            {resume.projects.length > 0 && (
-              <SectionRail dividerTop label={tr ? 'Projeler' : 'Projects'} id="cv-projects">
-                <div className="flex flex-col">
-                  {resume.projects.map((proj) => {
-                    const external = proj.url ? proj.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : null;
-                    return (
-                      <div key={proj.id} className={specRowGridClass}>
-                        <div className="min-w-0">
-                          <h3 className="font-serif text-[17px] font-medium leading-tight text-ink">{proj.title}</h3>
-                          <p className="mt-2 font-sans text-[14px] leading-[1.6] text-ink-secondary">{proj.summary}</p>
-                          {proj.stack.length > 0 && (
-                            <div className="mt-3 flex flex-wrap gap-1.5">
-                              {proj.stack.map((s) => (
-                                <Chip key={s}>{s}</Chip>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                        <div className={`${specDateColClass} flex flex-col items-start gap-1 sm:items-end`}>
-                          {proj.caseSlug ? (
-                            <Link
-                              href={buildUrl(locale, 'workCase', { caseSlug: proj.caseSlug })}
-                              className="text-accent transition-opacity hover:opacity-70"
-                            >
-                              {tr ? 'Detay →' : 'Details →'}
-                            </Link>
-                          ) : proj.url ? (
-                            <a
-                              href={proj.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="normal-case tracking-normal text-accent transition-opacity hover:opacity-70"
-                            >
-                              {external} ↗
-                            </a>
-                          ) : null}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
               </SectionRail>
             )}
 

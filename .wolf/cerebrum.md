@@ -10,6 +10,7 @@
 
 - Kullanıcı **Türkçe** iletişim kuruyor; master plan TR + İngilizce teknik terim karışımı. Üretilen plan/doküman çıktılarını bu dile uydur (Türkçe gövde + İngilizce teknik terim + İngilizce section başlıkları).
 - **Plan-first**: kullanıcı planlama istediğinde kod yazma/implemente etme. Bu oturumda açıkça belirtti: "Şu an kod yazmanı veya projeyi implemente etmeni istemiyorum." Önce uygulanabilir, sıralı, bağımsız çalıştırılabilir plan üret.
+- **CV/yazı tonu**: klişe yasak (passionate, hard-working, dynamic, team player). Deneyim maddeleri sonuç/etki odaklı (güçlü fiil + yapılan iş + etki). Rakam uydurma — yoksa nitel anlat ve `needsReview: true` bırak. ATS anahtar kelimeleri doğal yedir (.NET, ASP.NET Core, C#, React, TypeScript, SQL Server, EF, REST API, dashboard, portal, authentication, permission management, reporting, migration, AI/API integration, product ownership, end-to-end delivery). Konumlandırma: Eroğlu = amiral/güncel (enterprise), Kansuk = enterprise destek, Digitallica = müşteri/ürün/startup.
 
 ## Key Learnings
 
@@ -102,6 +103,16 @@
 - **Playwright PDF generation (local only):** POST /api/resume/pdf in Studio server; requires web server running at WEB_URL (default :3000); navigates to /[lang]/cv/print, calls page.pdf({ format: 'A4', printBackground: true }), saves to repo root. Never runs on Vercel.
 - **Photo serving:** Copy content/resume/sources/my-photo.jpg to apps/web/public/photo/naci.jpg. Set basics.photo to /photo/naci.jpg in resume.json. Next.js Image component serves from public/.
 - **Smoke script pattern:** scripts/smoke.js uses fetch() with { redirect: 'manual' } for redirect checks. Runs against BASE_URL (default localhost:3000). Checks: routing, sitemap, RSS, CV/work, /api/revalidate 401, private field leak in HTML, security headers.
+
+## Key Learnings
+
+- **CV/PDF hardening complete (2026-05-30).** `/[lang]/cv` (SSG) + `/[lang]/cv/print` (now `force-dynamic`). Print is a single A4 with a corner QR + live link, recruiter-oriented content, private fields filtered (visibility 'pdf' mode).
+- **QR on the print CV:** `qrcode` npm package (+ `@types/qrcode`) in apps/web. `QRCode.toString(text, { type: 'svg' })` runs server-side and returns SVG markup — render it inline via `dangerouslySetInnerHTML` in a **server** component (`apps/web/src/components/QrTag.tsx` → `apps/web/src/lib/qr.ts`). No client-bundle cost. The encoded URL becomes numeric `<path>` data, never echoed markup → safe from injection. Colors set to design tokens (ink `#1b1a18` on surface `#f7f5f2`) so it blends into warm paper; `printBackground: true` already handled by `@media print { print-color-adjust: exact }`.
+- **Dynamic export origin:** `apps/web/src/lib/origin.ts` `resolveSiteOrigin()` (async, server-only — isolates `next/headers` from the client bundle). Priority: runtime/export origin (`x-forwarded-host`/`host`, **localhost & loopback skipped**) → `NEXT_PUBLIC_SITE_URL` → `SITE_URL` constant. `headers()` is async in Next 15. Verified: forged `x-forwarded-host` is reflected; on localhost it falls back to nacianil.com. **NEXT_PUBLIC_SITE_URL was previously documented but unreferenced — now actually consumed here** (canonical/sitemap/OG still use the `SITE_URL` constant in `site.ts`).
+- **Single-A4 measurement:** A4 @96dpi = 1123px. Target `document.querySelector('main').scrollHeight <= 1123`. Print page uses `min-h-[297mm] max-w-[210mm] px-[15mm] py-[13mm]` → a true A4 sheet on screen and print. When it overflowed (1146px), the fix was tightening section gaps (gap-5→gap-3.5 etc.), **not** shrinking fonts (user rule). Also cap content for one page: drop company logos + earlierExperience on print, cap highlights to 4 for the most-recent role / 2 for the rest.
+- **Print page noindex:** static `export const metadata = { robots: { index: false, follow: false } }` — print/source views must stay out of the index and out of sitemap (sitemap.ts only lists home/series/cv/work + cases).
+- **basics.tagline + basics.primaryStack** are new optional fields on `BasicsSchema`. Adding optional resume fields REQUIRES `pnpm --filter @nacianilcom/content-core build` — runtime parses via dist Zod schema which strips unknown keys; a stale dist silently drops the new fields (see [[bug-014]]/bug-035 pattern). Web hero reads them; `filterResumeByVisibility` passes `basics` through untouched.
+- **PDF generation path:** Studio `POST /api/resume/pdf` (server/index.ts:611) drives Playwright to `${WEB_URL}/${lang}/cv/print` and `page.pdf({ format: 'A4', printBackground: true })`. So the print page is the single source of truth; QR/link/layout all flow through it. Local export from `WEB_URL=localhost:3000` → origin falls back to nacianil.com (localhost skipped) — set NEXT_PUBLIC_SITE_URL to override.
 
 ## Decision Log
 

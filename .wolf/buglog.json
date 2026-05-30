@@ -539,7 +539,13 @@
       "file": "apps/web/.next",
       "root_cause": "Stale .next cache after a structural route change — app/[lang]/page.tsx changed from a redirect() (no generateStaticParams) to a real SSG page; the prior build's page manifest no longer matched.",
       "fix": "Remove-Item -Recurse -Force apps/web/.next then rebuild. Clean rebuild generates all 29 pages. typecheck/lint/compile pass regardless; only the cached page-data collection fails.",
-      "tags": ["nextjs", "build", "stale-cache", "ssg", "PageNotFoundError"],
+      "tags": [
+        "nextjs",
+        "build",
+        "stale-cache",
+        "ssg",
+        "PageNotFoundError"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-30T14:00:00.000Z"
@@ -551,10 +557,34 @@
       "file": "packages/ui/package.json",
       "root_cause": "ui exports.import -> ./dist/index.js and web has no transpilePackages, so new src components must be compiled to dist before next build resolves them. TypeScript typecheck passes via the types->./src/index.ts condition, masking the gap until build.",
       "fix": "pnpm -r build builds ui before web (topological order), refreshing dist. Run pnpm --filter @nacianilcom/ui build (or full pnpm -w build) after editing ui source. Tailwind scans ui SRC for classes regardless of dist.",
-      "tags": ["pnpm", "ui", "stale-dist", "monorepo", "exports"],
-      "related_bugs": ["bug-014"],
+      "tags": [
+        "pnpm",
+        "ui",
+        "stale-dist",
+        "monorepo",
+        "exports"
+      ],
+      "related_bugs": [
+        "bug-014"
+      ],
       "occurrences": 1,
       "last_seen": "2026-05-30T14:00:00.000Z"
+    },
+    {
+      "id": "bug-036",
+      "timestamp": "2026-05-30T15:43:50.826Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/app/[lang]/cv/print/page.tsx",
+      "root_cause": "Had \"border-b-2 border-ink pb-5\"",
+      "fix": "Changed to \"border-b-2 border-ink pb-4\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 5,
+      "last_seen": "2026-05-30T15:44:02.600Z"
     }
   ]
 }

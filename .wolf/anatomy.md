@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T11:02:50.625Z
-> Files: 198 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T15:57:51.494Z
+> Files: 201 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
@@ -10,7 +10,7 @@
 - `project_wp07_done.md` — ` ignore added to `apps/web/eslint.config.mjs` (~382 tok)
 - `project_wp08_09_done.md` — WP-08 — Security Hardening (done) (~452 tok)
 - `project_wp10_11_done.md` — WP-10 deliverables (~596 tok)
-- `project_wp12_13_done.md` (~403 tok)
+- `project_wp12_13_done.md` — CV/PDF hardening (2026-05-30) (~749 tok)
 
 ## ./
 
@@ -19,7 +19,7 @@
 
 ## .claude/
 
-- `launch.json` (~65 tok)
+- `launch.json` (~116 tok)
 
 ## .claude/rules/
 
@@ -126,11 +126,11 @@
 
 ## apps/web/app/[lang]/cv/
 
-- `page.tsx` — VALID_LANGS (~3777 tok)
+- `page.tsx` — VALID_LANGS (~5768 tok)
 
 ## apps/web/app/[lang]/cv/print/
 
-- `page.tsx` — VALID_LANGS (~2354 tok)
+- `page.tsx` — Accent mono section label — replaces the web's left rail to save print width. (~3096 tok)
 
 ## apps/web/app/[lang]/feed.xml/
 
@@ -184,6 +184,7 @@
 - `ListRow.tsx` — Left mono rail cell — a 2-digit index or short date. (~469 tok)
 - `MetadataRow.tsx` — DIFFICULTY_KEY (~282 tok)
 - `PrevNextNav.tsx` — PrevNextNav (~606 tok)
+- `QrTag.tsx` — URL (or text) to encode. (~287 tok)
 - `ReferencesSection.tsx` — ReferencesSection (~487 tok)
 - `SeriesPositionBadge.tsx` — SeriesPositionBadge (~137 tok)
 - `SiteFooter.tsx` — SiteFooter (~642 tok)
@@ -199,6 +200,8 @@
 - `dateRange.ts` — Format a "YYYY-MM" (or "YYYY") string as a short localized month-year. (~233 tok)
 - `jsonld.ts` — Exports websiteJsonLd, personJsonLd, breadcrumbJsonLd, ArticleJsonLdOptions + 4 more (~696 tok)
 - `messages.ts` — Exports WebMessages, getMessages (~146 tok)
+- `origin.ts` — Resolve the origin to advertise inside the printable CV (link + QR). (~386 tok)
+- `qr.ts` — Render `text` as an inline QR-code SVG string (server-only). (~184 tok)
 - `revalidate-targets.ts` — Explicit tag/path matrix for a published article. (~418 tok)
 - `site.ts` — Exports SITE_URL, SITE_NAME, SITE_AUTHOR, SITE_TWITTER, localeToOgLocale (~79 tok)
 
@@ -230,7 +233,7 @@
 
 ## content/resume/
 
-- `resume.json` (~4310 tok)
+- `resume.json` (~5877 tok)
 
 ## content/resume/portfolio/kurumsal-dashboard/
 
@@ -342,7 +345,7 @@
 - `plans.ts` — Zod schemas: ScoresSchema, TopicSchema, MonthlyPlanSchema (~415 tok)
 - `redirects.ts` — Zod schemas: RedirectItemSchema, RedirectsSchema (~103 tok)
 - `references.ts` — Zod schemas: ReferenceItemSchema, ReferencesSchema (~109 tok)
-- `resume.ts` — Zod schemas: VisibilitySchema, ContactItemSchema, BasicsSchema, ExperienceItemSchema + 10 more (~1077 tok)
+- `resume.ts` — Short, punchy value proposition shown above the longer summary. (~1330 tok)
 - `series.ts` — Zod schemas: BilingualTextSchema, SeriesSchema (~127 tok)
 - `taxonomy.ts` — Zod schemas: BilingualLabelSchema, CategorySchema, TagSchema, TaxonomySchema (~168 tok)
 

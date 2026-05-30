@@ -13,7 +13,11 @@ export type ContactItem = z.infer<typeof ContactItemSchema>;
 export const BasicsSchema = z.object({
   name: z.string(),
   title: z.string(),
+  /** Short, punchy value proposition shown above the longer summary. */
+  tagline: z.string().optional(),
   summary: z.string(),
+  /** Curated headline stack for the hero (a subset of skills). */
+  primaryStack: z.array(z.string()).optional(),
   photo: z.string().optional(),
   location: z.string().optional(),
 });

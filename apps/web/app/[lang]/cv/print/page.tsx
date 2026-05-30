@@ -1,18 +1,31 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Locale } from '@nacianilcom/content-core';
-import { SectionRail, SpecRow, Chip } from '@nacianilcom/ui';
+import { buildUrl } from '@nacianilcom/content-core';
 import { loadResume } from '../../../../src/content/loader';
 import { fmtRange } from '../../../../src/lib/dateRange';
 import { brandLabel } from '../../../../src/lib/brandLabel';
-import { compactRowGridClass, specDateColClass } from '../../../../src/lib/layout';
+import { resolveSiteOrigin, displayOrigin } from '../../../../src/lib/origin';
+import { QrTag } from '../../../../src/components/QrTag';
 
 const VALID_LANGS = new Set(['tr', 'en']);
 
-export const revalidate = 3600;
+// The link + QR must reflect the live export origin, so render per request.
+export const dynamic = 'force-dynamic';
 
-export function generateStaticParams() {
-  return [{ lang: 'tr' }, { lang: 'en' }];
+// A print/source view — keep it out of the index.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
+
+/** Accent mono section label — replaces the web's left rail to save print width. */
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="mb-2 font-mono text-[8.5px] uppercase tracking-[0.24em] text-accent">
+      {children}
+    </h2>
+  );
 }
 
 export default async function CvPrintPage({
@@ -32,189 +45,202 @@ export default async function CvPrintPage({
   const role = resume.basics.title;
   const location = resume.basics.location;
 
+  // Link priority: runtime/export origin → NEXT_PUBLIC_SITE_URL → SITE_URL.
+  const origin = await resolveSiteOrigin();
+  const cvUrl = `${origin}${buildUrl(locale, 'cv')}`;
+  const siteLabel = displayOrigin(origin);
+
   return (
     <div className="min-h-screen bg-surface text-ink">
-      <main className="mx-auto w-full max-w-[820px] px-[16mm] py-[14mm]">
-        {/* Header */}
-        <header className="border-b-2 border-ink pb-6">
+      <main className="mx-auto flex min-h-[297mm] w-full max-w-[210mm] flex-col bg-surface px-[15mm] py-[11mm]">
+        {/* ── Header ───────────────────────────────────────────────── */}
+        <header className="border-b-2 border-ink pb-3">
           <div className="flex items-start justify-between gap-6">
             <div className="min-w-0">
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-secondary">
+              <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-ink-secondary">
                 {role}
                 {location ? ` · ${location}` : ''}
               </p>
-              <h1 className="mt-1.5 font-serif text-[30px] font-semibold leading-[1.05] text-ink">
+              <h1 className="mt-1 font-serif text-[26px] font-semibold leading-[1.02] text-ink">
                 {resume.basics.name}
                 <span className="text-accent">.</span>
               </h1>
+              {resume.basics.tagline && (
+                <p className="mt-1.5 max-w-[150mm] font-serif text-[11.5px] leading-[1.4] text-ink">
+                  {resume.basics.tagline}
+                </p>
+              )}
             </div>
             {resume.basics.photo && (
-              <div className="relative h-[76px] w-[76px] shrink-0 overflow-hidden rounded-lg border border-ink/15 bg-surface-sunk ring-1 ring-hairline">
-                <Image src={resume.basics.photo} alt={resume.basics.name} fill sizes="76px" className="object-cover" priority />
+              <div className="relative h-[66px] w-[66px] shrink-0 overflow-hidden rounded-lg border border-ink/15 bg-surface-sunk ring-1 ring-hairline">
+                <Image
+                  src={resume.basics.photo}
+                  alt={resume.basics.name}
+                  fill
+                  sizes="66px"
+                  className="object-cover"
+                  priority
+                />
               </div>
             )}
           </div>
 
-          <p className="mt-4 max-w-[600px] font-sans text-[12.5px] leading-[1.7] text-ink-secondary">
-            {resume.basics.summary}
-          </p>
-
-          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] tracking-[0.03em] text-ink-secondary">
-            {publicEmail && <span>{publicEmail}</span>}
+          <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 font-mono text-[8.5px] tracking-[0.04em] text-ink-secondary">
+            {publicEmail && <span className="text-ink">{publicEmail}</span>}
             {resume.links.map((l) => (
-              <span key={l.label}>
-                {brandLabel(l.label)}: {l.url.replace(/^https?:\/\//, '')}
+              <span
+                key={l.label}
+                className="before:mr-3 before:text-hairline before:content-['/']"
+              >
+                {brandLabel(l.label)} {l.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
               </span>
             ))}
+            <span className="text-ink before:mr-3 before:text-hairline before:content-['/']">
+              {siteLabel}
+            </span>
           </div>
         </header>
 
-        <div className="mt-8 flex flex-col gap-8">
+        {/* ── Body ─────────────────────────────────────────────────── */}
+        <div className="mt-3 flex flex-1 flex-col gap-3">
           {/* Experience */}
           {resume.experience.length > 0 && (
-            <SectionRail label={tr ? 'Deneyim' : 'Experience'} id="print-experience">
-              <div className="flex flex-col">
-                {resume.experience.map((exp) => (
-                  <div
-                    key={exp.id}
-                    className="break-inside-avoid border-b border-hairline py-4 first:pt-0 last:border-b-0"
-                  >
-                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between">
-                      {exp.logo ? (
-                        <div className="min-w-0">
-                          <div className="relative mb-1.5 h-6 w-[4.5rem]">
-                            <Image src={exp.logo} alt="" fill sizes="72px" className="object-contain object-left" />
-                          </div>
-                          <h3 className="font-serif text-[16px] font-medium text-ink">{exp.company}</h3>
-                        </div>
+            <section className="break-inside-avoid">
+              <SectionLabel>{tr ? 'Deneyim' : 'Experience'}</SectionLabel>
+              <div className="flex flex-col gap-2.5">
+                {resume.experience.map((exp, i) => {
+                  // Prioritise for one page: most-recent role gets more bullets.
+                  const shown = exp.highlights.slice(0, i === 0 ? 3 : 2);
+                  return (
+                    <div key={exp.id} className="break-inside-avoid">
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h3 className="font-serif text-[13.5px] font-medium leading-tight text-ink">
+                          {exp.company}
+                          <span className="ml-2 font-sans text-[9px] font-normal text-ink-secondary">
+                            {exp.role}
+                          </span>
+                        </h3>
+                        <span className="shrink-0 font-mono text-[8.5px] uppercase tracking-[0.12em] tabular-nums text-ink-secondary">
+                          {fmtRange(exp.startDate, exp.endDate, locale)}
+                        </span>
+                      </div>
+                      {shown.length > 0 ? (
+                        <ul className="mt-1 flex flex-col gap-0.5">
+                          {shown.map((h, j) => (
+                            <li
+                              key={j}
+                              className="flex gap-2 font-sans text-[10px] leading-[1.4] text-ink-secondary"
+                            >
+                              <span aria-hidden="true" className="mt-[6px] h-px w-2 shrink-0 bg-accent" />
+                              <span>{h}</span>
+                            </li>
+                          ))}
+                        </ul>
                       ) : (
-                        <h3 className="font-serif text-[16px] font-medium text-ink">{exp.company}</h3>
+                        <p className="mt-1 font-sans text-[10px] leading-[1.4] text-ink-secondary">
+                          {exp.description}
+                        </p>
                       )}
-                      <span className="shrink-0 font-mono text-[9.5px] uppercase tracking-[0.14em] tabular-nums text-ink-secondary">
-                        {fmtRange(exp.startDate, exp.endDate, locale)}
-                      </span>
+                      {exp.stack.length > 0 && (
+                        <p className="mt-1 font-mono text-[8px] tracking-[0.02em] text-ink-secondary/75">
+                          {exp.stack.join('  ·  ')}
+                        </p>
+                      )}
                     </div>
-                    <p className="mt-0.5 font-mono text-[9.5px] uppercase tracking-[0.14em] text-accent">
-                      {exp.role}
-                    </p>
-                    <p className="mt-2 font-sans text-[12px] leading-[1.6] text-ink-secondary">{exp.description}</p>
-                    {exp.highlights.length > 0 && (
-                      <ul className="mt-2 flex flex-col gap-1">
-                        {exp.highlights.map((h, j) => (
-                          <li key={j} className="flex gap-2.5 font-sans text-[11.5px] leading-[1.55] text-ink-secondary">
-                            <span aria-hidden="true" className="mt-[8px] h-px w-2.5 shrink-0 bg-accent" />
-                            <span>{h}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {exp.stack.length > 0 && (
-                      <p className="mt-2 font-mono text-[10px] tracking-[0.02em] text-ink-secondary/80">
-                        {exp.stack.join('  ·  ')}
-                      </p>
-                    )}
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          {/* Selected Projects — condensed to one line each on print */}
+          {resume.projects.length > 0 && (
+            <section className="break-inside-avoid">
+              <SectionLabel>{tr ? 'Seçili Projeler' : 'Selected Projects'}</SectionLabel>
+              <div className="flex flex-col gap-1">
+                {resume.projects.map((proj) => (
+                  <div key={proj.id} className="flex items-baseline justify-between gap-4">
+                    <span className="min-w-0 truncate font-serif text-[11px] font-medium text-ink">
+                      {proj.title}
+                    </span>
+                    <span className="shrink-0 font-mono text-[8px] tracking-[0.02em] text-ink-secondary/80">
+                      {proj.stack.slice(0, 4).join(' · ')}
+                    </span>
                   </div>
                 ))}
               </div>
-              </SectionRail>
-            )}
-
-          {resume.earlierExperience && resume.earlierExperience.entries.length > 0 && (
-            <SectionRail label={tr ? 'Önceki Deneyimler' : 'Earlier Experience'} id="print-earlier">
-              {resume.earlierExperience.summary && (
-                <p className="mb-3 font-sans text-[11.5px] leading-[1.6] text-ink-secondary">
-                  {resume.earlierExperience.summary}
-                </p>
-              )}
-              <ul className="flex flex-col" role="list">
-                {resume.earlierExperience.entries.map((entry) => (
-                  <li key={`${entry.company}-${entry.startDate}`} className={compactRowGridClass}>
-                    <div className="min-w-0">
-                      <p className="font-sans text-[12px] leading-snug text-ink">{entry.company}</p>
-                      <p className="mt-0.5 font-mono text-[9.5px] tracking-[0.12em] text-ink-secondary">
-                        {entry.role}
-                        {entry.note ? ` · ${entry.note}` : ''}
-                      </p>
-                    </div>
-                    <span className={specDateColClass}>{fmtRange(entry.startDate, entry.endDate, locale)}</span>
-                  </li>
-                ))}
-              </ul>
-            </SectionRail>
+            </section>
           )}
 
           {/* Skills */}
           {resume.skills.length > 0 && (
-            <SectionRail label={tr ? 'Yetenekler' : 'Skills'} id="print-skills">
-              <div className="break-inside-avoid">
+            <section className="break-inside-avoid">
+              <SectionLabel>{tr ? 'Yetenekler' : 'Skills'}</SectionLabel>
+              <div className="flex flex-col gap-0.5">
                 {resume.skills.map((group) => (
-                  <SpecRow key={group.group} label={group.group}>
-                    <p className="font-sans text-[12px] leading-[1.6] text-ink-secondary">{group.items.join('  ·  ')}</p>
-                  </SpecRow>
-                ))}
-              </div>
-            </SectionRail>
-          )}
-
-          {/* Projects */}
-          {resume.projects.length > 0 && (
-            <SectionRail label={tr ? 'Projeler' : 'Projects'} id="print-projects">
-              <div className="flex flex-col">
-                {resume.projects.map((proj) => (
-                  <div key={proj.id} className="break-inside-avoid border-b border-hairline py-3 first:pt-0 last:border-b-0">
-                    <div className="flex items-baseline justify-between gap-4">
-                      <h3 className="font-serif text-[14px] font-medium text-ink">{proj.title}</h3>
-                      {proj.url && (
-                        <span className="shrink-0 font-mono text-[10px] tracking-[0.02em] text-ink-secondary">
-                          {proj.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
-                        </span>
-                      )}
-                    </div>
-                    <p className="mt-1 font-sans text-[11.5px] leading-[1.55] text-ink-secondary">{proj.summary}</p>
+                  <div key={group.group} className="grid grid-cols-[34mm_1fr] gap-3">
+                    <span className="font-mono text-[8.5px] uppercase leading-[1.45] tracking-[0.1em] text-ink-secondary">
+                      {group.group}
+                    </span>
+                    <span className="font-sans text-[9.5px] leading-[1.45] text-ink-secondary">
+                      {group.items.join('  ·  ')}
+                    </span>
                   </div>
                 ))}
               </div>
-            </SectionRail>
+            </section>
           )}
 
-          {/* Education */}
-          {resume.education.length > 0 && (
-            <SectionRail label={tr ? 'Eğitim' : 'Education'} id="print-education">
-              <div className="break-inside-avoid">
+          {/* Education + Certifications — paired to save vertical space */}
+          <section className="grid grid-cols-2 gap-x-8 break-inside-avoid">
+            {resume.education.length > 0 && (
+              <div>
+                <SectionLabel>{tr ? 'Eğitim' : 'Education'}</SectionLabel>
                 {resume.education.map((edu) => (
-                  <SpecRow key={edu.id} label={edu.year ? String(edu.year) : tr ? 'Eğitim' : 'Education'}>
-                    <p className="font-serif text-[14px] font-medium text-ink">{edu.institution}</p>
-                    <p className="mt-0.5 font-sans text-[11.5px] leading-[1.5] text-ink-secondary">
-                      {edu.degree} · {edu.field}
+                  <div key={edu.id} className="mb-1">
+                    <p className="font-serif text-[11px] font-medium leading-tight text-ink">
+                      {edu.institution}
                     </p>
-                  </SpecRow>
+                    <p className="mt-0.5 font-sans text-[9px] leading-[1.4] text-ink-secondary">
+                      {edu.degree} · {edu.field}
+                      {edu.year ? ` · ${edu.year}` : ''}
+                    </p>
+                  </div>
                 ))}
               </div>
-            </SectionRail>
-          )}
+            )}
 
-          {/* Credentials */}
-          {resume.credentials.length > 0 && (
-            <SectionRail label={tr ? 'Sertifikalar' : 'Certifications'} id="print-credentials">
-              <ul className="break-inside-avoid flex flex-col" role="list">
-                {resume.credentials.map((cred) => (
-                  <li
-                    key={cred.id}
-                    className="grid grid-cols-[1fr_auto] items-baseline gap-4 border-b border-hairline py-2.5 last:border-b-0"
-                  >
-                    <div className="min-w-0">
-                      <span className="font-sans text-[12px] text-ink">{cred.title}</span>
-                      <span className="ml-2 font-sans text-[11px] text-ink-secondary">{cred.issuer}</span>
-                    </div>
-                    {cred.year && (
-                      <span className="shrink-0 font-mono text-[10px] tabular-nums text-ink-secondary">{cred.year}</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </SectionRail>
-          )}
+            {resume.credentials.length > 0 && (
+              <div>
+                <SectionLabel>{tr ? 'Sertifikalar' : 'Certifications'}</SectionLabel>
+                <ul className="flex flex-col gap-0.5" role="list">
+                  {resume.credentials.map((cred) => (
+                    <li
+                      key={cred.id}
+                      className="flex items-baseline justify-between gap-2 font-sans text-[9px] leading-[1.35] text-ink-secondary"
+                    >
+                      <span className="min-w-0">{cred.title}</span>
+                      {cred.year && (
+                        <span className="shrink-0 font-mono text-[8px] tabular-nums text-ink-secondary/80">
+                          {cred.year}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </section>
         </div>
+
+        {/* ── Footer: live link + QR ───────────────────────────────── */}
+        <footer className="mt-3 flex items-end justify-between gap-4 border-t-2 border-ink pt-2">
+          <div className="font-mono text-[8px] uppercase leading-[1.6] tracking-[0.14em] text-ink-secondary">
+            <p className="text-[9px] tracking-[0.1em] text-ink">{siteLabel}</p>
+            <p>{tr ? 'Güncel CV için kodu okutun' : 'Scan for the live CV'}</p>
+          </div>
+          <QrTag value={cvUrl} size={52} />
+        </footer>
       </main>
     </div>
   );
