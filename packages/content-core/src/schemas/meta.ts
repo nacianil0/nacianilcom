@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const AssetSchema = z.object({
   cover: z.string().optional(),
   og: z.string().optional(),
-  diagrams: z.array(z.string()).default([]),
+  diagrams: z.array(z.string()),
 });
 
 export const MetaSchema = z.object({
@@ -17,7 +17,7 @@ export const MetaSchema = z.object({
   status: z.enum(['draft', 'scheduled', 'published']),
   publishDate: z.string(),
   updatedDate: z.string().optional(),
-  schemaType: z.enum(['Article', 'BlogPosting', 'TechArticle']).default('TechArticle'),
+  schemaType: z.enum(['Article', 'BlogPosting', 'TechArticle']),
   contentType: z.enum(['research', 'explainer', 'architecture', 'essay', 'cv', 'case-study']),
   languages: z.array(z.enum(['tr', 'en'])).min(1),
   assets: AssetSchema,

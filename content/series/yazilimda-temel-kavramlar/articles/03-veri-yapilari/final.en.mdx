@@ -1,0 +1,84 @@
+---
+title: Data Structures
+description: Arrays, objects, sets, and maps in JavaScript — which to use and when.
+summary: The choice of data structure directly affects code readability and performance. This article compares the fundamental structures in JavaScript and illustrates the scenarios where each one shines.
+---
+
+## Why data structures matter
+
+How fast a program runs and how much memory it consumes depends heavily on data structure choices. Should data be stored in a list, a dictionary, or a set of unique values? Each choice carries a cost.
+
+In the earlier articles of this series we covered variables and functions. This article builds on that foundation and examines data structures.
+
+<Pyramid
+  title="Data Structure Complexity Scale"
+  alt="A pyramid ranking JavaScript data structures from simple to complex"
+  caption="From simple to complex: each layer builds on the one below."
+  levels={[
+    { label: "Advanced Structures", description: "Map, Set, WeakMap, WeakSet" },
+    { label: "Reference Types", description: "Object, Array" },
+    { label: "Primitive Types", description: "number, string, boolean, null, undefined" }
+  ]}
+/>
+
+## Array
+
+An array is an ordered list of values. Each item is accessed with a zero-based index.
+
+<CodeBlock language="javascript" title="Array usage">
+{`const colors = ["red", "green", "blue"];
+
+console.log(colors[0]);    // "red"
+console.log(colors.length); // 3
+
+colors.push("yellow");     // add to end
+const first = colors.shift(); // remove from start`}
+</CodeBlock>
+
+## Object
+
+An object stores key-value pairs. Keys can be strings or symbols; values can be any type.
+
+<CodeBlock language="javascript" title="Object usage">
+{`const user = {
+  name: "Anil",
+  age: 30,
+  active: true
+};
+
+console.log(user.name);      // "Anil"
+console.log(user["age"]);    // 30
+
+user.city = "Istanbul";     // add new field`}
+</CodeBlock>
+
+## Set
+
+A Set stores each value only once. It is useful for deduplication or guaranteeing uniqueness.
+
+<CodeBlock language="javascript" title="Set usage">
+{`const unique = new Set([1, 2, 2, 3, 3, 3]);
+console.log([...unique]); // [1, 2, 3]
+
+unique.has(2); // true
+unique.size;   // 3`}
+</CodeBlock>
+
+## Map
+
+A Map stores key-value pairs with keys of any type. It works like an object but preserves insertion order and allows non-string keys.
+
+<CodeBlock language="javascript" title="Map usage">
+{`const scores = new Map();
+scores.set("Anil", 95);
+scores.set("Berk", 87);
+
+scores.get("Anil"); // 95
+scores.size;        // 2`}
+</CodeBlock>
+
+<Example title="Which structure when?">
+Ordered list with index access → Array. Key-value with string keys → Object. Uniqueness guarantee → Set. Non-string keys or insertion order matters → Map.
+</Example>
+
+<InternalLink kind="article" id="01-degisken-ve-tip" label="First article in this series: Variables and Types" />

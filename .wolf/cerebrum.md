@@ -35,6 +35,7 @@
 - **[2026-05-29] Tailwind v3 preset cast: `presets: [preset as Config]` fails if preset doesn't have `content`.** Use `preset as unknown as Config` for Tailwind preset objects (presets don't need `content`). Apply in both apps/web and apps/studio tailwind.config.ts.
 - **[2026-05-29] `packages/ui` typecheck from consumer apps requires built `dist/` OR source-first exports.** Set `"types": "./src/index.ts"` in package.json exports so TypeScript resolves from source without needing a prior build. Fixes `pnpm -w typecheck` from failing when dist/ is stale.
 - **[2026-05-29] `@import url()` must precede `@tailwind` directives in CSS.** PostCSS/CSS spec requires all `@import` statements before other at-rules. Put Google Fonts `@import url(...)` as the first line in any CSS file that also has `@tailwind base/components/utilities`.
+- **[2026-05-30] Zod `.default()` incompatible with `exactOptionalPropertyTypes: true`.** `z.enum([...]).default('x')` and `z.array(z.string()).default([])` generate types with `| undefined` in the value position, conflicting with exactOptionalPropertyTypes. Fix: remove `.default()` from Zod schemas and make fields required; ensure all content JSON files provide those values explicitly. Applied to `MetaSchema.schemaType` and `AssetSchema.diagrams`.
 
 ## Key Learnings
 
@@ -54,6 +55,11 @@
 - **Portal dashboard UX reference (§5):** Title `text-[36-46px] leading-[1.06]` serif + trailing accent period; masthead `font-mono text-[10px] uppercase tracking-[0.22em]`; metadata inline with `h-[10px] w-px` hairline separators; cover `aspect-[16/9] object-contain` + blurred bleed stage; body `text-[14.5px] leading-[1.7]`. Observations documented in `docs/design-reference.md`.
 - **Fonts for web:** `next/font/google` (Newsreader/Inter/JetBrains Mono — SIL OFL) injected as CSS variables `--font-serif`, `--font-sans`, `--font-mono` on `<html>` className. Studio uses Google Fonts CDN @import (local-only use is acceptable).
 - **CodeBlock has `"use client"` directive** — uses `useState`/`navigator.clipboard`. In Next.js RSC contexts the import site must be a client component or wrapped; in Vite the directive is ignored as a string.
+- **WP-04 public reading complete (2026-05-30).** [lang] routing, series list/landing/article routes, MDXRemote RSC render, technical-writing + visual-block + InternalLink, 1 seri + 3 yazı (TR+EN). 16 static pages SSG. `pnpm -w typecheck/lint/build` all clean.
+- **content loader path pattern:** `process.cwd()` = `apps/web` during Next.js dev/build; content root = `path.join(process.cwd(), '..', '..', 'content')`. Works both locally and on Vercel when root dir is `apps/web`.
+- **InternalLink MDX component:** `getMdxComponents(lang, catalog)` creates component map with InternalLink as a closure that captures `lang` and `catalog` server-side. No client state needed.
+- **MDXRemote RSC:** import from `next-mdx-remote/rsc`. Pass `rehypeSlug` in `options.mdxOptions.rehypePlugins` for heading IDs. The component is server-rendered; no hydration overhead for static MDX.
+- **@tailwindcss/typography:** installed as devDep in apps/web, configured with custom prose CSS vars for design token colors. `prose` class on the MDX content wrapper.
 
 ## Decision Log
 

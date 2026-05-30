@@ -1,0 +1,17 @@
+{
+  "id": "02-fonksiyon-ve-kapsam",
+  "series": "yazilimda-temel-kavramlar",
+  "order": 2,
+  "slugBase": "fonksiyon-ve-kapsam",
+  "category": "programlama-temelleri",
+  "tags": ["javascript", "fonksiyon", "temel-kavramlar"],
+  "difficulty": "beginner",
+  "status": "published",
+  "publishDate": "2025-03-08",
+  "schemaType": "TechArticle",
+  "contentType": "explainer",
+  "languages": ["tr", "en"],
+  "assets": {
+    "diagrams": []
+  }
+}

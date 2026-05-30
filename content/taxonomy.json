@@ -1,4 +1,16 @@
 {
-  "categories": [],
-  "tags": []
+  "categories": [
+    {
+      "slug": "programlama-temelleri",
+      "label": { "tr": "Programlama Temelleri", "en": "Programming Fundamentals" },
+      "description": "Yazılım geliştirmenin temel kavramları"
+    }
+  ],
+  "tags": [
+    { "slug": "javascript", "label": { "tr": "JavaScript", "en": "JavaScript" } },
+    { "slug": "typescript", "label": { "tr": "TypeScript", "en": "TypeScript" } },
+    { "slug": "temel-kavramlar", "label": { "tr": "Temel Kavramlar", "en": "Fundamentals" } },
+    { "slug": "fonksiyon", "label": { "tr": "Fonksiyon", "en": "Function" } },
+    { "slug": "veri-yapisi", "label": { "tr": "Veri Yapısı", "en": "Data Structure" } }
+  ]
 }

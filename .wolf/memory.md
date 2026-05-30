@@ -189,3 +189,65 @@
 | 02:40 | Created packages/content-core/src/__tests__/redirects.test.ts | — | ~1031 |
 | 02:40 | Edited packages/content-core/package.json | — | ~0 |
 | 02:41 | Edited packages/content-core/src/derive/canonical.ts | inline fix | ~14 |
+| 02:43 | Session end: 36 writes across 31 files (package.json, tsconfig.json, tsconfig.build.json, vitest.config.ts, meta.ts) | 8 reads | ~12222 tok |
+
+## Session: 2026-05-29 02:43
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-29 02:47
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-29 02:47
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 02:53 | Created packages/ui/src/components/VisualBlock.tsx | — | ~324 |
+| 02:53 | Created content/taxonomy.json | — | ~191 |
+| 02:53 | Created packages/ui/src/components/Comparison.tsx | — | ~494 |
+| 02:53 | Created packages/ui/src/components/LayeredModel.tsx | — | ~343 |
+| 02:53 | Created packages/ui/src/components/Pyramid.tsx | — | ~370 |
+| 02:53 | Edited packages/ui/src/index.ts | expanded (+7 lines) | ~239 |
+| 02:53 | Created content/series/yazilimda-temel-kavramlar/series.json | — | ~149 |
+| 02:53 | Created content/series/yazilimda-temel-kavramlar/articles/01-degisken-ve-tip/meta.json | — | ~124 |
+| 02:54 | Created content/series/yazilimda-temel-kavramlar/articles/01-degisken-ve-tip/final.tr.mdx | — | ~637 |
+| 02:54 | Created content/series/yazilimda-temel-kavramlar/articles/01-degisken-ve-tip/final.en.mdx | — | ~640 |
+| 02:54 | Created content/series/yazilimda-temel-kavramlar/articles/01-degisken-ve-tip/references.json | — | ~118 |
+| 02:54 | Created content/series/yazilimda-temel-kavramlar/articles/02-fonksiyon-ve-kapsam/meta.json | — | ~126 |
+| 02:54 | Created content/series/yazilimda-temel-kavramlar/articles/02-fonksiyon-ve-kapsam/final.tr.mdx | — | ~729 |
+| 02:54 | Created content/series/yazilimda-temel-kavramlar/articles/02-fonksiyon-ve-kapsam/final.en.mdx | — | ~687 |
+| 02:55 | Created content/series/yazilimda-temel-kavramlar/articles/02-fonksiyon-ve-kapsam/references.json | — | ~137 |
+| 02:55 | Created content/series/yazilimda-temel-kavramlar/articles/03-veri-yapilari/meta.json | — | ~124 |
+| 02:55 | Created content/series/yazilimda-temel-kavramlar/articles/03-veri-yapilari/final.tr.mdx | — | ~818 |
+| 02:55 | Created content/series/yazilimda-temel-kavramlar/articles/03-veri-yapilari/final.en.mdx | — | ~759 |
+| 02:55 | Created content/series/yazilimda-temel-kavramlar/articles/03-veri-yapilari/references.json | — | ~149 |
+| 02:55 | Edited apps/web/package.json | 18→22 lines | ~178 |
+| 02:56 | Edited apps/web/tailwind.config.ts | expanded (+40 lines) | ~520 |
+| 02:56 | Created apps/web/src/content/loader.ts | — | ~1540 |
+| 02:56 | Created apps/web/src/lib/messages.ts | — | ~146 |
+| 02:56 | Created apps/web/src/ui/InternalLinkWeb.tsx | — | ~301 |
+| 02:56 | Created apps/web/src/mdx/components.tsx | — | ~500 |
+| 02:57 | Created apps/web/src/components/SiteNav.tsx | — | ~451 |
+| 02:57 | Created apps/web/src/components/MetadataRow.tsx | — | ~364 |
+| 02:57 | Created apps/web/src/components/SeriesPositionBadge.tsx | — | ~126 |
+| 02:57 | Created apps/web/src/components/ReferencesSection.tsx | — | ~438 |
+| 02:57 | Created apps/web/src/components/PrevNextNav.tsx | — | ~585 |
+| 02:57 | Created apps/web/src/components/TOC.tsx | — | ~376 |
+| 02:57 | Edited apps/web/app/page.tsx | added 1 import(s) | ~49 |
+| 02:57 | Created apps/web/app/[lang]/layout.tsx | — | ~120 |
+| 02:57 | Created apps/web/app/[lang]/page.tsx | — | ~99 |
+| 02:57 | Created apps/web/app/[lang]/series/page.tsx | — | ~991 |
+| 02:58 | Created apps/web/app/[lang]/series/[seriesSlug]/page.tsx | — | ~1510 |
+| 02:58 | Created apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/page.tsx | — | ~2102 |
+| 02:59 | Edited packages/ui/src/components/Comparison.tsx | modified Comparison() | ~74 |
+| 02:59 | Edited packages/ui/src/components/LayeredModel.tsx | modified LayeredModel() | ~74 |
+| 02:59 | Edited packages/ui/src/components/Pyramid.tsx | modified Pyramid() | ~80 |
+| 02:59 | Edited apps/web/src/content/loader.ts | added nullish coalescing | ~105 |
+| 03:00 | Edited apps/web/src/content/loader.ts | modified loadMeta() | ~66 |
+| 03:00 | Edited apps/web/src/mdx/components.tsx | expanded (+8 lines) | ~109 |
+| 03:00 | Edited packages/content-core/src/schemas/meta.ts | inline fix | ~19 |
+| 03:01 | Edited packages/content-core/src/schemas/meta.ts | 5→5 lines | ~39 |
+| 03:03 | WP-04 complete — pnpm -w typecheck ✓ / lint ✓ / build ✓ / test 82/82 ✓; 16 static pages generated | multiple | all pass | ~500 |

@@ -1,0 +1,17 @@
+{
+  "id": "01-degisken-ve-tip",
+  "series": "yazilimda-temel-kavramlar",
+  "order": 1,
+  "slugBase": "degisken-ve-tip",
+  "category": "programlama-temelleri",
+  "tags": ["javascript", "typescript", "temel-kavramlar"],
+  "difficulty": "beginner",
+  "status": "published",
+  "publishDate": "2025-03-01",
+  "schemaType": "TechArticle",
+  "contentType": "explainer",
+  "languages": ["tr", "en"],
+  "assets": {
+    "diagrams": []
+  }
+}

@@ -1,0 +1,84 @@
+---
+title: Functions and Scope
+description: Ways to define functions in JavaScript and the block, function, and global layers of scope.
+summary: Functions break code into reusable pieces. Scope determines which parts of the code can access a given variable. Understanding both is a prerequisite for writing clean, predictable code.
+---
+
+## What is a function?
+
+A function is a named block of code that performs a task. Rather than repeating the same logic in multiple places, you define it once and call it as needed.
+
+<CodeBlock language="javascript" title="Function definition and call">
+{`function greet(name) {
+  return "Hello, " + name;
+}
+
+const message = greet("Anil"); // "Hello, Anil"`}
+</CodeBlock>
+
+## Arrow functions
+
+Arrow functions, introduced in ES2015, provide a shorter syntax. They are particularly concise for brief transformations and callbacks.
+
+<CodeBlock language="javascript" title="Arrow function">
+{`const add = (a, b) => a + b;
+const square = x => x * x;
+
+console.log(add(3, 4)); // 7
+console.log(square(5)); // 25`}
+</CodeBlock>
+
+## Scope layers
+
+Scope defines which part of the code can see a given variable. JavaScript has three main scope layers.
+
+<Comparison
+  title="Scope Types"
+  alt="Differences between global, function, and block scopes in JavaScript"
+  caption="Each scope type draws a different accessibility boundary."
+  left={{
+    label: "Broad Scope",
+    items: [
+      "Global: accessible everywhere",
+      "Module: accessible within the file",
+      "Variables declared with var"
+    ],
+    variant: "neutral"
+  }}
+  right={{
+    label: "Narrow Scope",
+    items: [
+      "Function: only inside the function",
+      "Block: only inside {} (let/const)",
+      "Can be exposed via closures"
+    ],
+    variant: "positive"
+  }}
+/>
+
+<CodeBlock language="javascript" title="Scope example">
+{`let global = "visible everywhere";
+
+function exampleFn() {
+  let functionScope = "only here";
+  
+  if (true) {
+    let blockScope = "only in this block";
+    console.log(global);        // accessible
+    console.log(functionScope); // accessible
+    console.log(blockScope);    // accessible
+  }
+  
+  // console.log(blockScope);   // ReferenceError
+}
+
+// console.log(functionScope);  // ReferenceError`}
+</CodeBlock>
+
+<Warning title="var and scope leakage">
+Variables declared with `var` do not respect block scope; they remain accessible outside `if` or `for` blocks. This can lead to unexpected behavior.
+</Warning>
+
+<Takeaway>
+The narrower the scope, the lower the risk of a variable being changed from an unexpected location.
+</Takeaway>

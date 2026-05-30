@@ -1,0 +1,84 @@
+---
+title: Veri Yapıları
+description: JavaScript'te dizi, nesne ve küme gibi temel veri yapıları; hangisini ne zaman kullanmalıyız?
+summary: Veri yapısı seçimi, kodun okunabilirliğini ve performansını doğrudan etkiler. Bu yazıda JavaScript'teki temel yapıları karşılaştırıyor, her birinin güçlü olduğu senaryoları net örneklerle ortaya koyuyoruz.
+---
+
+## Neden veri yapısı önemlidir?
+
+Bir programın ne kadar hızlı çalıştığı ve ne kadar bellek tükettiği büyük ölçüde veri yapısı seçimine bağlıdır. Veriyi bir listede mi saklamalı, bir sözlükte mi, yoksa benzersiz değerler için bir kümede mi? Her seçimin bir maliyeti vardır.
+
+Bu serinin önceki yazılarında değişken ve fonksiyon kavramlarını ele aldık. Bu yazıda o temeli kullanarak veri yapılarına bakıyoruz.
+
+<Pyramid
+  title="Veri Yapıları Karmaşıklık Skalası"
+  alt="JavaScript'teki veri yapılarını basit ile karmaşık arasında sıralayan piramit"
+  caption="Basitten karmaşığa: her katman bir öncekinin üzerine inşa edilir."
+  levels={[
+    { label: "İleri Yapılar", description: "Map, Set, WeakMap, WeakSet" },
+    { label: "Referans Türler", description: "Nesne (Object), Dizi (Array)" },
+    { label: "İlkel Türler", description: "number, string, boolean, null, undefined" }
+  ]}
+/>
+
+## Dizi (Array)
+
+Dizi, sıralı bir değerler listesidir. Her öğe sıfırdan başlayan bir indeksle erişilir.
+
+<CodeBlock language="javascript" title="Dizi kullanımı">
+{`const renkler = ["kırmızı", "yeşil", "mavi"];
+
+console.log(renkler[0]);    // "kırmızı"
+console.log(renkler.length); // 3
+
+renkler.push("sarı");       // sona ekle
+const ilk = renkler.shift(); // baştan al`}
+</CodeBlock>
+
+## Nesne (Object)
+
+Nesne, anahtar-değer çiftlerini saklar. Anahtarlar dize veya sembol olabilir; değerler herhangi bir türde olabilir.
+
+<CodeBlock language="javascript" title="Nesne kullanımı">
+{`const kullanici = {
+  ad: "Anil",
+  yas: 30,
+  aktif: true
+};
+
+console.log(kullanici.ad);      // "Anil"
+console.log(kullanici["yas"]);  // 30
+
+kullanici.sehir = "Istanbul";  // yeni alan ekle`}
+</CodeBlock>
+
+## Küme (Set)
+
+Küme, her değeri yalnızca bir kez saklar. Tekrar eden değerleri elemek veya benzersizliği garantilemek için kullanışlıdır.
+
+<CodeBlock language="javascript" title="Set kullanımı">
+{`const benzersiz = new Set([1, 2, 2, 3, 3, 3]);
+console.log([...benzersiz]); // [1, 2, 3]
+
+benzersiz.has(2);  // true
+benzersiz.size;    // 3`}
+</CodeBlock>
+
+## Map
+
+Map, anahtar-değer çiftlerini herhangi türde anahtar ile saklar. Nesne gibi çalışır ancak anahtarlar string olmak zorunda değildir; ekleme sırasını korur.
+
+<CodeBlock language="javascript" title="Map kullanımı">
+{`const puanlar = new Map();
+puanlar.set("Anil", 95);
+puanlar.set("Berk", 87);
+
+puanlar.get("Anil"); // 95
+puanlar.size;        // 2`}
+</CodeBlock>
+
+<Example title="Hangi yapı ne zaman?">
+Sıralı liste ve indeksle erişim → Array. Anahtar-değer ve string anahtar → Object. Benzersizlik garantisi → Set. Obje dışı anahtarlar veya sıra önemli → Map.
+</Example>
+
+<InternalLink kind="article" id="01-degisken-ve-tip" label="Bu serinin ilk yazısı: Değişken ve Tip" />

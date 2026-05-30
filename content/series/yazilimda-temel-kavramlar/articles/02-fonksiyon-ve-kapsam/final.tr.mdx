@@ -1,0 +1,84 @@
+---
+title: Fonksiyon ve Kapsam
+description: JavaScript'te fonksiyon tanımlamanın yolları ve kapsam (scope) kavramının blok, fonksiyon ve global katmanları.
+summary: Fonksiyonlar kodu yeniden kullanılabilir parçalara böler. Kapsam ise bir değişkenin kodun hangi bölümünden erişilebilir olduğunu belirler. Bu iki kavramı anlamak, temiz ve öngörülebilir kod yazmanın önkoşuludur.
+---
+
+## Fonksiyon nedir?
+
+Fonksiyon, bir görevi gerçekleştiren ve bir isimle çağrılabilen kod bloğudur. Aynı mantığı birden fazla yerde kullanmak yerine bir kez tanımlar, istediğimiz kadar çağırırız.
+
+<CodeBlock language="javascript" title="Fonksiyon tanımı ve çağrısı">
+{`function selamla(isim) {
+  return "Merhaba, " + isim;
+}
+
+const mesaj = selamla("Anil"); // "Merhaba, Anil"`}
+</CodeBlock>
+
+## Ok fonksiyonları
+
+ES2015 ile gelen ok (arrow) fonksiyonları daha kısa bir söz dizimi sunar. Kısa dönüşümlerde veya callback olarak kullanıldığında kodu önemli ölçüde sadeleştirir.
+
+<CodeBlock language="javascript" title="Ok fonksiyonu">
+{`const topla = (a, b) => a + b;
+const karesi = x => x * x;
+
+console.log(topla(3, 4)); // 7
+console.log(karesi(5));   // 25`}
+</CodeBlock>
+
+## Kapsam katmanları
+
+Kapsam, bir değişkenin kodun hangi bölümünden görülebildiğini tanımlar. JavaScript'te üç ana kapsam katmanı vardır.
+
+<Comparison
+  title="Kapsam Türleri"
+  alt="JavaScript'teki global, fonksiyon ve blok kapsamları arasındaki farklar"
+  caption="Her kapsam türü farklı bir erişilebilirlik sınırı çizer."
+  left={{
+    label: "Geniş Kapsam",
+    items: [
+      "Global: her yerden erişilebilir",
+      "Modül: dosya içinde erişilebilir",
+      "var ile tanımlanan değişkenler"
+    ],
+    variant: "neutral"
+  }}
+  right={{
+    label: "Dar Kapsam",
+    items: [
+      "Fonksiyon: yalnız fonksiyon içi",
+      "Blok: yalnız {} arasında (let/const)",
+      "Closure ile dışarıya sızdırılabilir"
+    ],
+    variant: "positive"
+  }}
+/>
+
+<CodeBlock language="javascript" title="Kapsam örneği">
+{`let global = "her yerden görünür";
+
+function ornekFonk() {
+  let fonksiyonKapsamı = "yalnız burada";
+  
+  if (true) {
+    let blokKapsamı = "yalnız bu blokta";
+    console.log(global);          // erişilebilir
+    console.log(fonksiyonKapsamı); // erişilebilir
+    console.log(blokKapsamı);      // erişilebilir
+  }
+  
+  // console.log(blokKapsamı);    // ReferenceError
+}
+
+// console.log(fonksiyonKapsamı); // ReferenceError`}
+</CodeBlock>
+
+<Warning title="var ve kapsam sızıntısı">
+`var` ile tanımlanan değişkenler blok kapsamına uymaz; `if` veya `for` bloğunun dışında da erişilebilir kalır. Bu beklenmedik davranışlara neden olabilir.
+</Warning>
+
+<Takeaway>
+Kapsam ne kadar dar olursa, değişkenin beklenmedik bir yerden değiştirilme riski o kadar düşer.
+</Takeaway>

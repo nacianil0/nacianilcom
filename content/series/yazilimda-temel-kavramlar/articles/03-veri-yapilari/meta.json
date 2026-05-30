@@ -1,0 +1,17 @@
+{
+  "id": "03-veri-yapilari",
+  "series": "yazilimda-temel-kavramlar",
+  "order": 3,
+  "slugBase": "veri-yapilari",
+  "category": "programlama-temelleri",
+  "tags": ["javascript", "veri-yapisi", "temel-kavramlar"],
+  "difficulty": "intermediate",
+  "status": "published",
+  "publishDate": "2025-03-15",
+  "schemaType": "TechArticle",
+  "contentType": "explainer",
+  "languages": ["tr", "en"],
+  "assets": {
+    "diagrams": []
+  }
+}

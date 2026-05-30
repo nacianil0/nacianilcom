@@ -1,0 +1,55 @@
+---
+title: Değişken ve Tip
+description: JavaScript ve TypeScript'te değişken tanımlamanın üç yolu ve tip sisteminin temellerine kısa bir giriş.
+summary: Her program veriyi saklamak için değişkenlere ihtiyaç duyar. JavaScript'te var, let ve const ile değişken tanımlanır; TypeScript bu değişkenlere statik tipler ekler. Bu yazıda her ikisini de kısa ve net örneklerle inceliyoruz.
+---
+
+## Değişken nedir?
+
+Değişken, bir değere verilen addır. Program çalışırken bu ad üzerinden o değere ulaşır ve gerekirse onu günceller.
+
+JavaScript'te değişken tanımlamak için üç anahtar kelime kullanılır: `var`, `let` ve `const`.
+
+<Definition term="değişken">
+Bir değeri bellekte saklayan ve ona erişmek için kullanılan isimlendirilmiş bir referans.
+</Definition>
+
+## var, let ve const
+
+`var` en eski yoldur; fonksiyon kapsamlıdır ve aynı isimle yeniden tanımlanabilir. Bu esneklik hatalara yol açabileceğinden modern kodda tercih edilmez.
+
+`let` blok kapsamlıdır ve değeri sonradan değiştirilebilir. Sayaçlar, döngü değişkenleri gibi durumlar için uygundur.
+
+`const` blok kapsamlıdır ve bir kez atandıktan sonra yeniden atanamaz. Değerin sabit kalmasını istediğimizde kullanırız.
+
+<CodeBlock language="javascript" title="Değişken tanımlama">
+{`var isim = "Anil";        // function-scoped, yeniden tanımlanabilir
+let sayac = 0;             // block-scoped, değiştirilebilir
+const PI = 3.14159;        // block-scoped, yeniden atanamaz
+
+sayac = 1;                 // geçerli
+// PI = 3;                 // hata: Assignment to constant variable`}
+</CodeBlock>
+
+<Callout title="const ve nesne değerleri">
+`const` ile tanımlanan bir nesnenin veya dizinin içeriği değiştirilebilir; yalnızca referansın kendisi yeniden atanamaz.
+</Callout>
+
+## TypeScript ve tipler
+
+TypeScript, JavaScript'e statik tip ekler. Değişken tanımlarken tip belirtebilir ya da TypeScript'in tipi çıkarsamasına izin verebilirsiniz.
+
+<CodeBlock language="typescript" title="TypeScript tip tanımları">
+{`let ad: string = "Anil";
+let yas: number = 30;
+let aktif: boolean = true;
+
+// Tip çıkarsaması
+let sehir = "Istanbul"; // TypeScript: string olarak çıkarsar`}
+</CodeBlock>
+
+Tip çıkarsaması sayesinde her değişkene açık tip yazmak gerekmez. Ancak karmaşık durumlarda açık tip belirtmek kodu daha okunabilir kılar.
+
+<Takeaway>
+`const` kullanımını varsayılan yap; değişmesi gereken değerlerde `let` kullan; `var`'dan kaçın.
+</Takeaway>
