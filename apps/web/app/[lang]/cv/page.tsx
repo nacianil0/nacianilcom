@@ -117,20 +117,10 @@ export default async function CvPage({
               {tr ? 'PDF ↓' : 'PDF ↓'}
             </Link>
           }
-          lead={resume.basics.summary}
+          className="pb-10 sm:pb-12"
         >
-          <div className="mt-5">
-            <MonoLabel>
-              {role}
-              {location ? ` · ${location}` : ''}
-            </MonoLabel>
-          </div>
-        </Masthead>
-
-        <main className={`${pageShellClass} flex-1 py-14`}>
-          {/* Profile band — name left, photo + links right */}
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-6 border-b border-hairline pb-10 sm:gap-10">
-            <div className="min-w-0 pt-1">
+          <div className="mt-8 grid grid-cols-[minmax(0,1fr)_auto] items-start gap-6 sm:mt-9 sm:gap-10">
+            <div className="min-w-0">
               <h1 className="font-serif text-[30px] font-semibold leading-[1.05] tracking-[-0.01em] text-ink sm:text-[38px]">
                 {resume.basics.name}
                 <span className="text-accent">.</span>
@@ -138,15 +128,24 @@ export default async function CvPage({
               {publicEmail && (
                 <a
                   href={`mailto:${publicEmail}`}
-                  className="mt-3 inline-block font-mono text-[11px] tracking-[0.04em] text-ink-secondary transition-colors hover:text-accent"
+                  className="mt-2.5 inline-block font-mono text-[11px] tracking-[0.04em] text-ink-secondary transition-colors hover:text-accent"
                 >
                   {publicEmail}
                 </a>
               )}
+              <p className="mt-5 max-w-[640px] font-sans text-[15px] leading-[1.7] text-ink-secondary">
+                {resume.basics.summary}
+              </p>
+              <div className="mt-4">
+                <MonoLabel>
+                  {role}
+                  {location ? ` · ${location}` : ''}
+                </MonoLabel>
+              </div>
             </div>
 
             {(resume.basics.photo || resume.links.length > 0) && (
-              <div className="flex shrink-0 flex-col items-center gap-2.5">
+              <div className="flex shrink-0 flex-col items-center gap-2.5 sm:items-end">
                 {resume.basics.photo && (
                   <div className="relative h-[7.25rem] w-[7.25rem] overflow-hidden rounded-xl border border-ink/15 bg-surface-sunk shadow-sm ring-1 ring-hairline sm:h-[7.75rem] sm:w-[7.75rem]">
                     <Image
@@ -160,7 +159,7 @@ export default async function CvPage({
                   </div>
                 )}
                 {resume.links.length > 0 && (
-                  <div className="flex flex-nowrap items-center justify-center gap-2">
+                  <div className="flex flex-nowrap items-center justify-center gap-2 sm:justify-end">
                     {resume.links.map((l) => (
                       <a
                         key={l.label}
@@ -178,8 +177,10 @@ export default async function CvPage({
               </div>
             )}
           </div>
+        </Masthead>
 
-          <div className="mt-12 flex flex-col gap-16">
+        <main className={`${pageShellClass} flex-1 py-12 sm:py-14`}>
+          <div className="flex flex-col gap-16">
             {/* Experience */}
             {resume.experience.length > 0 && (
               <SectionRail dividerTop label={tr ? 'Deneyim' : 'Experience'} id="cv-experience">
