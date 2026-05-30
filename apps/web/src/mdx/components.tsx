@@ -16,9 +16,11 @@ import type { Locale, ContentCatalog, InternalLinkKind } from '@nacianilcom/cont
 
 interface PreProps {
   children?: ReactElement<{ className?: string; children?: string }>;
+  copyLabel?: string;
+  copiedLabel?: string;
 }
 
-function MdxPre({ children }: PreProps) {
+function MdxPre({ children, copyLabel, copiedLabel }: PreProps) {
   const codeEl = children;
   const className = codeEl?.props?.className ?? '';
   const langMatch = /language-(\w+)/.exec(className);
@@ -27,7 +29,15 @@ function MdxPre({ children }: PreProps) {
     typeof codeEl?.props?.children === 'string'
       ? codeEl.props.children.trimEnd()
       : '';
-  return <CodeBlock language={language}>{code}</CodeBlock>;
+  return (
+    <CodeBlock
+      language={language}
+      {...(copyLabel !== undefined && { copyLabel })}
+      {...(copiedLabel !== undefined && { copiedLabel })}
+    >
+      {code}
+    </CodeBlock>
+  );
 }
 
 function MdxInlineCode({ children }: { children?: ReactNode }) {
@@ -39,9 +49,14 @@ function MdxInlineCode({ children }: { children?: ReactNode }) {
 }
 
 export function getMdxComponents(lang: Locale, catalog: ContentCatalog) {
+  const codeCopyProps =
+    lang === 'tr'
+      ? { copyLabel: 'Kopyala', copiedLabel: 'Kopyalandı' }
+      : { copyLabel: 'Copy', copiedLabel: 'Copied' };
+
   return {
     // Markdown overrides
-    pre: MdxPre,
+    pre: (props: PreProps) => <MdxPre {...props} {...codeCopyProps} />,
     code: MdxInlineCode,
 
     // Technical-writing components (§16)
@@ -50,7 +65,9 @@ export function getMdxComponents(lang: Locale, catalog: ContentCatalog) {
     Example,
     Warning,
     Takeaway,
-    CodeBlock,
+    CodeBlock: (props: Parameters<typeof CodeBlock>[0]) => (
+      <CodeBlock {...codeCopyProps} {...props} />
+    ),
 
     // Visual-block components (§15 MVP custom)
     VisualBlock,

@@ -22,7 +22,12 @@ Bir değeri bellekte saklayan ve ona erişmek için kullanılan isimlendirilmiş
 
 `const` blok kapsamlıdır ve bir kez atandıktan sonra yeniden atanamaz. Değerin sabit kalmasını istediğimizde kullanırız.
 
-<CodeBlock language="javascript" title="Değişken tanımlama">
+<CodeBlock
+  language="javascript"
+  filename="variables.js"
+  title="Değişken tanımlama"
+  highlightLines={[2, 3]}
+>
 {`var isim = "Anil";        // function-scoped, yeniden tanımlanabilir
 let sayac = 0;             // block-scoped, değiştirilebilir
 const PI = 3.14159;        // block-scoped, yeniden atanamaz

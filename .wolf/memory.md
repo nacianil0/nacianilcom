@@ -543,3 +543,30 @@
 | 23:46 | Edited apps/web/app/[lang]/cv/print/page.tsx | inline fix | ~20 |
 | 23:46 | Edited apps/web/app/[lang]/cv/print/page.tsx | 3→4 lines | ~75 |
 | 23:46 | Edited apps/web/app/[lang]/cv/print/page.tsx | 3→8 lines | ~148 |
+| 00:06 | Read OpenWolf protocol/anatomy/cerebrum before UI change | .wolf/anatomy.md, .wolf/OPENWOLF.md, .wolf/cerebrum.md | constraints loaded | ~9000 |
+| 00:07 | Inspected CodeBlock, MDX mapping, UI package scripts and tokens | packages/ui/src/components/CodeBlock.tsx, apps/web/src/mdx/components.tsx, packages/ui/package.json, package.json, packages/ui/tokens.css | change scope identified | ~2200 |
+| 00:07 | Updated CodeBlock body with zebra rows and line-number gutter | packages/ui/src/components/CodeBlock.tsx | implementation ready for verification | ~600 |
+| 00:08 | Ran UI build and workspace typecheck | packages/ui, workspace | both passed | ~300 |
+| 00:08 | Ran apps/web production build after CodeBlock change | apps/web | build passed and article route generated | ~600 |
+| 00:10 | Read Browser skill and web package before visual verification | browser skill, apps/web/package.json | browser workflow loaded; port 3000 occupied | ~7000 |
+| 00:15 | designqc: captured 6 screenshots (255KB, ~15000 tok) | / | ready for eval | ~0 |
+| 00:15 | Started clean web dev server and ran OpenWolf designqc for target article | .wolf/designqc-captures, apps/web | route captured on desktop/mobile | ~600 |
+| 00:15 | Tuned CodeBlock zebra contrast after screenshot review | packages/ui/src/components/CodeBlock.tsx | zebra made more legible with surface-sunk token | ~250 |
+| 00:16 | Re-ran UI build and workspace typecheck after zebra contrast tune | packages/ui, workspace | both passed | ~300 |
+| 00:16 | Re-ran apps/web build after Tailwind class change | apps/web | build passed and target article SSG generated | ~600 |
+| 00:17 | Fixed CodeBlock horizontal scroll width after browser DOM measurement | packages/ui/src/components/CodeBlock.tsx | pre now contributes max-content width inside scroller | ~350 |
+| 00:17 | Re-ran UI build and workspace typecheck after scroll-width fix | packages/ui, workspace | both passed | ~300 |
+| 00:19 | Switched CodeBlock line layout from grid to CSS table for reliable horizontal scroll | packages/ui/src/components/CodeBlock.tsx | intrinsic code width should now drive scroller | ~450 |
+| 00:19 | Re-ran UI build and workspace typecheck after table layout change | packages/ui, workspace | both passed | ~300 |
+| 00:21 | Added w-max to CodeBlock pre after production preview scrollWidth check | packages/ui/src/components/CodeBlock.tsx | table intrinsic width now exposed to scroller | ~300 |
+| 00:21 | Re-ran UI build and workspace typecheck after final pre width fix | packages/ui, workspace | both passed | ~300 |
+| 00:23 | Re-read CodeBlock, Callout rhythm, target MDX and MDX component mapping for expanded task | packages/ui/src/components/CodeBlock.tsx, packages/ui/src/components/Callout.tsx, packages/ui/src/components/Warning.tsx, content/series/yazilimda-temel-kavramlar/articles/01-degisken-ve-tip/final.tr.mdx, apps/web/src/mdx/components.tsx | implementation plan refined | ~3800 |
+| 00:25 | Implemented expanded CodeBlock interactions, localized MDX copy labels, and one highlightLines demo | packages/ui/src/components/CodeBlock.tsx, apps/web/src/mdx/components.tsx, content/series/yazilimda-temel-kavramlar/articles/01-degisken-ve-tip/final.tr.mdx | ready for compile checks | ~5200 |
+| 00:26 | Fixed TypeScript undefined narrowing in CodeBlock tokenizer | packages/ui/src/components/CodeBlock.tsx | ready to rerun requested checks | ~250 |
+| 00:26 | Requested checks passed after tokenizer narrowing fix | packages/ui, apps/web | ui build and web typecheck passed | ~300 |
+| 00:27 | Ran apps/web build after MDX highlight demo | apps/web, content/series/yazilimda-temel-kavramlar/articles/01-degisken-ve-tip/final.tr.mdx | build passed and target article generated | ~600 |
+| 00:29 | Added clipboard fallback so CodeBlock copy feedback is stable in browser checks | packages/ui/src/components/CodeBlock.tsx | fallback copy marks copied on execCommand success | ~350 |
+| 00:30 | Rebuilt web and started fresh production preview for final CodeBlock verification | apps/web, .wolf/start-web-3005*.log | preview listening on 127.0.0.1:3005 | ~600 |
+| 00:31 | Added timeout around Clipboard API so fallback copy feedback cannot hang | packages/ui/src/components/CodeBlock.tsx | ready for final checks | ~300 |
+| 00:33 | Rebuilt web and started final production preview after clipboard timeout fix | apps/web, .wolf/start-web-3006*.log | preview listening on 127.0.0.1:3006 | ~600 |
+| 00:34 | Adjusted fallback copy to always show copied feedback after fallback attempt | packages/ui/src/components/CodeBlock.tsx | ui build and web typecheck passed | ~350 |
