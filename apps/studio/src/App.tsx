@@ -4,8 +4,10 @@ import { SeoCheck } from './screens/SeoCheck';
 import { Publisher } from './screens/Publisher';
 import { Prompts } from './screens/Prompts';
 import { Inbox } from './screens/Inbox';
+import { VisualStudio } from './screens/VisualStudio';
+import { MonthlyPlan } from './screens/MonthlyPlan';
 
-type Screen = 'review' | 'qc' | 'publish' | 'prompts' | 'inbox';
+type Screen = 'review' | 'qc' | 'publish' | 'prompts' | 'inbox' | 'visual' | 'plan';
 
 const NAV: Array<{ id: Screen; label: string }> = [
   { id: 'review', label: 'Draft Review' },
@@ -13,6 +15,8 @@ const NAV: Array<{ id: Screen; label: string }> = [
   { id: 'publish', label: 'Publisher' },
   { id: 'prompts', label: 'Prompts' },
   { id: 'inbox', label: 'AI Inbox' },
+  { id: 'visual', label: 'Visual Studio' },
+  { id: 'plan', label: 'Monthly Plan' },
 ];
 
 export default function App() {
@@ -59,6 +63,8 @@ export default function App() {
           {screen === 'publish' && <Publisher />}
           {screen === 'prompts' && <Prompts />}
           {screen === 'inbox' && <Inbox />}
+          {screen === 'visual' && <VisualStudio />}
+          {screen === 'plan' && <MonthlyPlan />}
         </main>
       </div>
     </div>

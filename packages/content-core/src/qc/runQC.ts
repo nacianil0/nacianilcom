@@ -3,6 +3,7 @@ import { validateTaxonomy } from '../taxonomy/validator';
 import { checkInternalLinks } from '../links/checker';
 import { resolveRedirects } from '../redirects/resolver';
 import { normalizeSlug } from '../url/normalizeSlug';
+import { parseVisualBlocks, validateVisualBlocks } from '../visual/validator';
 import type { Meta } from '../schemas/meta';
 import type { Taxonomy } from '../schemas/taxonomy';
 import type { References } from '../schemas/references';
@@ -19,7 +20,15 @@ export type QCGroup =
   | 'hreflang'
   | 'canonical'
   | 'references'
-  | 'content';
+  | 'content'
+  | 'visual'
+  | 'svg';
+
+export interface SvgAsset {
+  filename: string;
+  exists: boolean;
+  sanitized: boolean;
+}
 
 export type QCSeverity = 'blocking' | 'warning';
 
@@ -45,6 +54,9 @@ export interface QCContext {
   catalog: ContentCatalog;
   lang: Locale;
   articlePublicPaths: ArticlePublicPath[];
+  // WP-10: optional visual/SVG context
+  mdxContent?: string;
+  svgAssets?: SvgAsset[];
 }
 
 export function runQC(ctx: QCContext, now: Date): QCReport {
@@ -108,9 +120,37 @@ export function runQC(ctx: QCContext, now: Date): QCReport {
   // TODO(WP-04): verify canonical URL resolves correctly per language
   // TODO(WP-05): verify og:image and cover assets resolve to public URLs
 
-  // SVG sanitize
-  // TODO(WP-10): verify referenced SVG assets exist and pass sanitize check
-  // Rule: any .svg in assets.diagrams that is missing → blocking; sanitize failure → blocking
+  // SVG asset checks (WP-10)
+  if (ctx.svgAssets) {
+    for (const asset of ctx.svgAssets) {
+      if (!asset.exists) {
+        blocking(
+          'SVG_MISSING',
+          `Referenced SVG asset "${asset.filename}" does not exist`,
+          'visual'
+        );
+      } else if (!asset.sanitized) {
+        blocking(
+          'SVG_SANITIZE_FAILURE',
+          `SVG asset "${asset.filename}" failed sanitize check`,
+          'svg'
+        );
+      }
+    }
+  }
+
+  // Visual block validation (WP-10)
+  if (ctx.mdxContent) {
+    const blocks = parseVisualBlocks(ctx.mdxContent);
+    const published = isPublic(ctx.meta, now);
+    for (const issue of validateVisualBlocks(blocks, published)) {
+      if (issue.severity === 'blocking') {
+        blocking(issue.code, issue.message, 'visual');
+      } else {
+        warning(issue.code, issue.message, 'visual');
+      }
+    }
+  }
 
   // Published content leak guard
   if (isPublic(ctx.meta, now)) {

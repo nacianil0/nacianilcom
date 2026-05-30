@@ -4,8 +4,10 @@ import fs from 'fs/promises';
 import crypto from 'crypto';
 import fastifyStatic from '@fastify/static';
 import simpleGit from 'simple-git';
-import { InboxItemSchema } from '@nacianilcom/content-core';
+import { InboxItemSchema, MonthlyPlanSchema, sanitizeSvg } from '@nacianilcom/content-core';
 import { resolveTargetPath, writeWithBackup, serializePayload, moveToUnresolved } from './router';
+import { renderMermaidToSvg, listDiagramFiles } from './visual';
+import { generatePlan, generateFilePrompt, analyzeContent } from './planner';
 
 const HOST = '127.0.0.1';
 const PORT = 3001;
@@ -376,6 +378,218 @@ server.get<{ Params: { name: string } }>('/api/prompts/:name', async (req, reply
   const content = await fs.readFile(filePath, 'utf-8').catch(() => null);
   if (!content) return reply.status(404).send({ error: 'Not found' });
   return { name, content };
+});
+
+// ─── Visual Studio API (WP-10) ───────────────────────────────────────────────
+
+// GET /api/visual/list/:seriesSlug — list .mmd and .svg files
+server.get<{ Params: { seriesSlug: string } }>(
+  '/api/visual/list/:seriesSlug',
+  async (req) => {
+    const { seriesSlug } = req.params;
+    return listDiagramFiles(CONTENT_ROOT, seriesSlug);
+  }
+);
+
+// POST /api/visual/render — render .mmd content → sanitized SVG
+interface RenderBody { mmdContent: string; seriesSlug?: string; filename?: string }
+server.post<{ Body: RenderBody }>('/api/visual/render', async (req, reply) => {
+  const { mmdContent, seriesSlug, filename } = req.body;
+  if (!mmdContent) return reply.status(400).send({ error: 'mmdContent required' });
+
+  try {
+    const result = await renderMermaidToSvg(mmdContent);
+    return { ...result, seriesSlug, filename };
+  } catch (err) {
+    return reply.status(503).send({ error: String(err) });
+  }
+});
+
+// POST /api/visual/sanitize — sanitize existing SVG content
+interface SanitizeBody { svgContent: string }
+server.post<{ Body: SanitizeBody }>('/api/visual/sanitize', async (req, reply) => {
+  const { svgContent } = req.body;
+  if (!svgContent) return reply.status(400).send({ error: 'svgContent required' });
+  return sanitizeSvg(svgContent);
+});
+
+// GET /api/visual/file/:seriesSlug/:filename — serve a diagram file (mmd or svg)
+server.get<{ Params: { seriesSlug: string; filename: string } }>(
+  '/api/visual/file/:seriesSlug/:filename',
+  async (req, reply) => {
+    const { seriesSlug, filename } = req.params;
+    if (!/^[a-zA-Z0-9_-]+\.(mmd|svg)$/.test(filename)) {
+      return reply.status(400).send({ error: 'Invalid filename' });
+    }
+    const filePath = path.join(CONTENT_ROOT, 'series', seriesSlug, 'diagrams', filename);
+    const content = await fs.readFile(filePath, 'utf-8').catch(() => null);
+    if (!content) return reply.status(404).send({ error: 'File not found' });
+    return { filename, content };
+  }
+);
+
+// POST /api/visual/commit — save sanitized SVG and commit
+interface CommitBody { seriesSlug: string; filename: string; svgContent: string; mmdContent?: string }
+server.post<{ Body: CommitBody }>('/api/visual/commit', async (req, reply) => {
+  const { seriesSlug, filename, svgContent, mmdContent } = req.body;
+  if (!seriesSlug || !filename || !svgContent) {
+    return reply.status(400).send({ error: 'seriesSlug, filename, svgContent required' });
+  }
+  if (!/^[a-zA-Z0-9_-]+\.svg$/.test(filename)) {
+    return reply.status(400).send({ error: 'Invalid filename — must be *.svg' });
+  }
+
+  // Sanitize before commit (mandatory per §15/§29)
+  const { sanitized, removals } = sanitizeSvg(svgContent);
+
+  const diagramsDir = path.join(CONTENT_ROOT, 'series', seriesSlug, 'diagrams');
+  await fs.mkdir(diagramsDir, { recursive: true });
+
+  const svgPath = path.join(diagramsDir, filename);
+  await fs.writeFile(svgPath, sanitized, 'utf-8');
+
+  // Optionally save .mmd source alongside
+  if (mmdContent) {
+    const mmdFilename = filename.replace(/\.svg$/, '.mmd');
+    await fs.writeFile(path.join(diagramsDir, mmdFilename), mmdContent, 'utf-8');
+  }
+
+  // Git commit
+  try {
+    const git = simpleGit(REPO_ROOT);
+    const relSvg = path.relative(REPO_ROOT, svgPath).replace(/\\/g, '/');
+    await git.add(relSvg);
+    if (mmdContent) {
+      const mmdFilename = filename.replace(/\.svg$/, '.mmd');
+      const relMmd = path.relative(REPO_ROOT, path.join(diagramsDir, mmdFilename)).replace(/\\/g, '/');
+      await git.add(relMmd);
+    }
+    await git.commit(`feat(content): add diagram ${seriesSlug}/${filename} (sanitized)`);
+  } catch (err) {
+    server.log.error({ err }, 'git commit failed for diagram');
+    return reply.status(500).send({ error: 'git commit failed' });
+  }
+
+  return { ok: true, filename, removals, sanitized: true };
+});
+
+// ─── Monthly Plan API (WP-11) ─────────────────────────────────────────────────
+
+const PLANS_DIR = path.join(CONTENT_ROOT, 'plans');
+
+// GET /api/plans — list all YYYY-MM.json plans
+server.get('/api/plans', async () => {
+  const entries = await fs.readdir(PLANS_DIR, { withFileTypes: true }).catch(() => []);
+  const plans: unknown[] = [];
+  for (const e of entries) {
+    if (!e.isFile() || !e.name.endsWith('.json')) continue;
+    const raw = await fs.readFile(path.join(PLANS_DIR, e.name), 'utf-8').catch(() => null);
+    if (!raw) continue;
+    try {
+      const parsed = JSON.parse(raw) as Record<string, unknown>;
+      plans.push({ filename: e.name, month: parsed['month'], status: parsed['status'], selectedCount: (parsed['selected'] as unknown[])?.length ?? 0 });
+    } catch { /* skip corrupt files */ }
+  }
+  return plans;
+});
+
+// GET /api/plans/:month — get a specific plan
+server.get<{ Params: { month: string } }>('/api/plans/:month', async (req, reply) => {
+  const { month } = req.params;
+  if (!/^\d{4}-\d{2}$/.test(month)) return reply.status(400).send({ error: 'Invalid month format (YYYY-MM)' });
+  const raw = await fs.readFile(path.join(PLANS_DIR, `${month}.json`), 'utf-8').catch(() => null);
+  if (!raw) return reply.status(404).send({ error: 'Plan not found' });
+  return JSON.parse(raw);
+});
+
+// POST /api/plans/generate — generate a new plan (deterministic + optional LLM)
+interface GenerateBody { targetMonth: string; userNotes?: string; targetCount?: number }
+server.post<{ Body: GenerateBody }>('/api/plans/generate', async (req, reply) => {
+  const { targetMonth, userNotes = '', targetCount = 10 } = req.body;
+  if (!targetMonth || !/^\d{4}-\d{2}$/.test(targetMonth)) {
+    return reply.status(400).send({ error: 'targetMonth required (YYYY-MM)' });
+  }
+
+  const { plan, qcIssues } = await generatePlan(CONTENT_ROOT, targetMonth, userNotes, targetCount);
+  return { plan, qcIssues };
+});
+
+// POST /api/plans/generate-prompt — file-based mode: generate Claude prompt
+interface PromptBody { targetMonth: string; userNotes?: string }
+server.post<{ Body: PromptBody }>('/api/plans/generate-prompt', async (req, reply) => {
+  const { targetMonth, userNotes = '' } = req.body;
+  if (!targetMonth || !/^\d{4}-\d{2}$/.test(targetMonth)) {
+    return reply.status(400).send({ error: 'targetMonth required (YYYY-MM)' });
+  }
+  const analysis = await analyzeContent(CONTENT_ROOT);
+  const prompt = generateFilePrompt(analysis, targetMonth, userNotes);
+  return { prompt };
+});
+
+// PUT /api/plans/:month — save (create or update) a plan
+server.put<{ Params: { month: string }; Body: Record<string, unknown> }>(
+  '/api/plans/:month',
+  async (req, reply) => {
+    const { month } = req.params;
+    if (!/^\d{4}-\d{2}$/.test(month)) return reply.status(400).send({ error: 'Invalid month format' });
+
+    let plan;
+    try {
+      plan = MonthlyPlanSchema.parse(req.body);
+    } catch (err) {
+      return reply.status(400).send({ error: 'Invalid plan schema', detail: String(err) });
+    }
+
+    await fs.mkdir(PLANS_DIR, { recursive: true });
+    await fs.writeFile(
+      path.join(PLANS_DIR, `${month}.json`),
+      JSON.stringify(plan, null, 2) + '\n',
+      'utf-8'
+    );
+    return { ok: true, month };
+  }
+);
+
+// POST /api/plans/:month/approve — approve plan and route selected topics to _ideas/
+server.post<{ Params: { month: string } }>('/api/plans/:month/approve', async (req, reply) => {
+  const { month } = req.params;
+  if (!/^\d{4}-\d{2}$/.test(month)) return reply.status(400).send({ error: 'Invalid month format' });
+
+  const raw = await fs.readFile(path.join(PLANS_DIR, `${month}.json`), 'utf-8').catch(() => null);
+  if (!raw) return reply.status(404).send({ error: 'Plan not found' });
+
+  let plan;
+  try {
+    plan = MonthlyPlanSchema.parse(JSON.parse(raw));
+  } catch {
+    return reply.status(400).send({ error: 'Invalid plan data' });
+  }
+
+  const ideasDir = path.join(CONTENT_ROOT, '_ideas');
+  await fs.mkdir(ideasDir, { recursive: true });
+
+  const routed: string[] = [];
+  for (const topic of plan.selected) {
+    const slug = topic.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+      .slice(0, 60);
+    const filename = `${month}-${slug}.json`;
+    const filePath = path.join(ideasDir, filename);
+    await fs.writeFile(filePath, JSON.stringify({ month, topic }, null, 2) + '\n', 'utf-8');
+    routed.push(filename);
+  }
+
+  // Mark plan as approved
+  const updated = { ...plan, status: 'approved' as const };
+  await fs.writeFile(
+    path.join(PLANS_DIR, `${month}.json`),
+    JSON.stringify(updated, null, 2) + '\n',
+    'utf-8'
+  );
+
+  return { ok: true, month, routed };
 });
 
 // ─── Start ───────────────────────────────────────────────────────────────────

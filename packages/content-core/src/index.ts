@@ -50,4 +50,16 @@ export type { RedirectIssue, ArticlePublicPath } from './redirects/resolver';
 
 // QC
 export { runQC } from './qc/runQC';
-export type { QCContext, QCReport, QCIssue, QCGroup, QCSeverity } from './qc/runQC';
+export type { QCContext, QCReport, QCIssue, QCGroup, QCSeverity, SvgAsset } from './qc/runQC';
+
+// Plan QC (WP-11)
+export { runPlanQC } from './qc/planQC';
+export type { PlanQCIssue } from './qc/planQC';
+
+// SVG sanitizer (WP-10)
+export { sanitizeSvg } from './svg/sanitizer';
+export type { SanitizeResult } from './svg/sanitizer';
+
+// Visual block validator (WP-10)
+export { parseVisualBlocks, validateVisualBlocks } from './visual/validator';
+export type { VisualBlockRef, VisualBlockIssue } from './visual/validator';
