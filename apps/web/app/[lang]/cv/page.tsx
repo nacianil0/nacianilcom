@@ -9,7 +9,7 @@ import { loadResume } from '../../../src/content/loader';
 import { SiteNav } from '../../../src/components/SiteNav';
 import { SiteFooter } from '../../../src/components/SiteFooter';
 import { Crumbs } from '../../../src/components/Crumbs';
-import { fmtRange } from '../../../src/lib/dateRange';
+import { fmtRange, fmtDuration, fmtTotalExperience } from '../../../src/lib/dateRange';
 import { pageShellClass, specRowGridClass, specDateColClass, compactRowGridClass } from '../../../src/lib/layout';
 import { brandLabel } from '../../../src/lib/brandLabel';
 import { resumeDocumentAssets, resumeDocumentPdfFilename } from '../../../src/lib/credentials';
@@ -94,6 +94,13 @@ export default async function CvPage({
   const role = resume.basics.title;
   const location = resume.basics.location;
   const currentCompany = resume.experience[0]?.company;
+  const totalExperience = fmtTotalExperience(
+    [
+      ...resume.experience.map((e) => ({ startDate: e.startDate, endDate: e.endDate })),
+      ...(resume.earlierExperience?.entries ?? []).map((e) => ({ startDate: e.startDate, endDate: e.endDate })),
+    ],
+    locale,
+  );
 
   const tr = locale === 'tr';
 
@@ -178,8 +185,8 @@ export default async function CvPage({
               </div>
             </div>
 
-            {(resume.basics.photo || currentCompany) && (
-              <div className="flex shrink-0 flex-row items-center gap-4 sm:flex-col sm:items-end sm:gap-3.5">
+            {(resume.basics.photo || currentCompany || totalExperience) && (
+              <div className="flex shrink-0 flex-row items-center gap-5 sm:flex-col sm:items-end sm:gap-4">
                 {resume.basics.photo && (
                   <div className="relative h-[7.5rem] w-[7.5rem] overflow-hidden rounded-xl border border-ink/15 bg-surface-sunk shadow-sm ring-1 ring-hairline sm:h-[8.5rem] sm:w-[8.5rem]">
                     <Image
@@ -192,10 +199,20 @@ export default async function CvPage({
                     />
                   </div>
                 )}
-                {currentCompany && (
-                  <div className="text-left sm:text-right">
-                    <MonoLabel>{tr ? 'Şu an' : 'Currently'}</MonoLabel>
-                    <p className="mt-1 font-serif text-[15px] leading-tight text-ink">{currentCompany}</p>
+                {(currentCompany || totalExperience) && (
+                  <div className="flex flex-col gap-3 text-left sm:items-end sm:text-right">
+                    {currentCompany && (
+                      <div>
+                        <MonoLabel>{tr ? 'Şu an' : 'Currently'}</MonoLabel>
+                        <p className="mt-1 font-serif text-[15px] leading-tight text-ink">{currentCompany}</p>
+                      </div>
+                    )}
+                    {totalExperience && (
+                      <div>
+                        <MonoLabel>{tr ? 'Deneyim' : 'Experience'}</MonoLabel>
+                        <p className="mt-1 font-serif text-[15px] leading-tight text-ink">{totalExperience}</p>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -214,7 +231,9 @@ export default async function CvPage({
                 aside={String(resume.experience.length).padStart(2, '0')}
               >
                 <div className="flex flex-col">
-                  {resume.experience.map((exp) => (
+                  {resume.experience.map((exp) => {
+                    const dur = fmtDuration(exp.startDate, exp.endDate, locale);
+                    return (
                     <div key={exp.id} className={specRowGridClass}>
                       <div className="min-w-0">
                         {exp.logo ? (
@@ -253,9 +272,13 @@ export default async function CvPage({
                           </div>
                         )}
                       </div>
-                      <span className={specDateColClass}>{fmtRange(exp.startDate, exp.endDate, locale)}</span>
+                      <div className={specDateColClass}>
+                        <span className="block">{fmtRange(exp.startDate, exp.endDate, locale)}</span>
+                        {dur && <span className="mt-1 block text-ink-secondary/60">{dur}</span>}
+                      </div>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </SectionRail>
             )}
@@ -335,7 +358,9 @@ export default async function CvPage({
                   </p>
                 )}
                 <ul className="flex flex-col" role="list">
-                  {resume.earlierExperience.entries.map((entry) => (
+                  {resume.earlierExperience.entries.map((entry) => {
+                    const dur = fmtDuration(entry.startDate, entry.endDate, locale);
+                    return (
                     <li key={`${entry.company}-${entry.startDate}`} className={compactRowGridClass}>
                       <div className="min-w-0">
                         <p className="font-sans text-[14px] leading-snug text-ink">{entry.company}</p>
@@ -344,9 +369,13 @@ export default async function CvPage({
                           {entry.note ? ` · ${entry.note}` : ''}
                         </p>
                       </div>
-                      <span className={specDateColClass}>{fmtRange(entry.startDate, entry.endDate, locale)}</span>
+                      <div className={specDateColClass}>
+                        <span className="block">{fmtRange(entry.startDate, entry.endDate, locale)}</span>
+                        {dur && <span className="mt-0.5 block text-ink-secondary/60">{dur}</span>}
+                      </div>
                     </li>
-                  ))}
+                    );
+                  })}
                 </ul>
               </SectionRail>
             )}

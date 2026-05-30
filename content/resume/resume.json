@@ -3,8 +3,8 @@
     "basics": {
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "tagline": ".NET ve React ile kurumsal portal/dashboard sistemleri ve ürünleşebilir web uygulamaları geliştiriyorum — problemden çözüme, uçtan uca.",
-      "summary": "Holding ölçeğinde çok şirketli, çok ülkeli sistemlerde tek oturum, yetkilendirme, raporlama ve veri taşıma (migration) süreçlerini sahipleniyorum. Kurumsal iç uygulamalardan müşteri için ürünleşebilir dış uygulamalara kadar; arayüzden veritabanına ve dağıtıma kadar tek başıma kurabiliyorum. REST API tasarımı ve yapay zeka / LLM (OpenAI, OCR) entegrasyonu deneyimim var.",
+      "tagline": ".NET ve React ile şirket içi portal/dashboard sistemleri ve müşteriye yönelik web uygulamaları geliştiriyorum; işi problemden çözüme kadar tek başıma götürüyorum.",
+      "summary": "Holding ölçeğinde, birden çok şirketi ve ülkeyi kapsayan sistemler geliştiriyorum: tek giriş, yetkilendirme, raporlama ve eski sistemlerden veri taşıma. Şirket içi uygulamalardan müşteriye açılan ürünlere kadar arayüzü, veritabanını ve yayına almayı birlikte yürütüyorum. REST API tasarımı ve OpenAI / OCR entegrasyonu konusunda da deneyimim var.",
       "primaryStack": [".NET", "ASP.NET Core", "C#", "React", "TypeScript", "SQL Server"],
       "photo": "/photo/naci.jpg",
       "location": "İstanbul, Türkiye"
@@ -20,12 +20,12 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "Holding genelinde kullanılan kurumsal erişim platformunu (Dashboard/Portal), seyahat yönetim sistemini ve İK avans modülünü geliştiriyorum. Türkiye ve Mısır'daki grup şirketlerinde tek oturum, ortak yetkilendirme ve tek ürün diliyle çalışan sistemlerde uçtan uca sorumluluk taşıyorum.",
+        "description": "Holding'in şirket içi kurumsal uygulamalarını geliştiriyorum: kurumsal erişim paneli (Dashboard/Portal), seyahat yönetim sistemi ve İK avans modülü. Türkiye ve Mısır'daki grup şirketlerinde tek giriş, ortak yetkilendirme ve ortak bir arayüzle çalışıyorum; işin tamamını üstleniyorum.",
         "highlights": [
-          "Kurumsal erişim platformunu (Portal) sıfırdan kurdum; duyuru, yemek menüsü, uygulama kataloğu ve yetki yönetimini tek oturum altında birleştirdim.",
-          "Bağımsız seyahat uygulamasını Dashboard altyapısına taşıdım (migration); tek oturum (SSO) ve ortak yetkilendirme ile mükerrer girişleri ortadan kaldırdım.",
-          "Avans modülünde Datalab ön işleme ve OpenAI ile fiş/fatura OCR akışı kurdum: çoklu belge tespiti, tutar ve konum çıkarımı, güven skoru ve görsel overlay doğrulama ile manuel veri girişini azalttım.",
-          "Çok şirketli avans sürecini (talep–teslim–fiş onayı–taksit–geri ödeme, kısmi teslimat, çok şirketli yetki) uçtan uca modelleyip operasyonel hale getirdim."
+          "Kurumsal erişim panelini (Portal) sıfırdan kurdum; duyuru, yemek menüsü, uygulama kataloğu ve yetki yönetimini tek girişte topladım.",
+          "Ayrı çalışan seyahat uygulamasını Dashboard'a taşıdım; tek giriş (SSO) ve ortak yetkilendirmeyle ikinci bir login ihtiyacını kaldırdım.",
+          "Avans modülünde fiş/fatura okuma akışı kurdum (Datalab ve OpenAI ile OCR): belge tespiti, tutar ve tarih çıkarımı, güven skoru ve görsel doğrulama; manuel veri girişini azalttım.",
+          "Çok şirketli avans sürecini baştan sona modelledim: talep, teslim, fiş onayı, taksit ve geri ödeme; kısmi teslim ve şirket bazlı yetki dahil."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "Entity Framework Core", "SQL Server", "OpenAI"],
         "logo": "/logo/eroglu-holding.png",
@@ -37,11 +37,11 @@
         "role": "Full Stack Developer",
         "startDate": "2025-10",
         "endDate": "2026-02",
-        "description": "Şirket içi İK portalı ve kurumsal yönetim sistemleri geliştirdim; eski masaüstü ve Access çözümlerini web tabanlı sistemlere taşıyarak üretim ve İK süreçlerinde dijital dönüşümü destekledim.",
+        "description": "Şirket içi İK portalı ve yönetim ekranları geliştirdim. Eski masaüstü ve Access çözümlerini web tabanlı sisteme taşıyarak üretim ve İK süreçlerinin dijitalleşmesine katkı verdim.",
         "highlights": [
-          "ASP.NET MVC ile performans değerlendirme, izin takibi ve çalışan yönetimi modüllerini geliştirdim; dağınık İK süreçlerini tek sistemde topladım.",
-          "Access ve masaüstü uygulamalarını web tabanlı sisteme taşıdım (migration); operasyonel verileri SQL Server üzerinde tek kaynakta birleştirdim.",
-          "Yönetim için raporlama ekranları kurdum ve yetkilendirmeyi rol bazlı kurguladım; manuel takip yükünü azalttım."
+          "ASP.NET MVC ile performans değerlendirme, izin takibi ve çalışan yönetimi ekranları geliştirdim; dağınık İK süreçlerini tek sistemde topladım.",
+          "Access ve masaüstü uygulamalarını web'e taşıdım; verileri SQL Server'da tek kaynakta birleştirdim.",
+          "Yönetim için raporlama ekranları ve rol bazlı yetkilendirme kurdum; manuel takibi azalttım."
         ],
         "stack": ["C#", ".NET", "ASP.NET MVC", "Entity Framework", "SQL Server", "React"],
         "visibility": "public",
@@ -53,11 +53,11 @@
         "role": "Full Stack Developer",
         "startDate": "2021-05",
         "endDate": "2025-10",
-        "description": "Müşteriler için ürünleşebilir, çok kiracılı (multi-tenant) web uygulamaları geliştirdim. Onboarding/eğitim platformu Oriento'yu .NET ve React ile uçtan uca kurdum; ajans/startup temposunda dış ürün geliştirme deneyimi edindim.",
+        "description": "Müşteriler için web uygulamaları geliştirdim; ajans/startup temposunda dış ürün geliştirme deneyimi edindim. Asıl işim, çok şirketli (multi-tenant) işe alıştırma ve eğitim platformu Oriento'yu .NET ve React ile baştan sona kurmaktı.",
         "highlights": [
-          "Çok kiracılı eğitim platformu Oriento'yu uçtan uca geliştirdim; onboarding/offboarding, interaktif eğitim, görev yönetimi ve raporlamayı tek üründe topladım.",
-          "RESTful API ve Entity Framework ile veri katmanını tasarladım; modülleri farklı müşterilere uyarlanabilir biçimde kurguladım.",
-          "Turkcell iş birliğiyle çocuklar için internet güvenliği oyunu (Galaksel), yapay zeka destekli ödül platformu (Awarder AI) ve chatbot (LunaBuddy) ürünlerinde yer aldım."
+          "Oriento'yu uçtan uca geliştirdim: işe alıştırma (onboarding/offboarding), interaktif eğitim, görev yönetimi ve raporlamayı tek üründe topladım.",
+          "REST API ve Entity Framework ile veri katmanını kurdum; modülleri farklı müşterilere uyarlanabilir biçimde tasarladım.",
+          "Turkcell iş birliğiyle yürütülen projelerde çalıştım: çocuklar için internet güvenliği oyunu (Galaksel), yapay zeka destekli ödül platformu (Awarder AI) ve bir sohbet botu (LunaBuddy)."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "Entity Framework", "Tailwind CSS", "WordPress"],
         "visibility": "public",
@@ -65,7 +65,7 @@
       }
     ],
     "earlierExperience": {
-      "summary": "Digitallica öncesinde farklı şirketlerde kısa dönemli roller; JavaScript, HTML/CSS, Delphi ve Oracle ile web geliştirme.",
+      "summary": "Digitallica öncesinde farklı şirketlerde kısa süreli roller; JavaScript, HTML/CSS, Delphi ve Oracle ile web geliştirme.",
       "entries": [
         {
           "company": "Bizmed — Sinerji Bilişim",
@@ -117,7 +117,7 @@
       },
       {
         "group": "AI & API",
-        "items": ["OpenAI / LLM", "RAG", "Embedding", "Chroma (vektör DB)", "OCR entegrasyonu", "REST API tasarımı"]
+        "items": ["OpenAI", "OCR entegrasyonu", "RAG", "Embedding", "Chroma (vektör DB)", "REST API tasarımı"]
       },
       {
         "group": "Mimari & Ürün Sahipliği",
@@ -132,7 +132,7 @@
       {
         "id": "kurumsal-dashboard",
         "title": "Kurumsal Dashboard (Portal)",
-        "summary": "Holding çalışanları için tek oturum, tek navigasyon kurumsal erişim platformu. Duyuru, yemek menüsü, uygulama kataloğu ve rol bazlı yetki yönetimini tek çatı altında toplar.",
+        "summary": "Holding çalışanları için tek girişli kurumsal erişim paneli. Duyuru, yemek menüsü, uygulama kataloğu ve rol bazlı yetkiyi tek yerde toplar.",
         "caseSlug": "kurumsal-dashboard",
         "stack": ["React", "TypeScript", ".NET", "ASP.NET Core", "SQL Server"],
         "visibility": "public"
@@ -140,15 +140,15 @@
       {
         "id": "seyahat-projesi",
         "title": "Seyahat Yönetim Sistemi",
-        "summary": "Dashboard platformuna entegre, holding genelinde seyahat talep, onay ve yönetim sistemi. Bağımsız uygulamadan tek oturuma taşındı; Türkiye ve Mısır operasyonlarını kapsar.",
+        "summary": "Dashboard'a entegre, holding genelinde seyahat talep ve onay sistemi. Ayrı uygulamadan tek girişe taşındı; Türkiye ve Mısır operasyonlarını kapsar.",
         "caseSlug": "seyahat-projesi",
         "stack": ["React", "TypeScript", ".NET", "ASP.NET Core"],
         "visibility": "public"
       },
       {
         "id": "oriento",
-        "title": "Oriento — Onboarding & Eğitim Platformu",
-        "summary": "Müşteri için geliştirilen, çok kiracılı (multi-tenant) ürünleşebilir onboarding/offboarding ve eğitim platformu. Digitallica'da .NET ve React ile uçtan uca geliştirdim.",
+        "title": "Oriento — İşe Alıştırma & Eğitim Platformu",
+        "summary": "Müşteri için geliştirdiğim, çok şirketli (multi-tenant) işe alıştırma ve eğitim platformu. Digitallica'da .NET ve React ile baştan sona kurdum.",
         "url": "https://orientoapp.com",
         "stack": ["React", "TypeScript", ".NET", "Entity Framework"],
         "visibility": "public"
@@ -219,8 +219,8 @@
     "basics": {
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "tagline": "I build enterprise portal/dashboard systems and productizable web apps with .NET and React — from problem to solution, end to end.",
-      "summary": "I own multi-company, multi-country systems at holding scale — single sign-on, authorization, reporting, and data migration. From internal enterprise apps to client-facing, productizable applications, I build from UI to database to deployment on my own. Experienced in REST API design and AI / LLM (OpenAI, OCR) integration.",
+      "tagline": "I build internal portal and dashboard systems and customer-facing web apps with .NET and React, and I can take a project from the problem to a working product on my own.",
+      "summary": "I build systems that run across several companies and countries at holding scale: single sign-on, authorization, reporting, and moving data off older systems. From internal tools to customer-facing products, I handle the UI, the database, and going live together. I also have experience with REST API design and OpenAI / OCR integration.",
       "primaryStack": [".NET", "ASP.NET Core", "C#", "React", "TypeScript", "SQL Server"],
       "photo": "/photo/naci.jpg",
       "location": "İstanbul, Türkiye"
@@ -236,12 +236,12 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "Building the enterprise access platform (Dashboard/Portal), travel management system, and HR advance module used across the holding group. I take end-to-end ownership of systems that run on single sign-on, shared authorization, and one product language for group companies in Turkey and Egypt.",
+        "description": "I build the holding's internal enterprise apps: the enterprise access panel (Dashboard/Portal), the travel management system, and the HR advance module. I work across group companies in Turkey and Egypt with single sign-on, shared authorization, and one shared interface, and I own the whole job.",
         "highlights": [
-          "Built the enterprise access platform (Portal) from scratch, consolidating announcements, meal menu, application catalog, and permission management under single sign-on.",
-          "Migrated the standalone Travel app onto the Dashboard infrastructure; single sign-on (SSO) and unified authorization removed duplicate logins.",
-          "Built a receipt/invoice OCR pipeline in the Advance module with Datalab pre-processing and OpenAI: multi-document detection, amount and position extraction, confidence scoring, and visual-overlay verification cut manual data entry.",
-          "Modeled the multi-company Advance domain end to end (request–delivery–receipt approval–installments–repayment, partial delivery, multi-company authorization) and made it operational."
+          "Built the enterprise access panel (Portal) from scratch — announcements, meal menu, application catalog, and permissions, all behind one login.",
+          "Moved the separate travel app into the Dashboard; single sign-on (SSO) and shared authorization removed the need for a second login.",
+          "Built receipt/invoice reading in the advance module (OCR with Datalab and OpenAI): document detection, amount and date extraction, confidence scoring, and visual checking, which cut manual data entry.",
+          "Modeled the multi-company advance process end to end: request, delivery, receipt approval, installments, and repayment — including partial delivery and per-company permissions."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "Entity Framework Core", "SQL Server", "OpenAI"],
         "logo": "/logo/eroglu-holding.png",
@@ -253,11 +253,11 @@
         "role": "Full Stack Developer",
         "startDate": "2025-10",
         "endDate": "2026-02",
-        "description": "Developed an internal HR portal and enterprise management systems; migrated legacy desktop and Access solutions to web-based systems, supporting digital transformation across production and HR processes.",
+        "description": "I built an internal HR portal and management screens. I moved older desktop and Access tools to a web-based system, which helped digitize production and HR processes.",
         "highlights": [
-          "Built performance review, leave tracking, and employee management modules with ASP.NET MVC, consolidating scattered HR processes into a single system.",
-          "Migrated Access and desktop applications to a web-based system; unified operational data on SQL Server as a single source.",
-          "Built reporting screens and role-based authorization for management, reducing manual tracking overhead."
+          "Built performance review, leave tracking, and employee management screens with ASP.NET MVC, bringing scattered HR steps into one system.",
+          "Moved Access and desktop apps to the web and brought the data together in one place on SQL Server.",
+          "Added reporting screens and role-based permissions for managers, which reduced manual tracking."
         ],
         "stack": ["C#", ".NET", "ASP.NET MVC", "Entity Framework", "SQL Server", "React"],
         "visibility": "public",
@@ -269,11 +269,11 @@
         "role": "Full Stack Developer",
         "startDate": "2021-05",
         "endDate": "2025-10",
-        "description": "Built productizable, multi-tenant web applications for clients. Delivered Oriento, an onboarding/training platform, end to end with .NET and React, gaining external product-development experience at agency/startup pace.",
+        "description": "I built web apps for clients and learned how product work goes at agency/startup speed. My main project was Oriento, a multi-tenant onboarding and training platform that I built end to end with .NET and React.",
         "highlights": [
-          "Built the multi-tenant training platform Oriento end to end, consolidating onboarding/offboarding, interactive training, task management, and reporting into one product.",
-          "Designed the data layer with RESTful APIs and Entity Framework, structuring modules to be adaptable per client.",
-          "In collaboration with Turkcell, contributed to an internet-safety game for children (Galaksel), an AI-assisted award platform (Awarder AI), and a chatbot (LunaBuddy)."
+          "Built Oriento end to end: onboarding/offboarding, interactive training, task management, and reporting in one product.",
+          "Set up the data layer with REST APIs and Entity Framework, and designed the modules so they could be adapted per client.",
+          "Worked on projects run with Turkcell: an internet-safety game for kids (Galaksel), an AI-assisted rewards platform (Awarder AI), and a chatbot (LunaBuddy)."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "Entity Framework", "Tailwind CSS", "WordPress"],
         "visibility": "public",
@@ -281,7 +281,7 @@
       }
     ],
     "earlierExperience": {
-      "summary": "Short-term roles at different companies before Digitallica; web development with JavaScript, HTML/CSS, Delphi, and Oracle.",
+      "summary": "Short roles at a few companies before Digitallica; web development with JavaScript, HTML/CSS, Delphi, and Oracle.",
       "entries": [
         {
           "company": "Bizmed — Sinerji Bilişim",
@@ -333,7 +333,7 @@
       },
       {
         "group": "AI & API",
-        "items": ["OpenAI / LLM", "RAG", "Embeddings", "Chroma (vector DB)", "OCR integration", "REST API design"]
+        "items": ["OpenAI", "OCR integration", "RAG", "Embeddings", "Chroma (vector DB)", "REST API design"]
       },
       {
         "group": "Architecture & Product Ownership",
@@ -348,7 +348,7 @@
       {
         "id": "kurumsal-dashboard",
         "title": "Enterprise Dashboard (Portal)",
-        "summary": "Single sign-on enterprise access platform for holding employees. Consolidates announcements, meal menu, application catalog, and role-based permission management under one roof.",
+        "summary": "Single sign-on access panel for holding employees. Brings announcements, the meal menu, the application catalog, and role-based permissions into one place.",
         "caseSlug": "kurumsal-dashboard",
         "stack": ["React", "TypeScript", ".NET", "ASP.NET Core", "SQL Server"],
         "visibility": "public"
@@ -356,7 +356,7 @@
       {
         "id": "seyahat-projesi",
         "title": "Travel Management System",
-        "summary": "Travel request, approval, and management system integrated into the Dashboard platform. Migrated from a standalone app to single sign-on; covers Turkey and Egypt operations across the holding group.",
+        "summary": "Travel request and approval system across the holding, integrated into the Dashboard. Moved from a separate app to single sign-on; covers Turkey and Egypt.",
         "caseSlug": "seyahat-projesi",
         "stack": ["React", "TypeScript", ".NET", "ASP.NET Core"],
         "visibility": "public"
@@ -364,7 +364,7 @@
       {
         "id": "oriento",
         "title": "Oriento — Onboarding & Training Platform",
-        "summary": "Client-facing, productizable multi-tenant onboarding/offboarding and training platform. Built end to end with .NET and React at Digitallica.",
+        "summary": "A multi-tenant onboarding and training platform I built for a client. Built end to end with .NET and React at Digitallica.",
         "url": "https://orientoapp.com",
         "stack": ["React", "TypeScript", ".NET", "Entity Framework"],
         "visibility": "public"

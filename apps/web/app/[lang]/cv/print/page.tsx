@@ -4,7 +4,7 @@ import Image from 'next/image';
 import type { Locale } from '@nacianilcom/content-core';
 import { buildUrl } from '@nacianilcom/content-core';
 import { loadResume } from '../../../../src/content/loader';
-import { fmtRange } from '../../../../src/lib/dateRange';
+import { fmtRange, fmtDuration } from '../../../../src/lib/dateRange';
 import { brandLabel } from '../../../../src/lib/brandLabel';
 import { resolveSiteOrigin, displayOrigin } from '../../../../src/lib/origin';
 import { QrTag } from '../../../../src/components/QrTag';
@@ -111,6 +111,7 @@ export default async function CvPrintPage({
                 {resume.experience.map((exp, i) => {
                   // Prioritise for one page: most-recent role gets more bullets.
                   const shown = exp.highlights.slice(0, i === 0 ? 3 : 2);
+                  const dur = fmtDuration(exp.startDate, exp.endDate, locale);
                   return (
                     <div key={exp.id} className="break-inside-avoid">
                       <div className="flex items-baseline justify-between gap-4">
@@ -120,9 +121,14 @@ export default async function CvPrintPage({
                             {exp.role}
                           </span>
                         </h3>
-                        <span className="shrink-0 font-mono text-[8.5px] uppercase tracking-[0.12em] tabular-nums text-ink-secondary">
-                          {fmtRange(exp.startDate, exp.endDate, locale)}
-                        </span>
+                        <div className="shrink-0 text-right font-mono uppercase tabular-nums text-ink-secondary">
+                          <span className="block text-[8.5px] tracking-[0.12em]">
+                            {fmtRange(exp.startDate, exp.endDate, locale)}
+                          </span>
+                          {dur && (
+                            <span className="block text-[7.5px] tracking-[0.1em] text-ink-secondary/70">{dur}</span>
+                          )}
+                        </div>
                       </div>
                       {shown.length > 0 ? (
                         <ul className="mt-1 flex flex-col gap-0.5">

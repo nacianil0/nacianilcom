@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T15:57:51.494Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T20:46:40.531Z
 > Files: 201 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
@@ -126,11 +126,11 @@
 
 ## apps/web/app/[lang]/cv/
 
-- `page.tsx` — VALID_LANGS (~5768 tok)
+- `page.tsx` — VALID_LANGS (~6180 tok)
 
 ## apps/web/app/[lang]/cv/print/
 
-- `page.tsx` — Accent mono section label — replaces the web's left rail to save print width. (~3096 tok)
+- `page.tsx` — Accent mono section label — replaces the web's left rail to save print width. (~3201 tok)
 
 ## apps/web/app/[lang]/feed.xml/
 
@@ -154,7 +154,7 @@
 
 ## apps/web/app/[lang]/work/[caseSlug]/
 
-- `page.tsx` — VALID_LANGS (~1719 tok)
+- `page.tsx` — Small, low-key section marker — keeps the page reading like a story, not a form. (~2074 tok)
 
 ## apps/web/app/api/cron/
 
@@ -197,7 +197,7 @@
 
 ## apps/web/src/lib/
 
-- `dateRange.ts` — Format a "YYYY-MM" (or "YYYY") string as a short localized month-year. (~233 tok)
+- `dateRange.ts` — Format a "YYYY-MM" (or "YYYY") string as a short localized month-year. (~911 tok)
 - `jsonld.ts` — Exports websiteJsonLd, personJsonLd, breadcrumbJsonLd, ArticleJsonLdOptions + 4 more (~696 tok)
 - `messages.ts` — Exports WebMessages, getMessages (~146 tok)
 - `origin.ts` — Resolve the origin to advertise inside the printable CV (link + QR). (~386 tok)
@@ -233,15 +233,15 @@
 
 ## content/resume/
 
-- `resume.json` (~5877 tok)
+- `resume.json` (~5738 tok)
 
 ## content/resume/portfolio/kurumsal-dashboard/
 
-- `case.json` — klasörü açarak Dashboard modülünü kurdum. Login sonrası merkez ekran: uygulama kataloğu (izin bazlı) (~1201 tok)
+- `case.json` — Declares everyone (~1125 tok)
 
 ## content/resume/portfolio/seyahat-projesi/
 
-- `case.json` (~1180 tok)
+- `case.json` — Declares looked (~1112 tok)
 
 ## content/series/
 

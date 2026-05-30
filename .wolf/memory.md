@@ -527,3 +527,19 @@
 | 18:51 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp12_13_done.md | expanded (+6 lines) | ~409 |
 | 18:57 | Edited .claude/launch.json | expanded (+7 lines) | ~108 |
 | 18:57 | Created apps/web/app/[lang]/cv/print/page.tsx | — | ~3096 |
+| 23:42 | Edited apps/web/src/lib/dateRange.ts | added 13 condition(s) | ~765 |
+| 23:43 | Created content/resume/resume.json | — | ~5738 |
+| 23:43 | Created content/resume/portfolio/kurumsal-dashboard/case.json | — | ~1125 |
+| 23:44 | Created content/resume/portfolio/seyahat-projesi/case.json | — | ~1112 |
+| 23:44 | Created apps/web/app/[lang]/work/[caseSlug]/page.tsx | — | ~2074 |
+| 23:45 | Edited apps/web/src/lib/dateRange.ts | modified fmtTotalExperience() | ~51 |
+| 23:45 | Edited apps/web/app/[lang]/cv/page.tsx | inline fix | ~25 |
+| 23:45 | Edited apps/web/app/[lang]/cv/page.tsx | added nullish coalescing | ~149 |
+| 23:45 | Edited apps/web/app/[lang]/cv/page.tsx | expanded (+10 lines) | ~457 |
+| 23:46 | Edited apps/web/app/[lang]/cv/page.tsx | 4→6 lines | ~90 |
+| 23:46 | Edited apps/web/app/[lang]/cv/page.tsx | 8→12 lines | ~144 |
+| 23:46 | Edited apps/web/app/[lang]/cv/page.tsx | 4→6 lines | ~124 |
+| 23:46 | Edited apps/web/app/[lang]/cv/page.tsx | 6→10 lines | ~122 |
+| 23:46 | Edited apps/web/app/[lang]/cv/print/page.tsx | inline fix | ~20 |
+| 23:46 | Edited apps/web/app/[lang]/cv/print/page.tsx | 3→4 lines | ~75 |
+| 23:46 | Edited apps/web/app/[lang]/cv/print/page.tsx | 3→8 lines | ~148 |

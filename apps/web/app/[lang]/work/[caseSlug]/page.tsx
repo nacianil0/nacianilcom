@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Locale } from '@nacianilcom/content-core';
 import { buildUrl } from '@nacianilcom/content-core';
-import { Masthead, MonoLabel, SectionRail, Chip } from '@nacianilcom/ui';
+import { Masthead, MonoLabel, Chip } from '@nacianilcom/ui';
 import { loadCase, listCaseSlugs } from '../../../../src/content/loader';
 import { SiteNav } from '../../../../src/components/SiteNav';
 import { SiteFooter } from '../../../../src/components/SiteFooter';
@@ -61,6 +61,13 @@ export async function generateMetadata({
   };
 }
 
+/** Small, low-key section marker — keeps the page reading like a story, not a form. */
+function Kicker({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">{children}</p>
+  );
+}
+
 export default async function CaseStudyPage({
   params,
 }: {
@@ -73,27 +80,19 @@ export default async function CaseStudyPage({
   const c = await loadCase(caseSlug, locale);
   if (!c) notFound();
 
+  const tr = locale === 'tr';
   const altLangUrl = buildUrl(locale === 'tr' ? 'en' : 'tr', 'workCase', { caseSlug });
   const workUrl = buildUrl(locale, 'work');
   const canonicalUrl = `${SITE_URL}${buildUrl(locale, 'workCase', { caseSlug })}`;
 
   const personLd = personJsonLd();
   const breadcrumbLd = breadcrumbJsonLd([
-    { name: locale === 'tr' ? 'Ana sayfa' : 'Home', url: `${SITE_URL}${buildUrl(locale, 'home')}` },
-    { name: locale === 'tr' ? 'Projeler' : 'Work', url: `${SITE_URL}${workUrl}` },
+    { name: tr ? 'Ana sayfa' : 'Home', url: `${SITE_URL}${buildUrl(locale, 'home')}` },
+    { name: tr ? 'Projeler' : 'Work', url: `${SITE_URL}${workUrl}` },
     { name: c.title, url: canonicalUrl },
   ]);
 
-  const sections: Array<{ key: string; label: string; content: string }> = [
-    { key: 'problem', label: locale === 'tr' ? 'Problem' : 'Problem', content: c.problem },
-    { key: 'context', label: locale === 'tr' ? 'Bağlam' : 'Context', content: c.context },
-    { key: 'role', label: locale === 'tr' ? 'Rol' : 'Role', content: c.role },
-    ...(c.constraints
-      ? [{ key: 'constraints', label: locale === 'tr' ? 'Kısıtlar' : 'Constraints', content: c.constraints }]
-      : []),
-    { key: 'solution', label: locale === 'tr' ? 'Çözüm' : 'Solution', content: c.solution },
-    { key: 'impact', label: locale === 'tr' ? 'Etki' : 'Impact', content: c.impact },
-  ];
+  const bodyClass = 'font-sans text-[15.5px] leading-[1.8] text-ink-secondary';
 
   return (
     <>
@@ -103,14 +102,12 @@ export default async function CaseStudyPage({
       <div className="flex min-h-screen flex-col bg-surface">
         <SiteNav lang={locale} altLangUrl={altLangUrl} />
 
-        <Masthead
-          crumbs={<Crumbs items={[{ label: locale === 'tr' ? 'Projeler' : 'Work', href: workUrl }]} />}
-        />
+        <Masthead crumbs={<Crumbs items={[{ label: tr ? 'Projeler' : 'Work', href: workUrl }]} />} />
 
         <main className="mx-auto w-full max-w-[1100px] flex-1 px-6 py-12 sm:px-10 lg:px-14">
-          <article data-reading className="mx-auto max-w-[760px]" aria-labelledby="case-title">
+          <article data-reading className="mx-auto max-w-[720px]" aria-labelledby="case-title">
             <header>
-              <MonoLabel tone="accent">Case Study</MonoLabel>
+              <MonoLabel tone="accent">{tr ? 'Vaka Çalışması' : 'Case Study'}</MonoLabel>
               <h1
                 id="case-title"
                 className="mt-3 font-serif text-[32px] font-semibold leading-[1.08] tracking-[-0.01em] text-ink sm:text-[42px]"
@@ -118,26 +115,56 @@ export default async function CaseStudyPage({
                 {c.title}
                 <span className="text-accent">.</span>
               </h1>
+              <p className="mt-5 font-serif text-[19px] leading-[1.5] text-ink sm:text-[21px]">{c.summary}</p>
             </header>
 
-            <p className="mt-6 border-l-2 border-accent pl-4 font-sans text-[16px] leading-[1.7] text-ink-secondary">
-              {c.summary}
-            </p>
-
-            {c.stack.length > 0 && (
-              <div className="mt-6 flex flex-wrap gap-1.5">
-                {c.stack.map((s) => (
-                  <Chip key={s}>{s}</Chip>
-                ))}
+            {/* Quick facts — compact, not a labelled wall */}
+            <dl className="mt-8 grid grid-cols-1 gap-x-10 gap-y-5 border-y border-hairline py-6 sm:grid-cols-[auto_1fr]">
+              <div>
+                <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary">
+                  {tr ? 'Rol' : 'Role'}
+                </dt>
+                <dd className="mt-1.5 max-w-[420px] font-sans text-[14px] leading-[1.6] text-ink">{c.role}</dd>
               </div>
-            )}
+              {c.stack.length > 0 && (
+                <div>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary">
+                    {tr ? 'Teknolojiler' : 'Stack'}
+                  </dt>
+                  <dd className="mt-2 flex flex-wrap gap-1.5">
+                    {c.stack.map((s) => (
+                      <Chip key={s}>{s}</Chip>
+                    ))}
+                  </dd>
+                </div>
+              )}
+            </dl>
 
-            <div className="mt-12 flex flex-col gap-12">
-              {sections.map(({ key, label, content }) => (
-                <SectionRail key={key} label={label} id={`case-${key}`}>
-                  <p className="font-sans text-[15.5px] leading-[1.75] text-ink-secondary">{content}</p>
-                </SectionRail>
-              ))}
+            {/* Narrative */}
+            <div className="mt-10 flex flex-col gap-9">
+              <section>
+                <Kicker>{tr ? 'Arka plan' : 'Background'}</Kicker>
+                <p className={bodyClass}>{c.problem}</p>
+                <p className={`mt-4 ${bodyClass}`}>{c.context}</p>
+              </section>
+
+              <section>
+                <Kicker>{tr ? 'Ne yaptım' : 'What I did'}</Kicker>
+                <p className={bodyClass}>{c.solution}</p>
+                {c.constraints && (
+                  <p className="mt-5 border-l-2 border-hairline pl-4 font-sans text-[14px] leading-[1.65] text-ink-secondary">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-secondary/80">
+                      {tr ? 'Kısıt' : 'Constraint'}
+                    </span>
+                    <span className="mt-1 block">{c.constraints}</span>
+                  </p>
+                )}
+              </section>
+
+              <section className="border-l-2 border-accent pl-5">
+                <Kicker>{tr ? 'Sonuç' : 'Outcome'}</Kicker>
+                <p className="font-serif text-[17px] leading-[1.6] text-ink">{c.impact}</p>
+              </section>
             </div>
 
             <div className="mt-12 border-t border-hairline pt-6">
@@ -145,7 +172,7 @@ export default async function CaseStudyPage({
                 href={workUrl}
                 className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-secondary transition-colors hover:text-ink"
               >
-                ← {locale === 'tr' ? 'Projelere dön' : 'Back to Work'}
+                ← {tr ? 'Projelere dön' : 'Back to Work'}
               </Link>
             </div>
           </article>
