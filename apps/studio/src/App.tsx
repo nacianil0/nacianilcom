@@ -3,14 +3,16 @@ import { DraftReview } from './screens/DraftReview';
 import { SeoCheck } from './screens/SeoCheck';
 import { Publisher } from './screens/Publisher';
 import { Prompts } from './screens/Prompts';
+import { Inbox } from './screens/Inbox';
 
-type Screen = 'review' | 'qc' | 'publish' | 'prompts';
+type Screen = 'review' | 'qc' | 'publish' | 'prompts' | 'inbox';
 
 const NAV: Array<{ id: Screen; label: string }> = [
   { id: 'review', label: 'Draft Review' },
   { id: 'qc', label: 'SEO / QC Check' },
   { id: 'publish', label: 'Publisher' },
   { id: 'prompts', label: 'Prompts' },
+  { id: 'inbox', label: 'AI Inbox' },
 ];
 
 export default function App() {
@@ -56,6 +58,7 @@ export default function App() {
           {screen === 'qc' && <SeoCheck />}
           {screen === 'publish' && <Publisher />}
           {screen === 'prompts' && <Prompts />}
+          {screen === 'inbox' && <Inbox />}
         </main>
       </div>
     </div>

@@ -160,6 +160,138 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-30T00:34:17.660Z"
+    },
+    {
+      "id": "bug-011",
+      "timestamp": "2026-05-30T08:37:33.387Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/web/app/api/revalidate/route.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:37:33.387Z"
+    },
+    {
+      "id": "bug-012",
+      "timestamp": "2026-05-30T08:38:10.356Z",
+      "error_message": "Missing guard clause",
+      "file": "apps/web/app/[lang]/series/[seriesSlug]/page.tsx",
+      "root_cause": "No early return/throw for edge case: meta && isPublic(meta, now",
+      "fix": "Added guard clause: if (meta && isPublic(meta, now)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:38:10.356Z"
+    },
+    {
+      "id": "bug-013",
+      "timestamp": "2026-05-30T12:00:00.000Z",
+      "error_message": "Type 'false' is not assignable to type 'true' in redirect test fixture",
+      "file": "apps/web/src/__tests__/security.test.ts",
+      "root_cause": "RedirectItemSchema.permanent is z.literal(true) not z.boolean() — passing permanent: false fails TypeScript",
+      "fix": "Changed permanent: false to permanent: true in test fixtures",
+      "tags": ["type-error", "test", "redirect-schema", "literal-type"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T12:00:00.000Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-05-30T12:00:00.000Z",
+      "error_message": "Studio router tests fail: resolveTargetPath returns null for seriesSlug/articleId fields",
+      "file": "apps/studio/src/__tests__/router.test.ts",
+      "root_cause": "content-core dist/ was stale (InboxItemSchema not rebuilt after adding new optional fields). Runtime uses dist/index.js via exports.import, not src/",
+      "fix": "Added resolve.alias in vitest.config.ts pointing @nacianilcom/content-core to src/index.ts; rebuilt content-core dist/ with pnpm --filter build",
+      "tags": ["vitest", "content-core", "stale-dist", "workspace-alias"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T12:00:00.000Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-05-30T12:00:00.000Z",
+      "error_message": "@fastify/static path traversal vulnerability (GHSA-pr96-94w5-mx2h + GHSA-x428-ghpx-8j92)",
+      "file": "apps/studio/package.json",
+      "root_cause": "@fastify/static 8.x is vulnerable to path traversal and route guard bypass; 8.x designed for Fastify 4.x but studio uses Fastify 5.x",
+      "fix": "Upgraded @fastify/static from ^8.0.0 to ^9.1.1",
+      "tags": ["security", "dependency", "fastify", "path-traversal"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T12:00:00.000Z"
+    },
+    {
+      "id": "bug-013",
+      "timestamp": "2026-05-30T08:54:37.926Z",
+      "error_message": "Missing error handling in safeFilename",
+      "file": "apps/studio/server/index.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:54:37.926Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-05-30T08:55:17.254Z",
+      "error_message": "CSS fix: id",
+      "file": "apps/studio/src/App.tsx",
+      "root_cause": "id: 'prompts', label: 'Prompts' → 'inbox', label: 'AI Inbox'",
+      "fix": "Changed id: 'prompts', label: 'Prompts' → 'inbox', label: 'AI Inbox'",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:55:17.254Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-05-30T08:59:34.343Z",
+      "error_message": "Wrong reference: false should be true",
+      "file": "apps/web/src/__tests__/security.test.ts",
+      "root_cause": "Used \"false\" instead of \"true\"",
+      "fix": "Changed false → true",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T08:59:34.343Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-05-30T09:01:25.893Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/studio/package.json",
+      "root_cause": "Had \"^8.0.0\"",
+      "fix": "Changed to \"^9.1.1\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-30T09:01:25.893Z"
     }
   ]
 }

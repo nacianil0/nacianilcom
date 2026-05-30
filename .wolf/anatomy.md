@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T08:42:38.701Z
-> Files: 149 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T09:01:25.872Z
+> Files: 157 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
@@ -22,9 +22,10 @@
 ## apps/studio/
 
 - `.env.example` — REVALIDATE_SECRET + WEB_URL for studio server (~40 tok)
-- `package.json` — Node.js package manifest; added @mdx-js/mdx, simple-git, @nacianilcom/content-core (~351 tok)
+- `package.json` — Node.js package manifest (~365 tok)
 - `postcss.config.mjs` (~22 tok)
 - `tailwind.config.ts` — /*.{ts,tsx}', (~107 tok)
+- `vitest.config.ts` — /*.test.ts'], (~126 tok)
 
 ## apps/studio/messages/
 
@@ -33,6 +34,7 @@
 
 ## apps/studio/prompts/
 
+- `ai-smell-cleaning.md` — Prompt: AI-Generic Smell Cleaning (~361 tok)
 - `article-brief.md` — §19: brief + meta.json taslağı (~180 tok)
 - `article-brief.md` — Prompt: Article Brief (~282 tok)
 - `en-adaptation.md` — §19: EN uyarlama (~150 tok)
@@ -43,8 +45,10 @@
 - `monthly-plan.md` — Prompt: Monthly Plan (~233 tok)
 - `outline.md` — §19: makale iskelet (~160 tok)
 - `outline.md` — Prompt: Article Outline (~222 tok)
+- `pre-publish-qc.md` — Prompt: Pre-Publish QC Report (~425 tok)
 - `resume-case-study.md` — §19: CV + case study (~160 tok)
 - `resume-case-study.md` — Prompt: Resume / Case Study (~238 tok)
+- `revision.md` — Prompt: Revision / Editing (~336 tok)
 - `seo-qc-review.md` — §19: SEO + QC review (~150 tok)
 - `seo-qc-review.md` — Prompt: SEO / QC Review (~238 tok)
 - `tr-draft.md` — §19: Türkçe ilk taslak (~140 tok)
@@ -56,18 +60,24 @@
 
 ## apps/studio/server/
 
-- `index.ts` — API routes: GET (6 endpoints) (~2248 tok)
+- `index.ts` — API routes: GET (6 endpoints) (~4021 tok)
+- `router.ts` — Maps an InboxItem to its target file path in the content tree. (~1242 tok)
 
 ## apps/studio/src/
 
-- `App.tsx` — NAV (~660 tok)
+- `App.tsx` — NAV (~698 tok)
 - `main.css` — Styles: 6 rules, 3 vars (~346 tok)
 - `main.tsx` — rootEl (~92 tok)
+
+## apps/studio/src/__tests__/
+
+- `router.test.ts` — Declares ROOT (~2847 tok)
 
 ## apps/studio/src/screens/
 
 - `DraftReview.tsx` — @mdx-js/mdx evaluate; packages/ui bileşen map; parseMdx frontmatter display (~800 tok)
 - `DraftReview.tsx` — MDX_COMPONENTS (~1759 tok)
+- `Inbox.tsx` — STATUS_ORDER (~2396 tok)
 - `Prompts.tsx` — /api/prompts list + copy-to-clipboard görüntüleyici (~400 tok)
 - `Prompts.tsx` — Prompts (~877 tok)
 - `Publisher.tsx` — koşullu publish buton (QC=0 gerekli) → /api/publish → commit+push+revalidate (~700 tok)
@@ -83,7 +93,7 @@
 ## apps/web/
 
 - `eslint.config.mjs` — ', 'node_modules/**'] }, (~116 tok)
-- `next.config.ts` — Declares loadRedirects (~208 tok)
+- `next.config.ts` — Declares loadRedirects (~760 tok)
 - `package.json` — Node.js package manifest (~264 tok)
 - `postcss.config.mjs` — Declares postcssConfig (~32 tok)
 - `tailwind.config.ts` — /*.{ts,tsx}', (~520 tok)
@@ -139,6 +149,7 @@
 ## apps/web/src/__tests__/
 
 - `revalidate-targets.test.ts` — Declares params (~1166 tok)
+- `security.test.ts` — ─── Open Redirect Guard ────────────────────────────────────────────────────── (~1205 tok)
 
 ## apps/web/src/components/
 
@@ -276,7 +287,7 @@
 ## packages/content-core/src/schemas/
 
 - `frontmatter.ts` — Zod schemas: FaqItemSchema, FrontmatterSchema (~110 tok)
-- `inbox.ts` — Zod schemas: InboxKindSchema, InboxStatusSchema, InboxItemSchema (~195 tok)
+- `inbox.ts` — Zod schemas: InboxKindSchema, InboxStatusSchema, InboxItemSchema (~430 tok)
 - `index.ts` (~268 tok)
 - `meta.ts` — Zod schemas: AssetSchema, MetaSchema (~255 tok)
 - `plans.ts` — Zod schemas: ScoresSchema, TopicSchema, MonthlyPlanSchema (~415 tok)

@@ -4,6 +4,8 @@ import fs from 'fs/promises';
 import crypto from 'crypto';
 import fastifyStatic from '@fastify/static';
 import simpleGit from 'simple-git';
+import { InboxItemSchema } from '@nacianilcom/content-core';
+import { resolveTargetPath, writeWithBackup, serializePayload, moveToUnresolved } from './router';
 
 const HOST = '127.0.0.1';
 const PORT = 3001;
@@ -190,6 +192,166 @@ server.post<{ Body: PublishBody }>('/api/publish', async (req, reply) => {
   }
 
   return { ok: true, publishDate: date };
+});
+
+// ─── Inbox API (§26 — Auto Output Routing) ───────────────────────────────────
+
+const INBOX_DIR = path.join(CONTENT_ROOT, '_inbox');
+
+function safeFilename(name: string): boolean {
+  return /^[a-z0-9_.-]+\.json$/.test(name);
+}
+
+// GET /api/inbox — scan and list all items (root + unresolved/)
+server.get('/api/inbox', async () => {
+  const readDir = async (dir: string, prefix = '') => {
+    const entries = await fs.readdir(dir, { withFileTypes: true }).catch(() => []);
+    const items: unknown[] = [];
+    for (const e of entries) {
+      if (!e.isFile() || !e.name.endsWith('.json')) continue;
+      const filePath = path.join(dir, e.name);
+      const raw = await fs.readFile(filePath, 'utf-8').catch(() => null);
+      if (!raw) continue;
+      try {
+        const parsed = JSON.parse(raw) as Record<string, unknown>;
+        items.push({ filename: prefix + e.name, ...parsed });
+      } catch {
+        items.push({ filename: prefix + e.name, status: 'failed', reviewReason: 'Invalid JSON' });
+      }
+    }
+    return items;
+  };
+
+  const root = await readDir(INBOX_DIR);
+  const unresolved = await readDir(path.join(INBOX_DIR, 'unresolved'), 'unresolved/');
+  return [...root, ...unresolved];
+});
+
+// POST /api/inbox — drop a new item (Claude Code or external output)
+server.post<{ Body: Record<string, unknown> }>('/api/inbox', async (req, reply) => {
+  let item;
+  try {
+    item = InboxItemSchema.parse({ ...req.body, status: 'detected' });
+  } catch (err) {
+    return reply.status(400).send({ error: 'Invalid inbox item schema', detail: String(err) });
+  }
+
+  await fs.mkdir(INBOX_DIR, { recursive: true });
+  const filename = `${item.kind}-${item.createdAt.replace(/[T:.Z]/g, '-').slice(0, 19)}.json`;
+  const filePath = path.join(INBOX_DIR, filename);
+
+  // Idempotency: if file already exists with same content, skip
+  const existing = await fs.readFile(filePath, 'utf-8').catch(() => null);
+  if (existing) {
+    try {
+      const existingItem = InboxItemSchema.parse(JSON.parse(existing));
+      if (existingItem.status === 'routed') {
+        return { ok: true, filename, status: 'already-routed', target: existingItem.target };
+      }
+    } catch { /* re-write */ }
+  }
+
+  await fs.writeFile(filePath, JSON.stringify(item, null, 2) + '\n', 'utf-8');
+  return { ok: true, filename, status: 'detected' };
+});
+
+// POST /api/inbox/:filename/route — trigger routing for a specific file
+server.post<{ Params: { filename: string } }>('/api/inbox/:filename/route', async (req, reply) => {
+  const { filename } = req.params;
+  if (!safeFilename(filename)) return reply.status(400).send({ error: 'Invalid filename' });
+
+  const filePath = path.join(INBOX_DIR, filename);
+  const raw = await fs.readFile(filePath, 'utf-8').catch(() => null);
+  if (!raw) return reply.status(404).send({ error: 'File not found' });
+
+  let item;
+  try {
+    item = InboxItemSchema.parse(JSON.parse(raw));
+  } catch (err) {
+    // Mark as failed
+    const failed = { ...(JSON.parse(raw) as Record<string, unknown>), status: 'failed', reviewReason: 'Schema validation failed' };
+    await fs.writeFile(filePath, JSON.stringify(failed, null, 2) + '\n', 'utf-8');
+    return reply.status(400).send({ error: 'Schema validation failed', detail: String(err) });
+  }
+
+  // Idempotency: already routed → skip
+  if (item.status === 'routed') {
+    return { ok: true, filename, status: 'already-routed', target: item.target };
+  }
+
+  const targetPath = resolveTargetPath(item, CONTENT_ROOT);
+
+  if (!targetPath) {
+    await moveToUnresolved(filename, INBOX_DIR, item, 'Missing required routing fields');
+    return reply.status(422).send({
+      error: 'Cannot determine target path',
+      reason: 'Missing required routing fields (targetMonth / seriesSlug / articleId / language)',
+    });
+  }
+
+  const content = serializePayload(item);
+  const writeResult = await writeWithBackup(targetPath, content);
+
+  // Update inbox item to routed
+  const routed = {
+    ...item,
+    status: 'routed' as const,
+    target: targetPath,
+    backupPath: writeResult.backupPath,
+  };
+  await fs.writeFile(filePath, JSON.stringify(routed, null, 2) + '\n', 'utf-8');
+
+  return {
+    ok: true,
+    filename,
+    status: 'routed',
+    target: targetPath,
+    backup: writeResult.backupPath,
+  };
+});
+
+// POST /api/inbox/unresolved/:filename/route — retry routing for an unresolved item
+server.post<{ Params: { filename: string } }>(
+  '/api/inbox/unresolved/:filename/route',
+  async (req, reply) => {
+    const { filename } = req.params;
+    if (!safeFilename(filename)) return reply.status(400).send({ error: 'Invalid filename' });
+
+    const filePath = path.join(INBOX_DIR, 'unresolved', filename);
+    const raw = await fs.readFile(filePath, 'utf-8').catch(() => null);
+    if (!raw) return reply.status(404).send({ error: 'File not found' });
+
+    // Move back to inbox root and re-route
+    await fs.mkdir(INBOX_DIR, { recursive: true });
+    await fs.copyFile(filePath, path.join(INBOX_DIR, filename));
+    await fs.unlink(filePath).catch(() => null);
+
+    // Delegate to the main route handler via recursive logic
+    const raw2 = await fs.readFile(path.join(INBOX_DIR, filename), 'utf-8').catch(() => null);
+    if (!raw2) return reply.status(500).send({ error: 'Move failed' });
+
+    let item;
+    try {
+      item = InboxItemSchema.parse({ ...JSON.parse(raw2), status: 'detected' });
+    } catch {
+      return reply.status(400).send({ error: 'Schema validation failed' });
+    }
+
+    await fs.writeFile(
+      path.join(INBOX_DIR, filename),
+      JSON.stringify(item, null, 2) + '\n',
+      'utf-8',
+    );
+    return reply.redirect(`/api/inbox/${filename}/route`);
+  },
+);
+
+// DELETE /api/inbox/:filename — discard an item (explicit user action)
+server.delete<{ Params: { filename: string } }>('/api/inbox/:filename', async (req, reply) => {
+  const { filename } = req.params;
+  if (!safeFilename(filename)) return reply.status(400).send({ error: 'Invalid filename' });
+  await fs.unlink(path.join(INBOX_DIR, filename)).catch(() => null);
+  return { ok: true };
 });
 
 // ─── Prompts API ─────────────────────────────────────────────────────────────

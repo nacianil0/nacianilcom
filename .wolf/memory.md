@@ -331,3 +331,45 @@
 | 11:42 | WP-07 implement: revalidate-targets.ts, /api/cron, dynamicParams+revalidate, batch revalidate endpoint, 13 tests | apps/web/src/lib/revalidate-targets.ts, apps/web/app/api/cron/route.ts, apps/web/app/api/revalidate/route.ts, 3 page files | pnpm -w test+typecheck+lint+build all clean | ~2k |
 | 11:42 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp07_done.md | — | ~387 |
 | 11:42 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | 1→2 lines | ~77 |
+| 11:43 | Session end: 16 writes across 10 files (revalidate-targets.ts, vercel.json, route.ts, page.tsx, vitest.config.ts) | 15 reads | ~16676 tok |
+
+## Session: 2026-05-30 11:45
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 11:52 | Edited apps/web/next.config.ts | modified loadRedirects() | ~760 |
+| 11:53 | Created apps/web/src/__tests__/security.test.ts | — | ~1206 |
+| 11:53 | Edited packages/content-core/src/schemas/inbox.ts | expanded (+16 lines) | ~429 |
+| 11:54 | Created apps/studio/server/router.ts | — | ~1242 |
+| 11:54 | Edited apps/studio/server/index.ts | added 2 import(s) | ~102 |
+| 11:54 | Edited apps/studio/server/index.ts | added error handling | ~1751 |
+| 11:55 | Created apps/studio/src/screens/Inbox.tsx | — | ~2396 |
+| 11:55 | Edited apps/studio/src/App.tsx | added 1 import(s) | ~170 |
+| 11:55 | Edited apps/studio/src/App.tsx | 4→5 lines | ~68 |
+| 11:55 | Created apps/studio/prompts/revision.md | — | ~359 |
+| 11:55 | Created apps/studio/prompts/ai-smell-cleaning.md | — | ~386 |
+| 11:56 | Created apps/studio/prompts/pre-publish-qc.md | — | ~453 |
+| 11:56 | Created apps/studio/vitest.config.ts | — | ~48 |
+| 11:56 | Edited apps/studio/package.json | 9→10 lines | ~107 |
+| 11:56 | Edited apps/studio/package.json | 3→4 lines | ~15 |
+| 11:57 | Created apps/studio/src/__tests__/router.test.ts | — | ~2847 |
+| 11:57 | Edited apps/studio/vitest.config.ts | expanded (+10 lines) | ~125 |
+| 11:59 | Edited apps/web/src/__tests__/security.test.ts | 5→5 lines | ~40 |
+| 11:59 | Edited apps/web/src/__tests__/security.test.ts | inline fix | ~19 |
+| 12:01 | Edited apps/studio/package.json | inline fix | ~10 |
+
+## Session: 2026-05-30 — WP-08 + WP-09
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 12:00 | WP-08: security headers (CSP Report-Only, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy) + open redirect guard + image remotePatterns | apps/web/next.config.ts | Done | ~800 |
+| 12:01 | WP-08: env.example updated + security smoke tests (13 tests: open-redirect, HMAC, isPublic) | apps/web/.env.example, security.test.ts | Done | ~600 |
+| 12:02 | WP-09: InboxItemSchema extended (seriesSlug, articleId, language, targetMonth, nextAction, reviewReason, backupPath) | packages/content-core/src/schemas/inbox.ts | Done | ~300 |
+| 12:03 | WP-09: router.ts (resolveTargetPath, writeWithBackup, serializePayload, moveToUnresolved) | apps/studio/server/router.ts | Done | ~500 |
+| 12:04 | WP-09: inbox API endpoints (POST/GET /api/inbox, route, retry, delete) | apps/studio/server/index.ts | Done | ~800 |
+| 12:05 | WP-09: Inbox UI screen (auto-polling, status badges, route/discard actions) | apps/studio/src/screens/Inbox.tsx | Done | ~700 |
+| 12:06 | WP-09: App.tsx updated with AI Inbox nav item | apps/studio/src/App.tsx | Done | ~100 |
+| 12:07 | WP-09: 3 new prompt templates (revision, ai-smell-cleaning, pre-publish-qc) | apps/studio/prompts/ | Done | ~400 |
+| 12:08 | WP-09: 23 router unit tests (schema, routing map, writeWithBackup) + vitest config | apps/studio/src/__tests__/router.test.ts, vitest.config.ts | Done | ~600 |
+| 12:09 | Dep audit: upgraded @fastify/static ^8→^9.1.1 (path traversal fix) | apps/studio/package.json | Done | ~100 |
+| 12:10 | pnpm -w test (131 pass) + typecheck + lint + build all clean | all | Done | ~200 |

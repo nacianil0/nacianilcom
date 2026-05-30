@@ -79,6 +79,15 @@
 - **dynamicParams=true + revalidate=N combo**: pages NOT in generateStaticParams are rendered on-demand (ISR) when first accessed. On-demand revalidation via revalidatePath clears stale 404 cache. This is the mechanism for 404-cache fix for future-scheduled URLs visited early.
 - **revalidateTag only works for fetch-cached data**; for fs-based content, revalidatePath is the effective tool. Tags are defined as constants for future unstable_cache integration.
 
+## Key Learnings
+
+- **WP-08 security hardening complete (2026-05-30).** CSP (Report-Only→enforce rollout) + frame-ancestors + X-Frame-Options:DENY + nosniff + Referrer-Policy + Permissions-Policy in next.config.ts headers(); open redirect guard in loadRedirects() filters external destinations; image remotePatterns HTTPS only; .env.example updated; 13 security smoke tests (open-redirect, HMAC verification, isPublic gate).
+- **WP-09 auto output routing complete (2026-05-30).** InboxItemSchema extended (seriesSlug/articleId/language/targetMonth/nextAction/reviewReason/backupPath); studio server: inbox API (POST/GET/route/delete); router.ts pure functions (resolveTargetPath, writeWithBackup, serializePayload, moveToUnresolved); Inbox UI screen (5s polling, status badges, route/discard); 3 new prompts (revision, ai-smell-cleaning, pre-publish-qc); 23 router unit tests all pass.
+- **content-core dist/ must be rebuilt** when schema changes are made: `pnpm --filter @nacianilcom/content-core build`. The `"import": "./dist/index.js"` in exports means runtime uses compiled dist, not source. Apps using `workspace:*` read from dist at runtime. Studio vitest.config.ts uses `resolve.alias` to bypass this for tests.
+- **RedirectItemSchema.permanent is `z.literal(true)`** — NOT `z.boolean()`. Always pass `permanent: true` in redirect test fixtures; `permanent: false` causes TypeScript error TS2322.
+- **@fastify/static 8.x has path traversal + route guard bypass vulnerabilities** — fix: upgrade to ^9.1.1 (compatible with Fastify 5.x). Done in WP-08.
+- **pnpm audit acceptable residuals (WP-08):** next-mdx-remote (all MDX is author-controlled trusted content; CVE is for untrusted SSR content); postcss (transitive dep of Next.js 15.x — cannot upgrade without Next.js upgrade → WP-13 tracking).
+
 ## Decision Log
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->
