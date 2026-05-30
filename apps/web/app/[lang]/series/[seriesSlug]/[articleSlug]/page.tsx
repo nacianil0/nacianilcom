@@ -35,6 +35,11 @@ import { articleJsonLd, breadcrumbJsonLd, faqJsonLd } from '../../../../../src/l
 
 const VALID_LANGS = new Set(['tr', 'en']);
 
+// Allow on-demand ISR for future-scheduled articles that become public after build
+export const dynamicParams = true;
+// Re-render at most once per hour; explicit revalidation overrides this
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const now = new Date();
   const params: { lang: string; seriesSlug: string; articleSlug: string }[] = [];

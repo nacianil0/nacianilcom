@@ -10,6 +10,8 @@ import { SITE_URL, SITE_NAME, localeToOgLocale } from '../../../src/lib/site';
 
 const VALID_LANGS = new Set(['tr', 'en']);
 
+export const revalidate = 3600;
+
 export async function generateMetadata({
   params,
 }: {

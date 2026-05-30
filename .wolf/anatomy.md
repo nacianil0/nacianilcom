@@ -1,10 +1,13 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T00:34:42.348Z
-> Files: 125 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T08:42:38.701Z
+> Files: 149 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
+- `MEMORY.md` — Memory Index (~146 tok)
+- `project_wp05_06_done.md` — WP-05 — Bilingual SEO (apps/web) (~605 tok)
+- `project_wp07_done.md` — ` ignore added to `apps/web/eslint.config.mjs` (~382 tok)
 
 ## ./
 
@@ -18,30 +21,10 @@
 
 ## apps/studio/
 
+- `.env.example` — REVALIDATE_SECRET + WEB_URL for studio server (~40 tok)
 - `package.json` — Node.js package manifest; added @mdx-js/mdx, simple-git, @nacianilcom/content-core (~351 tok)
 - `postcss.config.mjs` (~22 tok)
 - `tailwind.config.ts` — /*.{ts,tsx}', (~107 tok)
-- `.env.example` — REVALIDATE_SECRET + WEB_URL for studio server (~40 tok)
-
-## apps/studio/prompts/
-
-- `idea-series-plan.md` — §19: fikir → seri planı (~200 tok)
-- `article-brief.md` — §19: brief + meta.json taslağı (~180 tok)
-- `outline.md` — §19: makale iskelet (~160 tok)
-- `tr-draft.md` — §19: Türkçe ilk taslak (~140 tok)
-- `tr-final-mdx.md` — §19: TR Final MDX ile frontmatter + bileşenler (~200 tok)
-- `en-adaptation.md` — §19: EN uyarlama (~150 tok)
-- `visual-diagram-suggestion.md` — §19: görsel/diyagram önerisi (~160 tok)
-- `seo-qc-review.md` — §19: SEO + QC review (~150 tok)
-- `resume-case-study.md` — §19: CV + case study (~160 tok)
-- `monthly-plan.md` — §19: aylık içerik takvimi (~150 tok)
-
-## apps/studio/src/screens/
-
-- `DraftReview.tsx` — @mdx-js/mdx evaluate; packages/ui bileşen map; parseMdx frontmatter display (~800 tok)
-- `SeoCheck.tsx` — runQC client-side; group bazlı blocking/warning ayrımı (~900 tok)
-- `Publisher.tsx` — koşullu publish buton (QC=0 gerekli) → /api/publish → commit+push+revalidate (~700 tok)
-- `Prompts.tsx` — /api/prompts list + copy-to-clipboard görüntüleyici (~400 tok)
 
 ## apps/studio/messages/
 
@@ -50,15 +33,25 @@
 
 ## apps/studio/prompts/
 
+- `article-brief.md` — §19: brief + meta.json taslağı (~180 tok)
 - `article-brief.md` — Prompt: Article Brief (~282 tok)
+- `en-adaptation.md` — §19: EN uyarlama (~150 tok)
 - `en-adaptation.md` — Prompt: EN Adaptation (İngilizce Uyarlama) (~238 tok)
+- `idea-series-plan.md` — §19: fikir → seri planı (~200 tok)
 - `idea-series-plan.md` — Prompt: Idea → Series Plan (~278 tok)
+- `monthly-plan.md` — §19: aylık içerik takvimi (~150 tok)
 - `monthly-plan.md` — Prompt: Monthly Plan (~233 tok)
+- `outline.md` — §19: makale iskelet (~160 tok)
 - `outline.md` — Prompt: Article Outline (~222 tok)
+- `resume-case-study.md` — §19: CV + case study (~160 tok)
 - `resume-case-study.md` — Prompt: Resume / Case Study (~238 tok)
+- `seo-qc-review.md` — §19: SEO + QC review (~150 tok)
 - `seo-qc-review.md` — Prompt: SEO / QC Review (~238 tok)
+- `tr-draft.md` — §19: Türkçe ilk taslak (~140 tok)
 - `tr-draft.md` — Prompt: TR Draft (Türkçe Taslak) (~195 tok)
+- `tr-final-mdx.md` — §19: TR Final MDX ile frontmatter + bileşenler (~200 tok)
 - `tr-final-mdx.md` — Prompt: TR Final MDX (~329 tok)
+- `visual-diagram-suggestion.md` — §19: görsel/diyagram önerisi (~160 tok)
 - `visual-diagram-suggestion.md` — Prompt: Visual / Diagram Suggestion (~276 tok)
 
 ## apps/studio/server/
@@ -73,9 +66,13 @@
 
 ## apps/studio/src/screens/
 
+- `DraftReview.tsx` — @mdx-js/mdx evaluate; packages/ui bileşen map; parseMdx frontmatter display (~800 tok)
 - `DraftReview.tsx` — MDX_COMPONENTS (~1759 tok)
+- `Prompts.tsx` — /api/prompts list + copy-to-clipboard görüntüleyici (~400 tok)
 - `Prompts.tsx` — Prompts (~877 tok)
+- `Publisher.tsx` — koşullu publish buton (QC=0 gerekli) → /api/publish → commit+push+revalidate (~700 tok)
 - `Publisher.tsx` — extractInternalLinks (~2415 tok)
+- `SeoCheck.tsx` — runQC client-side; group bazlı blocking/warning ayrımı (~900 tok)
 - `SeoCheck.tsx` — extractInternalLinks (~2203 tok)
 
 ## apps/studio/src/ui/
@@ -85,10 +82,13 @@
 
 ## apps/web/
 
+- `eslint.config.mjs` — ', 'node_modules/**'] }, (~116 tok)
 - `next.config.ts` — Declares loadRedirects (~208 tok)
-- `package.json` — Node.js package manifest (~249 tok)
+- `package.json` — Node.js package manifest (~264 tok)
 - `postcss.config.mjs` — Declares postcssConfig (~32 tok)
 - `tailwind.config.ts` — /*.{ts,tsx}', (~520 tok)
+- `vercel.json` (~26 tok)
+- `vitest.config.ts` — /*.test.ts'], (~45 tok)
 
 ## apps/web/app/
 
@@ -109,19 +109,23 @@
 
 ## apps/web/app/[lang]/series/
 
-- `page.tsx` — VALID_LANGS (~1417 tok)
+- `page.tsx` — VALID_LANGS (~1426 tok)
 
 ## apps/web/app/[lang]/series/[seriesSlug]/
 
-- `page.tsx` — VALID_LANGS (~2295 tok)
+- `page.tsx` — VALID_LANGS (~2427 tok)
 
 ## apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/
 
-- `page.tsx` — VALID_LANGS (~3156 tok)
+- `page.tsx` — VALID_LANGS (~3220 tok)
+
+## apps/web/app/api/cron/
+
+- `route.ts` — Daily cron: CRON_SECRET auth → revalidateTag/Path for all public articles (ISR + 404-cache fix) (~554 tok)
 
 ## apps/web/app/api/revalidate/
 
-- `route.ts` — Next.js API route: POST (~474 tok)
+- `route.ts` — HMAC+timestamp+zod secured POST; supports single path/tag (backward compat) + arrays for batch revalidation (~588 tok)
 
 ## apps/web/app/og/
 
@@ -131,6 +135,10 @@
 
 - `en.json` (~155 tok)
 - `tr.json` (~151 tok)
+
+## apps/web/src/__tests__/
+
+- `revalidate-targets.test.ts` — Declares params (~1166 tok)
 
 ## apps/web/src/components/
 
@@ -149,6 +157,7 @@
 
 - `jsonld.ts` — Exports websiteJsonLd, personJsonLd, breadcrumbJsonLd, ArticleJsonLdOptions + 4 more (~696 tok)
 - `messages.ts` — Exports WebMessages, getMessages (~146 tok)
+- `revalidate-targets.ts` — Explicit tag/path matrix for a published article. (~418 tok)
 - `site.ts` — Exports SITE_URL, SITE_NAME, SITE_AUTHOR, SITE_TWITTER, localeToOgLocale (~79 tok)
 
 ## apps/web/src/mdx/

@@ -305,3 +305,29 @@
 | 10:25 | WP-06: studio screens (DraftReview/SeoCheck/Publisher/Prompts) | apps/studio/src/screens/ | @mdx-js/mdx evaluate; runQC client-side | 3000 |
 | 10:30 | WP-06: 10 prompt templates | apps/studio/prompts/ | §19 core set complete | 500 |
 | 10:35 | pnpm -w typecheck/lint/build | — | ALL CLEAN; 19 static pages | 200 |
+| 03:38 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp05_06_done.md | — | ~625 |
+| 03:38 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | 2→3 lines | ~112 |
+| 03:38 | Session end: 37 writes across 28 files (site.ts, jsonld.ts, route.tsx, robots.ts, sitemap.ts) | 40 reads | ~40365 tok |
+
+## Session: 2026-05-30 11:32
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 11:37 | Created apps/web/src/lib/revalidate-targets.ts | — | ~418 |
+| 11:37 | Created apps/web/vercel.json | — | ~26 |
+| 11:37 | Edited apps/web/app/api/revalidate/route.ts | 5→9 lines | ~92 |
+| 11:37 | Edited apps/web/app/api/revalidate/route.ts | added nullish coalescing | ~98 |
+| 11:37 | Created apps/web/app/api/cron/route.ts | — | ~554 |
+| 11:37 | Edited apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/page.tsx | modified generateStaticParams() | ~90 |
+| 11:38 | Edited apps/web/app/[lang]/series/[seriesSlug]/page.tsx | 10→12 lines | ~116 |
+| 11:38 | Edited apps/web/app/[lang]/series/[seriesSlug]/page.tsx | added 2 condition(s) | ~217 |
+| 11:38 | Edited apps/web/app/[lang]/series/page.tsx | modified generateMetadata() | ~34 |
+| 11:38 | Created apps/web/vitest.config.ts | — | ~45 |
+| 11:38 | Created apps/web/src/__tests__/revalidate-targets.test.ts | — | ~1166 |
+| 11:38 | Edited apps/web/package.json | 7→8 lines | ~51 |
+| 11:38 | Edited apps/web/package.json | 3→4 lines | ~16 |
+| 11:40 | Edited apps/web/eslint.config.mjs | 3→6 lines | ~40 |
+
+| 11:42 | WP-07 implement: revalidate-targets.ts, /api/cron, dynamicParams+revalidate, batch revalidate endpoint, 13 tests | apps/web/src/lib/revalidate-targets.ts, apps/web/app/api/cron/route.ts, apps/web/app/api/revalidate/route.ts, 3 page files | pnpm -w test+typecheck+lint+build all clean | ~2k |
+| 11:42 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp07_done.md | — | ~387 |
+| 11:42 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | 1→2 lines | ~77 |

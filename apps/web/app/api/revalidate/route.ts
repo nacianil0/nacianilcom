@@ -7,8 +7,12 @@ const WINDOW_SECONDS = 30;
 
 const BodySchema = z.object({
   ts: z.number().int(),
+  // Single values (backward compat with Studio Publisher)
   path: z.string().optional(),
   tag: z.string().optional(),
+  // Arrays for batch revalidation (cron / explicit publish)
+  paths: z.array(z.string()).optional(),
+  tags: z.array(z.string()).optional(),
 });
 
 type SafeError = { error: string };
@@ -49,8 +53,13 @@ export async function POST(req: NextRequest): Promise<NextResponse<SafeError | {
     return denied('Request expired', 401);
   }
 
+  // Single values (backward compat)
   if (parsed.tag) revalidateTag(parsed.tag);
   if (parsed.path) revalidatePath(parsed.path);
+
+  // Batch (explicit publish / cron)
+  for (const tag of parsed.tags ?? []) revalidateTag(tag);
+  for (const path of parsed.paths ?? []) revalidatePath(path);
 
   return NextResponse.json({ ok: true as const });
 }

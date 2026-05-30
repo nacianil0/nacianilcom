@@ -71,6 +71,14 @@
 - **Next.js hreflang output**: Next.js generates `hrefLang` (camelCase) not `hreflang` (lowercase) in HTML output — both are valid per HTML spec. alternates.languages maps correctly.
 - **Studio @mdx-js/mdx bundle**: ~829KB minified (large but acceptable for local studio). gray-matter uses eval() → Vite warns but does not block.
 
+## Key Learnings
+
+- **WP-07 scheduled publish + cache invalidation complete (2026-05-30).** revalidate-targets.ts (tag/path matrix: article:<id>, series:<slug>, list, sitemap, feed:<lang>); /api/revalidate updated to accept arrays (paths/tags) for batch + backward-compat single values; /api/cron (daily Vercel cron, CRON_SECRET auth, deduped revalidateTag/Path for all public articles — clears 404 cache on scheduled publish); dynamicParams=true + revalidate=3600 on article/series-landing pages; series landing generateStaticParams now filters public-only; 13 vitest tests in apps/web; .eslintignore .next pattern fixed.
+- **Next.js ESLint flat config must explicitly ignore `.next/**`** — `FlatCompat` from `@eslint/eslintrc` does not inherit the `.next` ignore from `eslint-config-next`. Fix: add `{ ignores: ['.next/**', 'node_modules/**'] }` as first entry in the config array.
+- **Vercel cron authentication**: Vercel automatically passes `Authorization: Bearer <CRON_SECRET>` to cron route handlers when CRON_SECRET is set in project env vars. Guard with: `if (cronSecret && authHeader !== 'Bearer ${cronSecret}') return 401`.
+- **dynamicParams=true + revalidate=N combo**: pages NOT in generateStaticParams are rendered on-demand (ISR) when first accessed. On-demand revalidation via revalidatePath clears stale 404 cache. This is the mechanism for 404-cache fix for future-scheduled URLs visited early.
+- **revalidateTag only works for fetch-cached data**; for fs-based content, revalidatePath is the effective tool. Tags are defined as constants for future unstable_cache integration.
+
 ## Decision Log
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->

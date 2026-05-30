@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { buildUrl, formatReadingTime, deriveCanonical } from '@nacianilcom/content-core';
+import { buildUrl, formatReadingTime, deriveCanonical, isPublic } from '@nacianilcom/content-core';
 import type { Locale } from '@nacianilcom/content-core';
 import {
   loadSeries,
   loadSeriesArticles,
   listSeriesSlugs,
+  listArticleIds,
+  loadMeta,
 } from '../../../../src/content/loader';
 import { SiteNav } from '../../../../src/components/SiteNav';
 import { getMessages } from '../../../../src/lib/messages';
@@ -15,14 +17,28 @@ import { seriesJsonLd, breadcrumbJsonLd } from '../../../../src/lib/jsonld';
 
 const VALID_LANGS = new Set(['tr', 'en']);
 
+// Allow on-demand ISR for series that become public after build
+export const dynamicParams = true;
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
+  const now = new Date();
   const slugs = await listSeriesSlugs();
   const params: { lang: string; seriesSlug: string }[] = [];
-  for (const lang of ['tr', 'en']) {
-    for (const seriesSlug of slugs) {
+
+  for (const seriesSlug of slugs) {
+    const ids = await listArticleIds(seriesSlug);
+    let hasPublic = false;
+    for (const id of ids) {
+      const meta = await loadMeta(seriesSlug, id);
+      if (meta && isPublic(meta, now)) { hasPublic = true; break; }
+    }
+    if (!hasPublic) continue;
+    for (const lang of ['tr', 'en']) {
       params.push({ lang, seriesSlug });
     }
   }
+
   return params;
 }
 
