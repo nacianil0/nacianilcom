@@ -1,0 +1,302 @@
+{
+  "tr": {
+    "basics": {
+      "name": "Naci Anil Akman",
+      "title": "Full Stack Developer",
+      "summary": ".NET ve React ile kurumsal portal ve dashboard çözümleri geliştiren full stack developer. Holding ölçeğinde çok şirketli, çok ülkeli sistemlerde uçtan uca ürün geliştirme ve AI/API entegrasyonu deneyimi.",
+      "photo": "/photo/naci.jpg"
+    },
+    "contact": [
+      { "key": "email", "value": "nacianilakman@gmail.com", "visibility": "public" },
+      { "key": "phone", "value": "", "visibility": "private" },
+      { "key": "address", "value": "", "visibility": "private" }
+    ],
+    "experience": [
+      {
+        "id": "egh-2026",
+        "company": "Eroğlu Global Holding",
+        "role": "Full Stack Developer",
+        "startDate": "2026-03",
+        "description": "Holding genelinde kullanılan kurumsal erişim platformunu (Dashboard) ve seyahat yönetim sistemini geliştiriyorum. Türkiye ve Mısır'daki grup şirketlerinde kullanılan sistemlerde uçtan uca ürün sahipliği.",
+        "highlights": [
+          "Dashboard platformunu (Portal) sıfırdan kurdum; duyuru, yemek menüsü, uygulama kataloğu ve yetki yönetimini tek ürün çatısı altında topladım.",
+          "Seyahat modülünü bağımsız shell'den Dashboard altyapısına entegre ederek tek oturum ve ortak yetkilendirme sağladım.",
+          "İK (HR) projesinde Türkiye ve Mısır operasyonlarını kapsayan çok şirketli yapı kuruyorum."
+        ],
+        "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "SQL Server", "Entity Framework"],
+        "visibility": "public"
+      },
+      {
+        "id": "kansuk-2026",
+        "company": "Kansuk İlaç",
+        "role": "Full Stack Developer",
+        "startDate": "2024-01",
+        "endDate": "2026-02",
+        "description": "İlaç sektörüne yönelik kurumsal yazılım geliştirme.",
+        "highlights": [],
+        "stack": ["React", "TypeScript", ".NET", "C#"],
+        "visibility": "public",
+        "needsReview": true
+      },
+      {
+        "id": "digitallica",
+        "company": "Digitallica",
+        "role": "Full Stack Developer",
+        "startDate": "2022-01",
+        "endDate": "2023-12",
+        "description": "Dijital dönüşüm projelerinde full stack geliştirme.",
+        "highlights": [],
+        "stack": ["React", "TypeScript", ".NET", "C#"],
+        "visibility": "public",
+        "needsReview": true
+      }
+    ],
+    "education": [
+      {
+        "id": "uni-diploma",
+        "institution": "Üniversite",
+        "degree": "Lisans",
+        "field": "Bilgisayar Mühendisliği",
+        "visibility": "public",
+        "needsReview": true
+      }
+    ],
+    "skills": [
+      {
+        "group": "Backend",
+        "items": ["C#", ".NET", "ASP.NET Core", "Entity Framework", "REST API", "SQL Server", "PostgreSQL"]
+      },
+      {
+        "group": "Frontend",
+        "items": ["React", "TypeScript", "JavaScript", "Next.js", "Tailwind CSS", "MDX"]
+      },
+      {
+        "group": "Araçlar",
+        "items": ["Git", "Docker", "Vite", "Vitest", "Playwright"]
+      }
+    ],
+    "projects": [
+      {
+        "id": "kurumsal-dashboard",
+        "title": "Kurumsal Dashboard (Portal)",
+        "summary": "Holding çalışanları için tek oturum, tek navigasyon kurumsal erişim platformu. Duyuru, yemek menüsü, uygulama kataloğu ve yetki yönetimini tek çatı altında toplar.",
+        "caseSlug": "kurumsal-dashboard",
+        "stack": ["React", "TypeScript", ".NET", "ASP.NET Core", "SQL Server"],
+        "visibility": "public"
+      },
+      {
+        "id": "seyahat-projesi",
+        "title": "Seyahat Yönetim Sistemi",
+        "summary": "Dashboard platformuna entegre, holding genelinde seyahat talep, onay ve yönetim sistemi. Türkiye ve Mısır operasyonlarını kapsar.",
+        "caseSlug": "seyahat-projesi",
+        "stack": ["React", "TypeScript", ".NET", "ASP.NET Core"],
+        "visibility": "public"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/nacianilakman", "visibility": "public" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/nacianilakman", "visibility": "public" }
+    ],
+    "credentials": [
+      {
+        "id": "ms-20480",
+        "title": "Programming in HTML5 with JavaScript and CSS3 (20480)",
+        "issuer": "Microsoft",
+        "sourcePath": "sources/8-sertifikalar/20480-microsoft-web.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "ms-20483",
+        "title": "Programming in C# (20483)",
+        "issuer": "Microsoft",
+        "sourcePath": "sources/8-sertifikalar/20483-microsoft-csharp.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "ms-20486",
+        "title": "Developing ASP.NET MVC Web Applications (20486)",
+        "issuer": "Microsoft",
+        "sourcePath": "sources/8-sertifikalar/20486-microsoft-aspnet.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "bilgeadam-katilim",
+        "title": "BilgeAdam Katılım Sertifikası",
+        "issuer": "BilgeAdam",
+        "sourcePath": "sources/8-sertifikalar/bilgeadam-katilim.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "bilgeadam-proje",
+        "title": "BilgeAdam Proje Bitirme Sertifikası",
+        "issuer": "BilgeAdam",
+        "sourcePath": "sources/8-sertifikalar/bilgeadam-proje-bitirme.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "ehliyet",
+        "title": "Sürücü Belgesi",
+        "issuer": "T.C.",
+        "sourcePath": "sources/9-ehliyet-ve-kan-grubu/ehliyet.pdf",
+        "visibility": "private"
+      },
+      {
+        "id": "askerlik",
+        "title": "Askerlik Terhis Belgesi",
+        "issuer": "T.C. Milli Savunma Bakanlığı",
+        "sourcePath": "sources/11-askerlik/askerlik.pdf",
+        "visibility": "private"
+      }
+    ]
+  },
+  "en": {
+    "basics": {
+      "name": "Naci Anil Akman",
+      "title": "Full Stack Developer",
+      "summary": "Full stack developer building enterprise portal and dashboard solutions with .NET and React. End-to-end product development experience across multi-company, multi-country systems at holding scale, including AI/API integration.",
+      "photo": "/photo/naci.jpg"
+    },
+    "contact": [
+      { "key": "email", "value": "nacianilakman@gmail.com", "visibility": "public" },
+      { "key": "phone", "value": "", "visibility": "private" },
+      { "key": "address", "value": "", "visibility": "private" }
+    ],
+    "experience": [
+      {
+        "id": "egh-2026",
+        "company": "Eroğlu Global Holding",
+        "role": "Full Stack Developer",
+        "startDate": "2026-03",
+        "description": "Building the enterprise access platform (Dashboard) and travel management system used across the holding group. End-to-end product ownership for systems serving Turkey and Egypt operations.",
+        "highlights": [
+          "Built the Dashboard platform (Portal) from scratch, consolidating announcements, meal menu, application catalog, and permission management under one product.",
+          "Integrated the Travel module from a standalone shell into the Dashboard infrastructure, enabling single sign-on and unified authorization.",
+          "Building the HR project with multi-company architecture covering Turkey and Egypt operations."
+        ],
+        "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "SQL Server", "Entity Framework"],
+        "visibility": "public"
+      },
+      {
+        "id": "kansuk-2026",
+        "company": "Kansuk İlaç",
+        "role": "Full Stack Developer",
+        "startDate": "2024-01",
+        "endDate": "2026-02",
+        "description": "Enterprise software development for the pharmaceutical sector.",
+        "highlights": [],
+        "stack": ["React", "TypeScript", ".NET", "C#"],
+        "visibility": "public",
+        "needsReview": true
+      },
+      {
+        "id": "digitallica",
+        "company": "Digitallica",
+        "role": "Full Stack Developer",
+        "startDate": "2022-01",
+        "endDate": "2023-12",
+        "description": "Full stack development for digital transformation projects.",
+        "highlights": [],
+        "stack": ["React", "TypeScript", ".NET", "C#"],
+        "visibility": "public",
+        "needsReview": true
+      }
+    ],
+    "education": [
+      {
+        "id": "uni-diploma",
+        "institution": "University",
+        "degree": "Bachelor of Science",
+        "field": "Computer Engineering",
+        "visibility": "public",
+        "needsReview": true
+      }
+    ],
+    "skills": [
+      {
+        "group": "Backend",
+        "items": ["C#", ".NET", "ASP.NET Core", "Entity Framework", "REST API", "SQL Server", "PostgreSQL"]
+      },
+      {
+        "group": "Frontend",
+        "items": ["React", "TypeScript", "JavaScript", "Next.js", "Tailwind CSS", "MDX"]
+      },
+      {
+        "group": "Tools",
+        "items": ["Git", "Docker", "Vite", "Vitest", "Playwright"]
+      }
+    ],
+    "projects": [
+      {
+        "id": "kurumsal-dashboard",
+        "title": "Enterprise Dashboard (Portal)",
+        "summary": "Single sign-on enterprise access platform for holding employees. Consolidates announcements, meal menu, application catalog, and permission management under one roof.",
+        "caseSlug": "kurumsal-dashboard",
+        "stack": ["React", "TypeScript", ".NET", "ASP.NET Core", "SQL Server"],
+        "visibility": "public"
+      },
+      {
+        "id": "seyahat-projesi",
+        "title": "Travel Management System",
+        "summary": "Travel request, approval, and management system integrated into the Dashboard platform. Covers Turkey and Egypt operations across the entire holding group.",
+        "caseSlug": "seyahat-projesi",
+        "stack": ["React", "TypeScript", ".NET", "ASP.NET Core"],
+        "visibility": "public"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/nacianilakman", "visibility": "public" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/nacianilakman", "visibility": "public" }
+    ],
+    "credentials": [
+      {
+        "id": "ms-20480",
+        "title": "Programming in HTML5 with JavaScript and CSS3 (20480)",
+        "issuer": "Microsoft",
+        "sourcePath": "sources/8-sertifikalar/20480-microsoft-web.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "ms-20483",
+        "title": "Programming in C# (20483)",
+        "issuer": "Microsoft",
+        "sourcePath": "sources/8-sertifikalar/20483-microsoft-csharp.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "ms-20486",
+        "title": "Developing ASP.NET MVC Web Applications (20486)",
+        "issuer": "Microsoft",
+        "sourcePath": "sources/8-sertifikalar/20486-microsoft-aspnet.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "bilgeadam-katilim",
+        "title": "BilgeAdam Participation Certificate",
+        "issuer": "BilgeAdam",
+        "sourcePath": "sources/8-sertifikalar/bilgeadam-katilim.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "bilgeadam-proje",
+        "title": "BilgeAdam Project Completion Certificate",
+        "issuer": "BilgeAdam",
+        "sourcePath": "sources/8-sertifikalar/bilgeadam-proje-bitirme.pdf",
+        "visibility": "public"
+      },
+      {
+        "id": "ehliyet",
+        "title": "Driver's License",
+        "issuer": "Republic of Turkey",
+        "sourcePath": "sources/9-ehliyet-ve-kan-grubu/ehliyet.pdf",
+        "visibility": "private"
+      },
+      {
+        "id": "askerlik",
+        "title": "Military Discharge Certificate",
+        "issuer": "Republic of Turkey, Ministry of National Defense",
+        "sourcePath": "sources/11-askerlik/askerlik.pdf",
+        "visibility": "private"
+      }
+    ]
+  }
+}

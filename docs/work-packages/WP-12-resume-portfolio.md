@@ -17,7 +17,23 @@ Master plan §30 (Resume/Portfolio data standardı + Resume Update & Presentatio
 
 ## Inputs / context to read
 - `nacianil-claude-code-prompt.md` → **§30** (resume/portfolio data + visibility + Resume Update & Presentation + bilinen düzeltmeler), **§21** (reading experience — case-study detayına uygulanır), **§20** (`/cv`,`/cv/print`,`/work`,`/work/<caseSlug>` route'ları), **§28/§29** (private alan sızıntısı yok), **§22** (a11y/perf), **§32 Faz 9**.
+- **`content/resume/sources/README.md`** — mevcut kaynak envanteri, kariyer notları, **visibility önerileri** (foto/sertifika/diploma/ehliyet/askerlik); `resume.json` üretiminde **tek doğruluk kaynağı** (sources dosyaları + bu README).
 - OpenWolf: `.wolf/anatomy.md`, `.wolf/cerebrum.md`, `.wolf/buglog.json`, `CLAUDE.md`.
+
+### Mevcut kaynak envanteri (repo — WP-12 başlangıcında)
+
+`content/resume/sources/` altında hazır dosyalar:
+
+| Dosya / klasör | WP-12'de |
+|----------------|----------|
+| `my-photo.jpg` | `basics.photo` (**public**) |
+| `naci-anil-akman-27V0.pdf` | Parse → ön-doldurma; güncel sayılmaz |
+| `7-diploma/diploma.pdf` | `education[]` / `credentials[]` (**public** metin) |
+| `8-sertifikalar/*.pdf` | Microsoft 20480/20483/20486 + BilgeAdam x2 → `credentials[]` (**public**) |
+| `9-ehliyet-ve-kan-grubu/ehliyet.pdf` | `credentials[]` (**private** varsayılan) |
+| `11-askerlik/askerlik.pdf` | `credentials[]` (**private** — web/PDF'e basılmaz) |
+
+README'deki kariyer düzeltmeleri, Portal/Travel katkıları ve case-study adayları da `resume.json` + `portfolio/` üretiminde kullanılır. Ham PDF'ler public route'tan **doğrudan servis edilmez** — yalnız visibility-filtreli `resume.json` çıktısı.
 
 ## Files/folders likely to touch
 ```
@@ -38,9 +54,9 @@ packages/content-core/ (resume/case-study şeması zaten WP-03; visibility filtr
 - Monthly Plan / Visual Studio değişikliği **YOK**.
 
 ## Implementation steps
-1. **`resume.json` şeması (§30, content-core WP-03)**: `basics{name,title,summary,photo,location?}`, `contact{...}`, `experience[]`, `education[]`, `skills[]`, `projects[]`, `links[]` — {tr,en}.
+1. **`resume.json` şeması (§30, content-core WP-03)**: `basics{name,title,summary,photo,location?}`, `contact{...}`, `experience[]`, `education[]`, `skills[]`, `projects[]`, `links[]`, **`credentials[]`** (sertifika/diploma/belge; `sourcePath?`, `visibility`) — {tr,en}.
 2. **Visibility modeli (§30)**: hassas alan/`contact` öğesi `visibility: "public"|"pdf"|"private"`. `public`=web+PDF; `pdf`=yalnız PDF; `private`=hiçbir çıktıda. **Telefon/adres varsayılan `private`** (gerekirse yalnız `pdf`). Hiçbir gizli alan public'e otomatik basılmaz.
-3. **Sources → pre-fill (§30)**: `sources/` PDF/foto/not parse → `resume.json` ön-doldurma; yoksa placeholder. Güncel kabul edilmez → **`needsReview`** işaretle.
+3. **Sources → `resume.json` (§30, zorunlu)**: `content/resume/sources/` + **`sources/README.md`** envanter ve visibility notlarına göre ilk `resume.json` üret. İçerik: `my-photo.jpg` → `basics.photo`; diploma + Microsoft/BilgeAdam sertifikaları → `credentials[]`/`education[]` (**public**); ehliyet + askerlik → `credentials[]` (**private**); eski CV PDF → parse/ön-doldurma only. Güncel kabul edilmez → **`needsReview`** işaretle; belirsiz tarih **uydurma**.
 4. **Bilinen düzeltmeler (§30, kullanıcı doğrulamasıyla)**: Digitallica "present" değil; Kansuk Şubat bitti → Mart Eroğlu Global Holding başladı; eksikse ekle; **yıl net değilse `needsReview`, uydurma yok**.
 5. **`/[lang]/cv` (§30)**: görünürlük-filtreli; salt liste değil **kişisel profil sayfası** (premium/sade/güçlü; .NET/React full-stack, kurumsal portal/dashboard, AI/API entegrasyon vurgulu). Reading experience pattern'leri (§21).
 6. **`/[lang]/cv/print`**: PDF kaynağı (public+pdf görünür alanlar).
@@ -51,7 +67,7 @@ packages/content-core/ (resume/case-study şeması zaten WP-03; visibility filtr
 11. **Sızıntı testi**: private alan hiçbir public yüzeyde yok (response/HTML/JSON-LD/sitemap/OG). **Doğrula** + OpenWolf.
 
 ## Acceptance criteria
-- `resume.json` {tr,en} §30 yapısında; visibility (public/pdf/private) çalışıyor; **telefon/adres varsayılan private**.
+- `resume.json` {tr,en} §30 yapısında; **`basics.photo`** (`my-photo.jpg`); **`credentials[]`** diploma/sertifikalar (public) + ehliyet/askerlik (private, public yüzeyde yok); visibility çalışıyor; **telefon/adres varsayılan private**.
 - `/[lang]/cv` görünürlük-filtreli, profil-stili premium sayfa; `/[lang]/cv/print` PDF kaynağı.
 - **Private alan hiçbir public yüzeyde yok**; `pdf` yalnız PDF'te; `public` web+PDF (test ile kanıtlı).
 - PDF Studio'da Playwright ile `/cv/print`'ten üretiliyor (local), güncel `resume.json`'dan.
@@ -93,9 +109,12 @@ Sen kıdemli bir full-stack engineer'sın. OpenWolf-yönetimli nacianil.com repo
 ÖNCE OKU:
 - nacianil-claude-code-prompt.md → §30 (resume/portfolio + visibility + Resume Update & Presentation + bilinen düzeltmeler), §21 (reading experience → case-study), §20 (/cv,/cv/print,/work,/work/<caseSlug>), §28/§29 (private sızıntı yok), §22, §32 Faz 9
 - docs/work-packages/WP-12-resume-portfolio.md → tam kapsam
+- **content/resume/sources/README.md** → envanter + visibility + kariyer notları
 - CLAUDE.md, .wolf/OPENWOLF.md (+ cerebrum, buglog); anatomy.md'ye bak
 
-KAPSAM (yalnız bu): resume.json {tr,en} (§30 yapı, content-core şeması); visibility public/pdf/private (telefon/adres varsayılan private; gizli alan public'e otomatik basılmaz); sources/ parse → ön-doldurma + needsReview (güncel kabul edilmez); bilinen düzeltmeler (Digitallica present değil; Kansuk Şubat bitti → Mart Eroğlu Global Holding; belirsiz yıl → needsReview, UYDURMA YOK); /[lang]/cv (görünürlük-filtreli, profil-stili premium, .NET/React + portal/dashboard + AI/API vurgulu); /[lang]/cv/print (PDF kaynağı); Studio Playwright /cv/print → PDF (LOCAL, güncel resume.json'dan); case-study portfolio/<case-slug>/case.json (problem/context/role/stack/constraints/solution/impact/assets) + /[lang]/work + /[lang]/work/<caseSlug> premium reading; /cv,/work SEO metadata (Person/BreadcrumbList) WP-05 pattern'leriyle; sızıntı testi (private hiçbir public yüzeyde yok).
+**KAYNAK → resume.json (zorunlu):** `content/resume/sources/` altında `my-photo.jpg`, diploma, Microsoft/BilgeAdam sertifikaları, ehliyet ve askerlik PDF'leri var; **`sources/README.md` envanter + visibility notlarına göre `resume.json` üret** (foto public; sertifika/diploma public metin; ehliyet/askerlik private; ham PDF public route'tan servis edilmez).
+
+KAPSAM (yalnız bu): resume.json {tr,en} (§30 yapı + credentials[]; content-core şeması); visibility public/pdf/private (telefon/adres varsayılan private; gizli alan public'e otomatik basılmaz); sources/ + README → resume.json (parse/ön-doldurma + needsReview; güncel kabul edilmez); bilinen düzeltmeler (Digitallica present değil; Kansuk Şubat bitti → Mart Eroğlu Global Holding; belirsiz yıl → needsReview, UYDURMA YOK); /[lang]/cv (görünürlük-filtreli, profil-stili premium, .NET/React + portal/dashboard + AI/API vurgulu); /[lang]/cv/print (PDF kaynağı); Studio Playwright /cv/print → PDF (LOCAL, güncel resume.json'dan); case-study portfolio/<case-slug>/case.json (problem/context/role/stack/constraints/solution/impact/assets) + /[lang]/work + /[lang]/work/<caseSlug> premium reading; /cv,/work SEO metadata (Person/BreadcrumbList) WP-05 pattern'leriyle; sızıntı testi (private hiçbir public yüzeyde yok).
 
 YAPMA: DB/üyelik; private alanı public/PDF'e otomatik basma; bilgi uydurma; PDF'i Vercel'de üretme (yalnız local Studio); yeni SEO altyapısı (WP-05 pattern kullan); Monthly Plan/Visual değişikliği; studio deploy; şemayı yeniden tanımlama.
 

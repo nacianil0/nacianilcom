@@ -1,0 +1,30 @@
+{
+  "tr": {
+    "slug": "seyahat-projesi",
+    "title": "Seyahat Yönetim Sistemi — Dashboard Entegrasyonu",
+    "summary": "Holding genelinde kullanılan seyahat talep, onay ve yönetim sistemi. Türkiye ve Mısır operasyonlarını kapsayan, Dashboard platformuna entegre çok şirketli yapı.",
+    "problem": "Seyahat modülü bağımsız bir shell uygulaması olarak çalışıyor, kendi auth ve navigasyon sistemi taşıyordu. Dashboard ile farklı UX dili, farklı login akışı ve kopuk yetkilendirme modeli bulunuyordu. Mısır fabrikaları (EMS, DNM, Eroğlu Garment) ile Türkiye operasyonları aynı sistemi paylaşamıyordu.",
+    "context": "Eroğlu Global Holding bünyesinde seyahat talepleri (hava yolu, konaklama, araç) kurum içi onay akışıyla yönetiliyordu. İki coğrafi bölge (TR + Mısır), üç+ şirket, farklı bütçe kuralları ve yönetici rolleri söz konusuydu.",
+    "role": "Uçtan uca geliştirici. Travel modülünün Dashboard altyapısına taşınması, UI harmonizasyonu ve çok şirketli yapının kurulması tamamen bende.",
+    "stack": ["React", "TypeScript", ".NET 8", "ASP.NET Core", "SQL Server", "Tailwind CSS"],
+    "constraints": "Travel modülünün kendi auth/router/topbar'ını taşıması yasaklandı; her şeyin Dashboard chrome ve dsh-* diliyle uyumlu olması gerekti. Rota değişikliği: /travel/* → /dashboard/travel/*.",
+    "solution": "Travel modülünü bağımsız shell'den çıkararak modules/travel/ runtime kaynağı haline getirdim. Route'ları /dashboard/travel/* altına taşıdım. DashboardLayout sidebar + DashboardPermissionContext / hasTravelPermission ile izin modelini entegre ettim. Talep/oluşturma, onay ve yönetici akışları, teklif/iptal/değişiklik, raporlama, sistem (migration, budget, health) ve TR/EN mail şablonları tek platformda toplandı.",
+    "impact": "TR ve Mısır çalışanları aynı platformdan seyahat talep edebiliyor. Onay süreci ölçülebilir hale geldi; yöneticiler tek arayüzden çok şirketi yönetiyor. Dashboard entegrasyonu sayesinde seyahat izinleri holding-geneli yetki modeliyle uyumlu hale geldi.",
+    "assets": [],
+    "visibility": "public"
+  },
+  "en": {
+    "slug": "seyahat-projesi",
+    "title": "Travel Management System — Dashboard Integration",
+    "summary": "Travel request, approval, and management system used across the holding group. Multi-company architecture covering Turkey and Egypt operations, integrated into the Dashboard platform.",
+    "problem": "The Travel module ran as an independent shell app with its own auth and navigation system. It had a different UX language from Dashboard, a separate login flow, and a disconnected authorization model. Egypt factories (EMS, DNM, Eroğlu Garment) and Turkey operations could not share the same system.",
+    "context": "Within Eroğlu Global Holding, travel requests (flights, accommodation, vehicles) were managed through an internal approval workflow. Two geographic regions (Turkey + Egypt), three+ companies, different budget rules and manager roles were involved.",
+    "role": "End-to-end developer. Migrating the Travel module into the Dashboard infrastructure, UI harmonization, and building the multi-company architecture — all mine.",
+    "stack": ["React", "TypeScript", ".NET 8", "ASP.NET Core", "SQL Server", "Tailwind CSS"],
+    "constraints": "Travel module was prohibited from carrying its own auth/router/topbar; everything had to be aligned with Dashboard chrome and dsh-* design language. Route change: /travel/* → /dashboard/travel/*.",
+    "solution": "Migrated the Travel module from standalone shell to a modules/travel/ runtime source. Moved routes to /dashboard/travel/*. Integrated the permission model with DashboardLayout sidebar + DashboardPermissionContext / hasTravelPermission. Request/creation, approval and admin flows, quotes/cancellation/changes, reporting, system (migration, budget, health), and TR/EN mail templates were consolidated in one platform.",
+    "impact": "TR and Egypt employees request travel from the same platform. The approval process became measurable; managers oversee multiple companies from a single interface. Dashboard integration aligned travel permissions with the holding-wide authorization model.",
+    "assets": [],
+    "visibility": "public"
+  }
+}

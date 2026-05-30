@@ -592,6 +592,56 @@ server.post<{ Params: { month: string } }>('/api/plans/:month/approve', async (r
   return { ok: true, month, routed };
 });
 
+// ─── Resume API (WP-12) ──────────────────────────────────────────────────────
+
+const RESUME_PATH = path.join(CONTENT_ROOT, 'resume', 'resume.json');
+
+// GET /api/resume?lang=tr|en  — filtered for web (public only)
+server.get<{ Querystring: { lang?: string } }>('/api/resume', async (req, reply) => {
+  const lang = req.query.lang === 'en' ? 'en' : 'tr';
+  const raw = await fs.readFile(RESUME_PATH, 'utf-8').catch(() => null);
+  if (!raw) return reply.status(404).send({ error: 'resume.json not found' });
+  const bilingual = JSON.parse(raw) as Record<string, unknown>;
+  const resume = bilingual[lang];
+  if (!resume) return reply.status(400).send({ error: 'Invalid lang' });
+  // Return full (for studio preview — not public-facing, local only)
+  return resume;
+});
+
+// POST /api/resume/pdf  — generate PDF via Playwright from /cv/print
+interface PdfBody { lang?: string }
+server.post<{ Body: PdfBody }>('/api/resume/pdf', async (req, reply) => {
+  const lang = req.body?.lang === 'en' ? 'en' : 'tr';
+  const webUrl = process.env.WEB_URL ?? 'http://localhost:3000';
+  const printUrl = `${webUrl}/${lang}/cv/print`;
+
+  // playwright is an optional devDependency — load at runtime to avoid hard dep
+  // Install with: pnpm --filter @nacianilcom/studio add -D playwright
+  type PwPage = { goto(u: string, o?: Record<string, unknown>): Promise<unknown>; pdf(o?: Record<string, unknown>): Promise<Buffer> };
+  type PwBrowser = { newPage(): Promise<PwPage>; close(): Promise<void> };
+  type PwModule = { chromium: { launch(o?: Record<string, unknown>): Promise<PwBrowser> } };
+
+  const pwModuleName = 'playwright';
+  let pw: PwModule | null = null;
+  try {
+    pw = (await import(pwModuleName)) as PwModule;
+  } catch {
+    return reply.status(503).send({ error: 'playwright not installed — run: pnpm --filter @nacianilcom/studio add -D playwright' });
+  }
+
+  const browser = await pw.chromium.launch();
+  try {
+    const page = await browser.newPage();
+    await page.goto(printUrl, { waitUntil: 'networkidle' });
+    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+    const outputPath = path.join(REPO_ROOT, `naci-anil-akman-cv-${lang}.pdf`);
+    await fs.writeFile(outputPath, pdfBuffer);
+    return { ok: true, path: outputPath };
+  } finally {
+    await browser.close();
+  }
+});
+
 // ─── Start ───────────────────────────────────────────────────────────────────
 
 server.listen({ host: HOST, port: PORT }, (err) => {

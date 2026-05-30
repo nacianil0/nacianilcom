@@ -31,6 +31,18 @@ export function SiteNav({ lang, altLangUrl }: SiteNavProps) {
             {lang === 'tr' ? 'Yazılar' : 'Articles'}
           </Link>
           <Link
+            href={buildUrl(lang, 'work')}
+            className="font-sans text-sm text-ink-secondary transition-colors hover:text-ink"
+          >
+            {lang === 'tr' ? 'Projeler' : 'Work'}
+          </Link>
+          <Link
+            href={buildUrl(lang, 'cv')}
+            className="font-sans text-sm text-ink-secondary transition-colors hover:text-ink"
+          >
+            CV
+          </Link>
+          <Link
             href={altLangUrl}
             lang={altLang}
             className="rounded border border-hairline px-2.5 py-1 font-sans text-xs font-medium uppercase tracking-wider text-ink-secondary transition-colors hover:border-ink-secondary hover:text-ink"

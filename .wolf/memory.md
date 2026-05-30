@@ -373,3 +373,74 @@
 | 12:08 | WP-09: 23 router unit tests (schema, routing map, writeWithBackup) + vitest config | apps/studio/src/__tests__/router.test.ts, vitest.config.ts | Done | ~600 |
 | 12:09 | Dep audit: upgraded @fastify/static ^8→^9.1.1 (path traversal fix) | apps/studio/package.json | Done | ~100 |
 | 12:10 | pnpm -w test (131 pass) + typecheck + lint + build all clean | all | Done | ~200 |
+| 12:04 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp08_09_done.md | — | ~461 |
+| 12:04 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | 2→3 lines | ~118 |
+| 12:04 | Session end: 22 writes across 15 files (next.config.ts, security.test.ts, inbox.ts, router.ts, index.ts) | 21 reads | ~25469 tok |
+
+## Session: 2026-05-30 12:05
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 12:13 | Created packages/content-core/src/svg/sanitizer.ts | — | ~838 |
+| 12:13 | Created packages/content-core/src/visual/validator.ts | — | ~765 |
+| 12:13 | Created packages/content-core/src/qc/planQC.ts | — | ~927 |
+| 12:13 | Edited packages/content-core/src/qc/runQC.ts | expanded (+9 lines) | ~282 |
+| 12:13 | Edited packages/content-core/src/qc/runQC.ts | 10→13 lines | ~93 |
+| 12:14 | Edited packages/content-core/src/qc/runQC.ts | added 5 condition(s) | ~261 |
+| 12:14 | Edited packages/content-core/src/index.ts | expanded (+12 lines) | ~161 |
+| 12:14 | Created packages/content-core/src/__tests__/svgSanitizer.test.ts | — | ~1324 |
+| 12:14 | Created packages/content-core/src/__tests__/visualValidator.test.ts | — | ~1224 |
+| 12:15 | Created packages/content-core/src/__tests__/planQC.test.ts | — | ~1129 |
+| 12:15 | Edited packages/content-core/src/__tests__/planQC.test.ts | 10→10 lines | ~186 |
+| 12:16 | Edited packages/content-core/src/visual/validator.ts | 7→7 lines | ~50 |
+| 12:16 | Edited apps/studio/package.json | 3→4 lines | ~34 |
+| 12:18 | Created apps/studio/server/visual.ts | — | ~848 |
+| 12:19 | Created apps/studio/server/planner.ts | — | ~4326 |
+| 12:19 | Edited apps/studio/server/index.ts | added 2 import(s) | ~152 |
+| 12:20 | Edited apps/studio/server/index.ts | added error handling | ~2459 |
+| 12:21 | Created apps/studio/src/screens/VisualStudio.tsx | — | ~3215 |
+| 12:22 | Created apps/studio/src/screens/MonthlyPlan.tsx | — | ~4856 |
+| 12:22 | Edited apps/studio/src/App.tsx | 16→20 lines | ~230 |
+| 12:22 | Edited apps/studio/src/App.tsx | 5→7 lines | ~97 |
+| 12:22 | Created apps/studio/src/__tests__/planner.test.ts | — | ~1375 |
+| 12:23 | Edited apps/studio/src/screens/MonthlyPlan.tsx | 8→8 lines | ~48 |
+| 12:24 | Edited packages/content-core/src/qc/planQC.ts | inline fix | ~15 |
+| 12:24 | Edited packages/content-core/src/svg/sanitizer.ts | 15→15 lines | ~145 |
+| 12:25 | Edited apps/studio/src/screens/VisualStudio.tsx | inline fix | ~13 |
+| 12:27 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp10_11_done.md | — | ~615 |
+| 12:27 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | 1→2 lines | ~100 |
+| 12:27 | Session end: 28 writes across 17 files (sanitizer.ts, validator.ts, planQC.ts, runQC.ts, index.ts) | 19 reads | ~36558 tok |
+
+## Session: 2026-05-30 12:40
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 12:43 | Created packages/content-core/src/schemas/resume.ts | — | ~1066 |
+| 12:43 | Created packages/content-core/src/resume/visibility.ts | — | ~251 |
+| 12:43 | Edited packages/content-core/src/schemas/index.ts | expanded (+33 lines) | ~206 |
+| 12:44 | Edited packages/content-core/src/index.ts | 3→6 lines | ~83 |
+| 12:44 | Created packages/content-core/src/__tests__/resume.test.ts | — | ~1179 |
+| 12:45 | Created content/resume/resume.json | — | ~3348 |
+| 12:45 | Created content/resume/portfolio/kurumsal-dashboard/case.json | — | ~1214 |
+| 12:46 | Created content/resume/portfolio/seyahat-projesi/case.json | — | ~1196 |
+| 12:46 | Edited apps/web/src/content/loader.ts | expanded (+6 lines) | ~142 |
+| 12:46 | Edited apps/web/src/content/loader.ts | added 6 condition(s) | ~424 |
+| 12:46 | Edited apps/web/src/components/SiteNav.tsx | expanded (+12 lines) | ~205 |
+| 12:47 | Created apps/web/app/[lang]/cv/page.tsx | — | ~3936 |
+| 12:47 | Created apps/web/app/[lang]/cv/print/page.tsx | — | ~1984 |
+| 12:48 | Created apps/web/app/[lang]/work/page.tsx | — | ~1597 |
+| 12:48 | Created apps/web/app/[lang]/work/[caseSlug]/page.tsx | — | ~1836 |
+| 12:49 | Created apps/studio/src/screens/ResumeStudio.tsx | — | ~1367 |
+| 12:49 | Edited apps/studio/src/App.tsx | added 1 import(s) | ~151 |
+| 12:49 | Edited apps/studio/src/App.tsx | 9→10 lines | ~110 |
+| 12:49 | Edited apps/studio/src/App.tsx | 1→2 lines | ~29 |
+| 12:49 | Edited apps/studio/server/index.ts | added error handling | ~569 |
+| 12:49 | Edited apps/web/app/sitemap.ts | 4→4 lines | ~71 |
+| 12:49 | Edited apps/web/app/sitemap.ts | modified for() | ~198 |
+| 12:50 | Created scripts/smoke.js | — | ~1287 |
+| 12:50 | Edited package.json | 8→10 lines | ~92 |
+| 12:52 | Created README.md | — | ~2942 |
+| 12:53 | Edited apps/studio/server/index.ts | modified goto() | ~339 |
+| 12:55 | WP-12+13 complete — 29 static pages (CV/work/case study); 126 tests pass; typecheck+lint+build all clean; README.md; smoke script | multiple | all pass | ~8000 |
+| 12:55 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_wp12_13_done.md | — | ~409 |
+| 12:55 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | 1→2 lines | ~116 |

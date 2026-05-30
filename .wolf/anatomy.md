@@ -1,17 +1,21 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T09:01:25.872Z
-> Files: 157 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T09:55:51.555Z
+> Files: 184 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
-- `MEMORY.md` — Memory Index (~146 tok)
+- `MEMORY.md` — Memory Index (~294 tok)
 - `project_wp05_06_done.md` — WP-05 — Bilingual SEO (apps/web) (~605 tok)
 - `project_wp07_done.md` — ` ignore added to `apps/web/eslint.config.mjs` (~382 tok)
+- `project_wp08_09_done.md` — WP-08 — Security Hardening (done) (~452 tok)
+- `project_wp10_11_done.md` — WP-10 deliverables (~596 tok)
+- `project_wp12_13_done.md` (~403 tok)
 
 ## ./
 
-- `package.json` — Node.js package manifest (~188 tok)
+- `package.json` — Node.js package manifest (~208 tok)
+- `README.md` — Project documentation (~2758 tok)
 
 ## .claude/
 
@@ -22,7 +26,7 @@
 ## apps/studio/
 
 - `.env.example` — REVALIDATE_SECRET + WEB_URL for studio server (~40 tok)
-- `package.json` — Node.js package manifest (~365 tok)
+- `package.json` — Node.js package manifest (~377 tok)
 - `postcss.config.mjs` (~22 tok)
 - `tailwind.config.ts` — /*.{ts,tsx}', (~107 tok)
 - `vitest.config.ts` — /*.test.ts'], (~126 tok)
@@ -60,17 +64,20 @@
 
 ## apps/studio/server/
 
-- `index.ts` — API routes: GET (6 endpoints) (~4021 tok)
+- `index.ts` — API routes: GET (6 endpoints) (~7152 tok)
+- `planner.ts` — Generates a 25-40 topic candidate pool from content analysis. (~4326 tok)
 - `router.ts` — Maps an InboxItem to its target file path in the content tree. (~1242 tok)
+- `visual.ts` — Renders a Mermaid .mmd string to sanitized SVG. (~848 tok)
 
 ## apps/studio/src/
 
-- `App.tsx` — NAV (~698 tok)
+- `App.tsx` — NAV (~834 tok)
 - `main.css` — Styles: 6 rules, 3 vars (~346 tok)
 - `main.tsx` — rootEl (~92 tok)
 
 ## apps/studio/src/__tests__/
 
+- `planner.test.ts` — Declares SAMPLE_ANALYSIS (~1375 tok)
 - `router.test.ts` — Declares ROOT (~2847 tok)
 
 ## apps/studio/src/screens/
@@ -78,12 +85,15 @@
 - `DraftReview.tsx` — @mdx-js/mdx evaluate; packages/ui bileşen map; parseMdx frontmatter display (~800 tok)
 - `DraftReview.tsx` — MDX_COMPONENTS (~1759 tok)
 - `Inbox.tsx` — STATUS_ORDER (~2396 tok)
+- `MonthlyPlan.tsx` — DIFFICULTY_COLOR (~4859 tok)
 - `Prompts.tsx` — /api/prompts list + copy-to-clipboard görüntüleyici (~400 tok)
 - `Prompts.tsx` — Prompts (~877 tok)
 - `Publisher.tsx` — koşullu publish buton (QC=0 gerekli) → /api/publish → commit+push+revalidate (~700 tok)
 - `Publisher.tsx` — extractInternalLinks (~2415 tok)
+- `ResumeStudio.tsx` — ResumeStudio (~1367 tok)
 - `SeoCheck.tsx` — runQC client-side; group bazlı blocking/warning ayrımı (~900 tok)
 - `SeoCheck.tsx` — extractInternalLinks (~2203 tok)
+- `VisualStudio.tsx` — VisualStudio (~3213 tok)
 
 ## apps/studio/src/ui/
 
@@ -106,12 +116,20 @@
 - `layout.tsx` — newsreader (~502 tok)
 - `page.tsx` — §20: root redirect — single source, not duplicated in next.config (~51 tok)
 - `robots.ts` — Declares robots (~71 tok)
-- `sitemap.ts` — alt: sitemap (~611 tok)
+- `sitemap.ts` — alt: sitemap (~800 tok)
 
 ## apps/web/app/[lang]/
 
 - `layout.tsx` — VALID_LANGS (~411 tok)
 - `page.tsx` — LangHomePage (~99 tok)
+
+## apps/web/app/[lang]/cv/
+
+- `page.tsx` — VALID_LANGS (~3936 tok)
+
+## apps/web/app/[lang]/cv/print/
+
+- `page.tsx` — VALID_LANGS (~1984 tok)
 
 ## apps/web/app/[lang]/feed.xml/
 
@@ -128,6 +146,14 @@
 ## apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/
 
 - `page.tsx` — VALID_LANGS (~3220 tok)
+
+## apps/web/app/[lang]/work/
+
+- `page.tsx` — VALID_LANGS (~1597 tok)
+
+## apps/web/app/[lang]/work/[caseSlug]/
+
+- `page.tsx` — VALID_LANGS (~1836 tok)
 
 ## apps/web/app/api/cron/
 
@@ -157,12 +183,12 @@
 - `PrevNextNav.tsx` — PrevNextNav (~585 tok)
 - `ReferencesSection.tsx` — ReferencesSection (~438 tok)
 - `SeriesPositionBadge.tsx` — SeriesPositionBadge (~126 tok)
-- `SiteNav.tsx` — SiteNav (~451 tok)
+- `SiteNav.tsx` — SiteNav (~573 tok)
 - `TOC.tsx` — TOC (~376 tok)
 
 ## apps/web/src/content/
 
-- `loader.ts` — Exports loadSeries, loadMeta, MdxData, loadMdx + 7 more (~1533 tok)
+- `loader.ts` — Exports loadSeries, loadMeta, MdxData, loadMdx + 11 more (~1987 tok)
 
 ## apps/web/src/lib/
 
@@ -199,6 +225,15 @@
 
 ## content/resume/
 
+- `resume.json` (~3348 tok)
+
+## content/resume/portfolio/kurumsal-dashboard/
+
+- `case.json` — klasörü açarak Dashboard modülünü kurdum. Login sonrası merkez ekran: uygulama kataloğu (izin bazlı) (~1214 tok)
+
+## content/resume/portfolio/seyahat-projesi/
+
+- `case.json` (~1196 tok)
 
 ## content/series/
 
@@ -248,7 +283,7 @@
 ## packages/content-core/src/
 
 - `i18n.ts` — Supported UI locales (§23) (~373 tok)
-- `index.ts` — Schemas (~493 tok)
+- `index.ts` — Schemas (~646 tok)
 - `isPublic.ts` — Exports isPublic (~50 tok)
 
 ## packages/content-core/src/__tests__/
@@ -257,8 +292,12 @@
 - `isPublic.test.ts` — Declares PAST (~484 tok)
 - `links.test.ts` — NOW: blocking (~1064 tok)
 - `normalizeSlug.test.ts` (~537 tok)
+- `planQC.test.ts` — makeTopic: makePlan (~1169 tok)
 - `redirects.test.ts` — NOW: makeRedirect (~1031 tok)
+- `resume.test.ts` — Declares makeResume (~1179 tok)
+- `svgSanitizer.test.ts` — Declares clean (~1324 tok)
 - `taxonomy.test.ts` — Declares taxonomy (~694 tok)
+- `visualValidator.test.ts` — Declares mdx (~1224 tok)
 
 ## packages/content-core/src/derive/
 
@@ -278,23 +317,33 @@
 
 ## packages/content-core/src/qc/
 
-- `runQC.ts` — Exports QCGroup, QCSeverity, QCIssue, QCReport + 2 more (~1097 tok)
+- `planQC.ts` — Runs QC on a monthly plan per §25. (~925 tok)
+- `runQC.ts` — Exports QCGroup, SvgAsset, QCSeverity, QCIssue + 3 more (~1374 tok)
 
 ## packages/content-core/src/redirects/
 
 - `resolver.ts` — Exports ArticlePublicPath, RedirectIssue, resolveRedirects (~742 tok)
 
+## packages/content-core/src/resume/
+
+- `visibility.ts` — Exports filterResumeByVisibility (~251 tok)
+
 ## packages/content-core/src/schemas/
 
 - `frontmatter.ts` — Zod schemas: FaqItemSchema, FrontmatterSchema (~110 tok)
 - `inbox.ts` — Zod schemas: InboxKindSchema, InboxStatusSchema, InboxItemSchema (~430 tok)
-- `index.ts` (~268 tok)
+- `index.ts` (~432 tok)
 - `meta.ts` — Zod schemas: AssetSchema, MetaSchema (~255 tok)
 - `plans.ts` — Zod schemas: ScoresSchema, TopicSchema, MonthlyPlanSchema (~415 tok)
 - `redirects.ts` — Zod schemas: RedirectItemSchema, RedirectsSchema (~103 tok)
 - `references.ts` — Zod schemas: ReferenceItemSchema, ReferencesSchema (~109 tok)
+- `resume.ts` — Zod schemas: VisibilitySchema, ContactItemSchema, BasicsSchema, ExperienceItemSchema + 10 more (~1066 tok)
 - `series.ts` — Zod schemas: BilingualTextSchema, SeriesSchema (~127 tok)
 - `taxonomy.ts` — Zod schemas: BilingualLabelSchema, CategorySchema, TagSchema, TaxonomySchema (~168 tok)
+
+## packages/content-core/src/svg/
+
+- `sanitizer.ts` — Sanitizes SVG content before commit. (~838 tok)
 
 ## packages/content-core/src/taxonomy/
 
@@ -304,6 +353,10 @@
 
 - `buildUrl.ts` — Exports UrlKind, BuildUrlSlugs, buildUrl (~365 tok)
 - `normalizeSlug.ts` — Exports normalizeSlug (~140 tok)
+
+## packages/content-core/src/visual/
+
+- `validator.ts` — Extracts <VisualBlock ...> usages from raw MDX content. (~778 tok)
 
 ## packages/ui/
 
@@ -333,3 +386,7 @@
 ## packages/ui/src/primitives/
 
 - `index.ts` — Exports LinkPrimitiveProps, ImagePrimitiveProps (~124 tok)
+
+## scripts/
+
+- `smoke.js` — nacianilcom smoke test — run after build: node scripts/smoke.js [BASE_URL] (~1287 tok)

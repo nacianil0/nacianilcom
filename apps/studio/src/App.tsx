@@ -6,8 +6,9 @@ import { Prompts } from './screens/Prompts';
 import { Inbox } from './screens/Inbox';
 import { VisualStudio } from './screens/VisualStudio';
 import { MonthlyPlan } from './screens/MonthlyPlan';
+import { ResumeStudio } from './screens/ResumeStudio';
 
-type Screen = 'review' | 'qc' | 'publish' | 'prompts' | 'inbox' | 'visual' | 'plan';
+type Screen = 'review' | 'qc' | 'publish' | 'prompts' | 'inbox' | 'visual' | 'plan' | 'resume';
 
 const NAV: Array<{ id: Screen; label: string }> = [
   { id: 'review', label: 'Draft Review' },
@@ -17,6 +18,7 @@ const NAV: Array<{ id: Screen; label: string }> = [
   { id: 'inbox', label: 'AI Inbox' },
   { id: 'visual', label: 'Visual Studio' },
   { id: 'plan', label: 'Monthly Plan' },
+  { id: 'resume', label: 'Resume Studio' },
 ];
 
 export default function App() {
@@ -65,6 +67,7 @@ export default function App() {
           {screen === 'inbox' && <Inbox />}
           {screen === 'visual' && <VisualStudio />}
           {screen === 'plan' && <MonthlyPlan />}
+          {screen === 'resume' && <ResumeStudio />}
         </main>
       </div>
     </div>

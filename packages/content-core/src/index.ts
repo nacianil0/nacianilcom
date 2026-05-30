@@ -63,3 +63,6 @@ export type { SanitizeResult } from './svg/sanitizer';
 // Visual block validator (WP-10)
 export { parseVisualBlocks, validateVisualBlocks } from './visual/validator';
 export type { VisualBlockRef, VisualBlockIssue } from './visual/validator';
+
+// Resume visibility filter (WP-12)
+export { filterResumeByVisibility } from './resume/visibility';

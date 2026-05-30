@@ -7,6 +7,9 @@ import {
   SeriesSchema,
   ReferencesSchema,
   isPublic,
+  BilingualResumeSchema,
+  BilingualCaseStudySchema,
+  filterResumeByVisibility,
 } from '@nacianilcom/content-core';
 import type {
   Meta,
@@ -16,7 +19,10 @@ import type {
   ContentCatalog,
   ArticleLookup,
   SeriesLookup,
+  Resume,
+  CaseStudy,
 } from '@nacianilcom/content-core';
+import type { Locale } from '@nacianilcom/content-core';
 
 function contentRoot(): string {
   // process.cwd() = apps/web during Next.js dev/build
@@ -127,6 +133,46 @@ export async function buildContentCatalog(): Promise<ContentCatalog> {
   }
 
   return { articles, series: seriesList, cases: [] };
+}
+
+// ─── Resume + Portfolio loaders (WP-12) ──────────────────────────────────────
+
+function resumeDir(): string {
+  return path.join(contentRoot(), 'resume');
+}
+
+export async function loadResume(lang: Locale, mode: 'web' | 'pdf'): Promise<Resume | null> {
+  const raw = await readFile(path.join(resumeDir(), 'resume.json'));
+  if (!raw) return null;
+  const result = parseJson(raw, BilingualResumeSchema);
+  if (!result.data) return null;
+  return filterResumeByVisibility(result.data[lang], mode);
+}
+
+export async function listCaseSlugs(): Promise<string[]> {
+  const dir = path.join(resumeDir(), 'portfolio');
+  const entries = await fs.readdir(dir, { withFileTypes: true }).catch(() => []);
+  return entries.filter(e => e.isDirectory()).map(e => e.name).sort();
+}
+
+export async function loadCase(slug: string, lang: Locale): Promise<CaseStudy | null> {
+  const raw = await readFile(path.join(resumeDir(), 'portfolio', slug, 'case.json'));
+  if (!raw) return null;
+  const result = parseJson(raw, BilingualCaseStudySchema);
+  if (!result.data) return null;
+  const c = result.data[lang];
+  if (c.visibility === 'private') return null;
+  return c;
+}
+
+export async function loadPublicCases(lang: Locale): Promise<CaseStudy[]> {
+  const slugs = await listCaseSlugs();
+  const results: CaseStudy[] = [];
+  for (const slug of slugs) {
+    const c = await loadCase(slug, lang);
+    if (c) results.push(c);
+  }
+  return results;
 }
 
 export async function loadPublicSeriesWithArticles(

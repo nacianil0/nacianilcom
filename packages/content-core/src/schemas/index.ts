@@ -21,3 +21,36 @@ export type { Topic, MonthlyPlan, Scores } from './plans';
 
 export { InboxKindSchema, InboxStatusSchema, InboxItemSchema } from './inbox';
 export type { InboxKind, InboxStatus, InboxItem } from './inbox';
+
+export {
+  VisibilitySchema,
+  ContactItemSchema,
+  BasicsSchema,
+  ExperienceItemSchema,
+  EducationItemSchema,
+  SkillGroupSchema,
+  ProjectSummarySchema,
+  LinkItemSchema,
+  CredentialSchema,
+  ResumeSchema,
+  BilingualResumeSchema,
+  CaseStudyAssetSchema,
+  CaseStudySchema,
+  BilingualCaseStudySchema,
+} from './resume';
+export type {
+  Visibility,
+  ContactItem,
+  Basics,
+  ExperienceItem,
+  EducationItem,
+  SkillGroup,
+  ProjectSummary,
+  LinkItem,
+  Credential,
+  Resume,
+  BilingualResume,
+  CaseStudyAsset,
+  CaseStudy,
+  BilingualCaseStudy,
+} from './resume';
