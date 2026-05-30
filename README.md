@@ -246,9 +246,15 @@ See [`.env.example`](.env.example) for full reference.
 1. Connect GitHub repo to Vercel
 2. Set **Root Directory**: `apps/web`
 3. Set **Framework**: Next.js
-4. Add env vars: `REVALIDATE_SECRET`, `CRON_SECRET` (server-only)
-5. Cron is configured in `apps/web/vercel.json` (daily at 03:00 UTC)
-6. First deploy: CSP is Report-Only — check console for violations before enforcing
+4. **Build and Output Settings** (monorepo — workspace packages must compile first):
+   - **Install Command:** `cd ../.. && pnpm install --frozen-lockfile`
+   - **Build Command:** `cd ../.. && pnpm --filter @nacianilcom/web... build`
+   - Enable **Include source files outside of the Root Directory in the Build Step**
+5. Add env vars: `REVALIDATE_SECRET`, `CRON_SECRET` (server-only)
+6. Cron is configured in `apps/web/vercel.json` (daily at 03:00 UTC)
+7. First deploy: CSP is Report-Only — check console for violations before enforcing
+
+Local equivalent: `pnpm build:web`
 
 ---
 
