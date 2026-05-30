@@ -195,6 +195,8 @@ Phone and address default to `private`. Private fields are filtered by `filterRe
 
 **PDF (local only):** Studio → Resume Studio → "PDF Üret". Requires web server running on `WEB_URL`. Uses Playwright to render `/[lang]/cv/print` → A4 PDF saved to repo root. Never generated on Vercel.
 
+**Certificate previews (web CV):** Public Microsoft/BilgeAdam certs expand inline on `/tr/cv` with a WebP preview + PDF download. Source PDFs live in `content/resume/sources/8-sertifikalar/`; run `pnpm credentials:generate` after adding or replacing a certificate to copy PDFs into `apps/web/public/credentials/` and regenerate preview images (commit both).
+
 ---
 
 ## CSP Rollout — Report-Only → Enforce

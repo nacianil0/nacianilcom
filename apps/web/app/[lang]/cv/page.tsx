@@ -12,6 +12,8 @@ import { Crumbs } from '../../../src/components/Crumbs';
 import { fmtRange } from '../../../src/lib/dateRange';
 import { pageShellClass, specRowGridClass, specDateColClass, compactRowGridClass } from '../../../src/lib/layout';
 import { brandLabel } from '../../../src/lib/brandLabel';
+import { credentialAssets, credentialPdfFilename } from '../../../src/lib/credentials';
+import { CredentialRow } from '../../../src/components/CredentialRow';
 import { SITE_URL, SITE_NAME, localeToOgLocale } from '../../../src/lib/site';
 import { personJsonLd, breadcrumbJsonLd } from '../../../src/lib/jsonld';
 
@@ -115,7 +117,6 @@ export default async function CvPage({
               {tr ? 'PDF ↓' : 'PDF ↓'}
             </Link>
           }
-          title={resume.basics.name}
           lead={resume.basics.summary}
         >
           <div className="mt-5">
@@ -127,21 +128,21 @@ export default async function CvPage({
         </Masthead>
 
         <main className={`${pageShellClass} flex-1 py-14`}>
-          {/* Profile band — photo + contact */}
-          <div className="grid grid-cols-1 gap-6 border-b border-hairline pb-8 sm:grid-cols-[6rem_minmax(0,1fr)] sm:items-start">
+          {/* Profile band — photo + contact left, name right */}
+          <div className="grid grid-cols-1 gap-6 border-b border-hairline pb-8 sm:grid-cols-[7rem_minmax(0,1fr)_auto] sm:items-center sm:gap-x-8">
             {resume.basics.photo && (
-              <div className="relative h-24 w-24 overflow-hidden border border-hairline bg-surface-sunk sm:h-24 sm:w-24">
+              <div className="relative mx-auto h-28 w-28 shrink-0 overflow-hidden rounded-xl border border-ink/15 bg-surface-sunk shadow-sm ring-1 ring-hairline sm:mx-0 sm:h-[7.5rem] sm:w-[7.5rem]">
                 <Image
                   src={resume.basics.photo}
                   alt={resume.basics.name}
                   fill
-                  sizes="96px"
+                  sizes="120px"
                   className="object-cover"
                   priority
                 />
               </div>
             )}
-            <div className="flex min-w-0 flex-col gap-3">
+            <div className="flex min-w-0 flex-col items-center gap-3 sm:items-start">
               {publicEmail && (
                 <a
                   href={`mailto:${publicEmail}`}
@@ -151,7 +152,7 @@ export default async function CvPage({
                 </a>
               )}
               {resume.links.length > 0 && (
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap justify-center gap-1.5 sm:justify-start">
                   {resume.links.map((l) => (
                     <a
                       key={l.label}
@@ -167,6 +168,10 @@ export default async function CvPage({
                 </div>
               )}
             </div>
+            <h1 className="text-center font-serif text-[30px] font-semibold leading-[1.05] tracking-[-0.01em] text-ink sm:text-right sm:text-[34px]">
+              {resume.basics.name}
+              <span className="text-accent">.</span>
+            </h1>
           </div>
 
           <div className="mt-12 flex flex-col gap-16">
@@ -177,20 +182,22 @@ export default async function CvPage({
                   {resume.experience.map((exp) => (
                     <div key={exp.id} className={specRowGridClass}>
                       <div className="min-w-0">
-                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                          {exp.logo && (
-                            <div className="relative h-7 w-[5.25rem] shrink-0">
+                        {exp.logo ? (
+                          <div className="mb-2 flex flex-col gap-2">
+                            <div className="relative h-8 w-[5.5rem]">
                               <Image
                                 src={exp.logo}
                                 alt=""
                                 fill
-                                sizes="84px"
+                                sizes="88px"
                                 className="object-contain object-left"
                               />
                             </div>
-                          )}
+                            <h3 className="font-serif text-[19px] font-medium leading-tight text-ink">{exp.company}</h3>
+                          </div>
+                        ) : (
                           <h3 className="font-serif text-[19px] font-medium leading-tight text-ink">{exp.company}</h3>
-                        </div>
+                        )}
                         <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-accent">{exp.role}</p>
                         <p className="mt-3 font-sans text-[14.5px] leading-[1.7] text-ink-secondary">{exp.description}</p>
                         {exp.highlights.length > 0 && (
@@ -327,17 +334,40 @@ export default async function CvPage({
             {resume.credentials.length > 0 && (
               <SectionRail dividerTop label={tr ? 'Sertifikalar' : 'Certifications'} id="cv-credentials">
                 <ul className="flex flex-col" role="list">
-                  {resume.credentials.map((cred) => (
-                    <li key={cred.id} className={specRowGridClass}>
-                      <div className="min-w-0">
-                        <p className="font-sans text-[14.5px] leading-snug text-ink">{cred.title}</p>
-                        <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-secondary">
-                          {cred.issuer}
-                        </p>
-                      </div>
-                      {cred.year ? <span className={specDateColClass}>{cred.year}</span> : <span aria-hidden="true" />}
-                    </li>
-                  ))}
+                  {resume.credentials.map((cred) => {
+                    const assets = credentialAssets(cred);
+                    if (assets) {
+                      return (
+                        <CredentialRow
+                          key={cred.id}
+                          id={cred.id}
+                          title={cred.title}
+                          issuer={cred.issuer}
+                          {...(cred.year != null ? { year: cred.year } : {})}
+                          pdfUrl={assets.pdfUrl}
+                          previewUrl={assets.previewUrl}
+                          pdfFilename={credentialPdfFilename(cred)}
+                          labels={{
+                            expand: tr ? 'Belgeyi göster' : 'Show document',
+                            collapse: tr ? 'Belgeyi gizle' : 'Hide document',
+                            download: tr ? 'PDF indir' : 'Download PDF',
+                            previewAlt: cred.title,
+                          }}
+                        />
+                      );
+                    }
+                    return (
+                      <li key={cred.id} className={specRowGridClass}>
+                        <div className="min-w-0">
+                          <p className="font-sans text-[14.5px] leading-snug text-ink">{cred.title}</p>
+                          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-secondary">
+                            {cred.issuer}
+                          </p>
+                        </div>
+                        {cred.year ? <span className={specDateColClass}>{cred.year}</span> : <span aria-hidden="true" />}
+                      </li>
+                    );
+                  })}
                 </ul>
               </SectionRail>
             )}

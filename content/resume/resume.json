@@ -22,7 +22,7 @@
         "highlights": [
           "Dashboard platformunu (Portal) sıfırdan kurdum; duyuru, yemek menüsü, uygulama kataloğu ve yetki yönetimini tek ürün çatısında topladım.",
           "Seyahat modülünü bağımsız bir uygulamadan Dashboard altyapısına taşıyarak tek oturum ve ortak yetkilendirme sağladım.",
-          "Avans modülünde çift AI (Gemini + OpenAI yedek) fiş/fatura OCR akışını kurdum: çoklu belge tespiti, tutar ve konum çıkarımı, güven skoru ve görsel overlay ile doğrulama.",
+          "Avans modülünde Datalab ön işleme ve OpenAI ile fiş/fatura OCR akışını kurdum: çoklu belge tespiti, tutar ve konum çıkarımı, güven skoru ve görsel overlay ile doğrulama.",
           "Karmaşık avans sürecini (talep–teslim–fiş onayı–taksit–geri ödeme, kısmi teslimat, çok şirketli yetki) uçtan uca netleştirip operasyonel hale getirdim."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "Entity Framework Core", "SQL Server"],
@@ -221,7 +221,7 @@
         "highlights": [
           "Built the Dashboard platform (Portal) from scratch, consolidating announcements, meal menu, application catalog, and permission management under one product.",
           "Migrated the Travel module from a standalone app onto the Dashboard infrastructure, enabling single sign-on and unified authorization.",
-          "Built a dual-AI (Gemini + OpenAI fallback) receipt/invoice OCR pipeline in the Advance module: multi-document detection, amount and position extraction, confidence scoring, and visual overlay verification.",
+          "Built a receipt/invoice OCR pipeline in the Advance module with Datalab pre-processing and OpenAI: multi-document detection, amount and position extraction, confidence scoring, and visual overlay verification.",
           "Untangled the Advance domain end to end (request–delivery–receipt approval–installments–repayment, partial delivery, multi-company authorization) and made it operational."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "Entity Framework Core", "SQL Server"],

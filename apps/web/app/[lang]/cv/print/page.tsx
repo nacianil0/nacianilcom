@@ -49,7 +49,7 @@ export default async function CvPrintPage({
               </h1>
             </div>
             {resume.basics.photo && (
-              <div className="relative h-[76px] w-[76px] shrink-0 overflow-hidden border border-hairline bg-surface-sunk">
+              <div className="relative h-[76px] w-[76px] shrink-0 overflow-hidden rounded-lg border border-ink/15 bg-surface-sunk ring-1 ring-hairline">
                 <Image src={resume.basics.photo} alt={resume.basics.name} fill sizes="76px" className="object-cover" priority />
               </div>
             )}
@@ -79,15 +79,17 @@ export default async function CvPrintPage({
                     key={exp.id}
                     className="break-inside-avoid border-b border-hairline py-4 first:pt-0 last:border-b-0"
                   >
-                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-                      <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-                        {exp.logo && (
-                          <div className="relative h-6 w-[4.5rem] shrink-0">
+                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between">
+                      {exp.logo ? (
+                        <div className="min-w-0">
+                          <div className="relative mb-1.5 h-6 w-[4.5rem]">
                             <Image src={exp.logo} alt="" fill sizes="72px" className="object-contain object-left" />
                           </div>
-                        )}
+                          <h3 className="font-serif text-[16px] font-medium text-ink">{exp.company}</h3>
+                        </div>
+                      ) : (
                         <h3 className="font-serif text-[16px] font-medium text-ink">{exp.company}</h3>
-                      </div>
+                      )}
                       <span className="shrink-0 font-mono text-[9.5px] uppercase tracking-[0.14em] tabular-nums text-ink-secondary">
                         {fmtRange(exp.startDate, exp.endDate, locale)}
                       </span>
