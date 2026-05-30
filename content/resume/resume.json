@@ -4,7 +4,7 @@
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
       "tagline": ".NET ve React ile şirket içi portal/dashboard sistemleri ve müşteriye yönelik web uygulamaları geliştiriyorum; işi problemden çözüme kadar tek başıma götürüyorum.",
-      "summary": "Holding ölçeğinde, birden çok şirketi ve ülkeyi kapsayan sistemler geliştiriyorum: tek giriş, yetkilendirme, raporlama ve eski sistemlerden veri taşıma. Şirket içi uygulamalardan müşteriye açılan ürünlere kadar arayüzü, veritabanını ve yayına almayı birlikte yürütüyorum. REST API tasarımı ve OpenAI / OCR entegrasyonu konusunda da deneyimim var.",
+      "summary": "Holding'de birden fazla şirket ve ülkede kullanılan sistemler geliştiriyorum: tek giriş, yetkilendirme, raporlama, eski yazılımlardan veri taşıma. İç portal da müşteri ürünü de — arayüz, backend, veritabanı ve yayına almayı tek başıma yapıyorum. REST API tasarımı ve OpenAI / OCR entegrasyonu da yaptım.",
       "primaryStack": [".NET", "ASP.NET Core", "C#", "React", "TypeScript", "SQL Server"],
       "photo": "/photo/naci.jpg",
       "location": "İstanbul, Türkiye"
@@ -220,7 +220,7 @@
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
       "tagline": "I build internal portal and dashboard systems and customer-facing web apps with .NET and React, and I can take a project from the problem to a working product on my own.",
-      "summary": "I build systems that run across several companies and countries at holding scale: single sign-on, authorization, reporting, and moving data off older systems. From internal tools to customer-facing products, I handle the UI, the database, and going live together. I also have experience with REST API design and OpenAI / OCR integration.",
+      "summary": "I build systems used across multiple companies and countries at holding scale: single sign-on, authorization, reporting, and data migration from legacy apps. Internal portals and customer-facing products — I handle the frontend, backend, database, and deployment myself. I've also built REST APIs and OpenAI / OCR integrations.",
       "primaryStack": [".NET", "ASP.NET Core", "C#", "React", "TypeScript", "SQL Server"],
       "photo": "/photo/naci.jpg",
       "location": "İstanbul, Türkiye"
