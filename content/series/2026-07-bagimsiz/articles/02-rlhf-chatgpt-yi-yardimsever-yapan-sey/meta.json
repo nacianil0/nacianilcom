@@ -1,0 +1,22 @@
+{
+  "id": "02-rlhf-chatgpt-yi-yardimsever-yapan-sey",
+  "series": "2026-07-bagimsiz",
+  "order": 2,
+  "slugBase": "rlhf-chatgpt-yi-yardimsever-yapan-sey",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "intermediate",
+  "status": "published",
+  "publishDate": "2026-05-31",
+  "schemaType": "TechArticle",
+  "contentType": "research",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}

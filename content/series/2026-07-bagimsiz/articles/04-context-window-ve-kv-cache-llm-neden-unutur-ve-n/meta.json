@@ -1,0 +1,22 @@
+{
+  "id": "04-context-window-ve-kv-cache-llm-neden-unutur-ve-n",
+  "series": "2026-07-bagimsiz",
+  "order": 4,
+  "slugBase": "context-window-ve-kv-cache-llm-neden-unutur-ve-neden-pahalidir",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "advanced",
+  "status": "published",
+  "publishDate": "2026-05-31",
+  "schemaType": "TechArticle",
+  "contentType": "architecture",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}

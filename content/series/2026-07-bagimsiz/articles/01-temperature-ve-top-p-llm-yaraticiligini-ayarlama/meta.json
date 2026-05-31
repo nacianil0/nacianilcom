@@ -1,0 +1,22 @@
+{
+  "id": "01-temperature-ve-top-p-llm-yaraticiligini-ayarlama",
+  "series": "2026-07-bagimsiz",
+  "order": 1,
+  "slugBase": "temperature-ve-top-p-llm-yaraticiligini-ayarlamak",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "beginner",
+  "status": "published",
+  "publishDate": "2026-05-31",
+  "schemaType": "TechArticle",
+  "contentType": "explainer",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "03-llm-ler-neden-halusinasyon-gorur",
+  "series": "2026-07-bagimsiz",
+  "order": 3,
+  "slugBase": "llm-ler-neden-halusinasyon-gorur",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "intermediate",
+  "status": "published",
+  "publishDate": "2026-05-31",
+  "schemaType": "BlogPosting",
+  "contentType": "essay",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}

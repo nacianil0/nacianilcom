@@ -1,0 +1,22 @@
+{
+  "id": "05-rag-llm-e-kendi-verinizi-nasil-okutursunuz",
+  "series": "2026-07-bagimsiz",
+  "order": 5,
+  "slugBase": "rag-llm-e-kendi-verinizi-nasil-okutursunuz",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "advanced",
+  "status": "published",
+  "publishDate": "2026-05-31",
+  "schemaType": "TechArticle",
+  "contentType": "architecture",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}
