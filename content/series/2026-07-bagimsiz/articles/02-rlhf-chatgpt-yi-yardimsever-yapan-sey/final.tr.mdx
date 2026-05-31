@@ -1,0 +1,92 @@
+---
+title: "RLHF: ChatGPT'yi Yardımsever Yapan Eğitim Hattı"
+description: "RLHF'nin ham dil modelini nasıl talimat izleyen, daha düzenli ve insan tercihlerine yakın bir asistana çevirdiğini öğrenin."
+summary: "RLHF, bir modele yeni bilgi yüklemekten çok davranışını insan tercihleriyle hizalamaya çalışır. Bu yazı SFT, reward model, PPO ve DPO kavramlarını sade bir eğitim hattı olarak anlatır."
+faq:
+  - q: "RLHF nedir?"
+    a: "Reinforcement Learning from Human Feedback; model davranışını insan tercihleriyle daha uyumlu hale getiren post-training yaklaşımıdır."
+  - q: "RLHF modeli daha doğru yapar mı?"
+    a: "Dolaylı olarak yardımcı olabilir, fakat ana etkisi ton, talimat takibi ve cevap stratejisidir; kaynaklı doğruluk ayrı kontrol ister."
+  - q: "DPO ile RLHF aynı şey mi?"
+    a: "DPO aynı tercih verisini daha doğrudan kullanan alternatif bir hizalama yöntemidir; klasik reward model + PPO hattını sadeleştirir."
+---
+
+## Ham model ile asistan arasındaki fark
+
+Ön eğitimden çıkan dil modeli, büyük ölçekte metin devam ettirmeyi öğrenmiştir. Bir sonraki token'ı tahmin etmek için güçlü bir sezgi kazanır; fakat bu sezgi tek başına "soruyu dikkatle oku, güvenli sınırları koru, gereksiz dolambaç yapma ve faydalı cevap ver" davranışını garanti etmez.
+
+<Definition term="RLHF">
+İnsanların tercih ettiği cevapları eğitim sinyaline dönüştürerek model davranışını hizalamaya çalışan post-training yöntemi.
+</Definition>
+
+ChatGPT benzeri sistemlerde gördüğümüz yardımsever ton, düzenli yapı ve talimat takip etme eğilimi bu post-training katmanıyla güçlenir. RLHF bilgi eklemekten çok cevap biçimini, öncelikleri ve kaçınma davranışlarını etkiler.
+
+<Callout title="Ana ayrım">
+RLHF modelin ne bildiğini değil, bildiği ya da tahmin ettiği şeyi nasıl sunduğunu daha çok değiştirir. Bu yüzden halüsinasyon ve kaynak kontrolü hâlâ ayrı problemdir.
+</Callout>
+
+## Eğitim hattı: SFT, reward model, PPO
+
+InstructGPT hattında önce supervised fine-tuning yapılır. Etiketleyiciler veya seçilmiş veri kaynakları modele iyi talimat-cevap örnekleri sağlar. Bu adım modeli sohbet formatına ve görev diline yaklaştırır.
+
+İkinci adımda insanlar aynı prompt için üretilmiş birden fazla cevabı sıralar. "Hangisi daha yardımcı?", "Hangisi talimata daha uygun?", "Hangisi daha az riskli?" gibi tercihler toplanır. Bu tercih verisi, cevaplara insan tercihine benzer bir skor vermeyi öğrenen reward model için kullanılır.
+
+Üçüncü adımda ana dil modeli, reward modelin daha yüksek puan verdiği cevaplara yönlendirilir. Klasik hatta bu optimizasyon için PPO kullanılır. Modelin tamamen sapmaması için önceki davranışa yakın kalma baskısı da eklenir.
+
+<Example title="Üç aşamalı sezgi">
+- SFT: iyi cevap örneklerini taklit et.
+- Reward model: insanların hangi cevabı tercih ettiğini tahmin et.
+- PPO: daha yüksek tercih skoru alan cevaplara yaklaş.
+</Example>
+
+## Somut örnek: tercih çifti
+
+Bir prompt düşünün: "Teknik olmayan birine RLHF'yi açıkla." Ham model uzun, dağınık ve gereksiz teknik bir cevap verebilir. SFT sonrası cevap daha düzenli olur. RLHF sonrası cevap ise daha kısa, daha doğrudan ve okuyucunun seviyesine daha uygun olabilir.
+
+<CodeBlock language="typescript" title="Basit preference pair modeli">
+{`type Answer = {
+  id: string;
+  text: string;
+};
+
+type PreferencePair = {
+  prompt: string;
+  chosen: Answer;
+  rejected: Answer;
+};
+
+const pair: PreferencePair = {
+  prompt: 'Explain RLHF to a non-technical user.',
+  chosen: {
+    id: 'a',
+    text: 'RLHF is like teaching an assistant by comparing answers people prefer.',
+  },
+  rejected: {
+    id: 'b',
+    text: 'RLHF optimizes a policy using scalar rewards over trajectories.',
+  },
+};`}
+</CodeBlock>
+
+Bu veri "seçilen cevap mutlak doğru, reddedilen cevap yanlış" demek değildir. Sinyal daha incedir: belirli bir bağlamda hangi davranışın daha faydalı, açık ve uygun olduğu ölçülür.
+
+## DPO neden gündeme geldi?
+
+DPO, tercih verisini kullanmaya devam eder ama klasik reward model + PPO ayrımını sadeleştirir. Ayrı bir reward model eğitip sonra reinforcement learning döngüsü çalıştırmak yerine, tercih çiftlerinden doğrudan model ağırlıklarına giden bir kayıp fonksiyonu kurar.
+
+Bu ayrıntı günlük kullanıcı için şart değildir; geliştirici için önemlidir. Çünkü "RLHF" çoğu zaman tüm tercih tabanlı hizalama süreçlerinin genel adı gibi kullanılır. Üretim tarafında asıl soru, hangi yöntemin daha iyi ölçüldüğü, daha kararlı eğitildiği ve hedef davranışı daha güvenilir verdiğidir.
+
+<Warning title="Hizalama doğruluk garantisi değildir">
+RLHF, modeli daha yardımsever gösterebilir. Fakat kaynak yoksa, güncel bilgi gerekiyorsa veya cevap denetlenmeli ise retrieval, araç kullanımı ve eval setleri hâlâ gerekir.
+</Warning>
+
+## Pratikte ne değişir?
+
+Kullanıcı açısından fark daha anlaşılır cevap, daha iyi yapı, daha net uyarı ve daha az ilgisiz çıktı olabilir. Ürün açısından fark; müşteri desteği, özetleme, kod açıklama veya yazı düzenleme gibi senaryolarda beklenen davranışın daha tutarlı görülmesidir.
+
+Yan etkiler de vardır. Model bazen fazla temkinli davranabilir, gereksiz özür üretebilir veya kullanıcının varsayımına fazla uyabilir. Bu yüzden hizalama, tek seferlik eğitim adımı değil; ölçüm, örnek toplama ve ürün geri bildirimiyle yaşayan bir süreçtir.
+
+<Takeaway>
+RLHF, ham dil modelini "asistan gibi davranmaya" yaklaştıran tercih tabanlı bir eğitim hattıdır. Yardımseverlik artabilir; doğruluk borcu ise ayrıca tasarlanmalıdır.
+</Takeaway>
+

@@ -1,0 +1,91 @@
+{
+  "id": "02-rlhf-chatgpt-yi-yardimsever-yapan-sey",
+  "title": "RLHF: ChatGPT'yi 'Yardımsever' Yapan Şey",
+  "intro": "ChatGPT'nin yalnızca kelime tahmini yapan bir model gibi değil de, soruya cevap veren bir asistan gibi davranması tesadüf değil. Bu yazıda RLHF'nin ham dil modelinin davranışını nasıl şekillendirdiğini, insan geri bildiriminin eğitim hattına nerede girdiğini ve bunun günlük kullanımda neyi değiştirip neyi değiştirmediğini göreceğiz.",
+  "sections": [
+    {
+      "heading": "RLHF: Giriş",
+      "subheadings": [
+        "Ham model ile asistan davranışı arasındaki fark",
+        "İnsan geri bildirimi neden gerekir?"
+      ],
+      "keyPoints": [
+        "RLHF, Reinforcement Learning from Human Feedback ifadesinin kısaltmasıdır; amaç modeli yalnızca doğru görünen metin üretmeye değil, insan tercihleriyle daha uyumlu cevap vermeye yaklaştırmaktır.",
+        "Ön eğitimde model büyük ölçüde bir sonraki token'ı tahmin etmeyi öğrenir; bu, yardımsever bir asistan davranışı için tek başına yeterli değildir.",
+        "Yardımseverlik, kibarlık, talimat takip etme ve gereksiz risklerden kaçınma gibi davranışlar post-training aşamasında güçlendirilir.",
+        "RLHF bilgi eklemekten çok davranış biçimini ayarlar; bu yüzden doğruluk, kaynak kullanımı ve halüsinasyon problemleri ayrı başlıklar olarak ele alınmalıdır."
+      ],
+      "estimatedWords": 380,
+      "visualHint": "graph"
+    },
+    {
+      "heading": "Ham Dil Modelinden Hizalanmış Asistana Giden Eğitim Hattı",
+      "subheadings": [
+        "SFT: iyi cevap örnekleriyle ısınma",
+        "Reward model: insan tercihlerini modele çevirmek",
+        "PPO ve DPO: davranışı optimize etmek"
+      ],
+      "keyPoints": [
+        "InstructGPT hattında önce supervised fine-tuning (SFT) ile modele talimat-cevap örnekleri gösterilir; model böylece sohbet ve görev formatına yaklaşır.",
+        "Ardından insan değerlendiriciler aynı prompt için birden fazla cevabı sıralar; bu tercih çiftleri reward model denen ayrı bir modelin eğitim verisine dönüşür.",
+        "Reward model, yeni cevaplara insan tercihine benzer bir skor vermeyi öğrenir; bu skor PPO gibi bir reinforcement learning adımında ana sinyal olarak kullanılır.",
+        "PPO aşaması modelin daha yüksek ödül alan cevaplara yönelmesini sağlar, ancak modelin tamamen sapmaması için genellikle önceki davranışa yakın kalma baskısı da bulunur.",
+        "DPO, aynı tercih verisini daha doğrudan kullanarak reward model + PPO hattını sadeleştiren bir alternatif olarak anlatılabilir; ana fikir yine insan tercih verisidir."
+      ],
+      "estimatedWords": 400,
+      "visualHint": "flowchart"
+    },
+    {
+      "heading": "Somut Örnek",
+      "subheadings": [
+        "Aynı prompt'a üç farklı cevap",
+        "Tercih sıralaması nasıl sinyale dönüşür?"
+      ],
+      "keyPoints": [
+        "Okuyucuya basit bir prompt verilir: örneğin 'Teknik olmayan birine RLHF'yi açıkla'. Ham model cevabı dağınık, SFT cevabı düzenli, RLHF sonrası cevap ise daha bağlama duyarlı gösterilir.",
+        "İnsan değerlendirici iki aday cevap arasında seçim yapar: hangisi daha yardımcı, daha açık, daha az riskli ve talimata daha uygun?",
+        "Bu seçim doğrudan 'doğru cevap budur' anlamına gelmez; daha çok hangi davranışın tercih edildiğine dair eğitim sinyalidir.",
+        "Reward model bu tercihleri sayısal skora yaklaştırır; asıl dil modeli de eğitim sırasında daha yüksek skor alan cevaplara benzer cevaplar üretmeye itilmiş olur.",
+        "Örnek özellikle şunu göstermeli: RLHF modelin tonunu ve cevap stratejisini iyileştirebilir, fakat olmayan bilgiyi kaynaklı bilgiye dönüştürmez."
+      ],
+      "estimatedWords": 360,
+      "codeExample": {
+        "lang": "typescript",
+        "description": "İki aday cevabın tercih sırasına göre basit bir preference pair nesnesi ve reward skoruna dönüşmesini gösteren küçük pseudo-code"
+      },
+      "visualHint": "flowchart"
+    },
+    {
+      "heading": "Pratikte Ne Anlama Geliyor?",
+      "subheadings": [
+        "Neden daha kibar ve düzenli cevaplar alıyoruz?",
+        "RLHF'nin sınırları"
+      ],
+      "keyPoints": [
+        "Kullanıcı açısından RLHF'nin görünen sonucu daha iyi talimat takibi, daha düzenli cevap yapısı, daha açıklayıcı ton ve daha az kaba veya ilgisiz çıktı olabilir.",
+        "Ürün açısından bu süreç model davranışını istenen kullanım senaryolarına yaklaştırır: soru cevaplama, özetleme, yazı düzenleme, kod açıklama ve güvenlik sınırları gibi alanlarda fark yaratır.",
+        "Bunun bedeli bazı davranışsal yan etkiler olabilir: aşırı temkinli cevaplar, gereksiz özürler, kullanıcının varsayımına fazla uyma veya kendinden emin görünen ama hatalı açıklamalar.",
+        "RLHF güvenilirlik katmanlarından yalnızca biridir; kaynak kontrolü, retrieval, eval setleri, güvenlik politikaları ve sistem prompt'larıyla birlikte düşünülmelidir.",
+        "Geliştiriciler için pratik ders: modelden beklenen davranışı açık tanımlamak, iyi/kötü örnekler toplamak ve yalnızca tek seferlik prompt'la değil ölçülebilir değerlendirmelerle ilerlemek gerekir."
+      ],
+      "estimatedWords": 380
+    },
+    {
+      "heading": "Özet ve Sonraki Adım",
+      "subheadings": [
+        "RLHF'nin tek cümlelik özeti",
+        "Halüsinasyon konusuna geçiş"
+      ],
+      "keyPoints": [
+        "RLHF, ham dil modelini insan tercihleriyle daha uyumlu bir asistana dönüştürmek için kullanılan post-training yaklaşımıdır.",
+        "Klasik hat üç parçayla özetlenir: SFT ile talimat formatı, reward model ile tercih tahmini, PPO ile davranış optimizasyonu.",
+        "DPO gibi yaklaşımlar bu hattı sadeleştirse de merkezde hâlâ insan tercih verisi ve model davranışını hizalama hedefi vardır.",
+        "Bu mekanizma modelin neden daha yardımsever göründüğünü açıklar, fakat neden bazen uydurduğunu tek başına açıklamaz.",
+        "Sonraki yazıya doğal geçiş: hizalanmış bir asistan bile neden halüsinasyon görebilir?"
+      ],
+      "estimatedWords": 320
+    }
+  ],
+  "conclusion": "RLHF'yi anladığınızda ChatGPT benzeri sistemlerin 'kişilik' gibi görünen davranışlarının arkasında ölçülen, karşılaştırılan ve optimize edilen tercihler olduğunu görürsünüz. Bir sonraki adım, bu hizalama katmanına rağmen modellerin neden bazen ikna edici ama yanlış cevaplar ürettiğini incelemek olacak.",
+  "totalEstimatedWords": 2200
+}

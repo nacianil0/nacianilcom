@@ -1,0 +1,155 @@
+{
+  "id": "05-rag-llm-e-kendi-verinizi-nasil-okutursunuz",
+  "title": "RAG: LLM'e Kendi Verinizi Nasıl Okutursunuz?",
+  "intro": "Bir LLM'i şirket dokümanlarınız, ürün kayıtlarınız veya destek makalelerinizle konuşturmak için çoğu zaman modeli yeniden eğitmeniz gerekmez. RAG, doğru bilgiyi dış kaynaktan bulup modele bağlam olarak vererek daha güncel, izlenebilir ve kurumsal veriyle uyumlu cevaplar üretmenin pratik yoludur.",
+  "sections": [
+    {
+      "heading": "RAG Hangi Problemi Çözer?",
+      "subheadings": [
+        "Modelin bildiği ile kurumun bildiği farklıdır",
+        "Ezber yerine kaynak getirme"
+      ],
+      "keyPoints": [
+        "LLM'in eğitim verisi sabittir; şirket içi doküman, sözleşme, ürün bilgisi veya güncel prosedürleri kendiliğinden bilmez",
+        "RAG, modeli yeniden eğitmeden dış bilgi kaynaklarını cevap üretim sürecine dahil eder",
+        "Halüsinasyon riskini tamamen yok etmez ama cevabı kaynaklı ve denetlenebilir hale getirmek için güçlü bir zemin sağlar",
+        "Fine-tune ile RAG arasındaki temel ayrım: davranış/üslup öğretmek başka, güncel bilgi getirmek başkadır",
+        "Bağlam penceresi sınırlı olduğu için bütün veri modele verilmez; sadece ilgili parçalar seçilir"
+      ],
+      "estimatedWords": 260
+    },
+    {
+      "heading": "Temel Akış: Retrieve, Augment, Generate",
+      "subheadings": [
+        "Soru önce aramaya çevrilir",
+        "Bulunan parçalar prompt'a eklenir",
+        "Model cevap üretir"
+      ],
+      "keyPoints": [
+        "Kullanıcı sorusu doğrudan modele gönderilmeden önce arama sorgusuna veya embedding vektörüne dönüştürülür",
+        "Retrieval adımı, bilgi havuzundan en alakalı doküman parçalarını bulur",
+        "Augmentation adımı, bulunan kaynakları modelin sistem/kullanıcı bağlamına kontrollü şekilde yerleştirir",
+        "Generation adımı, modelin cevabı sadece verilen kaynaklara dayanarak üretmesini hedefler",
+        "Bu akış Lewis et al. 2020'deki RAG fikrinin LLM uygulamalarındaki pratik karşılığıdır"
+      ],
+      "estimatedWords": 360,
+      "visualHint": "flowchart"
+    },
+    {
+      "heading": "Veriyi Hazırlama: Chunking, Metadata ve Temizlik",
+      "subheadings": [
+        "Doküman değil, parça aranır",
+        "Metadata üretimde hayat kurtarır"
+      ],
+      "keyPoints": [
+        "RAG sistemleri genellikle bütün PDF'i veya sayfayı değil, anlamlı küçük parçaları indeksler",
+        "Chunk boyutu çok küçük olursa bağlam kaybolur; çok büyük olursa arama hassasiyeti ve bağlam penceresi verimi düşer",
+        "Başlık, bölüm, tarih, departman, yetki seviyesi ve kaynak URL'i gibi metadata alanları filtreleme ve kaynak gösterme için gerekir",
+        "Bozuk OCR, tekrar eden header/footer, eski sürüm dokümanlar ve çelişkili kaynaklar cevap kalitesini doğrudan bozar",
+        "İyi RAG çoğu zaman iyi prompt'tan önce iyi veri hazırlığı problemidir"
+      ],
+      "estimatedWords": 320,
+      "codeExample": {
+        "lang": "typescript",
+        "description": "basit bir dokümanı başlık ve paragraf sınırlarına göre chunk'lara ayırıp metadata ekleme"
+      }
+    },
+    {
+      "heading": "Embedding ve Vektör Arama Ne İşe Yarar?",
+      "subheadings": [
+        "Benzer kelime değil, benzer anlam",
+        "Vektör DB'nin rolü"
+      ],
+      "keyPoints": [
+        "Embedding, metni semantik yakınlığı ölçülebilir sayısal bir temsile dönüştürür",
+        "Vektör arama, aynı kelimeler geçmese bile anlamca yakın parçaları bulmaya çalışır",
+        "Vektör DB veya arama katmanı; embedding, metadata ve kaynak bilgisini birlikte saklar",
+        "Salt keyword search bazı kurumsal senaryolarda hâlâ değerlidir; hibrit arama çoğu zaman daha dengeli sonuç verir",
+        "Embedding kalitesi, chunk stratejisi ve domain dili retrieval sonucunu birlikte belirler"
+      ],
+      "estimatedWords": 320,
+      "visualHint": "graph"
+    },
+    {
+      "heading": "Reranking ve Bağlam Seçimi",
+      "subheadings": [
+        "İlk arama sonucu son cevap değildir",
+        "Bağlam penceresi bütçesi"
+      ],
+      "keyPoints": [
+        "İlk retrieval genellikle aday liste üretir; reranking bu adayları soruya göre yeniden sıralar",
+        "Top-k değerini artırmak her zaman kaliteyi artırmaz; alakasız parça çoğaldıkça modelin dikkati dağılabilir",
+        "Bağlam penceresi sınırlı olduğu için hangi parçaların prompt'a gireceği ayrı bir ürün kararıdır",
+        "04-context-window yazısındaki bağlam sınırı burada pratik bir maliyet/kalite kararına dönüşür",
+        "Kaynakların sırası, uzunluğu ve formatı modelin cevabı nasıl kurduğunu etkiler"
+      ],
+      "estimatedWords": 300
+    },
+    {
+      "heading": "Fine-Tune Yerine Ne Zaman RAG Seçilir?",
+      "subheadings": [
+        "Bilgi güncelse RAG öne çıkar",
+        "Davranış değişecekse fine-tune düşünülebilir"
+      ],
+      "keyPoints": [
+        "Kaynaklar sık güncelleniyorsa RAG genellikle fine-tune'dan daha hızlı ve ucuz güncellenir",
+        "Cevabın dayandığı kaynağı göstermek gerekiyorsa RAG daha denetlenebilir bir mimari sunar",
+        "Modelin belirli bir formatta, tonda veya görev davranışında uzmanlaşması gerekiyorsa fine-tune anlamlı olabilir",
+        "Kurumsal uygulamalarda iki yaklaşım rakip olmak zorunda değildir; fine-tune edilmiş bir model RAG ile kaynaklandırılabilir",
+        "Karar kriterleri: veri değişim hızı, kaynak gösterme ihtiyacı, gizlilik, maliyet, gecikme ve bakım yükü"
+      ],
+      "estimatedWords": 330,
+      "visualHint": "flowchart"
+    },
+    {
+      "heading": "Somut Örnek: Şirket İçi Bilgi Asistanı",
+      "subheadings": [
+        "Kullanıcı sorusundan cevaba",
+        "Kaynaklı cevap üretimi"
+      ],
+      "keyPoints": [
+        "Kullanıcı 'izin politikası değişti mi?' diye sorduğunda sistem önce ilgili HR doküman parçalarını arar",
+        "Retrieval sonucu, tarih ve kaynak URL'iyle birlikte prompt'a eklenir",
+        "Model cevabı üretirken kaynaklar arasında çelişki varsa bunu belirtmeli, emin olmadığı noktada kesin konuşmamalıdır",
+        "Cevap sonunda kullanılan dokümanlar link veya kısa kaynak etiketiyle gösterilir",
+        "Bu örnek, RAG'in yalnızca teknik bir arama katmanı değil, ürün güveni tasarımı olduğunu gösterir"
+      ],
+      "estimatedWords": 340,
+      "codeExample": {
+        "lang": "typescript",
+        "description": "soru alma, benzer chunk'ları getirme, prompt oluşturma ve kaynaklı cevap döndürme akışı"
+      }
+    },
+    {
+      "heading": "Üretimde Dikkat Edilecek Noktalar",
+      "subheadings": [
+        "Değerlendirme olmadan RAG kör uçar",
+        "Yetki ve gizlilik retrieval katmanında başlar"
+      ],
+      "keyPoints": [
+        "RAG kalitesi yalnızca model cevabıyla değil, doğru kaynak bulunup bulunmadığıyla da ölçülmelidir",
+        "Golden question set, retrieval recall, answer faithfulness ve source attribution gibi metrikler gerekir",
+        "Kullanıcının görmeye yetkili olmadığı doküman retrieval sonucuna hiç girmemelidir",
+        "Prompt injection, eski doküman, çelişkili kaynak ve eksik metadata üretim sistemlerinde sık görülen risklerdir",
+        "Loglama ve insan geri bildirimi, hangi sorularda retrieval'in başarısız olduğunu görünür kılar"
+      ],
+      "estimatedWords": 340
+    },
+    {
+      "heading": "Özet: RAG'i Bir Arama Kutusu Gibi Düşünmeyin",
+      "subheadings": [
+        "Mimari desen olarak RAG",
+        "Sonraki adım"
+      ],
+      "keyPoints": [
+        "RAG; veri hazırlama, retrieval, bağlam tasarımı, model cevabı ve değerlendirme adımlarından oluşan uçtan uca bir sistemdir",
+        "Başarılı uygulamalar genellikle önce küçük ve ölçülebilir bir bilgi alanıyla başlar",
+        "İlk hedef tüm şirket verisini konuşturmak değil, birkaç kritik soru türünü güvenilir cevaplamaktır",
+        "Bir sonraki adım embedding ve chunking kararlarını küçük bir prototiple test etmektir"
+      ],
+      "estimatedWords": 180
+    }
+  ],
+  "conclusion": "RAG, LLM'e veri 'yüklemekten' çok doğru bilgiyi doğru anda modele göstermekle ilgilidir. Bir sonraki aşamada bu mimarinin en hassas parçası olan embedding, chunking ve retrieval kalitesini küçük bir örnek üzerinden ölçmek gerekir.",
+  "totalEstimatedWords": 2800
+}

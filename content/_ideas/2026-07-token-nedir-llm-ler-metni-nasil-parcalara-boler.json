@@ -1,0 +1,32 @@
+{
+  "month": "2026-07",
+  "topic": {
+    "title": "Token Nedir? LLM'ler Metni Nasıl Parçalara Böler",
+    "angle": "Tokenization (BPE) mantığını sıfırdan, somut örneklerle anlatan giriş",
+    "whyNow": "Seri bir temel taşıyla başlamalı; 'how llms work' yolculuğunun ilk adımı",
+    "targetAudience": "LLM'leri ilk kez merak eden geliştiriciler ve teknik meraklılar",
+    "seriesFit": "llm-nasil-calisir",
+    "difficulty": "beginner",
+    "estimatedReadingTime": 8,
+    "suggestedPublishWeek": 1,
+    "contentType": "explainer",
+    "seoPotential": "Yüksek — 'token nedir', 'tokenization' düşük rekabetli evergreen sorgular",
+    "geoPotential": "Yüksek — net tanım + örnek tablo LLM yanıtlarında alıntılanır",
+    "visualPotential": "Yüksek — cümlenin token'lara bölünüşü gösteren renkli diyagram",
+    "riskOfRepetition": "Düşük — henüz hiç içerik yok",
+    "requiredResearch": "Tiktoken/BPE örnekleri, Türkçe tokenization maliyeti örneği",
+    "sourceBasis": "Sennrich et al. 2016 'Neural Machine Translation of Rare Words with Subword Units' (BPE); OpenAI tiktoken dokümantasyonu",
+    "nextAction": "article-brief üret → outline",
+    "scores": {
+      "relevance": 10,
+      "seriesFit": 10,
+      "novelty": 6,
+      "riskOfRepetition": 1,
+      "seoPotential": 9,
+      "geoPotential": 9,
+      "difficulty": 2,
+      "estimatedEffort": 4,
+      "visualPotential": 8
+    }
+  }
+}

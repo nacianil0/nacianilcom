@@ -1,0 +1,92 @@
+---
+title: "RLHF: The Training Loop Behind Helpful Chatbots"
+description: "Learn how RLHF turns a raw language model into a more helpful assistant through SFT, preference data, reward models, PPO, and DPO."
+summary: "RLHF is less about injecting new facts and more about shaping behavior toward human preferences. This article explains SFT, reward models, PPO, and DPO as one practical post-training pipeline."
+faq:
+  - q: "What is RLHF?"
+    a: "Reinforcement Learning from Human Feedback, a post-training approach that aligns model behavior with human preferences."
+  - q: "Does RLHF make a model factual?"
+    a: "It can help indirectly, but its main effect is tone, instruction following, and answer strategy; factual grounding still needs separate checks."
+  - q: "Is DPO the same as RLHF?"
+    a: "DPO is a preference-based alignment method that simplifies the classic reward-model-plus-PPO pipeline."
+---
+
+## The gap between a raw model and an assistant
+
+A pretrained language model has learned to continue text at scale. It has a strong sense for likely next tokens, but that alone does not guarantee the behavior people expect from an assistant: read the instruction, be concise, avoid unnecessary risk, and answer in a useful structure.
+
+<Definition term="RLHF">
+A post-training method that converts human preferences over answers into a training signal for model behavior.
+</Definition>
+
+The helpful tone, organized structure, and instruction-following behavior we associate with chat assistants are strengthened during post-training. RLHF mostly changes how the model behaves, not the facts stored inside it.
+
+<Callout title="Core distinction">
+RLHF changes how the model presents and prioritizes an answer more than what the model knows. Hallucination and source verification remain separate problems.
+</Callout>
+
+## The pipeline: SFT, reward model, PPO
+
+The InstructGPT-style pipeline starts with supervised fine-tuning. Human-written or curated instruction-answer examples show the model what a good assistant response looks like. This pulls the model toward chat format and task-following behavior.
+
+The second step asks humans to rank multiple answers to the same prompt. Which answer is more helpful? Which follows the instruction better? Which is safer and clearer? Those comparisons train a reward model that learns to score answers in a way that approximates human preferences.
+
+The third step optimizes the main language model toward answers that receive higher reward-model scores. In the classic pipeline, PPO performs that optimization while a separate pressure keeps the model from drifting too far from its earlier behavior.
+
+<Example title="Three-step intuition">
+- SFT: imitate good instruction-answer examples.
+- Reward model: predict which answer humans would prefer.
+- PPO: move the model toward higher-preference answers.
+</Example>
+
+## A concrete preference pair
+
+Consider the prompt: "Explain RLHF to a non-technical user." A raw model might produce a long and overly technical answer. After SFT, the answer becomes more structured. After RLHF, it may become shorter, more direct, and better matched to the reader.
+
+<CodeBlock language="typescript" title="A simple preference pair">
+{`type Answer = {
+  id: string;
+  text: string;
+};
+
+type PreferencePair = {
+  prompt: string;
+  chosen: Answer;
+  rejected: Answer;
+};
+
+const pair: PreferencePair = {
+  prompt: 'Explain RLHF to a non-technical user.',
+  chosen: {
+    id: 'a',
+    text: 'RLHF is like teaching an assistant by comparing answers people prefer.',
+  },
+  rejected: {
+    id: 'b',
+    text: 'RLHF optimizes a policy using scalar rewards over trajectories.',
+  },
+};`}
+</CodeBlock>
+
+This data does not mean the chosen answer is absolutely true and the rejected answer is false. The signal is narrower: in this context, one behavior is more useful, clearer, and more appropriate.
+
+## Why DPO matters
+
+DPO keeps the idea of preference data but simplifies the classic reward-model-plus-PPO setup. Instead of training a separate reward model and then running a reinforcement learning loop, DPO defines a loss that uses preference pairs more directly.
+
+The distinction is not required for every user, but it matters for builders. The term "RLHF" is often used loosely for several preference-based alignment methods. In production, the real question is which method is measurable, stable, and effective for the target behavior.
+
+<Warning title="Alignment is not a factuality guarantee">
+RLHF can make a model sound more helpful. If the answer needs fresh or verifiable information, you still need retrieval, tools, citations, and evaluation sets.
+</Warning>
+
+## What changes in practice
+
+For users, the visible result can be clearer answers, better structure, better warnings, and fewer irrelevant outputs. For products, the value appears in support, summarization, code explanation, writing workflows, and other tasks where behavior consistency matters.
+
+There are tradeoffs. A model can become too cautious, over-apologetic, or overly agreeable with a user's assumption. Alignment is not a one-time finish line; it is a loop of measuring behavior, collecting examples, and feeding product learning back into the system.
+
+<Takeaway>
+RLHF is a preference-based training loop that nudges a raw language model toward assistant behavior. Helpfulness can improve, but factual reliability still has to be designed.
+</Takeaway>
+

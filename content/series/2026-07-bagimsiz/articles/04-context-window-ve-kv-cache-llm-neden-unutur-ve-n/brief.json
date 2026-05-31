@@ -1,0 +1,35 @@
+{
+  "topic": "Context Window ve KV Cache: LLM Neden Unutur ve Neden Pahalıdır",
+  "seriesContext": "2026-07 planındaki bağımsız yazı — Uzun bağlam ve maliyet, üretim kullanımında kritik mühendislik konusu",
+  "targetAudience": "LLM'i üretimde kullanan/maliyetlendiren mühendisler",
+  "learningObjectives": [
+    "Bağlam penceresinin sınırları ve KV cache'in inference ekonomisi",
+    "Kaynak temeli: Vaswani et al. 2017 (attention maliyeti); Pope et al. 2022 'Efficiently Scaling Transformer Inference' (KV cache)"
+  ],
+  "readerQuestions": [
+    "Context Window ve KV Cache: LLM Neden Unutur ve Neden Pahalıdır ne demek?",
+    "Bu kavram neden önemli?",
+    "Pratikte nerede karşıma çıkar?"
+  ],
+  "outOfScope": [
+    "Düşük"
+  ],
+  "suggestedExamples": [
+    "Yüksek — token akışında cache'lenen anahtarların gösterimi",
+    "KV cache mekaniği, dikkatin kuadratik maliyeti"
+  ],
+  "draftStructure": [
+    "Context Window ve KV Cache: Giriş",
+    "Bağlam penceresinin sınırları ve KV cache'in inference ekonomisi",
+    "Somut örnek",
+    "Pratikte ne anlama geliyor?",
+    "Özet ve sonraki adım"
+  ],
+  "estimatedReadingTime": 13,
+  "planRef": {
+    "whyNow": "Uzun bağlam ve maliyet, üretim kullanımında kritik mühendislik konusu",
+    "sourceBasis": "Vaswani et al. 2017 (attention maliyeti); Pope et al. 2022 'Efficiently Scaling Transformer Inference' (KV cache)",
+    "nextAction": "outline; mimari diyagram",
+    "suggestedPublishWeek": 4
+  }
+}

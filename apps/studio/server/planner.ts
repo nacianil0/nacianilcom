@@ -98,6 +98,9 @@ export async function analyzeContent(contentRoot: string): Promise<ContentAnalys
     });
   }
 
+  // Only surface series that actually have content — empty shells skew prompts/plans.
+  const activeSeries = series.filter(s => s.articleCount > 0);
+
   // Count backlog ideas
   let backlogCount = 0;
   try {
@@ -106,7 +109,7 @@ export async function analyzeContent(contentRoot: string): Promise<ContentAnalys
     backlogCount = ideasEntries.filter(e => e.isFile() && e.name.endsWith('.json')).length;
   } catch { /* empty */ }
 
-  return { series, backlogCount, categoryDistribution, tagDistribution, publishedThisYear };
+  return { series: activeSeries, backlogCount, categoryDistribution, tagDistribution, publishedThisYear };
 }
 
 // ─── Candidate Pool Generation ───────────────────────────────────────────────
@@ -404,8 +407,9 @@ Balance rules for selected 10:
 
 Return only the JSON, no explanation.
 
-After generation, drop the file into content/_inbox/ as:
+After generation, drop the file into content/_inbox/ wrapped as:
 { "kind": "monthlyPlan", "targetMonth": "${targetMonth}", "payload": <the JSON>, "source": "claude-code-file-mode", "createdAt": "<ISO date>", "status": "detected" }
+Studio detects the file and writes content/plans/${targetMonth}.json automatically — no manual Route step.
 `;
 }
 

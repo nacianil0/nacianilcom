@@ -1,0 +1,35 @@
+{
+  "topic": "Temperature ve Top-p: LLM Yaratıcılığını Ayarlamak",
+  "seriesContext": "2026-07 planındaki bağımsız yazı — Pratik ve hemen uygulanabilir; 1. haftanın temel üçlüsünü tamamlar",
+  "targetAudience": "API ile LLM kullanan geliştiriciler",
+  "learningObjectives": [
+    "Sampling parametrelerinin çıktıyı nasıl değiştirdiğini elle örneklerle göstermek",
+    "Kaynak temeli: Holtzman et al. 2020 'The Curious Case of Neural Text Degeneration' (nucleus/top-p); OpenAI API dokümantasyonu"
+  ],
+  "readerQuestions": [
+    "Temperature ve Top-p: LLM Yaratıcılığını Ayarlamak ne demek?",
+    "Bu kavram neden önemli?",
+    "Pratikte nerede karşıma çıkar?"
+  ],
+  "outOfScope": [
+    "Düşük"
+  ],
+  "suggestedExamples": [
+    "Yüksek — aynı prompt'un farklı temperature'larda çıktı karşılaştırması",
+    "Greedy/temperature/top-p/top-k örnek çıktılar"
+  ],
+  "draftStructure": [
+    "Temperature ve Top: Giriş",
+    "Sampling parametrelerinin çıktıyı nasıl değiştirdiğini elle örneklerle göstermek",
+    "Somut örnek",
+    "Pratikte ne anlama geliyor?",
+    "Özet ve sonraki adım"
+  ],
+  "estimatedReadingTime": 8,
+  "planRef": {
+    "whyNow": "Pratik ve hemen uygulanabilir; 1. haftanın temel üçlüsünü tamamlar",
+    "sourceBasis": "Holtzman et al. 2020 'The Curious Case of Neural Text Degeneration' (nucleus/top-p); OpenAI API dokümantasyonu",
+    "nextAction": "article-brief üret",
+    "suggestedPublishWeek": 1
+  }
+}

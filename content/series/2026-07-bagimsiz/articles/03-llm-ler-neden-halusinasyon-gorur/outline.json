@@ -1,0 +1,83 @@
+{
+  "id": "03-llm-ler-neden-halusinasyon-gorur",
+  "title": "LLM'ler Neden Halüsinasyon Görür?",
+  "intro": "LLM halüsinasyonu çoğu zaman modelin bozulması gibi anlatılır; oysa sorun daha temelde, modelin dünyayı doğrulayan değil bir sonraki token'ı tahmin eden bir sistem olmasında başlar. Bu yazı, halüsinasyonu yalnızca “yanlış cevap” olarak değil, akıcı dil üretimi ile kaynaklı doğruluk arasındaki gerilim olarak ele alır. Okur yazının sonunda bir LLM cevabına ne zaman güvenebileceğini, ne zaman doğrulama katmanı gerektiğini daha net ayırt eder.",
+  "sections": [
+    {
+      "heading": "Halüsinasyon Nedir, Ne Değildir?",
+      "subheadings": [
+        "Yanlış cevap ile uydurma gerekçe arasındaki fark",
+        "Akıcılık güvenilirlik değildir"
+      ],
+      "keyPoints": [
+        "Halüsinasyonu modelin kendinden emin biçimde gerçek dışı, kaynaksız veya bağlama aykırı bilgi üretmesi olarak tanımla",
+        "Basit bilgi hatası, eksik cevap, belirsiz cevap ve halüsinasyon arasındaki sınırları ayır",
+        "Ji et al. 2023 taksonomisine yaslanarak intrinsic/extrinsic veya faithfulness/factuality ayrımını kısa ve anlaşılır kur",
+        "Okura asıl meselenin ton değil dayanak olduğunu göster: doğru üslup yanlış bilgiyi daha ikna edici yapabilir"
+      ],
+      "estimatedWords": 280
+    },
+    {
+      "heading": "Next-token Tahmini Neden Bu Sonucu Üretir?",
+      "subheadings": [
+        "Model neyi optimize eder?",
+        "Olası devam ile doğru cevap aynı şey değildir"
+      ],
+      "keyPoints": [
+        "LLM'in temel işinin verilen bağlama göre bir sonraki token dağılımını tahmin etmek olduğunu sade bir örnekle anlat",
+        "Eğitim verisinden öğrenilen örüntülerin, doğruluk garantisi değil yüksek olasılıklı devamlar ürettiğini vurgula",
+        "Modelin cevap verirken dış dünyaya otomatik olarak bakmadığını; parametrelerde, prompt bağlamında ve varsa araç sonuçlarında kalan bilgiyle konuştuğunu açıkla",
+        "Temperature/top-p ve RLHF gibi önceki bağımsız yazı konularına kısa iç bağ sinyali bırak; burada tekrar açıklama yapma",
+        "Halüsinasyonun bu yüzden yalnızca “daha akıllı model” problemi değil, mimari ve ürün tasarımı problemi olduğunu bağla"
+      ],
+      "estimatedWords": 380,
+      "visualHint": "flowchart"
+    },
+    {
+      "heading": "Somut Örnek: Doğru Ton, Yanlış Dayanak",
+      "subheadings": [
+        "Küçük bir soru nasıl büyür?",
+        "Cevap neden ikna edici görünür?"
+      ],
+      "keyPoints": [
+        "Uydurma kaynak, yanlış tarih veya var olmayan API metodu gibi düşük riskli ama tanıdık bir örnek seç",
+        "Modelin cevabında hangi parçaların makul, hangi parçaların uydurma olduğunu satır satır çözümle",
+        "Okurun halüsinasyonu yalnızca “tamamen saçma cevap” olarak beklememesi gerektiğini göster",
+        "Örneği ürün, yazılım dokümantasyonu veya araştırma notu gibi günlük kullanım alanına bağla"
+      ],
+      "estimatedWords": 300
+    },
+    {
+      "heading": "Taksonomi ve Kalibrasyon: Hatanın Türünü Tanımak",
+      "subheadings": [
+        "İç tutarlılık ve dış doğruluk",
+        "Model ne zaman “bilmiyorum” demeli?"
+      ],
+      "keyPoints": [
+        "Halüsinasyonları bağlama aykırı üretim, dış gerçeklikle çelişen üretim, uydurma kaynak ve gereksiz kesinlik gibi pratik sınıflara ayır",
+        "Kalibrasyon kavramını açıklayarak modelin güven tonu ile gerçek isabet ihtimali arasındaki uyumsuzluğu göster",
+        "Kalai & Vempala 2024 çizgisindeki ana fikri, teknik kanıta boğmadan “tutarlı konuşmak doğru bilmek değildir” cümlesiyle sadeleştir",
+        "Belirsizlik ifadesi, kaynak gösterme, retrieval sonucu ve araç kullanımı arasındaki farkı netleştir"
+      ],
+      "estimatedWords": 360,
+      "visualHint": "graph"
+    },
+    {
+      "heading": "Pratikte Güven Nasıl Kurulur?",
+      "subheadings": [
+        "Kullanıcı için kontrol listesi",
+        "Ürün tasarımı için koruma katmanları"
+      ],
+      "keyPoints": [
+        "Yüksek riskli alanlarda LLM cevabını tek başına karar mekanizması yapmama ilkesini açık söyle",
+        "Kaynak isteme, karşılaştırmalı doğrulama, tarih ve sürüm kontrolü, alıntıların gerçekten varlığını kontrol etme gibi kullanıcı pratikleri öner",
+        "RAG, tool use, citation grounding, eval setleri ve insan onayı gibi ürün katmanlarını kısa tanıt",
+        "RAG yazısına doğal bir sonraki adım köprüsü kur: modelin kendi hafızası yerine seçilmiş bilgiye dayandırılması",
+        "Yazıyı korku yerine gerçekçi güven çerçevesiyle kapat: LLM yararlı olabilir, ama doğruluk borcu ayrıca tasarlanmalıdır"
+      ],
+      "estimatedWords": 390
+    }
+  ],
+  "conclusion": "Halüsinasyon, LLM'lerin bazen “yalan söylemesi”nden çok, akıcı devam üretme hedefinin doğruluk hedefiyle karıştırılmasından doğar. Bu ayrımı görmek, hem kullanıcı olarak daha iyi kontrol soruları sormayı hem de ürün geliştirirken retrieval, araç kullanımı ve değerlendirme katmanlarını bilinçli kurmayı sağlar. Bir sonraki adım, bu doğrulama ihtiyacının RAG gibi yaklaşımlarla nasıl sistematik hale getirildiğini incelemektir.",
+  "totalEstimatedWords": 2000
+}

@@ -1,0 +1,32 @@
+{
+  "month": "2026-07",
+  "topic": {
+    "title": "Context Window ve KV Cache: LLM Neden Unutur ve Neden Pahalıdır",
+    "angle": "Bağlam penceresinin sınırları ve KV cache'in inference ekonomisi",
+    "whyNow": "Uzun bağlam ve maliyet, üretim kullanımında kritik mühendislik konusu",
+    "targetAudience": "LLM'i üretimde kullanan/maliyetlendiren mühendisler",
+    "seriesFit": "standalone",
+    "difficulty": "advanced",
+    "estimatedReadingTime": 13,
+    "suggestedPublishWeek": 4,
+    "contentType": "architecture",
+    "seoPotential": "Orta-Yüksek — 'kv cache', 'context window' teknik sorgular",
+    "geoPotential": "Yüksek — teknik tanımlar alıntılanır",
+    "visualPotential": "Yüksek — token akışında cache'lenen anahtarların gösterimi",
+    "riskOfRepetition": "Düşük",
+    "requiredResearch": "KV cache mekaniği, dikkatin kuadratik maliyeti",
+    "sourceBasis": "Vaswani et al. 2017 (attention maliyeti); Pope et al. 2022 'Efficiently Scaling Transformer Inference' (KV cache)",
+    "nextAction": "outline; mimari diyagram",
+    "scores": {
+      "relevance": 8,
+      "seriesFit": 4,
+      "novelty": 7,
+      "riskOfRepetition": 2,
+      "seoPotential": 7,
+      "geoPotential": 8,
+      "difficulty": 9,
+      "estimatedEffort": 8,
+      "visualPotential": 8
+    }
+  }
+}

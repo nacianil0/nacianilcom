@@ -1,28 +1,120 @@
-# Prompt: Article Outline
+# Makale Taslak Planı (Outline) Üret
 
-## Amaç (Purpose)
-Makalenin iskeletini oluştur: bölüm başlıkları, her bölümün 1 cümle özeti, akış mantığı.
+## Rol
+nacianilcom repo'sunda çalışıyorsun.
+Onaylı brief'ten detaylı makale iskelet (outline) üret.
+Çıktı: `content/series/SERI_SLUG/articles/YAZI_ID/outline.json`
 
-## Okur (Reader)
-Brief'teki okur profiliyle aynı. Outline onaylı olmadan taslak yazma.
+---
 
-## Üretir (Produces)
-- H2/H3 başlık hiyerarşisi
-- Her bölüm için 1 cümle amaç
-- Önerilen MDX bileşenleri (Callout, Example, CodeBlock, vb.)
-- Tahmini okuma süresi (dakika)
+## Değişkenler — ÖNCE DOLDUR
 
-## Format
-Numaralı başlık listesi + bileşen önerileri satır içi.
+```
+SERI_SLUG=yazilimda-temel-kavramlar
+YAZI_ID=04-sinif-ve-nesne
+```
+
+---
+
+## Oku
+
+1. `content/series/SERI_SLUG/articles/YAZI_ID/brief.json`
+2. `content/series/SERI_SLUG/articles/YAZI_ID/meta.json`
+3. `content/series/SERI_SLUG/series.json`
+4. Serideki önceki makalelerin `final.tr.mdx`'lerini oku — hangi kavramlar
+   zaten açıklanmış? (tekrar önleme)
+
+---
+
+## Adımlar
+
+### 1 — Bölüm Yapısı
+Brief'teki `draftStructure` (H2 listesi) üzerinden her bölümü genişlet:
+- Bölüm başlığı (H2, Türkçe)
+- Alt başlıklar (H3, gerekirse)
+- Kapsanacak anahtar noktalar (3–5 madde)
+- Kelime tahmini (bölüm başına ~)
+- Kod örneği var mı? Varsa: dil + ne göstereceği
+- Görsel önerisi: hangi diyagram tipi (flowchart / stateDiagram-v2 / graph / timeline)
+
+### 2 — Giriş + Sonuç
+- Giriş: okuyucunun ne bileceğini + ne kazanacağını anlatan 2–3 cümle taslak
+- Sonuç: makalenin bırakacağı "bir sonraki adım" yönü
+
+### 3 — Toplam Tahmin
+`totalEstimatedWords` = tüm bölüm toplamı + giriş + sonuç
+Hedef: `estimatedReadingTime × 200` kelime (brief'ten al)
+
+### 4 — Dosyayı Yaz
+
+---
+
+## Schema
+
+```typescript
+interface OutlineSection {
+  heading: string;              // H2 başlığı (Türkçe)
+  subheadings?: string[];       // H3 başlıkları
+  keyPoints: string[];          // 3–5 kapsanacak nokta
+  estimatedWords: number;
+  codeExample?: {
+    lang: string;               // "typescript" | "javascript" | "bash"
+    description: string;        // kod ne gösteriyor
+  };
+  visualHint?: string;          // "flowchart" | "stateDiagram-v2" | "graph" | null
+}
+
+interface Outline {
+  id: string;                   // YAZI_ID
+  title: string;                // Türkçe makale başlığı
+  intro: string;                // açılış taslağı (2–3 cümle)
+  sections: OutlineSection[];
+  conclusion: string;           // kapanış yönü
+  totalEstimatedWords: number;
+}
+```
+
+---
+
+## Çıktı Format
+
+```json
+{
+  "id": "04-sinif-ve-nesne",
+  "title": "Sınıf ve Nesne Nedir?",
+  "intro": "JavaScript ve TypeScript'te sınıflar, nesne oluşturmak için şablon görevi görür...",
+  "sections": [
+    {
+      "heading": "Sınıf Nedir?",
+      "keyPoints": [
+        "Sınıf, nesne oluşturmak için şablon tanımlar",
+        "class syntax ES6 ile geldi",
+        "prototype tabanlı kalıtımın sözdizimsel şekeri"
+      ],
+      "estimatedWords": 300,
+      "codeExample": { "lang": "typescript", "description": "temel class tanımı + constructor" },
+      "visualHint": "flowchart"
+    }
+  ],
+  "conclusion": "Sınıf ve nesne ilişkisini kavradıktan sonra inheritance...",
+  "totalEstimatedWords": 1400
+}
+```
+
+**Dosyaya yaz:** `content/series/SERI_SLUG/articles/YAZI_ID/outline.json`
+
+---
 
 ## Kurallar
-- Giriş → kavram → uygulama → özet akışını koru (§14)
-- Her H2 = okuyucu için net bir adım
-- Bileşen seçimi: packages/ui/src/components/ içindeki gerçek bileşenlerle sınırlı
-- "Bitiş sorusu" veya "sonraki adım" öner
 
-## Aşama (Phase)
-Faz 3 — Outline. Çıktı: Taslak başlamadan önce onay alınacak yapi belgesi.
+- Outline sadece plan — nihai metin bu aşamada yazılmaz.
+- Her H2 bölümü 150–400 kelime arası.
+- Toplam: `estimatedReadingTime × 200` kelime (brief'ten al).
+- Önceki yazılarda açıklanan kavramlar için yalnızca "bkz. 01-degisken" referansı yeterli.
+- `visualHint` sadece gerçekten diyagrama ihtiyaç olan bölümlere ekle (max 2–3).
 
-## Hedef Path + Schema
-Outline, yorum/belge; ayrı dosya gerekmez. Onaylanınca TR Draft aşamasına geç.
+---
+
+## Sonra Ne Yapılır
+
+Outline onaylandıktan sonra → `tr-draft.md` promptu ile TR ilk taslak yaz.

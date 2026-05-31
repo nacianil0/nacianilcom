@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-30T20:46:40.531Z
-> Files: 201 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-31T13:24:09.514Z
+> Files: 229 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
@@ -16,6 +16,13 @@
 
 - `package.json` — Node.js package manifest (~208 tok)
 - `README.md` — Project documentation (~2758 tok)
+
+## .wolf/
+
+- `OPENWOLF.md` - OpenWolf operating protocol and session rules (~1671 tok)
+- `cerebrum.md` - Project memory, preferences, learnings, do-not-repeat notes, and decisions (~6649 tok)
+- `buglog.json` - OpenWolf bug log entries (~913 tok)
+- `memory.md` - Append-only session action log (~12524 tok)
 
 ## .claude/
 
@@ -39,40 +46,40 @@
 
 ## apps/studio/prompts/
 
-- `ai-smell-cleaning.md` — Prompt: AI-Generic Smell Cleaning (~361 tok)
-- `article-brief.md` — §19: brief + meta.json taslağı (~180 tok)
+- `ai-smell-cleaning.md` — AI-Generic Koku Temizleme (~705 tok)
+- `article-brief.md` — Makale Brief + Meta Taslağı Üret (~1192 tok)
 - `article-brief.md` — Prompt: Article Brief (~282 tok)
-- `en-adaptation.md` — §19: EN uyarlama (~150 tok)
+- `en-adaptation.md` — EN Uyarlama (İngilizce Versiyon) (~777 tok)
 - `en-adaptation.md` — Prompt: EN Adaptation (İngilizce Uyarlama) (~238 tok)
-- `idea-series-plan.md` — §19: fikir → seri planı (~200 tok)
+- `idea-series-plan.md` — Fikir → Seri Planı (series.json) (~986 tok)
 - `idea-series-plan.md` — Prompt: Idea → Series Plan (~278 tok)
-- `monthly-plan.md` — §19: aylık içerik takvimi (~150 tok)
+- `monthly-plan.md` — Aylık İçerik Planı Üret (~1288 tok)
 - `monthly-plan.md` — Prompt: Monthly Plan (~233 tok)
-- `outline.md` — §19: makale iskelet (~160 tok)
+- `outline.md` — Makale Taslak Planı (Outline) Üret (~827 tok)
 - `outline.md` — Prompt: Article Outline (~222 tok)
-- `pre-publish-qc.md` — Prompt: Pre-Publish QC Report (~425 tok)
-- `resume-case-study.md` — §19: CV + case study (~160 tok)
+- `pre-publish-qc.md` — Yayın Öncesi Tam QC (~953 tok)
+- `resume-case-study.md` — Resume Güncelleme / Case Study (~1126 tok)
 - `resume-case-study.md` — Prompt: Resume / Case Study (~238 tok)
-- `revision.md` — Prompt: Revision / Editing (~336 tok)
-- `seo-qc-review.md` — §19: SEO + QC review (~150 tok)
+- `revision.md` — Taslak Revizyon + Editing (~496 tok)
+- `seo-qc-review.md` — SEO / QC İnceleme Raporu (~884 tok)
 - `seo-qc-review.md` — Prompt: SEO / QC Review (~238 tok)
-- `tr-draft.md` — §19: Türkçe ilk taslak (~140 tok)
+- `tr-draft.md` — TR Taslak (İlk Draft) Yaz (~697 tok)
 - `tr-draft.md` — Prompt: TR Draft (Türkçe Taslak) (~195 tok)
-- `tr-final-mdx.md` — §19: TR Final MDX ile frontmatter + bileşenler (~200 tok)
+- `tr-final-mdx.md` — TR Final MDX — Frontmatter + Bileşenler (~1075 tok)
 - `tr-final-mdx.md` — Prompt: TR Final MDX (~329 tok)
-- `visual-diagram-suggestion.md` — §19: görsel/diyagram önerisi (~160 tok)
+- `visual-diagram-suggestion.md` — Görsel / Diyagram Önerisi ve Üretimi (~968 tok)
 - `visual-diagram-suggestion.md` — Prompt: Visual / Diagram Suggestion (~276 tok)
 
 ## apps/studio/server/
 
-- `index.ts` — API routes: GET (6 endpoints) (~7152 tok)
+- `index.ts` — API routes: GET (6 endpoints) (~7265 tok)
 - `planner.ts` — Generates a 25-40 topic candidate pool from content analysis. (~4326 tok)
 - `router.ts` — Maps an InboxItem to its target file path in the content tree. (~1242 tok)
 - `visual.ts` — Renders a Mermaid .mmd string to sanitized SVG. (~848 tok)
 
 ## apps/studio/src/
 
-- `App.tsx` — NAV (~834 tok)
+- `App.tsx` — NAV (~989 tok)
 - `main.css` — Styles: 6 rules, 3 vars (~346 tok)
 - `main.tsx` — rootEl (~92 tok)
 
@@ -83,23 +90,29 @@
 
 ## apps/studio/src/screens/
 
-- `DraftReview.tsx` — @mdx-js/mdx evaluate; packages/ui bileşen map; parseMdx frontmatter display (~800 tok)
+- `DraftReview.tsx` — MDX_COMPONENTS (~1900 tok)
 - `DraftReview.tsx` — MDX_COMPONENTS (~1759 tok)
-- `Inbox.tsx` — STATUS_ORDER (~2396 tok)
-- `MonthlyPlan.tsx` — DIFFICULTY_COLOR (~4859 tok)
-- `Prompts.tsx` — /api/prompts list + copy-to-clipboard görüntüleyici (~400 tok)
+- `Inbox.tsx` — STATUS_ORDER (~2420 tok)
+- `MonthlyPlan.tsx` — DIFFICULTY_COLOR (~6914 tok)
+- `Prompts.tsx` — Prompts (~1283 tok)
 - `Prompts.tsx` — Prompts (~877 tok)
-- `Publisher.tsx` — koşullu publish buton (QC=0 gerekli) → /api/publish → commit+push+revalidate (~700 tok)
+- `Publisher.tsx` — extractInternalLinks (~2656 tok)
 - `Publisher.tsx` — extractInternalLinks (~2415 tok)
-- `ResumeStudio.tsx` — ResumeStudio (~1367 tok)
-- `SeoCheck.tsx` — runQC client-side; group bazlı blocking/warning ayrımı (~900 tok)
+- `ResumeStudio.tsx` — ResumeStudio (~1518 tok)
+- `SeoCheck.tsx` — extractInternalLinks (~2524 tok)
 - `SeoCheck.tsx` — extractInternalLinks (~2203 tok)
-- `VisualStudio.tsx` — VisualStudio (~3213 tok)
+- `VisualStudio.tsx` — VisualStudio (~3253 tok)
 
 ## apps/studio/src/ui/
 
+- `EmptyState.tsx` — EmptyState (~278 tok)
+- `index.ts` (~94 tok)
+- `LoadingOverlay.tsx` — LoadingOverlay (~120 tok)
+- `StatusBanner.tsx` — STYLES (~456 tok)
 - `StudioImage.tsx` — Vite/Studio wrapper around the framework-light ImagePrimitive (§3). (~121 tok)
 - `StudioLink.tsx` — Vite/Studio wrapper around the framework-light LinkPrimitive (§3). (~111 tok)
+- `StudioSpinner.tsx` — StudioSpinner (~93 tok)
+- `useAsyncAction.ts` — Exports useAsyncAction (~351 tok)
 
 ## apps/web/
 
@@ -217,16 +230,62 @@
 
 ## content/
 
+- `redirects.json` — Redirect rule list; currently empty (~3 tok)
 - `taxonomy.json` (~191 tok)
 
 ## content/_ideas/
 
 
+## content/_prompts/2026-07-bagimsiz/01-temperature-ve-top-p-llm-yaraticiligini-ayarlama/
+
+- `outline.md` — Prompt outline for the standalone article topic "Temperature ve top-p: LLM yaraticiligini ayarlama" (~1697 tok)
+
+## content/_prompts/2026-07-bagimsiz/04-context-window-ve-kv-cache-llm-neden-unutur-ve-n/
+
+- `outline.md` — Prompt outline for the standalone article topic "Context window ve KV cache" (~1699 tok)
+
+## content/_prompts/2026-07-bagimsiz/05-rag-llm-e-kendi-verinizi-nasil-okutursunuz/
+
+- `outline.md` — Prompt outline for the standalone article topic "RAG: LLM'e kendi verinizi nasil okutursunuz" (~1712 tok)
+
+## content/_prompts/llm-nasil-calisir/01-token-nedir-llm-ler-metni-nasil-parcalara-boler/
+
+- `outline.md` — Prompt outline for the LLM nasil calisir series article "Token nedir?" (~1735 tok)
+
+## content/_prompts/llm-nasil-calisir/02-bir-sonraki-token-i-tahmin-etmek-llm-lerin-tek-i/
+
+- `outline.md` — Prompt outline for the LLM nasil calisir series article "Bir sonraki token'i tahmin etmek" (~1710 tok)
+
+## content/_prompts/llm-nasil-calisir/03-embedding-ler-kelimeleri-sayilara-cevirmenin-sih/
+
+- `outline.md` — Prompt outline for the LLM nasil calisir series article "Embedding'ler" (~1720 tok)
+
+## content/_prompts/llm-nasil-calisir/04-attention-mekanizmasi-llm-in-neye-odaklandigini/
+
+- `outline.md` — Prompt outline for the LLM nasil calisir series article "Attention mekanizmasi" (~1722 tok)
+
+## content/_prompts/llm-nasil-calisir/05-transformer-mimarisi-parca-parca-bir-llm-in-anat/
+
+- `outline.md` — Prompt outline for the LLM nasil calisir series article "Transformer mimarisi" (~1707 tok)
+
+## content/_prompts/2026-07-bagimsiz/03-llm-ler-neden-halusinasyon-gorur/
+
+- `outline.md` — Prompt outline for the standalone article topic "LLM'ler neden halusinasyon görür?" (~1674 tok)
+
+## content/_prompts/2026-07-bagimsiz/05-rag-llm-e-kendi-verinizi-nasil-okutursunuz/
+
+- `outline.md` — Prompt outline for standalone article topic "RAG: LLM'e kendi verinizi nasil okutursunuz?" (~1712 tok)
+
 ## content/_inbox/
 
+- `monthlyPlan-2026-07.json` (~12945 tok)
 
 ## content/_inbox/unresolved/
 
+
+## content/_prompts/2026-07-bagimsiz/02-rlhf-chatgpt-yi-yardimsever-yapan-sey/
+
+- `outline.md` — Prompt outline for RLHF / ChatGPT yardımseverliği article (~1679 tok)
 
 ## content/plans/
 
@@ -245,6 +304,89 @@
 
 ## content/series/
 
+
+## content/series/llm-nasil-calisir/
+
+- `series.json` — LLM'ler nasil calisir series definition and article order (~171 tok)
+
+## content/series/llm-nasil-calisir/articles/01-token-nedir-llm-ler-metni-nasil-parcalara-boler/
+
+- `brief.json` — Article brief for tokenization/BPE as the first LLM fundamentals topic (~396 tok)
+- `meta.json` — Article metadata for the tokenization draft in the LLM series (~119 tok)
+- `outline.json` — Detailed Turkish article outline for tokenization/BPE, examples, practical token budgeting, and next-token bridge (~679 tok)
+- `references.json` — References for BPE tokenization and OpenAI tiktoken (~100 tok)
+
+## content/series/llm-nasil-calisir/articles/02-bir-sonraki-token-i-tahmin-etmek-llm-lerin-tek-i/
+
+- `brief.json` — Article brief for autoregressive next-token prediction in the LLM series (~315 tok)
+- `meta.json` — Article metadata for the next-token prediction draft in the LLM series (~120 tok)
+- `references.json` — References for GPT-2 language modeling and Shannon information theory (~130 tok)
+
+## content/series/llm-nasil-calisir/articles/03-embedding-ler-kelimeleri-sayilara-cevirmenin-sih/
+
+- `brief.json` — Article brief for embeddings and vector-space intuition in the LLM series (~320 tok)
+- `meta.json` — Article metadata for the embeddings draft in the LLM series (~120 tok)
+- `references.json` — References for word2vec and GloVe embeddings (~115 tok)
+
+## content/series/llm-nasil-calisir/articles/04-attention-mekanizmasi-llm-in-neye-odaklandigini/
+
+- `brief.json` — Article brief for attention, QKV intuition, and attention heatmap examples (~318 tok)
+- `meta.json` — Article metadata for the attention mechanism draft in the LLM series (~126 tok)
+- `outline.json` — Generated outline for the attention mechanism article (~1260 tok)
+- `references.json` — References for Transformer attention and Bahdanau attention (~135 tok)
+
+## content/series/llm-nasil-calisir/articles/05-transformer-mimarisi-parca-parca-bir-llm-in-anat/
+
+- `brief.json` — Article brief for transformer architecture as the next LLM series topic (~320 tok)
+- `meta.json` — Article metadata for the transformer architecture draft in the LLM series (~126 tok)
+- `references.json` — References for Transformer, GPT-1, and GPT-2 architecture context (~185 tok)
+
+## content/series/2026-07-bagimsiz/
+
+- `series.json` — 2026-07 bağımsız yazılar seri tanımı ve makale sırası (~151 tok)
+
+## content/series/2026-07-bagimsiz/articles/01-temperature-ve-top-p-llm-yaraticiligini-ayarlama/
+
+- `brief.json` — Article brief for temperature/top-p and LLM creativity controls (~378 tok)
+- `final.en.mdx` — English final article on temperature/top-p sampling controls (~880 tok)
+- `final.tr.mdx` — Turkish final article on temperature/top-p sampling controls (~980 tok)
+- `meta.json` — Article metadata for temperature/top-p standalone draft (~119 tok)
+- `references.json` — References for nucleus sampling and OpenAI Responses API sampling params (~120 tok)
+
+## content/series/2026-07-bagimsiz/articles/02-rlhf-chatgpt-yi-yardimsever-yapan-sey/
+
+- `outline.json` - RLHF article outline with H2/H3 plan, word estimates, code and visual hints (~1683 tok)
+- `brief.json` — RLHF yazısı için brief, hedef kitle, kaynak temeli ve taslak yapı (~375 tok)
+- `final.en.mdx` — English final article on RLHF, SFT, reward models, PPO, and DPO (~1010 tok)
+- `final.tr.mdx` — Turkish final article on RLHF, SFT, reward models, PPO, and DPO (~1130 tok)
+- `meta.json` — RLHF yazısı için seri/order/slug/status/yayın meta verisi (~114 tok)
+- `references.json` — References for InstructGPT, RLHF, and DPO papers (~205 tok)
+
+## content/series/2026-07-bagimsiz/articles/03-llm-ler-neden-halusinasyon-gorur/
+
+- `brief.json` — Article brief for why LLMs hallucinate, next-token limits, and calibration (~378 tok)
+- `final.en.mdx` — English final essay on LLM hallucination, grounding, and calibration (~920 tok)
+- `final.tr.mdx` — Turkish final essay on LLM hallucination, grounding, and calibration (~1040 tok)
+- `meta.json` — Article metadata for the LLM hallucination standalone draft (~111 tok)
+- `outline.json` — Article outline for the LLM hallucination standalone draft (~875 tok)
+- `references.json` — References for NLG hallucination survey and calibrated language model paper (~135 tok)
+
+## content/series/2026-07-bagimsiz/articles/04-context-window-ve-kv-cache-llm-neden-unutur-ve-n/
+
+- `brief.json` — Article brief for context windows, KV cache, and why LLMs forget (~376 tok)
+- `final.en.mdx` — English final article on context windows, attention cost, and KV cache (~1030 tok)
+- `final.tr.mdx` — Turkish final article on context windows, attention cost, and KV cache (~1140 tok)
+- `meta.json` — Article metadata for context window/KV cache standalone draft (~123 tok)
+- `references.json` — References for Transformer attention and efficient inference / KV cache (~135 tok)
+
+## content/series/2026-07-bagimsiz/articles/05-rag-llm-e-kendi-verinizi-nasil-okutursunuz/
+
+- `brief.json` — Article brief for RAG and connecting LLMs to private data (~401 tok)
+- `final.en.mdx` — English final article on RAG architecture, chunking, retrieval, and production risks (~1230 tok)
+- `final.tr.mdx` — Turkish final article on RAG architecture, chunking, retrieval, and production risks (~1330 tok)
+- `meta.json` — Article metadata for RAG standalone draft (~117 tok)
+- `outline.json` — Article outline for RAG workflow, chunking, retrieval, fine-tune comparison, and production risks (~2158 tok)
+- `references.json` — References for original RAG paper and large-language-model RAG survey (~145 tok)
 
 ## content/series/yazilimda-temel-kavramlar/
 

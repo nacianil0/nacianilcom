@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import '@nacianilcom/ui/tokens.css';
 import './main.css';
 import App from './App';
 

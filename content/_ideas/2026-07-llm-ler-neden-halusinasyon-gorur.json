@@ -1,0 +1,32 @@
+{
+  "month": "2026-07",
+  "topic": {
+    "title": "LLM'ler Neden 'Halüsinasyon' Görür?",
+    "angle": "Halüsinasyonun bir hata değil, next-token mimarisinin doğal sonucu oluşu",
+    "whyNow": "En çok yanlış anlaşılan konu; deneme formatında özgün açı",
+    "targetAudience": "LLM çıktısına neden güvenilemeyeceğini anlamak isteyenler",
+    "seriesFit": "standalone",
+    "difficulty": "intermediate",
+    "estimatedReadingTime": 10,
+    "suggestedPublishWeek": 3,
+    "contentType": "essay",
+    "seoPotential": "Yüksek — 'llm hallucination' yüksek hacim",
+    "geoPotential": "Çok yüksek — kavramsal açıklamalar alıntı çeker",
+    "visualPotential": "Orta — kavramsal şema, somut örnek kutuları",
+    "riskOfRepetition": "Düşük",
+    "requiredResearch": "Halüsinasyon taksonomisi, kalibrasyon kavramı",
+    "sourceBasis": "Ji et al. 2023 'Survey of Hallucination in Natural Language Generation'; Kalai & Vempala 2024 (kalibrasyon ve halüsinasyon)",
+    "nextAction": "outline; örnek vakalar topla; next-token makalesine iç bağ",
+    "scores": {
+      "relevance": 9,
+      "seriesFit": 4,
+      "novelty": 8,
+      "riskOfRepetition": 2,
+      "seoPotential": 9,
+      "geoPotential": 9,
+      "difficulty": 5,
+      "estimatedEffort": 5,
+      "visualPotential": 6
+    }
+  }
+}

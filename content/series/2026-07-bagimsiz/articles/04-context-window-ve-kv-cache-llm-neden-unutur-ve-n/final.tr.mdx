@@ -1,0 +1,94 @@
+---
+title: "Context Window ve KV Cache: Unutma ve Maliyet"
+description: "Context window, attention maliyeti ve KV cache kavramlarını üretim LLM uygulamalarında unutma, hız ve maliyet açısından anlayın."
+summary: "LLM'in neyi hatırladığı, modele verdiğiniz bağlam penceresiyle sınırlıdır. KV cache ise uzun cevap üretimini hızlandırırken bellek ve maliyet kararlarını doğrudan etkiler."
+faq:
+  - q: "Context window nedir?"
+    a: "Modelin tek bir istekte dikkate alabildiği toplam token bütçesidir; prompt, geçmiş konuşma, kaynaklar ve çıktı bu bütçeyi paylaşır."
+  - q: "KV cache ne işe yarar?"
+    a: "Önceki token'ların attention anahtar ve değerlerini saklayarak her yeni token'da aynı hesapların tekrar yapılmasını azaltır."
+  - q: "Uzun context neden pahalıdır?"
+    a: "Daha fazla token daha fazla attention hesabı, daha yüksek bellek kullanımı ve çoğu zaman daha uzun gecikme demektir."
+---
+
+## LLM neden unutur?
+
+Bir LLM'in "hafızası" çoğu sohbet arayüzünde göründüğünden daha sınırlıdır. Model tek bir istekte yalnızca context window içine konan token'ları görür. Önceki konuşma, sistem talimatı, kullanıcı mesajı, getirilen belgeler ve üretilecek cevap aynı bütçeyi paylaşır.
+
+<Definition term="context window">
+Modelin tek bir istek sırasında işleyebildiği toplam token aralığı; model bu pencerenin dışında kalan içeriği doğrudan göremez.
+</Definition>
+
+Bu yüzden "model daha önce söylemiştim, neden hatırlamadı?" sorusunun teknik cevabı çoğu zaman basittir: o bilgi yeni isteğin bağlamında yoktur, kısaltılmıştır ya da daha yeni içerikler tarafından bütçeden itilmiştir.
+
+<Callout title="Ürün gerçeği">
+Sohbet geçmişi ekranda duruyor olabilir; fakat model yalnızca backend'in prompt'a gerçekten koyduğu kısmı görür.
+</Callout>
+
+## Attention maliyeti nereden gelir?
+
+Transformer mimarisinde her token, bağlamdaki diğer token'larla ilişki kurar. Bu attention mekanizması modeli güçlü kılar; ancak uzun bağlamda maliyet hızla büyür. Daha çok token, daha fazla karşılaştırma ve daha fazla bellek baskısı demektir.
+
+Vaswani ve arkadaşlarının tanıttığı self-attention fikri, modern LLM mimarisinin temelidir. Üretim uygulamasında bu temel fikir şu soruya dönüşür: gerçekten her istekte bu kadar çok token göndermek zorunda mıyız?
+
+<Example title="Bağlam bütçesi örneği">
+32K token penceresi olan bir modelde 20K token doküman, 6K token konuşma geçmişi ve 2K token sistem talimatı kullanırsanız cevap için geriye kalan alan daralır. Pencere büyüktür; bütçe yine sınırlıdır.
+</Example>
+
+## KV cache nasıl hız kazandırır?
+
+Model cevap üretirken token'ları tek tek üretir. Her yeni token için önceki token'ların attention bilgisini tekrar tekrar hesaplamak pahalıdır. KV cache, önceki token'ların key ve value temsillerini saklayarak yeni token üretiminde bu ara sonuçları yeniden kullanır.
+
+<Definition term="KV cache">
+Transformer attention katmanlarında önceki token'lar için hesaplanan key ve value tensörlerinin inference sırasında saklanması.
+</Definition>
+
+Bu cache gecikmeyi düşürür; fakat bedeli bellek kullanımıdır. Bağlam uzadıkça ve eş zamanlı kullanıcı sayısı arttıkça KV cache büyür. Üretimde "daha uzun context" yalnızca model seçimi değil, GPU belleği, batch stratejisi, concurrency ve maliyet sorusudur.
+
+<CodeBlock language="typescript" title="KV cache maliyeti için kaba sezgi">
+{`type CacheEstimate = {
+  sequenceTokens: number;
+  layers: number;
+  hiddenSize: number;
+  bytesPerValue: number;
+};
+
+function roughKvCacheBytes(input: CacheEstimate) {
+  const keyAndValue = 2;
+  return (
+    input.sequenceTokens *
+    input.layers *
+    input.hiddenSize *
+    keyAndValue *
+    input.bytesPerValue
+  );
+}`}
+</CodeBlock>
+
+Bu hesap gerçek sistemlerde model mimarisi, grouped-query attention, quantization, batch boyutu ve servis katmanına göre değişir. Yine de sezgi nettir: token sayısı arttıkça cache yükü de artar.
+
+## Unutma, maliyet ve kalite aynı kararın parçaları
+
+Uzun bağlam bazen kaliteyi artırır; model daha fazla belgeyi görebilir. Fakat her şeyi prompt'a koymak genellikle iyi ürün tasarımı değildir. Alakasız token'lar dikkati dağıtabilir, gecikmeyi artırabilir ve maliyeti yükseltebilir.
+
+<Warning title="Uzun context arama motoru değildir">
+Büyük pencere, kötü seçilmiş bağlamı otomatik olarak iyi cevaba dönüştürmez. İlgili parçaları seçmek, sıralamak ve kısaltmak hâlâ gerekir.
+</Warning>
+
+Pratik yaklaşım, bağlamı katmanlara ayırmaktır. Kalıcı sistem talimatı kısa tutulur. Konuşma geçmişi özetlenir. Belgeler retrieval ile seçilir. En kritik kaynaklar prompt'a girer. Cevabın ne kadar uzun olacağı önceden sınırlanır.
+
+## Üretim için kontrol listesi
+
+Context window kararını yalnızca "en büyük modeli seçelim" diye ele almak pahalıdır. Üretim sisteminde ölçülmesi gerekenler; ortalama prompt token'ı, p95 gecikme, çıktı uzunluğu, cache bellek baskısı, retrieval isabeti ve kullanıcı başına maliyettir.
+
+<Example title="Mühendislik soruları">
+- Geçmiş konuşmanın tamamı mı, özeti mi gönderiliyor?
+- Retrieval sonucu gerçekten soruyla alakalı mı?
+- Cevap için ayrılan çıktı token bütçesi gerçekçi mi?
+- Uzun prompt kaliteyi ölçülebilir biçimde artırıyor mu?
+</Example>
+
+<Takeaway>
+Context window modelin görebildiği alanı belirler; KV cache bu alanı üretim hızına taşır. İyi LLM mimarisi, daha çok token değil daha doğru token göndermeyi hedefler.
+</Takeaway>
+

@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Attention Is All You Need",
+    "url": "https://arxiv.org/abs/1706.03762",
+    "author": "Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin",
+    "year": 2017
+  },
+  {
+    "title": "Improving Language Understanding by Generative Pre-Training",
+    "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf",
+    "author": "Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever",
+    "year": 2018
+  },
+  {
+    "title": "Language Models are Unsupervised Multitask Learners",
+    "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+    "author": "Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya Sutskever",
+    "year": 2019
+  }
+]

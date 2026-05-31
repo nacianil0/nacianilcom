@@ -1,0 +1,19 @@
+{
+  "slug": "2026-07-bagimsiz",
+  "title": {
+    "tr": "Bağımsız Yazılar",
+    "en": "Standalone Articles"
+  },
+  "description": {
+    "tr": "2026-07 editoryal planındaki seriye bağlı olmayan konular.",
+    "en": "Topics from the 2026-07 editorial plan that are not part of a named series."
+  },
+  "order": 2,
+  "articleOrder": [
+    "01-temperature-ve-top-p-llm-yaraticiligini-ayarlama",
+    "02-rlhf-chatgpt-yi-yardimsever-yapan-sey",
+    "03-llm-ler-neden-halusinasyon-gorur",
+    "04-context-window-ve-kv-cache-llm-neden-unutur-ve-n",
+    "05-rag-llm-e-kendi-verinizi-nasil-okutursunuz"
+  ]
+}

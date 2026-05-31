@@ -1,0 +1,35 @@
+{
+  "topic": "RLHF: ChatGPT'yi 'Yardımsever' Yapan Şey",
+  "seriesContext": "2026-07 planındaki bağımsız yazı — 'Nasıl çalışır' sorusunun davranış kısmını açıklar; popüler merak",
+  "targetAudience": "Modellerin neden 'kibar' davrandığını merak edenler",
+  "learningObjectives": [
+    "Ham dil modelinden hizalanmış asistana giden eğitim hattı",
+    "Kaynak temeli: Ouyang et al. 2022 'Training language models to follow instructions' (InstructGPT); Christiano et al. 2017 (RLHF); Rafailov et al. 2023 (DPO)"
+  ],
+  "readerQuestions": [
+    "RLHF: ChatGPT'yi 'Yardımsever' Yapan Şey ne demek?",
+    "Bu kavram neden önemli?",
+    "Pratikte nerede karşıma çıkar?"
+  ],
+  "outOfScope": [
+    "Düşük"
+  ],
+  "suggestedExamples": [
+    "Yüksek — 3 aşamalı eğitim hattı diyagramı (SFT→RM→PPO)",
+    "InstructGPT hattı, reward model, DPO alternatifi"
+  ],
+  "draftStructure": [
+    "RLHF: Giriş",
+    "Ham dil modelinden hizalanmış asistana giden eğitim hattı",
+    "Somut örnek",
+    "Pratikte ne anlama geliyor?",
+    "Özet ve sonraki adım"
+  ],
+  "estimatedReadingTime": 11,
+  "planRef": {
+    "whyNow": "'Nasıl çalışır' sorusunun davranış kısmını açıklar; popüler merak",
+    "sourceBasis": "Ouyang et al. 2022 'Training language models to follow instructions' (InstructGPT); Christiano et al. 2017 (RLHF); Rafailov et al. 2023 (DPO)",
+    "nextAction": "article-brief; kaynak doğrulaması",
+    "suggestedPublishWeek": 3
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "id": "04-attention-mekanizmasi-llm-in-neye-odaklandigini",
+  "title": "Attention Mekanizması: LLM'in Neye Odaklandığını Anlamak",
+  "intro": "İlk üç yazıda metnin token'lara ayrıldığını, modelin bir sonraki token için olasılık dağılımı ürettiğini ve token'ların vektörlerle temsil edildiğini gördük. Bu yazıda o vektörlerin cümle içindeki diğer vektörlerle nasıl ilişki kurduğunu, yani LLM'in hangi bağlama ne kadar dikkat ettiğini self-attention üzerinden açacağız. Amaç formülü ezberletmek değil; Query, Key ve Value fikrini sezgisel bir zihinsel modele dönüştürmek.",
+  "sections": [
+    {
+      "heading": "Attention Neden Gereklidir?",
+      "subheadings": [
+        "Sıralı metinde bağlam problemi",
+        "Aynı token'ın farklı cümlelerde farklı anlam taşıması"
+      ],
+      "keyPoints": [
+        "Embedding yazısındaki sabit vektör fikrinden başlayıp, bağlama göre güncellenen temsil ihtiyacını kur",
+        "Bir kelimenin anlamının yalnızca kendisinden değil, etrafındaki token'lardan geldiğini göster",
+        "RNN/CNN ayrıntılarına girmeden, uzun mesafeli ilişkileri yakalamanın neden zor olduğunu sezdir",
+        "Attention'ı 'hangi token hangi token'dan bilgi almalı?' sorusuna verilen ağırlıklı cevap olarak tanımla"
+      ],
+      "estimatedWords": 280,
+      "visualHint": "graph"
+    },
+    {
+      "heading": "Self-Attention'ın Ana Fikri",
+      "subheadings": [
+        "Token'ların birbirine bakması",
+        "Bağlamdan yeni temsil üretmek"
+      ],
+      "keyPoints": [
+        "Self-attention'da her token'ın aynı cümledeki diğer token'larla ilişki kurduğunu açıkla",
+        "Çıktının yeni bir token değil, her token için bağlamla zenginleşmiş yeni bir vektör olduğunu belirt",
+        "01-token yazısındaki token kavramına ve 03-embedding yazısındaki vektör fikrine kısa referans ver",
+        "Attention ağırlıklarının nihai cevabın tek açıklaması değil, ara hesaplama sinyali olduğunu şimdiden vurgula"
+      ],
+      "estimatedWords": 280
+    },
+    {
+      "heading": "Q, K, V: Soru, Etiket ve Taşınan Bilgi",
+      "subheadings": [
+        "Query ne arar?",
+        "Key neyi temsil eder?",
+        "Value hangi bilgiyi taşır?"
+      ],
+      "keyPoints": [
+        "Query'yi token'ın o anda aradığı bağlam sinyali olarak anlat",
+        "Key'i diğer token'ların 'bende şu tür bilgi var' etiketi gibi konumlandır",
+        "Value'yu attention sonucunda gerçekten karışıma dahil edilen bilgi vektörü olarak ayır",
+        "Q ve K'nin eşleşmeyi, V'nin taşınan içeriği belirlediğini özellikle netleştir",
+        "Kütüphane arama / soru-cevap / masa üzerindeki not kartları gibi tek bir analoji seçip tüm bölümde tutarlı kullan"
+      ],
+      "estimatedWords": 340,
+      "codeExample": {
+        "lang": "typescript",
+        "description": "Q ve K arasındaki benzerlik skorlarını oyuncak vektörlerle hesaplayan küçük bir dot-product örneği"
+      },
+      "visualHint": "flowchart"
+    },
+    {
+      "heading": "Attention Skoru Nasıl Hesaplanır?",
+      "subheadings": [
+        "Dot product sezgisi",
+        "Softmax ile ağırlığa çevirme",
+        "Weighted sum ile yeni temsil"
+      ],
+      "keyPoints": [
+        "Q·K skorunu iki vektörün yön benzerliği gibi anlat; matematiği tek satırlık sezgiyle sınırla",
+        "Skorların softmax ile 0-1 arası, toplamı 1 olan ağırlıklara dönüştüğünü göster",
+        "Her token için Value vektörlerinin bu ağırlıklarla karıştırıldığını açıkla",
+        "Scaled dot-product attention terimini Vaswani et al. 2017 bağlamında an, ama derivasyon yapma",
+        "Bu bölümde 'model kelime seçiyor' değil, 'temsil güncelliyor' ayrımını koru"
+      ],
+      "estimatedWords": 360,
+      "codeExample": {
+        "lang": "typescript",
+        "description": "scores -> softmax -> weighted values akışını küçük sayılarla gösteren okunabilir attention fonksiyonu"
+      }
+    },
+    {
+      "heading": "Somut Örnek: Zamir Hangi İsme Bağlanıyor?",
+      "subheadings": [
+        "Cümleyi token düzeyinde düşünmek",
+        "Isı haritası gibi okumak"
+      ],
+      "keyPoints": [
+        "Kısa bir Türkçe cümle seç: 'Ayşe kitabı Mert'e verdi çünkü o okumak istedi' gibi zamir çözümlemesi gerektiren bir örnek",
+        "'o' token'ının Ayşe, Mert, kitap gibi token'lardan ne tür sinyaller alabileceğini sezgisel olarak anlat",
+        "Attention matrisini satır = bakan token, sütun = bakılan token olacak şekilde açıkla",
+        "Tek bir head üzerinden sadeleştir; multi-head ayrıntısını sonraki bölümde aç",
+        "Isı haritasının kesin yorum değil, modelin ara ilişki ağırlıklarını görünür kılan bir araç olduğunu söyle"
+      ],
+      "estimatedWords": 330,
+      "visualHint": "graph"
+    },
+    {
+      "heading": "Multi-Head Attention: Tek Bakış Açısı Yetmez",
+      "subheadings": [
+        "Farklı ilişki türleri",
+        "Head'lerin birleşmesi"
+      ],
+      "keyPoints": [
+        "Tek bir attention head'in tek bir ilişki türünü yakalayabileceği sezgisinden başla",
+        "Bir head zamir ilişkisine, başka bir head konu bütünlüğüne, başka bir head noktalama/biçim sinyaline bakabilir örneği ver",
+        "Head'lerin çıktılarının birleştirilip sonraki katmana aktarıldığını genel düzeyde anlat",
+        "Transformer mimarisinin tamamına girmeden, 05-transformer yazısına doğal köprü kur",
+        "Multi-head attention'ın 'birden çok yorum kanalı' gibi düşünülmesini öner"
+      ],
+      "estimatedWords": 280
+    },
+    {
+      "heading": "Pratikte Ne Anlama Geliyor?",
+      "subheadings": [
+        "Uzun bağlam ve ilişki kurma",
+        "Prompt yazarken bağlamın yeri",
+        "RAG ve doküman okuma sezgisi"
+      ],
+      "keyPoints": [
+        "Attention'ın modelin metindeki uzak parçalar arasında ilişki kurabilmesinin ana mekanizmalarından biri olduğunu anlat",
+        "Prompt'ta gerekli bilginin açık, yakın ve ilişkilendirilebilir verilmesinin neden işe yaradığını bağla",
+        "RAG veya uzun doküman özetlemede modelin ilgili parçaları bağlama dahil etme ihtiyacını sezdir",
+        "Context window ile attention maliyeti arasındaki ilişkiye kısa, derinleşmeyen bir not düş",
+        "Attention'ın tek başına 'anlama' demek olmadığını, ama anlama benzeri davranışların yapı taşlarından biri olduğunu dengele"
+      ],
+      "estimatedWords": 310
+    },
+    {
+      "heading": "Attention'ı Yanlış Yorumlamamak",
+      "subheadings": [
+        "Odaklanma metaforunun sınırları",
+        "Açıklanabilirlik tuzağı"
+      ],
+      "keyPoints": [
+        "Attention ağırlıklarının insan dikkatiyle birebir aynı şey olmadığını netleştir",
+        "Bir attention heatmap'inin modelin nihai kararını tamamen açıkladığını varsaymanın riskli olduğunu söyle",
+        "Katmanlar, head'ler ve feed-forward blokları birlikte çalıştığı için tek matrise fazla anlam yüklememek gerektiğini anlat",
+        "Buna rağmen attention görselleştirmelerinin öğrenme ve debugging için çok yararlı sezgiler verdiğini belirt"
+      ],
+      "estimatedWords": 240
+    },
+    {
+      "heading": "Özet ve Sonraki Adım",
+      "subheadings": [
+        "Bu yazıdan kalan zihinsel model",
+        "Transformer mimarisine geçiş"
+      ],
+      "keyPoints": [
+        "Attention'ı 'token'ların birbirinden ağırlıklı bilgi toplaması' olarak tek cümlede toparla",
+        "Q/K/V, skor, softmax ve weighted sum zincirini kısa bir akış olarak tekrar et",
+        "Önceki yazılardaki token, next-token ve embedding kavramlarının bu mekanizmada nasıl birleştiğini göster",
+        "Bir sonraki yazıda attention'ın transformer bloğunun içinde nasıl konumlandığını söyle"
+      ],
+      "estimatedWords": 180
+    }
+  ],
+  "conclusion": "Attention mekanizması, LLM'in metni tek tek kelimeler gibi değil, birbirini etkileyen token ilişkileri ağı gibi işlemesini sağlar. Q, K ve V ayrımı oturduğunda transformer'ın kalbi artık daha az gizemli görünür: model her katmanda bağlamı yeniden harmanlar. Bir sonraki adımda bu attention bloğunu, feed-forward katmanları, residual bağlantılar ve normalization ile birlikte tam transformer mimarisi içinde yerine koyacağız.",
+  "totalEstimatedWords": 2800
+}

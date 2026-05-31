@@ -1,36 +1,34 @@
 import { useState } from 'react';
+import { StudioSpinner, StatusBanner } from '../ui';
 
-interface PdfResult {
-  ok: boolean;
-  path?: string;
-  error?: string;
-}
+interface PdfResult { ok: boolean; path?: string | undefined; error?: string }
 
 export function ResumeStudio() {
   const [lang, setLang] = useState<'tr' | 'en'>('tr');
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<PdfResult | null>(null);
+  const [previewLoading, setPreviewLoading] = useState(false);
+  const [banner, setBanner] = useState<{ variant: 'success' | 'error'; title: string; detail?: string | undefined; path?: string | undefined } | null>(null);
   const [resumePreview, setResumePreview] = useState<string | null>(null);
   const [previewLang, setPreviewLang] = useState<'tr' | 'en'>('tr');
 
   async function loadPreview(l: 'tr' | 'en') {
     setPreviewLang(l);
+    setPreviewLoading(true);
     try {
       const res = await fetch(`/api/resume?lang=${l}`);
-      if (!res.ok) {
-        setResumePreview(null);
-        return;
-      }
+      if (!res.ok) { setResumePreview(null); return; }
       const data = await res.json();
       setResumePreview(JSON.stringify(data, null, 2));
     } catch {
       setResumePreview(null);
+    } finally {
+      setPreviewLoading(false);
     }
   }
 
   async function generatePdf() {
     setLoading(true);
-    setResult(null);
+    setBanner(null);
     try {
       const res = await fetch('/api/resume/pdf', {
         method: 'POST',
@@ -38,9 +36,17 @@ export function ResumeStudio() {
         body: JSON.stringify({ lang }),
       });
       const data = await res.json() as PdfResult;
-      setResult(data);
+      if (data.ok) {
+        setBanner({
+          variant: 'success',
+          title: 'PDF kaydedildi',
+          path: data.path ?? 'repo root',
+        });
+      } else {
+        throw new Error(data.error ?? 'PDF üretilemedi');
+      }
     } catch (err) {
-      setResult({ ok: false, error: String(err) });
+      setBanner({ variant: 'error', title: 'PDF hatası', detail: String(err) });
     } finally {
       setLoading(false);
     }
@@ -55,11 +61,20 @@ export function ResumeStudio() {
         </p>
       </div>
 
-      {/* ── PDF Generator ── */}
+      {/* Banner */}
+      {banner && (
+        <StatusBanner
+          variant={banner.variant}
+          title={banner.title}
+          detail={banner.detail}
+          path={banner.path}
+          onDismiss={() => setBanner(null)}
+        />
+      )}
+
+      {/* PDF Generator */}
       <section className="rounded-card border border-hairline bg-card p-6">
-        <h3 className="mb-4 font-sans text-sm font-semibold text-ink">
-          Playwright PDF Üret
-        </h3>
+        <h3 className="mb-1 font-sans text-sm font-semibold text-ink">Playwright PDF Üret</h3>
         <p className="mb-4 font-sans text-xs text-ink-secondary/60">
           Web sunucusunun çalıştığını (localhost:3000) doğrula, ardından PDF üret.
           Playwright /cv/print sayfasına gidip PDF kaydeder.
@@ -85,31 +100,16 @@ export function ResumeStudio() {
         <button
           onClick={generatePdf}
           disabled={loading}
-          className="rounded border border-accent bg-accent/10 px-4 py-2 font-sans text-sm font-medium text-accent transition-colors hover:bg-accent/20 disabled:opacity-50"
+          className="flex items-center gap-2 rounded border border-accent bg-accent/10 px-4 py-2 font-sans text-sm font-medium text-accent transition-colors hover:bg-accent/20 disabled:opacity-50"
         >
+          {loading && <StudioSpinner />}
           {loading ? 'PDF üretiliyor…' : `PDF Üret (${lang.toUpperCase()})`}
         </button>
-
-        {result && (
-          <div className={`mt-4 rounded border px-4 py-3 font-sans text-sm ${
-            result.ok
-              ? 'border-green-200 bg-green-50 text-green-700'
-              : 'border-negative/20 bg-negative/5 text-negative'
-          }`}>
-            {result.ok
-              ? <>PDF kaydedildi: <code className="font-mono text-xs">{result.path}</code></>
-              : <>Hata: {result.error}</>
-            }
-          </div>
-        )}
       </section>
 
-      {/* ── Resume JSON Preview ── */}
+      {/* Resume JSON Preview */}
       <section className="rounded-card border border-hairline bg-card p-6">
-        <h3 className="mb-4 font-sans text-sm font-semibold text-ink">
-          Resume JSON Önizleme (web visibility)
-        </h3>
-
+        <h3 className="mb-4 font-sans text-sm font-semibold text-ink">Resume JSON Önizleme (web visibility)</h3>
         <div className="mb-4 flex items-center gap-3">
           {(['tr', 'en'] as const).map(l => (
             <button
@@ -126,15 +126,20 @@ export function ResumeStudio() {
           ))}
         </div>
 
-        {resumePreview ? (
+        {previewLoading && (
+          <div className="flex items-center gap-2 text-ink-secondary">
+            <StudioSpinner />
+            <span className="font-sans text-xs">Yükleniyor…</span>
+          </div>
+        )}
+
+        {resumePreview && !previewLoading ? (
           <pre className="max-h-80 overflow-auto rounded border border-hairline bg-surface p-4 font-mono text-[11px] leading-relaxed text-ink-secondary">
             {resumePreview}
           </pre>
-        ) : (
-          <p className="font-sans text-xs text-ink-secondary/60">
-            Dil seçip önizlemeyi yükle.
-          </p>
-        )}
+        ) : !previewLoading ? (
+          <p className="font-sans text-xs text-ink-secondary/60">Dil seçip önizlemeyi yükle.</p>
+        ) : null}
       </section>
     </div>
   );

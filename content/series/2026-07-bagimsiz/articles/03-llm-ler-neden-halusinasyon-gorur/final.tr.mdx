@@ -1,0 +1,67 @@
+---
+title: "LLM'ler Neden Halüsinasyon Görür?"
+description: "LLM halüsinasyonunu next-token tahmini, kalibrasyon, kaynak eksikliği ve ürün tasarımı açısından sade bir çerçeveyle anlayın."
+summary: "Halüsinasyon, modelin bozulmasından çok akıcı devam üretme hedefinin doğruluk hedefiyle karıştırılmasından doğar. Bu yazı, kullanıcı ve ürün geliştirici için güvenin nasıl kurulacağını pratik örneklerle anlatır."
+faq:
+  - q: "LLM halüsinasyonu nedir?"
+    a: "Modelin kendinden emin biçimde gerçeğe, kaynağa veya verilen bağlama aykırı bilgi üretmesidir."
+  - q: "Halüsinasyon tamamen engellenebilir mi?"
+    a: "Tamamen engellemek zordur; ancak retrieval, araç kullanımı, kaynak gösterme, eval setleri ve insan onayıyla risk düşürülebilir."
+  - q: "Akıcı cevap güvenilir cevap mıdır?"
+    a: "Hayır. Dilin düzgün görünmesi cevabın kaynağa dayandığını veya doğru olduğunu kanıtlamaz."
+---
+
+## Halüsinasyon ne değildir?
+
+LLM halüsinasyonu çoğu zaman "model yalan söyledi" diye anlatılır. Bu ifade günlük dilde anlaşılır olsa da teknik olarak yanıltıcıdır. Modelin niyeti yoktur; elindeki bağlama göre olası bir devam üretir. Sorun, bu devamın gerçeğe, kaynağa veya verilen bağlama uymamasıdır.
+
+<Definition term="halüsinasyon">
+Modelin akıcı ve çoğu zaman kendinden emin bir dille, doğrulanmayan ya da bağlama aykırı bilgi üretmesi.
+</Definition>
+
+Her hata halüsinasyon değildir. Eksik cevap, belirsiz cevap, yanlış format veya basit bir hesap hatası farklı problemlerdir. Halüsinasyonu tehlikeli yapan şey, cevabın genellikle makul ve iyi yazılmış görünmesidir.
+
+<Example title="Küçük ama tanıdık örnek">
+Bir model var olmayan bir kütüphane metodunu gerçekmiş gibi anlatabilir, parametrelerini sıralayabilir ve hatta uydurma bir dokümantasyon linki önerebilir. Cevap iyi yazılmıştır; dayanak yoktur.
+</Example>
+
+## Next-token hedefi neden yetmez?
+
+Dil modeli, verilen bağlama göre bir sonraki token dağılımını tahmin eder. Bu hedef çok güçlüdür; modelin dil bilgisi, üslup, örüntü ve ilişki yakalamasını sağlar. Fakat "olası devam" ile "doğru bilgi" aynı şey değildir.
+
+Model cevap üretirken dış dünyaya otomatik olarak bakmaz. Parametrelerinde kalan eğitim izleri, prompt'a konan bilgiler ve varsa araç sonuçlarıyla konuşur. Kaynak verilmemişse, model çoğu zaman boşluğu olası görünen bir açıklamayla doldurmaya çalışır.
+
+<Callout title="Akıcılık yanılsaması">
+Modelin cümleleri pürüzsüz kurması, cevabın doğrulandığı anlamına gelmez. Hatta pürüzsüz üslup yanlış bilgiyi daha ikna edici yapabilir.
+</Callout>
+
+## Taksonomi: hatanın türünü ayırmak
+
+Halüsinasyonları tek torbaya atmak yerine birkaç pratik sınıfa ayırmak daha yararlıdır. Bağlama aykırı üretim, modelin verilen metinle çelişmesidir. Dış gerçeklikle çelişen üretim, dünyadaki bir olguyu yanlış aktarmasıdır. Uydurma kaynak, var olmayan makale, link veya belge üretmesidir. Gereksiz kesinlik ise modelin belirsiz bir konuda kanıtlanmış gibi konuşmasıdır.
+
+Ji ve arkadaşlarının derlediği literatür, bu ayrımların özellikle özetleme, soru-cevap ve diyalog sistemlerinde farklı riskler doğurduğunu gösterir. Ürün tasarımında da hata türünü bilmek önemlidir: uydurma kaynak başka, eksik bağlam başka, güncel olmayan bilgi başka önlem ister.
+
+<Warning title="Kaynak istemek tek başına yetmez">
+Modelden "kaynak göster" demek iyi bir başlangıçtır, ama kaynakların gerçekten var olup olmadığını kontrol etmeyen sistem hâlâ uydurma referans üretebilir.
+</Warning>
+
+## Kalibrasyon: model ne zaman bilmiyorum demeli?
+
+Kalibrasyon, modelin güven tonu ile gerçek isabet ihtimalinin uyumlu olmasıdır. İnsan gibi düşünürsek, "emin değilim" demesi gereken yerde kesin konuşan sistem kötü kalibre edilmiştir. Kalai ve Vempala'nın tartıştığı ana fikir, bazı bilgi türlerinde iyi kalibre edilmiş modellerde bile hatanın yapısal olarak ortaya çıkabileceğidir.
+
+Bu yüzden güvenilir ürünler yalnızca "daha büyük model" seçmez. Hangi sorulara cevap verileceğini, hangi sorularda kaynak aranacağını, hangi durumlarda kullanıcıya belirsizlik gösterileceğini ve hangi alanlarda insan onayı gerekeceğini tasarlar.
+
+<Example title="Güven sorusu">
+Bir cevap tarih, fiyat, sürüm, yasa, sağlık ya da finans kararı içeriyorsa modelin tonu ne kadar düzgün olursa olsun doğrulama katmanı gerekir.
+</Example>
+
+## Pratikte güven nasıl kurulur?
+
+Kullanıcı tarafında ilk savunma, yüksek riskli kararları tek bir LLM cevabına bağlamamaktır. Tarihleri, sürümleri, alıntıları ve linkleri kontrol etmek gerekir. "Bu cevabın dayandığı kaynak ne?" sorusu özellikle araştırma ve dokümantasyon işlerinde hayat kurtarır.
+
+Ürün tarafında güven; RAG, araç kullanımı, citation grounding, eval setleri, log analizi ve insan geri bildirimiyle kurulur. Modelin kendi belleği yerine seçilmiş kaynaklara dayandırılması, halüsinasyonu tamamen bitirmez ama cevabı denetlenebilir hale getirir.
+
+<Takeaway>
+Halüsinasyon, LLM'in yalnızca dil üretmesiyle ilgili değildir; ürünün doğruluk borcunu nasıl tasarladığıyla ilgilidir. Güven, modelden değil sistemden gelir.
+</Takeaway>
+

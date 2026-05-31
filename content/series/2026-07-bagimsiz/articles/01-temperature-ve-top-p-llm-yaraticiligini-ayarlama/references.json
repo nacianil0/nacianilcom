@@ -1,0 +1,14 @@
+[
+  {
+    "title": "The Curious Case of Neural Text Degeneration",
+    "url": "https://arxiv.org/abs/1904.09751",
+    "author": "Ari Holtzman, Jan Buys, Li Du, Maxwell Forbes, Yejin Choi",
+    "year": 2020
+  },
+  {
+    "title": "OpenAI Responses API reference",
+    "url": "https://platform.openai.com/docs/api-reference/responses",
+    "author": "OpenAI",
+    "year": 2026
+  }
+]

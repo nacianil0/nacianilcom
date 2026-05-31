@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Training language models to follow instructions with human feedback",
+    "url": "https://arxiv.org/abs/2203.02155",
+    "author": "Long Ouyang, Jeff Wu, Xu Jiang, Diogo Almeida, Carroll L. Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, et al.",
+    "year": 2022
+  },
+  {
+    "title": "Deep reinforcement learning from human preferences",
+    "url": "https://arxiv.org/abs/1706.03741",
+    "author": "Paul F. Christiano, Jan Leike, Tom B. Brown, Miljan Martic, Shane Legg, Dario Amodei",
+    "year": 2017
+  },
+  {
+    "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+    "url": "https://arxiv.org/abs/2305.18290",
+    "author": "Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher D. Manning, Chelsea Finn",
+    "year": 2023
+  }
+]

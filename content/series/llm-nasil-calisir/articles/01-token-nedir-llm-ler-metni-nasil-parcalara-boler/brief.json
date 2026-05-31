@@ -1,0 +1,35 @@
+{
+  "topic": "Token Nedir? LLM'ler Metni Nasıl Parçalara Böler",
+  "seriesContext": "LLM'ler Nasıl Çalışır serisinin 1. yazısı — Seri bir temel taşıyla başlamalı; 'how llms work' yolculuğunun ilk adımı",
+  "targetAudience": "LLM'leri ilk kez merak eden geliştiriciler ve teknik meraklılar",
+  "learningObjectives": [
+    "Tokenization (BPE) mantığını sıfırdan, somut örneklerle anlatan giriş",
+    "Kaynak temeli: Sennrich et al. 2016 'Neural Machine Translation of Rare Words with Subword Units' (BPE); OpenAI tiktoken dokümantasyonu"
+  ],
+  "readerQuestions": [
+    "Token Nedir? LLM'ler Metni Nasıl Parçalara Böler ne demek?",
+    "Bu kavram neden önemli?",
+    "Pratikte nerede karşıma çıkar?"
+  ],
+  "outOfScope": [
+    "Düşük — henüz hiç içerik yok"
+  ],
+  "suggestedExamples": [
+    "Yüksek — cümlenin token'lara bölünüşü gösteren renkli diyagram",
+    "Tiktoken/BPE örnekleri, Türkçe tokenization maliyeti örneği"
+  ],
+  "draftStructure": [
+    "Token Nedir: Giriş",
+    "Tokenization (BPE) mantığını sıfırdan, somut örneklerle anlatan giriş",
+    "Somut örnek",
+    "Pratikte ne anlama geliyor?",
+    "Özet ve sonraki adım"
+  ],
+  "estimatedReadingTime": 8,
+  "planRef": {
+    "whyNow": "Seri bir temel taşıyla başlamalı; 'how llms work' yolculuğunun ilk adımı",
+    "sourceBasis": "Sennrich et al. 2016 'Neural Machine Translation of Rare Words with Subword Units' (BPE); OpenAI tiktoken dokümantasyonu",
+    "nextAction": "article-brief üret → outline",
+    "suggestedPublishWeek": 1
+  }
+}

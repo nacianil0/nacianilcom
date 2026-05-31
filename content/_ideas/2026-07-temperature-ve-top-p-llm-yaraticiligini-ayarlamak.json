@@ -1,0 +1,32 @@
+{
+  "month": "2026-07",
+  "topic": {
+    "title": "Temperature ve Top-p: LLM Yaratıcılığını Ayarlamak",
+    "angle": "Sampling parametrelerinin çıktıyı nasıl değiştirdiğini elle örneklerle göstermek",
+    "whyNow": "Pratik ve hemen uygulanabilir; 1. haftanın temel üçlüsünü tamamlar",
+    "targetAudience": "API ile LLM kullanan geliştiriciler",
+    "seriesFit": "standalone",
+    "difficulty": "beginner",
+    "estimatedReadingTime": 8,
+    "suggestedPublishWeek": 1,
+    "contentType": "explainer",
+    "seoPotential": "Yüksek — 'temperature top_p' net geliştirici niyeti",
+    "geoPotential": "Orta-Yüksek — parametre tanımları alıntılanır",
+    "visualPotential": "Yüksek — aynı prompt'un farklı temperature'larda çıktı karşılaştırması",
+    "riskOfRepetition": "Düşük",
+    "requiredResearch": "Greedy/temperature/top-p/top-k örnek çıktılar",
+    "sourceBasis": "Holtzman et al. 2020 'The Curious Case of Neural Text Degeneration' (nucleus/top-p); OpenAI API dokümantasyonu",
+    "nextAction": "article-brief üret",
+    "scores": {
+      "relevance": 8,
+      "seriesFit": 5,
+      "novelty": 5,
+      "riskOfRepetition": 2,
+      "seoPotential": 8,
+      "geoPotential": 7,
+      "difficulty": 3,
+      "estimatedEffort": 4,
+      "visualPotential": 8
+    }
+  }
+}

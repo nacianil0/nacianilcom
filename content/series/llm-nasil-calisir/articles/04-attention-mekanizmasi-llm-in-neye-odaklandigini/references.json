@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Attention Is All You Need",
+    "url": "https://arxiv.org/abs/1706.03762",
+    "author": "Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin",
+    "year": 2017
+  },
+  {
+    "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+    "url": "https://arxiv.org/abs/1409.0473",
+    "author": "Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio",
+    "year": 2015
+  }
+]

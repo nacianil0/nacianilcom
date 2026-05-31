@@ -1,0 +1,83 @@
+---
+title: "Temperature ve Top-p: LLM Yaratıcılığını Ayarlamak"
+description: "Temperature ve top-p parametrelerinin LLM çıktısını nasıl değiştirdiğini; düşük, dengeli ve yaratıcı ayarları örneklerle öğrenin."
+summary: "LLM aynı prompt'a her zaman aynı cevabı vermek zorunda değildir. Temperature ve top-p, modelin olası devamlar arasından ne kadar dar ya da serbest seçim yapacağını belirleyen iki sampling ayarıdır."
+faq:
+  - q: "Temperature nedir?"
+    a: "Modelin token olasılık dağılımını ne kadar keskin ya da serbest kullanacağını ayarlayan sampling parametresidir."
+  - q: "Top-p nedir?"
+    a: "Nucleus sampling olarak da bilinir; model yalnızca toplam olasılığı belirli eşiğe ulaşan aday token kümesini değerlendirir."
+  - q: "Temperature ve top-p birlikte değiştirilmeli mi?"
+    a: "Genellikle hayır. Üretim sistemlerinde önce temperature seçilir, özel bir gerekçe yoksa top-p varsayılanda bırakılır."
+---
+
+## Sampling ayarı neyi değiştirir?
+
+Bir LLM cevap üretirken tek bir cümleyi baştan sona planlayıp yazmaz. Her adımda bağlama göre bir sonraki token için olasılık dağılımı hesaplar ve seçilen token yeni bağlama eklenir. Sampling ayarları bu seçimin ne kadar dar, dengeli veya sürprizli olacağını belirler.
+
+<Definition term="sampling">
+Modelin bir sonraki token olasılıkları arasından gerçek çıktıya girecek token'ı seçme süreci.
+</Definition>
+
+Düşük çeşitlilik istiyorsanız modelin en güçlü adaya yakın kalmasını beklersiniz. Daha yaratıcı bir taslak, alternatif slogan veya beyin fırtınası istiyorsanız daha geniş adaylara izin vermek anlamlı olabilir. Kritik nokta şu: bu ayarlar modelin bilgisini artırmaz; yalnızca olasılık dağılımından nasıl seçim yaptığını değiştirir.
+
+<Callout title="Kısa kural">
+Temperature ve top-p, doğruluk düğmesi değildir. Çıktının tonunu, çeşitliliğini ve tekrar riskini etkiler; kaynaklı bilgi ihtiyacını ortadan kaldırmaz.
+</Callout>
+
+## Temperature: dağılımı keskinleştirmek
+
+Temperature düşük olduğunda yüksek olasılıklı token'lar daha baskın hale gelir. Model daha tutarlı, daha deterministik ve daha az sürprizli cevap verir. Temperature yükseldikçe dağılım yumuşar; düşük olasılıklı ama hâlâ mümkün adayların seçilme ihtimali artar.
+
+<Example title="Aynı prompt, farklı davranış">
+Prompt: "Bir ürün lansmanı için üç başlık öner." Temperature düşükse cevap genellikle güvenli ve benzer kalıplar üretir. Temperature yükseldikçe başlıklar daha farklı, bazen daha canlı, bazen de daha dağınık hale gelir.
+</Example>
+
+<CodeBlock language="typescript" title="Basitleştirilmiş sampling sezgisi">
+{`type Candidate = {
+  token: string;
+  probability: number;
+};
+
+const nextTokens: Candidate[] = [
+  { token: 'verimli', probability: 0.42 },
+  { token: 'hızlı', probability: 0.25 },
+  { token: 'yaratıcı', probability: 0.12 },
+  { token: 'beklenmedik', probability: 0.04 },
+];
+
+function explainTemperature(value: number) {
+  if (value <= 0.3) return 'yüksek olasılıklı adaylara yakın kal';
+  if (value <= 0.8) return 'dengeli çeşitlilik üret';
+  return 'daha sürprizli adaylara alan aç';
+}`}
+</CodeBlock>
+
+API tarafında temperature için tek bir evrensel değer yoktur. Veri çıkarma, sınıflandırma ve formatı sıkı cevaplarda düşük değerler daha güvenlidir. Taslak, fikir üretimi ve alternatif metinlerde orta değerler daha kullanışlıdır. Çok yüksek değerler ise üretimi canlılaştırırken tutarlılığı bozabilir.
+
+## Top-p: uzun kuyruğu kesmek
+
+Top-p, "en olası kaç token'a bakayım?" sorusunu sabit sayı ile değil toplam olasılık kütlesiyle cevaplar. `top_p: 0.9` dediğinizde model, olasılıkları en yüksek adaylardan başlayarak toplam yüzde 90'lık kümeye giren token'ları değerlendirir. Geri kalan uzun kuyruk dışarıda kalır.
+
+Bu yaklaşım Holtzman ve arkadaşlarının nucleus sampling fikriyle popülerleşti. Amaç, tamamen açgözlü seçimlerin tekrar eden ve mekanik metin üretmesini engellerken olasılığı çok düşük adayların kaliteyi bozmasını sınırlamaktır.
+
+<Warning title="İki düğmeyi aynı anda çevirmeyin">
+Temperature ve top-p aynı anda agresif biçimde değişirse hangi ayarın çıktıyı bozduğunu anlamak zorlaşır. Üretim ayarında birini ana kontrol olarak seçmek daha ölçülebilir sonuç verir.
+</Warning>
+
+## Pratik ayar reçetesi
+
+Kod üreten, JSON döndüren veya belirli alanları dolduran bir sistemde `temperature` değerini düşük tutmak çoğu zaman iyi başlangıçtır. Yaratıcı yazım, slogan, örnek senaryo veya alternatif açıklama gibi görevlerde orta seviye daha iyi sonuç verir. Çok serbest üretim istiyorsanız önce küçük bir eval setiyle kaliteyi izlemek gerekir.
+
+<Example title="Üç üretim modu">
+- Sınıflandırma: düşük temperature, varsayılan top-p.
+- Açıklama ve dokümantasyon: orta-düşük temperature, varsayılan top-p.
+- Beyin fırtınası: orta-yüksek temperature, gerekirse kontrollü top-p.
+</Example>
+
+Bir uygulamada doğru ayarı seçmenin en iyi yolu, üç-beş temsilî prompt ile küçük bir karşılaştırma tablosu oluşturmaktır. Her ayar için doğruluk, format uyumu, tekrar, ton ve kullanılabilirlik puanı verin. Böylece "daha yaratıcı olsun" gibi belirsiz istekler ölçülebilir hale gelir.
+
+<Takeaway>
+Temperature seçimin ne kadar serbest olacağını, top-p ise aday havuzunun ne kadar geniş kalacağını ayarlar. İkisi de yararlıdır; ikisini de aynı anda büyütmek genellikle gürültüyü büyütür.
+</Takeaway>
+

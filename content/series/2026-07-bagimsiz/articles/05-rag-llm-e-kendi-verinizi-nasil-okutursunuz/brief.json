@@ -1,0 +1,35 @@
+{
+  "topic": "RAG: LLM'e Kendi Verinizi Nasıl 'Okutursunuz'",
+  "seriesContext": "2026-07 planındaki bağımsız yazı — En çok sorulan üretim deseni; embedding parçasıyla doğal bağ",
+  "targetAudience": "Kurumsal/özel veriyle LLM uygulaması kuran geliştiriciler",
+  "learningObjectives": [
+    "Retrieval-Augmented Generation'ın çalışma mantığı ve ne zaman fine-tune yerine seçileceği",
+    "Kaynak temeli: Lewis et al. 2020 'Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks'; Gao et al. 2023 'Retrieval-Augmented Generation for LLMs: A Survey'"
+  ],
+  "readerQuestions": [
+    "RAG: LLM'e Kendi Verinizi Nasıl 'Okutursunuz' ne demek?",
+    "Bu kavram neden önemli?",
+    "Pratikte nerede karşıma çıkar?"
+  ],
+  "outOfScope": [
+    "Düşük"
+  ],
+  "suggestedExamples": [
+    "Çok yüksek — retrieve→augment→generate akış diyagramı",
+    "Vektör DB, chunking, reranking; fine-tune vs RAG kıyası"
+  ],
+  "draftStructure": [
+    "RAG: Giriş",
+    "Retrieval-Augmented Generation'ın çalışma mantığı ve ne zaman fine-tune yerine seçileceği",
+    "Somut örnek",
+    "Pratikte ne anlama geliyor?",
+    "Özet ve sonraki adım"
+  ],
+  "estimatedReadingTime": 14,
+  "planRef": {
+    "whyNow": "En çok sorulan üretim deseni; embedding parçasıyla doğal bağ",
+    "sourceBasis": "Lewis et al. 2020 'Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks'; Gao et al. 2023 'Retrieval-Augmented Generation for LLMs: A Survey'",
+    "nextAction": "article-brief; embedding makalesine iç bağ",
+    "suggestedPublishWeek": 4
+  }
+}

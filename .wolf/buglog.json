@@ -3,25 +3,25 @@
   "bugs": [
     {
       "id": "bug-001",
-      "timestamp": "2026-05-29T19:22:41.564Z",
-      "error_message": "Incorrect value in code",
-      "file": "apps/web/package.json",
-      "root_cause": "Had \"workspace:*\"",
-      "fix": "Changed to \"^5.7.2\"",
+      "timestamp": "2026-05-30T22:00:46.137Z",
+      "error_message": "Missing error handling in function",
+      "file": "apps/studio/src/screens/MonthlyPlan.tsx",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
       "tags": [
         "auto-detected",
-        "wrong-value",
-        "json"
+        "error-handling",
+        "tsx"
       ],
       "related_bugs": [],
-      "occurrences": 2,
-      "last_seen": "2026-05-29T19:24:44.436Z"
+      "occurrences": 1,
+      "last_seen": "2026-05-30T22:00:46.137Z"
     },
     {
       "id": "bug-002",
-      "timestamp": "2026-05-29T19:43:59.722Z",
+      "timestamp": "2026-05-30T22:01:00.526Z",
       "error_message": "Type error",
-      "file": "packages/ui/tailwind.preset.ts",
+      "file": "apps/studio/server/index.ts",
       "root_cause": "Missing or incorrect type annotation",
       "fix": "Added type assertion/annotation",
       "tags": [
@@ -31,61 +31,63 @@
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-29T19:43:59.722Z"
+      "last_seen": "2026-05-30T22:01:00.526Z"
     },
     {
       "id": "bug-003",
-      "timestamp": "2026-05-29T19:45:36.339Z",
-      "error_message": "Missing import: ./main.css",
-      "file": "apps/studio/src/main.tsx",
-      "root_cause": "Module(s) not imported: ./main.css",
-      "fix": "Added import(s) for ./main.css",
+      "timestamp": "2026-05-31T22:08:00.000Z",
+      "error_message": "MonthlyPlan: saved plan list empty on mount; clicking saved plan only changed month input, didn't load plan data",
+      "file": "apps/studio/src/screens/MonthlyPlan.tsx",
+      "root_cause": "loadPlanList was never called on mount; saved plan button only called setTargetMonth, not a plan-fetch function",
+      "fix": "Converted loadPlanList to useCallback, added useEffect to call it on mount; added loadPlan(month) that fetches GET /api/plans/:month and populates planData",
       "tags": [
-        "auto-detected",
-        "missing-import",
-        "tsx"
+        "studio",
+        "monthly-plan",
+        "wiring",
+        "useEffect"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-29T19:45:36.339Z"
+      "last_seen": "2026-05-31T22:08:00.000Z"
     },
     {
       "id": "bug-004",
-      "timestamp": "2026-05-29T23:59:13.702Z",
-      "error_message": "Null/undefined access in ",
-      "file": "packages/ui/src/components/Comparison.tsx",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
+      "timestamp": "2026-05-31T22:08:00.000Z",
+      "error_message": "Publisher revalidate only sent path:'/' instead of actual article paths and tags",
+      "file": "apps/studio/server/index.ts",
+      "root_cause": "POST /api/publish sent a static body {ts, path:'/'} to /api/revalidate instead of building real article paths from slugBase",
+      "fix": "Read slugBase from meta, build paths array [/tr/series/.., /en/series/..] and tags array [article:id, series:slug, list, sitemap, feed:tr, feed:en]",
       "tags": [
-        "auto-detected",
-        "null-safety",
-        "tsx"
+        "studio",
+        "server",
+        "publish",
+        "revalidate"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-29T23:59:13.702Z"
+      "last_seen": "2026-05-31T22:08:00.000Z"
     },
     {
       "id": "bug-005",
-      "timestamp": "2026-05-29T23:59:14.209Z",
-      "error_message": "Null/undefined access in ",
-      "file": "packages/ui/src/components/LayeredModel.tsx",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
+      "timestamp": "2026-05-31T11:58:42.627Z",
+      "error_message": "CSS fix: id",
+      "file": "apps/studio/src/App.tsx",
+      "root_cause": "id: 'resume', label: 'Resume Studio' → 'resume',  label: 'Resume Studio',   hint: 'PDF üret + JSON önizle'",
+      "fix": "Changed id: 'resume', label: 'Resume Studio' → 'resume',  label: 'Resume Studio',   hint: 'PDF üret + JSON önizle'",
       "tags": [
         "auto-detected",
-        "null-safety",
+        "style-fix",
         "tsx"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-29T23:59:14.209Z"
+      "last_seen": "2026-05-31T11:58:42.627Z"
     },
     {
       "id": "bug-006",
-      "timestamp": "2026-05-29T23:59:15.632Z",
+      "timestamp": "2026-05-31T11:58:47.103Z",
       "error_message": "Null/undefined access in ",
-      "file": "packages/ui/src/components/Pyramid.tsx",
+      "file": "apps/studio/src/App.tsx",
       "root_cause": "Property access on potentially null/undefined value",
       "fix": "Added null safety (optional chaining or null check)",
       "tags": [
@@ -95,560 +97,153 @@
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-29T23:59:15.632Z"
+      "last_seen": "2026-05-31T11:58:47.103Z"
     },
     {
       "id": "bug-007",
-      "timestamp": "2026-05-29T23:59:48.098Z",
-      "error_message": "Null/undefined access in ",
-      "file": "apps/web/src/content/loader.ts",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
+      "timestamp": "2026-05-31T17:16:27.0169293+03:00",
+      "error_message": "apply_patch verification failed while adding a missing .wolf/anatomy.md entry for the RAG prompt outline",
+      "file": ".wolf/anatomy.md",
+      "root_cause": "The initial patch context used terminal-displayed mojibake/normalized text instead of the file's exact Unicode content.",
+      "fix": "Re-read the precise context with Select-String and applied the anatomy update using the exact stored text.",
       "tags": [
-        "auto-detected",
-        "null-safety",
-        "ts"
+        "openwolf",
+        "anatomy",
+        "patch-context",
+        "unicode"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-29T23:59:48.098Z"
+      "last_seen": "2026-05-31T17:16:27.0169293+03:00"
     },
     {
       "id": "bug-008",
-      "timestamp": "2026-05-30T00:00:06.123Z",
-      "error_message": "Significant refactor of ",
-      "file": "apps/web/src/content/loader.ts",
-      "root_cause": "4 lines replaced/restructured",
-      "fix": "Rewrote 7→5 lines (4 removed)",
+      "timestamp": "2026-05-31T17:16:58.7506496+03:00",
+      "error_message": "apply_patch verification failed while adding llm-nasil-calisir anatomy entries from stale or Unicode-sensitive context",
+      "file": ".wolf/anatomy.md",
+      "root_cause": "The first anatomy update patches used surrounding lines that did not exactly match the current file content and Unicode dash/description text.",
+      "fix": "Used the ASCII-only heading `## content/series/2026-07-bagimsiz/` as the patch anchor and inserted the new llm-nasil-calisir article entries before it.",
       "tags": [
-        "auto-detected",
-        "refactor",
-        "ts"
+        "openwolf",
+        "anatomy",
+        "patch-context",
+        "unicode"
       ],
-      "related_bugs": [],
+      "related_bugs": [
+        "bug-007"
+      ],
       "occurrences": 1,
-      "last_seen": "2026-05-30T00:00:06.123Z"
+      "last_seen": "2026-05-31T17:16:58.7506496+03:00"
     },
     {
       "id": "bug-009",
-      "timestamp": "2026-05-30T00:00:13.168Z",
-      "error_message": "Null/undefined access in ",
-      "file": "apps/web/src/mdx/components.tsx",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
+      "timestamp": "2026-05-31T14:16:45.2544615Z",
+      "error_message": "apply_patch verification failed while updating .wolf/anatomy.md and .wolf/buglog.json with localized context lines",
+      "file": ".wolf/anatomy.md; .wolf/buglog.json",
+      "root_cause": "Patch context used localized or stale tail lines that did not match the current file contents exactly.",
+      "fix": "Used simpler exact anchors for anatomy and structured JSON append for the bug log.",
       "tags": [
-        "auto-detected",
-        "null-safety",
-        "tsx"
+        "openwolf",
+        "apply-patch",
+        "patch-context"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-30T00:00:13.168Z"
+      "last_seen": "2026-05-31T14:16:45.2544615Z"
     },
     {
       "id": "bug-010",
-      "timestamp": "2026-05-30T00:34:17.660Z",
-      "error_message": "CSS fix: updatedDate",
-      "file": "apps/web/app/[lang]/series/[seriesSlug]/[articleSlug]/page.tsx",
-      "root_cause": "updatedDate: meta.updatedDate, → meta.updatedDate",
-      "fix": "Changed updatedDate: meta.updatedDate, → meta.updatedDate",
+      "timestamp": "2026-05-31T14:16:45.2544615Z",
+      "error_message": "Get-Date : A parameter cannot be found that matches parameter name 'AsUTC'.",
+      "file": ".wolf/buglog.json",
+      "root_cause": "This PowerShell version does not support the Get-Date -AsUTC parameter.",
+      "fix": "Used (Get-Date).ToUniversalTime().ToString('o') to produce an ISO UTC timestamp.",
       "tags": [
-        "auto-detected",
-        "style-fix",
-        "tsx"
+        "powershell",
+        "timestamp",
+        "openwolf"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-30T00:34:17.660Z"
+      "last_seen": "2026-05-31T14:16:45.2544615Z"
     },
     {
       "id": "bug-011",
-      "timestamp": "2026-05-30T08:37:33.387Z",
-      "error_message": "Null/undefined access in ",
-      "file": "apps/web/app/api/revalidate/route.ts",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
+      "timestamp": "2026-05-31T14:38:16.2694007Z",
+      "error_message": "Publisher batch QC request for 2026-07-bagimsiz: five article scaffolds needed blocker fixes before Publisher could be ready",
+      "file": "content/series/2026-07-bagimsiz",
+      "root_cause": "The series had brief/meta/outline scaffolding but was missing bilingual final MDX files and references.json files required by meta.languages and reference QC for explainer/research/architecture TechArticle content.",
+      "fix": "Created final.tr.mdx, final.en.mdx, and references.json for articles 01-05; added references to the essay warning case; normalized article 04 slugBase.",
       "tags": [
-        "auto-detected",
-        "null-safety",
-        "ts"
+        "publisher",
+        "qc",
+        "content",
+        "references",
+        "mdx"
       ],
       "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-30T08:37:33.387Z"
+      "last_seen": "2026-05-31T14:38:16.2694007Z"
     },
     {
       "id": "bug-012",
-      "timestamp": "2026-05-30T08:38:10.356Z",
-      "error_message": "Missing guard clause",
-      "file": "apps/web/app/[lang]/series/[seriesSlug]/page.tsx",
-      "root_cause": "No early return/throw for edge case: meta && isPublic(meta, now",
-      "fix": "Added guard clause: if (meta && isPublic(meta, now)",
+      "timestamp": "2026-05-31T14:38:16.2694007Z",
+      "error_message": "SyntaxError: Invalid regular expression: /?/g: Nothing to repeat",
+      "file": "inline Node validation command",
+      "root_cause": "Turkish regex literals in a PowerShell-fed inline Node script were corrupted into question marks before Node parsed the script.",
+      "fix": "Re-ran the validation script using Unicode escapes for Turkish characters.",
       "tags": [
-        "auto-detected",
-        "guard-clause",
-        "tsx"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T08:38:10.356Z"
-    },
-    {
-      "id": "bug-013",
-      "timestamp": "2026-05-30T12:00:00.000Z",
-      "error_message": "Type 'false' is not assignable to type 'true' in redirect test fixture",
-      "file": "apps/web/src/__tests__/security.test.ts",
-      "root_cause": "RedirectItemSchema.permanent is z.literal(true) not z.boolean() — passing permanent: false fails TypeScript",
-      "fix": "Changed permanent: false to permanent: true in test fixtures",
-      "tags": [
-        "type-error",
-        "test",
-        "redirect-schema",
-        "literal-type"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T12:00:00.000Z"
-    },
-    {
-      "id": "bug-014",
-      "timestamp": "2026-05-30T12:00:00.000Z",
-      "error_message": "Studio router tests fail: resolveTargetPath returns null for seriesSlug/articleId fields",
-      "file": "apps/studio/src/__tests__/router.test.ts",
-      "root_cause": "content-core dist/ was stale (InboxItemSchema not rebuilt after adding new optional fields). Runtime uses dist/index.js via exports.import, not src/",
-      "fix": "Added resolve.alias in vitest.config.ts pointing @nacianilcom/content-core to src/index.ts; rebuilt content-core dist/ with pnpm --filter build",
-      "tags": [
-        "vitest",
-        "content-core",
-        "stale-dist",
-        "workspace-alias"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T12:00:00.000Z"
-    },
-    {
-      "id": "bug-015",
-      "timestamp": "2026-05-30T12:00:00.000Z",
-      "error_message": "@fastify/static path traversal vulnerability (GHSA-pr96-94w5-mx2h + GHSA-x428-ghpx-8j92)",
-      "file": "apps/studio/package.json",
-      "root_cause": "@fastify/static 8.x is vulnerable to path traversal and route guard bypass; 8.x designed for Fastify 4.x but studio uses Fastify 5.x",
-      "fix": "Upgraded @fastify/static from ^8.0.0 to ^9.1.1",
-      "tags": [
-        "security",
-        "dependency",
-        "fastify",
-        "path-traversal"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T12:00:00.000Z"
-    },
-    {
-      "id": "bug-013",
-      "timestamp": "2026-05-30T08:54:37.926Z",
-      "error_message": "Missing error handling in safeFilename",
-      "file": "apps/studio/server/index.ts",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
-      "fix": "Added try/catch block",
-      "tags": [
-        "auto-detected",
-        "error-handling",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T08:54:37.926Z"
-    },
-    {
-      "id": "bug-014",
-      "timestamp": "2026-05-30T08:55:17.254Z",
-      "error_message": "CSS fix: id",
-      "file": "apps/studio/src/App.tsx",
-      "root_cause": "id: 'prompts', label: 'Prompts' → 'inbox', label: 'AI Inbox'",
-      "fix": "Changed id: 'prompts', label: 'Prompts' → 'inbox', label: 'AI Inbox'",
-      "tags": [
-        "auto-detected",
-        "style-fix",
-        "tsx"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T08:55:17.254Z"
-    },
-    {
-      "id": "bug-015",
-      "timestamp": "2026-05-30T08:59:34.343Z",
-      "error_message": "Wrong reference: false should be true",
-      "file": "apps/web/src/__tests__/security.test.ts",
-      "root_cause": "Used \"false\" instead of \"true\"",
-      "fix": "Changed false → true",
-      "tags": [
-        "auto-detected",
-        "wrong-reference",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T08:59:34.343Z"
-    },
-    {
-      "id": "bug-016",
-      "timestamp": "2026-05-30T09:01:25.893Z",
-      "error_message": "Incorrect value in code",
-      "file": "apps/studio/package.json",
-      "root_cause": "Had \"^8.0.0\"",
-      "fix": "Changed to \"^9.1.1\"",
-      "tags": [
-        "auto-detected",
-        "wrong-value",
-        "json"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:01:25.893Z"
-    },
-    {
-      "id": "bug-020",
-      "timestamp": "2026-05-30T09:14:03.106Z",
-      "error_message": "Significant refactor of ",
-      "file": "packages/content-core/src/qc/runQC.ts",
-      "root_cause": "3 lines replaced/restructured",
-      "fix": "Rewrote 5→33 lines (3 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:14:03.106Z"
-    },
-    {
-      "id": "bug-021",
-      "timestamp": "2026-05-30T09:16:09.196Z",
-      "error_message": "Significant refactor of ",
-      "file": "packages/content-core/src/visual/validator.ts",
-      "root_cause": "4 lines replaced/restructured",
-      "fix": "Rewrote 7→7 lines (4 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:16:09.196Z"
-    },
-    {
-      "id": "bug-022",
-      "timestamp": "2026-05-30T09:20:29.434Z",
-      "error_message": "Missing error handling in unknown",
-      "file": "apps/studio/server/index.ts",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
-      "fix": "Added try/catch block",
-      "tags": [
-        "auto-detected",
-        "error-handling",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:20:29.434Z"
-    },
-    {
-      "id": "bug-023",
-      "timestamp": "2026-05-30T09:22:22.960Z",
-      "error_message": "CSS fix: id",
-      "file": "apps/studio/src/App.tsx",
-      "root_cause": "id: 'inbox', label: 'AI Inbox' → 'plan', label: 'Monthly Plan'",
-      "fix": "Changed id: 'inbox', label: 'AI Inbox' → 'plan', label: 'Monthly Plan'",
-      "tags": [
-        "auto-detected",
-        "style-fix",
-        "tsx"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:22:22.960Z"
-    },
-    {
-      "id": "bug-024",
-      "timestamp": "2026-05-30T09:46:27.208Z",
-      "error_message": "Missing error handling in resumeDir",
-      "file": "apps/web/src/content/loader.ts",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
-      "fix": "Added try/catch block",
-      "tags": [
-        "auto-detected",
-        "error-handling",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:46:27.208Z"
-    },
-    {
-      "id": "bug-025",
-      "timestamp": "2026-05-30T09:49:15.388Z",
-      "error_message": "CSS fix: id",
-      "file": "apps/studio/src/App.tsx",
-      "root_cause": "id: 'plan', label: 'Monthly Plan' → 'resume', label: 'Resume Studio'",
-      "fix": "Changed id: 'plan', label: 'Monthly Plan' → 'resume', label: 'Resume Studio'",
-      "tags": [
-        "auto-detected",
-        "style-fix",
-        "tsx"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:49:15.388Z"
-    },
-    {
-      "id": "bug-026",
-      "timestamp": "2026-05-30T09:49:40.940Z",
-      "error_message": "Missing error handling in unknown",
-      "file": "apps/studio/server/index.ts",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
-      "fix": "Added try/catch block",
-      "tags": [
-        "auto-detected",
-        "error-handling",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:49:40.940Z"
-    },
-    {
-      "id": "bug-027",
-      "timestamp": "2026-05-30T09:49:54.863Z",
-      "error_message": "Type error",
-      "file": "apps/web/app/sitemap.ts",
-      "root_cause": "Missing or incorrect type annotation",
-      "fix": "Added type assertion/annotation",
-      "tags": [
-        "auto-detected",
-        "type-fix",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:49:54.863Z"
-    },
-    {
-      "id": "bug-028",
-      "timestamp": "2026-05-30T09:53:41.265Z",
-      "error_message": "Type error",
-      "file": "apps/studio/server/index.ts",
-      "root_cause": "Missing or incorrect type annotation",
-      "fix": "Added type assertion/annotation",
-      "tags": [
-        "auto-detected",
-        "type-fix",
-        "ts"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T09:53:41.265Z"
-    },
-    {
-      "id": "bug-029",
-      "timestamp": "2026-05-30T10:40:00.791Z",
-      "error_message": "Incorrect value in code",
-      "file": "content/resume/portfolio/kurumsal-dashboard/case.json",
-      "root_cause": "Had \"Holding genelinde 1.000+ çalışanın kullandığı, te",
-      "fix": "Changed to \"Holding genelinde çalışanların kullandığı, tek ot",
-      "tags": [
-        "auto-detected",
-        "wrong-value",
-        "json"
-      ],
-      "related_bugs": [],
-      "occurrences": 6,
-      "last_seen": "2026-05-30T10:40:30.317Z"
-    },
-    {
-      "id": "bug-030",
-      "timestamp": "2026-05-30T10:55:45.021Z",
-      "error_message": "Significant refactor of ",
-      "file": "apps/web/app/[lang]/cv/page.tsx",
-      "root_cause": "13 lines replaced/restructured",
-      "fix": "Rewrote 33→17 lines (13 removed)",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "tsx"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T10:55:45.021Z"
-    },
-    {
-      "id": "bug-031",
-      "timestamp": "2026-05-30T10:57:27.103Z",
-      "error_message": "CSS fix: background-color",
-      "file": "apps/web/app/globals.css",
-      "root_cause": "background-color: var(--color-surface) → rgb(var(--color-accent-rgb) / 0.16)",
-      "fix": "Changed background-color: var(--color-surface) → rgb(var(--color-accent-rgb) / 0.16)",
-      "tags": [
-        "auto-detected",
-        "style-fix",
-        "css"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T10:57:27.103Z"
-    },
-    {
-      "id": "bug-032",
-      "timestamp": "2026-05-30T10:57:32.418Z",
-      "error_message": "Incorrect value in code",
-      "file": "apps/web/src/components/SiteNav.tsx",
-      "root_cause": "Had \"sticky top-0 z-20 border-b border-hairline bg-sur",
-      "fix": "Changed to \"sticky top-0 z-20 border-b border-hairline bg-sur",
-      "tags": [
-        "auto-detected",
-        "wrong-value",
-        "tsx"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T10:57:32.418Z"
-    },
-    {
-      "id": "bug-033",
-      "timestamp": "2026-05-30T10:57:36.846Z",
-      "error_message": "Incorrect value in code",
-      "file": "apps/web/src/components/SiteFooter.tsx",
-      "root_cause": "Had \"mt-24 border-t border-ink bg-surface px-6 py-10 s",
-      "fix": "Changed to \"mt-24 border-t border-ink bg-surface px-6 py-10 s",
-      "tags": [
-        "auto-detected",
-        "wrong-value",
-        "tsx"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T10:57:36.846Z"
-    },
-    {
-      "id": "bug-034",
-      "timestamp": "2026-05-30T14:00:00.000Z",
-      "error_message": "next build: PageNotFoundError: Cannot find module for page: /[lang]/work (during Collecting page data)",
-      "file": "apps/web/.next",
-      "root_cause": "Stale .next cache after a structural route change — app/[lang]/page.tsx changed from a redirect() (no generateStaticParams) to a real SSG page; the prior build's page manifest no longer matched.",
-      "fix": "Remove-Item -Recurse -Force apps/web/.next then rebuild. Clean rebuild generates all 29 pages. typecheck/lint/compile pass regardless; only the cached page-data collection fails.",
-      "tags": [
-        "nextjs",
-        "build",
-        "stale-cache",
-        "ssg",
-        "PageNotFoundError"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T14:00:00.000Z"
-    },
-    {
-      "id": "bug-035",
-      "timestamp": "2026-05-30T14:00:00.000Z",
-      "error_message": "New @nacianilcom/ui exports (editorial primitives) invisible to apps/web at build time",
-      "file": "packages/ui/package.json",
-      "root_cause": "ui exports.import -> ./dist/index.js and web has no transpilePackages, so new src components must be compiled to dist before next build resolves them. TypeScript typecheck passes via the types->./src/index.ts condition, masking the gap until build.",
-      "fix": "pnpm -r build builds ui before web (topological order), refreshing dist. Run pnpm --filter @nacianilcom/ui build (or full pnpm -w build) after editing ui source. Tailwind scans ui SRC for classes regardless of dist.",
-      "tags": [
-        "pnpm",
-        "ui",
-        "stale-dist",
-        "monorepo",
-        "exports"
+        "powershell",
+        "node",
+        "encoding",
+        "validation"
       ],
       "related_bugs": [
-        "bug-014"
+        "bug-010"
       ],
       "occurrences": 1,
-      "last_seen": "2026-05-30T14:00:00.000Z"
+      "last_seen": "2026-05-31T14:38:16.2694007Z"
     },
     {
-      "id": "bug-036",
-      "timestamp": "2026-05-30T15:43:50.826Z",
-      "error_message": "Incorrect value in code",
-      "file": "apps/web/app/[lang]/cv/print/page.tsx",
-      "root_cause": "Had \"border-b-2 border-ink pb-5\"",
-      "fix": "Changed to \"border-b-2 border-ink pb-4\"",
+      "id": "bug-013",
+      "timestamp": "2026-05-31T14:38:16.2694007Z",
+      "error_message": "apply_patch verification failed while updating .wolf/cerebrum.md with terminal-displayed localized context",
+      "file": ".wolf/cerebrum.md",
+      "root_cause": "The first cerebrum patch used localized/mojibake context that did not exactly match the file bytes.",
+      "fix": "Applied smaller patches anchored on ASCII-stable lines.",
       "tags": [
-        "auto-detected",
-        "wrong-value",
-        "tsx"
+        "openwolf",
+        "apply-patch",
+        "unicode",
+        "patch-context"
       ],
-      "related_bugs": [],
-      "occurrences": 5,
-      "last_seen": "2026-05-30T15:44:02.600Z"
-    },
-    {
-      "id": "bug-037",
-      "timestamp": "2026-05-30T20:42:09.998Z",
-      "error_message": "Null/undefined access in ",
-      "file": "apps/web/src/lib/dateRange.ts",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
-      "tags": [
-        "auto-detected",
-        "null-safety",
-        "ts"
+      "related_bugs": [
+        "bug-007",
+        "bug-008",
+        "bug-009"
       ],
-      "related_bugs": [],
       "occurrences": 1,
-      "last_seen": "2026-05-30T20:42:09.999Z"
+      "last_seen": "2026-05-31T14:38:16.2694007Z"
     },
     {
-      "id": "bug-038",
-      "timestamp": "2026-05-30T20:45:22.529Z",
-      "error_message": "Null/undefined access in ",
-      "file": "apps/web/app/[lang]/cv/page.tsx",
-      "root_cause": "Property access on potentially null/undefined value",
-      "fix": "Added null safety (optional chaining or null check)",
+      "id": "bug-014",
+      "timestamp": "2026-05-31T15:44:12.5661155Z",
+      "error_message": "llm-nasil-calisir Publisher QC showed 2 blockers per article because references.json was missing for TR and EN",
+      "file": "content/series/llm-nasil-calisir",
+      "root_cause": "The five TechArticle explainer/architecture article scaffolds had meta/brief files but no references.json, while runQC requires references for those content types.",
+      "fix": "Added references.json to all five llm-nasil-calisir article directories using the sourceBasis papers/docs from each brief.",
       "tags": [
-        "auto-detected",
-        "null-safety",
-        "tsx"
+        "publisher",
+        "qc",
+        "content",
+        "references",
+        "llm-series"
       ],
-      "related_bugs": [],
+      "related_bugs": [
+        "bug-011"
+      ],
       "occurrences": 1,
-      "last_seen": "2026-05-30T20:45:22.529Z"
-    },
-    {
-      "id": "bug-039",
-      "timestamp": "2026-05-30T20:45:50.132Z",
-      "error_message": "CSS fix: sm",
-      "file": "apps/web/app/[lang]/cv/page.tsx",
-      "root_cause": "sm: text-right\"> → items-end sm:text-right\">",
-      "fix": "Changed sm: text-right\"> → items-end sm:text-right\">",
-      "tags": [
-        "auto-detected",
-        "style-fix",
-        "tsx"
-      ],
-      "related_bugs": [],
-      "occurrences": 1,
-      "last_seen": "2026-05-30T20:45:50.132Z"
-    },
-    {
-      "id": "bug-040",
-      "timestamp": "2026-05-30T20:46:09.402Z",
-      "error_message": "Significant refactor of ",
-      "file": "apps/web/app/[lang]/cv/page.tsx",
-      "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 8→12 lines (2 removed) | Also: <span className={specDateColClass}>{fmtRange(entry; ))}",
-      "tags": [
-        "auto-detected",
-        "refactor",
-        "tsx"
-      ],
-      "related_bugs": [],
-      "occurrences": 2,
-      "last_seen": "2026-05-30T20:46:30.611Z"
+      "last_seen": "2026-05-31T15:44:12.5661155Z"
     }
   ]
 }

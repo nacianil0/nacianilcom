@@ -1,0 +1,127 @@
+---
+title: "RAG: LLM'e Kendi Verinizi Nasıl Okutursunuz?"
+description: "RAG mimarisini retrieve, augment, generate akışıyla; chunking, metadata, reranking, fine-tune farkı ve üretim riskleriyle öğrenin."
+summary: "RAG, modeli yeniden eğitmeden dış bilgiyi cevap üretimine dahil etmenin pratik yoludur. İyi bir RAG sistemi yalnızca vektör arama değil; veri hazırlama, bağlam seçimi, kaynak gösterme ve değerlendirme tasarımıdır."
+faq:
+  - q: "RAG nedir?"
+    a: "Retrieval-Augmented Generation; model cevap üretmeden önce ilgili kaynakları bulup prompt bağlamına ekleyen mimari desendir."
+  - q: "RAG fine-tune yerine geçer mi?"
+    a: "Bilgi güncelliği ve kaynak gösterme gereken senaryolarda çoğu zaman evet; davranış ve format öğretmek gerekiyorsa fine-tune ayrıca düşünülebilir."
+  - q: "RAG halüsinasyonu bitirir mi?"
+    a: "Hayır. Riski azaltır ve denetlenebilirlik sağlar; ancak retrieval kalitesi, prompt tasarımı ve eval katmanı hâlâ gerekir."
+---
+
+## RAG hangi problemi çözer?
+
+Bir LLM şirket dokümanlarınızı, ürün kayıtlarınızı veya destek makalelerinizi kendiliğinden bilmez. Eğitim verisi sabittir; kurum içi bilgi ise değişir. RAG, modeli yeniden eğitmeden doğru bilgiyi dış kaynaktan bulup cevaba bağlam olarak ekler.
+
+<Definition term="RAG">
+Retrieval-Augmented Generation; cevap üretiminden önce ilgili bilgi parçalarını getirip modelin bağlamına ekleyen mimari desen.
+</Definition>
+
+RAG'in değeri yalnızca "özel veriyi modele okutmak" değildir. Cevabın hangi kaynaklara dayandığını göstermek, güncel bilgiyi sisteme almak ve halüsinasyon riskini daha görünür yönetmek için de kullanılır.
+
+<Callout title="Fine-tune ayrımı">
+Fine-tune genellikle davranış, ton veya görev formatı öğretmek için anlamlıdır. Güncel ve denetlenebilir bilgi gerekiyorsa ilk bakılacak desen çoğu zaman RAG olur.
+</Callout>
+
+## Temel akış: retrieve, augment, generate
+
+RAG sistemi kullanıcı sorusunu doğrudan modele göndermek yerine önce arama problemine çevirir. Soru bir embedding vektörüne, keyword sorgusuna veya hibrit bir arama isteğine dönüşebilir. Retrieval katmanı en alakalı kaynak parçalarını bulur.
+
+Augmentation adımı, bulunan parçaları modelin prompt bağlamına yerleştirir. Bu adım basit kopyala-yapıştır değildir. Kaynakların sırası, uzunluğu, başlığı, tarih bilgisi ve güven düzeyi cevabı etkiler. Generation adımı ise modelden verilen kaynaklara dayanarak cevap üretmesini ister.
+
+<Example title="Üç adımlı ürün akışı">
+Kullanıcı "izin politikası değişti mi?" diye sorar. Sistem önce HR dokümanlarında arar, güncel politika parçalarını kaynak bilgisiyle prompt'a ekler, model de bu kaynaklara dayanarak kısa ve denetlenebilir cevap üretir.
+</Example>
+
+## Veriyi hazırlama: chunking ve metadata
+
+RAG'de aranan şey çoğu zaman dokümanın tamamı değil, dokümanın anlamlı parçasıdır. Chunk çok küçük olursa bağlam kaybolur. Çok büyük olursa arama hassasiyeti düşer ve context window gereksiz dolar.
+
+Metadata üretimde hayat kurtarır. Başlık, bölüm, tarih, departman, yetki seviyesi, kaynak URL'i ve belge sürümü gibi alanlar hem filtreleme hem kaynak gösterme için gerekir. Bozuk OCR, tekrar eden header/footer, eski sürüm belgeler ve çelişkili kaynaklar cevap kalitesini doğrudan bozar.
+
+<CodeBlock language="typescript" title="Basit chunk hazırlama fikri">
+{`type Chunk = {
+  id: string;
+  text: string;
+  metadata: {
+    source: string;
+    section: string;
+    updatedAt: string;
+  };
+};
+
+function createChunks(documentId: string, paragraphs: string[]): Chunk[] {
+  return paragraphs
+    .filter((paragraph) => paragraph.trim().length > 80)
+    .map((paragraph, index) => ({
+      id: documentId + '-' + index,
+      text: paragraph.trim(),
+      metadata: {
+        source: documentId,
+        section: 'policy',
+        updatedAt: '2026-07-01',
+      },
+    }));
+}`}
+</CodeBlock>
+
+## Embedding, vektör arama ve reranking
+
+Embedding, metni sayısal bir temsile dönüştürür. Böylece arama yalnızca aynı kelimeleri değil, anlamca yakın parçaları da bulabilir. Vektör veritabanı veya arama katmanı bu embedding'i, metni ve metadata'yı birlikte saklar.
+
+İlk retrieval sonucu genellikle son cevap değildir. Reranking, aday parçaları soruya göre yeniden sıralar. Top-k değerini artırmak kaliteyi otomatik artırmaz; alakasız parça çoğaldıkça modelin dikkati dağılabilir ve cevap bulanıklaşabilir.
+
+<Warning title="Daha çok kaynak her zaman daha iyi değildir">
+Prompt'a fazla kaynak koymak, doğru kaynağın etkisini azaltabilir. RAG kalitesi çoğu zaman "en çok belge" değil, "en doğru birkaç parça" meselesidir.
+</Warning>
+
+## Fine-tune yerine ne zaman RAG?
+
+Kaynaklar sık güncelleniyorsa RAG genellikle daha hızlı ve ucuz güncellenir. Cevabın dayandığı belgeyi göstermek gerekiyorsa RAG daha denetlenebilir mimari sunar. Verinin kullanıcı yetkisine göre filtrelenmesi gerekiyorsa retrieval katmanı doğal kontrol noktasıdır.
+
+Fine-tune ise modelin belirli bir formatta, üslupta veya görev davranışında uzmanlaşması gerektiğinde anlamlı olabilir. İki yaklaşım rakip olmak zorunda değildir: belirli davranışa fine-tune edilmiş bir model, RAG ile güncel kaynaklara bağlanabilir.
+
+<Example title="Karar kriterleri">
+- Bilgi sık değişiyor: RAG.
+- Kaynak göstermek gerekiyor: RAG.
+- Model hep aynı formatta cevap vermeli: fine-tune düşünülebilir.
+- Hem davranış hem kaynak lazım: fine-tune + RAG birlikte değerlendirilebilir.
+</Example>
+
+## Üretimde dikkat edilecek noktalar
+
+RAG kalitesi yalnızca son cevabın güzel görünmesiyle ölçülmez. Doğru kaynak bulundu mu? Kaynak gerçekten soruyu cevaplıyor mu? Cevap kaynak dışına çıktı mı? Kullanıcı görmeye yetkili olmadığı belgeyi prompt'a taşıdı mı? Bu sorular ayrı ayrı ölçülmelidir.
+
+Golden question set, retrieval recall, answer faithfulness ve source attribution gibi metrikler gerekir. Prompt injection, eski doküman, çelişkili kaynak ve eksik metadata üretim sistemlerinde sık görülen risklerdir.
+
+<CodeBlock language="typescript" title="Kaynaklı cevap akışının iskeleti">
+{`type RetrievedChunk = {
+  text: string;
+  source: string;
+  score: number;
+};
+
+async function answerWithRag(question: string) {
+  const chunks: RetrievedChunk[] = await retrieveRelevantChunks(question);
+  const trustedContext = chunks
+    .filter((chunk) => chunk.score > 0.72)
+    .slice(0, 4);
+
+  return generateAnswer({
+    question,
+    context: trustedContext,
+    instruction: 'Answer only from the supplied sources. Say when evidence is missing.',
+  });
+}`}
+</CodeBlock>
+
+## RAG'i arama kutusu gibi düşünmeyin
+
+Başarılı RAG uygulamaları genellikle küçük ve ölçülebilir bir bilgi alanıyla başlar. İlk hedef "tüm şirket verisini konuşturmak" değil, birkaç kritik soru türünü güvenilir cevaplamaktır. Bu yaklaşım hem veri hazırlığını hem değerlendirmeyi yönetilebilir kılar.
+
+<Takeaway>
+RAG, doğru bilgiyi doğru anda modele göstermekle ilgilidir. İyi çalışan sistem; retrieval, bağlam tasarımı, kaynak gösterme, yetki kontrolü ve eval katmanını birlikte kurar.
+</Takeaway>
+

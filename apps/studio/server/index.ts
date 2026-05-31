@@ -1,13 +1,38 @@
 import Fastify from 'fastify';
 import path from 'path';
 import fs from 'fs/promises';
+import { watch } from 'fs';
 import crypto from 'crypto';
 import fastifyStatic from '@fastify/static';
 import simpleGit from 'simple-git';
 import { InboxItemSchema, MonthlyPlanSchema, sanitizeSvg } from '@nacianilcom/content-core';
-import { resolveTargetPath, writeWithBackup, serializePayload, moveToUnresolved } from './router';
+import { autoRoutePendingInbox, routeInboxFile, safeInboxFilename } from './inboxRouter';
 import { renderMermaidToSvg, listDiagramFiles } from './visual';
 import { generatePlan, generateFilePrompt, analyzeContent } from './planner';
+import { scaffoldFromPlan } from './planScaffolder';
+import { generateAllCodexPrompts, getNextPrompt, getPendingSteps } from './promptGenerator';
+import {
+  buildSchedule,
+  resolvePublishStatus,
+  sortArticleIds,
+  type ScheduleMode,
+} from '../src/lib/publishScheduler';
+
+async function loadDotEnv(): Promise<void> {
+  const envPath = path.join(CWD, '.env');
+  try {
+    const raw = await fs.readFile(envPath, 'utf-8');
+    for (const line of raw.split('\n')) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const eq = trimmed.indexOf('=');
+      if (eq <= 0) continue;
+      const key = trimmed.slice(0, eq).trim();
+      const val = trimmed.slice(eq + 1).trim();
+      if (process.env[key] === undefined) process.env[key] = val;
+    }
+  } catch { /* optional */ }
+}
 
 const HOST = '127.0.0.1';
 const PORT = 3001;
@@ -15,6 +40,8 @@ const CWD = process.cwd(); // apps/studio when run via pnpm scripts
 const REPO_ROOT = path.resolve(CWD, '../..');
 const CONTENT_ROOT = path.join(REPO_ROOT, 'content');
 const PROMPTS_DIR = path.join(CWD, 'prompts');
+
+void loadDotEnv();
 
 const server = Fastify({ logger: true });
 
@@ -57,15 +84,24 @@ server.get('/api/content/list', async () => {
   const seriesList = [];
 
   for (const slug of slugs) {
-    const seriesData = await safeReadJson(path.join(CONTENT_ROOT, 'series', slug, 'series.json'));
-    if (!seriesData) continue;
+    const seriesData = await safeReadJson<Record<string, unknown>>(
+      path.join(CONTENT_ROOT, 'series', slug, 'series.json'),
+    );
     const ids = await listArticleIds(slug);
     const articles = [];
     for (const id of ids) {
       const meta = await safeReadJson(path.join(CONTENT_ROOT, 'series', slug, 'articles', id, 'meta.json'));
       if (meta) articles.push({ id, meta });
     }
-    seriesList.push({ slug, series: seriesData, articles });
+    if (articles.length === 0) continue;
+    seriesList.push({
+      slug,
+      series: seriesData ?? {
+        slug,
+        title: { tr: slug, en: slug },
+      },
+      articles,
+    });
   }
 
   return seriesList;
@@ -77,14 +113,29 @@ server.get<{ Params: { seriesSlug: string; articleId: string } }>(
   async (req, reply) => {
     const { seriesSlug, articleId } = req.params;
     const basePath = path.join(CONTENT_ROOT, 'series', seriesSlug, 'articles', articleId);
-    const [meta, references, series] = await Promise.all([
+    const [meta, brief, outline, references, series] = await Promise.all([
       safeReadJson(path.join(basePath, 'meta.json')),
-      safeReadJson(path.join(CONTENT_ROOT, 'series', seriesSlug, 'articles', articleId, 'references.json')),
+      safeReadJson(path.join(basePath, 'brief.json')),
+      safeReadJson(path.join(basePath, 'outline.json')),
+      safeReadJson(path.join(basePath, 'references.json')),
       safeReadJson(path.join(CONTENT_ROOT, 'series', seriesSlug, 'series.json')),
     ]);
     if (!meta) return reply.status(404).send({ error: 'Not found' });
-    return { meta, references: references ?? [], series };
-  }
+
+    const mdx = { tr: false, en: false };
+    for (const lang of ['tr', 'en'] as const) {
+      mdx[lang] = await fs.access(path.join(basePath, `final.${lang}.mdx`)).then(() => true).catch(() => false);
+    }
+
+    return {
+      meta,
+      brief: brief ?? null,
+      outline: outline ?? null,
+      references: references ?? [],
+      series,
+      files: { brief: brief != null, outline: outline != null, mdx },
+    };
+  },
 );
 
 // GET /api/content/:seriesSlug/:articleId/mdx/:lang
@@ -150,62 +201,217 @@ interface PublishBody {
   publishDate?: string;
 }
 
+interface ScheduleBatchBody {
+  seriesSlug: string;
+  articleIds?: string[];
+  startDate: string;
+  mode: ScheduleMode;
+  commit?: boolean;
+}
+
+async function revalidatePublishedArticles(
+  items: Array<{ seriesSlug: string; articleId: string; slugBase: string; status: string }>,
+): Promise<void> {
+  const webUrl = process.env.WEB_URL ?? 'http://localhost:3000';
+  const secret = process.env.REVALIDATE_SECRET;
+  if (!secret) return;
+
+  const published = items.filter(i => i.status === 'published');
+  if (published.length === 0) return;
+
+  const paths = new Set<string>();
+  const tags = new Set<string>(['list', 'sitemap', 'feed:tr', 'feed:en']);
+
+  for (const item of published) {
+    paths.add(`/tr/series/${item.seriesSlug}/${item.slugBase}`);
+    paths.add(`/en/series/${item.seriesSlug}/${item.slugBase}`);
+    paths.add(`/tr/series/${item.seriesSlug}`);
+    paths.add(`/en/series/${item.seriesSlug}`);
+    tags.add(`article:${item.articleId}`);
+    tags.add(`series:${item.seriesSlug}`);
+  }
+
+  const ts = Math.floor(Date.now() / 1000);
+  const body = JSON.stringify({ ts, paths: [...paths], tags: [...tags] });
+  const sig = crypto.createHmac('sha256', secret).update(body).digest('hex');
+  await fetch(`${webUrl}/api/revalidate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-signature': sig },
+    body,
+  }).catch(e => server.log.warn({ e }, 'revalidate call failed (non-fatal)'));
+}
+
+async function writeArticleSchedule(
+  seriesSlug: string,
+  articleId: string,
+  publishDate: string,
+): Promise<{ status: 'published' | 'scheduled'; slugBase: string }> {
+  const metaPath = path.join(CONTENT_ROOT, 'series', seriesSlug, 'articles', articleId, 'meta.json');
+  const raw = await fs.readFile(metaPath, 'utf-8').catch(() => null);
+  if (!raw) throw new Error(`Article not found: ${seriesSlug}/${articleId}`);
+
+  const meta = JSON.parse(raw) as Record<string, unknown>;
+  const status = resolvePublishStatus(publishDate);
+  meta['status'] = status;
+  meta['publishDate'] = publishDate;
+  await fs.writeFile(metaPath, JSON.stringify(meta, null, 2) + '\n', 'utf-8');
+  return { status, slugBase: (meta['slugBase'] as string) || articleId };
+}
+
 server.post<{ Body: PublishBody }>('/api/publish', async (req, reply) => {
   const { seriesSlug, articleId, publishDate } = req.body;
   if (!seriesSlug || !articleId) {
     return reply.status(400).send({ error: 'seriesSlug and articleId required' });
   }
 
-  const metaPath = path.join(CONTENT_ROOT, 'series', seriesSlug, 'articles', articleId, 'meta.json');
-  const raw = await fs.readFile(metaPath, 'utf-8').catch(() => null);
-  if (!raw) return reply.status(404).send({ error: 'Article not found' });
-
-  const meta = JSON.parse(raw) as Record<string, unknown>;
   const date = publishDate ?? new Date().toISOString().slice(0, 10);
-  meta['status'] = 'published';
-  meta['publishDate'] = date;
+  let result: { status: 'published' | 'scheduled'; slugBase: string };
+  try {
+    result = await writeArticleSchedule(seriesSlug, articleId, date);
+  } catch {
+    return reply.status(404).send({ error: 'Article not found' });
+  }
 
-  await fs.writeFile(metaPath, JSON.stringify(meta, null, 2) + '\n', 'utf-8');
+  const metaPath = path.join(CONTENT_ROOT, 'series', seriesSlug, 'articles', articleId, 'meta.json');
 
-  // Git commit + push
   try {
     const git = simpleGit(REPO_ROOT);
     const relPath = path.relative(REPO_ROOT, metaPath).replace(/\\/g, '/');
     await git.add(relPath);
-    await git.commit(`feat(content): publish ${seriesSlug}/${articleId} [${date}]`);
+    const verb = result.status === 'published' ? 'publish' : 'schedule';
+    await git.commit(`feat(content): ${verb} ${seriesSlug}/${articleId} [${date}]`);
     await git.push();
   } catch (err) {
     server.log.error({ err }, 'git commit/push failed');
     return reply.status(500).send({ error: 'git operation failed' });
   }
 
-  // Call /api/revalidate (best-effort)
-  const webUrl = process.env.WEB_URL ?? 'http://localhost:3000';
-  const secret = process.env.REVALIDATE_SECRET;
-  if (secret) {
-    const ts = Math.floor(Date.now() / 1000);
-    const body = JSON.stringify({ ts, path: '/' });
-    const sig = crypto.createHmac('sha256', secret).update(body).digest('hex');
-    await fetch(`${webUrl}/api/revalidate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-signature': sig },
-      body,
-    }).catch(e => server.log.warn({ e }, 'revalidate call failed (non-fatal)'));
+  await revalidatePublishedArticles([
+    { seriesSlug, articleId, slugBase: result.slugBase, status: result.status },
+  ]);
+
+  return { ok: true, publishDate: date, status: result.status };
+});
+
+server.post<{ Body: ScheduleBatchBody }>('/api/publish/schedule', async (req, reply) => {
+  const { seriesSlug, startDate, mode } = req.body;
+  const shouldCommit = req.body.commit !== false;
+
+  if (!seriesSlug || !startDate || !mode) {
+    return reply.status(400).send({ error: 'seriesSlug, startDate and mode required' });
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(startDate)) {
+    return reply.status(400).send({ error: 'startDate must be YYYY-MM-DD' });
+  }
+  if (!['same-day', 'daily', 'weekly'].includes(mode)) {
+    return reply.status(400).send({ error: 'mode must be same-day, daily or weekly' });
   }
 
-  return { ok: true, publishDate: date };
+  const seriesData = await safeReadJson<{ articleOrder?: string[] }>(
+    path.join(CONTENT_ROOT, 'series', seriesSlug, 'series.json'),
+  );
+  if (!seriesData) return reply.status(404).send({ error: 'Series not found' });
+
+  const allIds = await listArticleIds(seriesSlug);
+  let candidateIds = req.body.articleIds?.length
+    ? req.body.articleIds.filter(id => allIds.includes(id))
+    : [];
+
+  if (candidateIds.length === 0) {
+    for (const id of allIds) {
+      const meta = await safeReadJson<Record<string, unknown>>(
+        path.join(CONTENT_ROOT, 'series', seriesSlug, 'articles', id, 'meta.json'),
+      );
+      if (meta && meta['status'] !== 'published') candidateIds.push(id);
+    }
+  }
+
+  candidateIds = sortArticleIds(candidateIds, seriesData.articleOrder);
+  if (candidateIds.length === 0) {
+    return reply.status(400).send({ error: 'No articles to schedule' });
+  }
+
+  const plan = buildSchedule(candidateIds, startDate, mode);
+  const applied: Array<{
+    articleId: string;
+    publishDate: string;
+    status: 'published' | 'scheduled';
+    slugBase: string;
+  }> = [];
+
+  for (const entry of plan) {
+    const { status, slugBase } = await writeArticleSchedule(seriesSlug, entry.articleId, entry.publishDate);
+    applied.push({
+      articleId: entry.articleId,
+      publishDate: entry.publishDate,
+      status,
+      slugBase,
+    });
+  }
+
+  let commitSha: string | undefined;
+  if (shouldCommit) {
+    try {
+      const git = simpleGit(REPO_ROOT);
+      for (const item of applied) {
+        const metaPath = path.join(
+          CONTENT_ROOT,
+          'series',
+          seriesSlug,
+          'articles',
+          item.articleId,
+          'meta.json',
+        );
+        const relPath = path.relative(REPO_ROOT, metaPath).replace(/\\/g, '/');
+        await git.add(relPath);
+      }
+      const summary = `${applied.length} articles, ${mode}, from ${startDate}`;
+      const commit = await git.commit(`feat(content): schedule ${seriesSlug} (${summary})`);
+      commitSha = commit.commit;
+      await git.push();
+    } catch (err) {
+      server.log.error({ err }, 'git commit/push failed');
+      return reply.status(500).send({ error: 'git operation failed', applied });
+    }
+  }
+
+  await revalidatePublishedArticles(
+    applied.map(item => ({ seriesSlug, articleId: item.articleId, slugBase: item.slugBase, status: item.status })),
+  );
+
+  return {
+    ok: true,
+    seriesSlug,
+    mode,
+    startDate,
+    scheduled: applied,
+    commitSha,
+  };
 });
 
 // ─── Inbox API (§26 — Auto Output Routing) ───────────────────────────────────
 
 const INBOX_DIR = path.join(CONTENT_ROOT, '_inbox');
 
-function safeFilename(name: string): boolean {
-  return /^[a-z0-9_.-]+\.json$/.test(name);
+async function syncInboxRoutes(): Promise<void> {
+  await autoRoutePendingInbox(INBOX_DIR, CONTENT_ROOT);
+}
+
+function startInboxWatcher(): void {
+  let debounce: ReturnType<typeof setTimeout> | null = null;
+  void fs.mkdir(INBOX_DIR, { recursive: true });
+  watch(INBOX_DIR, (_, filename) => {
+    if (!filename?.endsWith('.json')) return;
+    if (debounce) clearTimeout(debounce);
+    debounce = setTimeout(() => {
+      void syncInboxRoutes().catch(err => server.log.warn({ err }, 'inbox auto-route failed'));
+    }, 400);
+  });
 }
 
 // GET /api/inbox — scan and list all items (root + unresolved/)
 server.get('/api/inbox', async () => {
+  await syncInboxRoutes();
   const readDir = async (dir: string, prefix = '') => {
     const entries = await fs.readdir(dir, { withFileTypes: true }).catch(() => []);
     const items: unknown[] = [];
@@ -254,61 +460,26 @@ server.post<{ Body: Record<string, unknown> }>('/api/inbox', async (req, reply) 
   }
 
   await fs.writeFile(filePath, JSON.stringify(item, null, 2) + '\n', 'utf-8');
+  await syncInboxRoutes();
   return { ok: true, filename, status: 'detected' };
 });
 
 // POST /api/inbox/:filename/route — trigger routing for a specific file
 server.post<{ Params: { filename: string } }>('/api/inbox/:filename/route', async (req, reply) => {
   const { filename } = req.params;
-  if (!safeFilename(filename)) return reply.status(400).send({ error: 'Invalid filename' });
-
-  const filePath = path.join(INBOX_DIR, filename);
-  const raw = await fs.readFile(filePath, 'utf-8').catch(() => null);
-  if (!raw) return reply.status(404).send({ error: 'File not found' });
-
-  let item;
-  try {
-    item = InboxItemSchema.parse(JSON.parse(raw));
-  } catch (err) {
-    // Mark as failed
-    const failed = { ...(JSON.parse(raw) as Record<string, unknown>), status: 'failed', reviewReason: 'Schema validation failed' };
-    await fs.writeFile(filePath, JSON.stringify(failed, null, 2) + '\n', 'utf-8');
-    return reply.status(400).send({ error: 'Schema validation failed', detail: String(err) });
+  const result = await routeInboxFile(INBOX_DIR, filename, CONTENT_ROOT);
+  if (!result.ok) {
+    if (result.status === 'needsReview') {
+      return reply.status(422).send({ error: result.error, reason: result.error });
+    }
+    return reply.status(result.error === 'File not found' ? 404 : 400).send({ error: result.error });
   }
-
-  // Idempotency: already routed → skip
-  if (item.status === 'routed') {
-    return { ok: true, filename, status: 'already-routed', target: item.target };
-  }
-
-  const targetPath = resolveTargetPath(item, CONTENT_ROOT);
-
-  if (!targetPath) {
-    await moveToUnresolved(filename, INBOX_DIR, item, 'Missing required routing fields');
-    return reply.status(422).send({
-      error: 'Cannot determine target path',
-      reason: 'Missing required routing fields (targetMonth / seriesSlug / articleId / language)',
-    });
-  }
-
-  const content = serializePayload(item);
-  const writeResult = await writeWithBackup(targetPath, content);
-
-  // Update inbox item to routed
-  const routed = {
-    ...item,
-    status: 'routed' as const,
-    target: targetPath,
-    backupPath: writeResult.backupPath,
-  };
-  await fs.writeFile(filePath, JSON.stringify(routed, null, 2) + '\n', 'utf-8');
-
   return {
     ok: true,
-    filename,
-    status: 'routed',
-    target: targetPath,
-    backup: writeResult.backupPath,
+    filename: result.filename,
+    status: result.status,
+    target: result.target,
+    backup: result.backup,
   };
 });
 
@@ -317,7 +488,7 @@ server.post<{ Params: { filename: string } }>(
   '/api/inbox/unresolved/:filename/route',
   async (req, reply) => {
     const { filename } = req.params;
-    if (!safeFilename(filename)) return reply.status(400).send({ error: 'Invalid filename' });
+    if (!safeInboxFilename(filename)) return reply.status(400).send({ error: 'Invalid filename' });
 
     const filePath = path.join(INBOX_DIR, 'unresolved', filename);
     const raw = await fs.readFile(filePath, 'utf-8').catch(() => null);
@@ -351,7 +522,7 @@ server.post<{ Params: { filename: string } }>(
 // DELETE /api/inbox/:filename — discard an item (explicit user action)
 server.delete<{ Params: { filename: string } }>('/api/inbox/:filename', async (req, reply) => {
   const { filename } = req.params;
-  if (!safeFilename(filename)) return reply.status(400).send({ error: 'Invalid filename' });
+  if (!safeInboxFilename(filename)) return reply.status(400).send({ error: 'Invalid filename' });
   await fs.unlink(path.join(INBOX_DIR, filename)).catch(() => null);
   return { ok: true };
 });
@@ -479,6 +650,7 @@ const PLANS_DIR = path.join(CONTENT_ROOT, 'plans');
 
 // GET /api/plans — list all YYYY-MM.json plans
 server.get('/api/plans', async () => {
+  await syncInboxRoutes();
   const entries = await fs.readdir(PLANS_DIR, { withFileTypes: true }).catch(() => []);
   const plans: unknown[] = [];
   for (const e of entries) {
@@ -550,9 +722,12 @@ server.put<{ Params: { month: string }; Body: Record<string, unknown> }>(
   }
 );
 
-// POST /api/plans/:month/approve — approve plan and route selected topics to _ideas/
-server.post<{ Params: { month: string } }>('/api/plans/:month/approve', async (req, reply) => {
+// POST /api/plans/:month/approve — scaffold (+ optional Codex prompts)
+server.post<{ Params: { month: string }; Body: { generateCodexPrompts?: boolean } }>(
+  '/api/plans/:month/approve',
+  async (req, reply) => {
   const { month } = req.params;
+  const generateCodexPrompts = req.body?.generateCodexPrompts ?? false;
   if (!/^\d{4}-\d{2}$/.test(month)) return reply.status(400).send({ error: 'Invalid month format' });
 
   const raw = await fs.readFile(path.join(PLANS_DIR, `${month}.json`), 'utf-8').catch(() => null);
@@ -565,23 +740,8 @@ server.post<{ Params: { month: string } }>('/api/plans/:month/approve', async (r
     return reply.status(400).send({ error: 'Invalid plan data' });
   }
 
-  const ideasDir = path.join(CONTENT_ROOT, '_ideas');
-  await fs.mkdir(ideasDir, { recursive: true });
+  const scaffold = await scaffoldFromPlan(CONTENT_ROOT, plan);
 
-  const routed: string[] = [];
-  for (const topic of plan.selected) {
-    const slug = topic.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '')
-      .slice(0, 60);
-    const filename = `${month}-${slug}.json`;
-    const filePath = path.join(ideasDir, filename);
-    await fs.writeFile(filePath, JSON.stringify({ month, topic }, null, 2) + '\n', 'utf-8');
-    routed.push(filename);
-  }
-
-  // Mark plan as approved
   const updated = { ...plan, status: 'approved' as const };
   await fs.writeFile(
     path.join(PLANS_DIR, `${month}.json`),
@@ -589,8 +749,53 @@ server.post<{ Params: { month: string } }>('/api/plans/:month/approve', async (r
     'utf-8'
   );
 
-  return { ok: true, month, routed };
+  const newArticles = scaffold.series.flatMap(s => s.articles.filter(a => a.created));
+  const newSeries = scaffold.series.filter(s => s.created).map(s => s.slug);
+
+  let promptResults;
+  if (generateCodexPrompts) {
+    promptResults = await generateAllCodexPrompts(CONTENT_ROOT, PROMPTS_DIR, { writeToDisk: true });
+  }
+
+  const promptSummary = promptResults
+    ? {
+        total: promptResults.prompts.length,
+        articlesSkipped: promptResults.skipped,
+      }
+    : undefined;
+
+  return {
+    ok: true,
+    month,
+    scaffold,
+    promptResults,
+    promptSummary,
+    summary: {
+      seriesCreated: newSeries,
+      articlesScaffolded: newArticles.length,
+      totalSelected: plan.selected.length,
+    },
+  };
 });
+
+// POST /api/prompts/codex/generate-all — filled Codex prompts for all pending articles
+server.post<{ Body: { seriesSlug?: string } }>('/api/prompts/codex/generate-all', async (req) => {
+  const { seriesSlug } = req.body ?? {};
+  const result = await generateAllCodexPrompts(CONTENT_ROOT, PROMPTS_DIR, { seriesSlug, writeToDisk: true });
+  return { ok: true, ...result };
+});
+
+// GET /api/prompts/codex/:seriesSlug/:articleId/next — next Codex prompt for one article
+server.get<{ Params: { seriesSlug: string; articleId: string } }>(
+  '/api/prompts/codex/:seriesSlug/:articleId/next',
+  async (req, reply) => {
+    const { seriesSlug, articleId } = req.params;
+    const pending = await getPendingSteps(CONTENT_ROOT, seriesSlug, articleId);
+    const prompt = await getNextPrompt(CONTENT_ROOT, PROMPTS_DIR, seriesSlug, articleId);
+    if (!prompt) return reply.status(404).send({ error: 'Tüm adımlar tamam', pending: [] });
+    return { pending, prompt };
+  },
+);
 
 // ─── Resume API (WP-12) ──────────────────────────────────────────────────────
 
@@ -649,4 +854,8 @@ server.listen({ host: HOST, port: PORT }, (err) => {
     server.log.error(err);
     process.exit(1);
   }
+  void loadDotEnv().then(() => {
+    void syncInboxRoutes().catch(e => server.log.warn({ e }, 'startup inbox sync failed'));
+    startInboxWatcher();
+  });
 });

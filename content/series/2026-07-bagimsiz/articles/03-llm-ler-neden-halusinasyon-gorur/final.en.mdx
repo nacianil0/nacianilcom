@@ -1,0 +1,67 @@
+---
+title: "Why LLMs Hallucinate"
+description: "Understand LLM hallucination through next-token prediction, calibration, missing sources, and the product layers needed for trust."
+summary: "Hallucination is less a broken-model event and more a mismatch between fluent continuation and verified truth. This article gives users and builders a practical way to reason about trust."
+faq:
+  - q: "What is an LLM hallucination?"
+    a: "A fluent answer that states information unsupported by reality, the provided context, or a reliable source."
+  - q: "Can hallucination be eliminated completely?"
+    a: "Not reliably. Retrieval, tools, citations, evaluations, and human review can reduce risk, but they do not remove it entirely."
+  - q: "Does fluent writing mean the answer is reliable?"
+    a: "No. Smooth language does not prove that the answer is grounded or correct."
+---
+
+## What hallucination is not
+
+LLM hallucination is often described as "the model lying." That phrase is easy to understand, but technically misleading. The model has no intent. It generates a plausible continuation from the context it has. The failure happens when that continuation conflicts with reality, a source, or the given context.
+
+<Definition term="hallucination">
+Fluent and often confident model output that is unsupported by the supplied context, a reliable source, or external facts.
+</Definition>
+
+Not every error is a hallucination. An incomplete answer, a vague answer, a formatting miss, and a simple arithmetic mistake are different problems. Hallucination is dangerous because the answer can look reasonable and well written.
+
+<Example title="A familiar small example">
+A model can describe a non-existent library method as if it were real, list its parameters, and even suggest a made-up documentation link. The answer reads well; the grounding is missing.
+</Example>
+
+## Why next-token prediction is not enough
+
+A language model estimates the next-token distribution given the current context. This objective is powerful: it captures grammar, style, patterns, and associations. But "likely continuation" is not the same as "true statement."
+
+When a model answers, it does not automatically inspect the outside world. It speaks from its learned parameters, the prompt context, and any tool results supplied to it. If no source is present, the model may fill gaps with an explanation that merely looks plausible.
+
+<Callout title="The fluency trap">
+Smooth prose does not mean the answer was verified. In fact, polished writing can make false information more convincing.
+</Callout>
+
+## A useful taxonomy of errors
+
+It helps to split hallucination into practical categories. Context-conflicting output contradicts the text you gave the model. Fact-conflicting output states something false about the world. Fabricated sourcing invents papers, links, or documents. Unwarranted certainty presents an uncertain claim as settled.
+
+The survey literature shows that these categories matter across summarization, question answering, and dialogue systems. They matter in product design too. A fake citation, stale knowledge, and missing context require different defenses.
+
+<Warning title="Asking for sources is not enough">
+Prompting the model to cite sources is useful, but a system that never checks whether the sources exist can still produce fabricated references.
+</Warning>
+
+## Calibration: when should the model say it does not know?
+
+Calibration means the model's confidence should match its real chance of being correct. A system that sounds certain when it should be uncertain is poorly calibrated. Work on calibrated language models argues that some forms of hallucination are structurally hard to avoid for facts that are not recoverable from the training signal.
+
+Reliable products therefore do more than choose a larger model. They decide which questions should be answered, which questions require retrieval, when uncertainty should be shown, and where human approval is required.
+
+<Example title="A trust question">
+If an answer affects a date, price, software version, legal rule, medical issue, or financial choice, verification is needed no matter how polished the answer sounds.
+</Example>
+
+## Building trust in practice
+
+For users, the first defense is not to make high-risk decisions from a single LLM answer. Check dates, versions, quotes, and links. The question "what source supports this?" is especially useful in research and documentation workflows.
+
+For builders, trust comes from retrieval, tool use, citation grounding, evaluation sets, log analysis, and human feedback. Grounding the model in selected sources does not remove hallucination completely, but it makes the answer auditable.
+
+<Takeaway>
+Hallucination is not only a model behavior; it is a product design problem. Trust comes from the system around the model.
+</Takeaway>
+

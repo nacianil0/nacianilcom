@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Neural Machine Translation of Rare Words with Subword Units",
+    "url": "https://arxiv.org/abs/1508.07909",
+    "author": "Rico Sennrich, Barry Haddow, Alexandra Birch",
+    "year": 2016
+  },
+  {
+    "title": "tiktoken",
+    "url": "https://github.com/openai/tiktoken",
+    "author": "OpenAI",
+    "year": 2022
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "month": "2026-07",
+  "topic": {
+    "title": "RLHF: ChatGPT'yi 'Yardımsever' Yapan Şey",
+    "angle": "Ham dil modelinden hizalanmış asistana giden eğitim hattı",
+    "whyNow": "'Nasıl çalışır' sorusunun davranış kısmını açıklar; popüler merak",
+    "targetAudience": "Modellerin neden 'kibar' davrandığını merak edenler",
+    "seriesFit": "standalone",
+    "difficulty": "intermediate",
+    "estimatedReadingTime": 11,
+    "suggestedPublishWeek": 3,
+    "contentType": "research",
+    "seoPotential": "Yüksek — 'RLHF nedir' artan ilgi",
+    "geoPotential": "Yüksek — hizalama tanımları alıntılanır",
+    "visualPotential": "Yüksek — 3 aşamalı eğitim hattı diyagramı (SFT→RM→PPO)",
+    "riskOfRepetition": "Düşük",
+    "requiredResearch": "InstructGPT hattı, reward model, DPO alternatifi",
+    "sourceBasis": "Ouyang et al. 2022 'Training language models to follow instructions' (InstructGPT); Christiano et al. 2017 (RLHF); Rafailov et al. 2023 (DPO)",
+    "nextAction": "article-brief; kaynak doğrulaması",
+    "scores": {
+      "relevance": 9,
+      "seriesFit": 4,
+      "novelty": 7,
+      "riskOfRepetition": 2,
+      "seoPotential": 8,
+      "geoPotential": 8,
+      "difficulty": 6,
+      "estimatedEffort": 7,
+      "visualPotential": 8
+    }
+  }
+}

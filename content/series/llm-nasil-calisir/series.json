@@ -1,0 +1,19 @@
+{
+  "slug": "llm-nasil-calisir",
+  "title": {
+    "tr": "LLM'ler Nasıl Çalışır",
+    "en": "How LLMs Work"
+  },
+  "description": {
+    "tr": "Token'dan transformer'a: büyük dil modellerinin nasıl çalıştığını adım adım inceliyoruz.",
+    "en": "From tokens to transformers: a step-by-step look at how large language models work."
+  },
+  "order": 1,
+  "articleOrder": [
+    "01-token-nedir-llm-ler-metni-nasil-parcalara-boler",
+    "02-bir-sonraki-token-i-tahmin-etmek-llm-lerin-tek-i",
+    "03-embedding-ler-kelimeleri-sayilara-cevirmenin-sih",
+    "04-attention-mekanizmasi-llm-in-neye-odaklandigini",
+    "05-transformer-mimarisi-parca-parca-bir-llm-in-anat"
+  ]
+}

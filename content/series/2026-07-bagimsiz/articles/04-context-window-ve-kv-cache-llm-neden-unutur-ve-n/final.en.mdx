@@ -1,0 +1,94 @@
+---
+title: "Context Windows and KV Cache: Memory and Cost"
+description: "Understand context windows, attention cost, and KV cache in production LLM systems through memory, latency, and cost tradeoffs."
+summary: "What an LLM can remember is limited by the context window you send with a request. KV cache speeds up generation, but it also turns long context into a memory and cost decision."
+faq:
+  - q: "What is a context window?"
+    a: "The total token budget a model can consider in one request, shared by instructions, chat history, sources, and generated output."
+  - q: "What does KV cache do?"
+    a: "It stores attention keys and values for previous tokens so the model avoids recomputing the same intermediate state for every new token."
+  - q: "Why is long context expensive?"
+    a: "More tokens mean more attention work, more memory pressure, and often more latency."
+---
+
+## Why LLMs forget
+
+An LLM's "memory" is more limited than most chat interfaces suggest. In a single request, the model only sees the tokens placed inside its context window. System instructions, chat history, user input, retrieved documents, and generated output all share the same budget.
+
+<Definition term="context window">
+The token range a model can process during one request; content outside that window is not directly visible to the model.
+</Definition>
+
+So when a model seems to forget something from earlier, the technical explanation is often simple: that information was not included in the new prompt, was summarized away, or was pushed out by newer content.
+
+<Callout title="Product reality">
+The conversation may still appear on screen, but the model only sees the part the backend actually sends in the prompt.
+</Callout>
+
+## Where attention cost comes from
+
+In a Transformer, each token attends to other tokens in the context. That attention mechanism is powerful, but longer context increases computation and memory pressure. More tokens mean more relationships to evaluate.
+
+The self-attention idea introduced in the Transformer architecture became the foundation of modern LLMs. In production, it turns into a practical question: do we really need to send this many tokens on every request?
+
+<Example title="A context budget example">
+In a 32K-token window, a 20K-token document, 6K tokens of chat history, and 2K tokens of instructions leave much less room for the answer. The window is large, but the budget is still finite.
+</Example>
+
+## How KV cache helps generation
+
+During generation, the model produces tokens one at a time. Recomputing attention state for all previous tokens at every step would be expensive. KV cache stores the key and value representations for previous tokens so the model can reuse them while producing the next token.
+
+<Definition term="KV cache">
+Stored key and value tensors from Transformer attention layers, reused during inference for earlier tokens.
+</Definition>
+
+The cache reduces latency, but it costs memory. As context grows and concurrent users increase, KV cache grows too. In production, long context is not only a model feature; it is a GPU memory, batching, concurrency, and cost decision.
+
+<CodeBlock language="typescript" title="A rough KV cache intuition">
+{`type CacheEstimate = {
+  sequenceTokens: number;
+  layers: number;
+  hiddenSize: number;
+  bytesPerValue: number;
+};
+
+function roughKvCacheBytes(input: CacheEstimate) {
+  const keyAndValue = 2;
+  return (
+    input.sequenceTokens *
+    input.layers *
+    input.hiddenSize *
+    keyAndValue *
+    input.bytesPerValue
+  );
+}`}
+</CodeBlock>
+
+Real systems vary with architecture, grouped-query attention, quantization, batch size, and serving strategy. The core intuition still holds: as token count rises, cache pressure rises too.
+
+## Forgetting, cost, and quality are connected
+
+Long context can improve quality when the relevant evidence is inside the window. But sending everything is rarely good design. Irrelevant tokens can distract the model, increase latency, and raise cost.
+
+<Warning title="Long context is not a search engine">
+A bigger window does not turn poorly selected context into a good answer. You still need to retrieve, rank, and compress the right pieces.
+</Warning>
+
+A practical architecture layers context. Keep system instructions short. Summarize chat history. Select documents through retrieval. Place only the strongest sources into the prompt. Limit the output budget intentionally.
+
+## A production checklist
+
+Treating context as "just choose the biggest model" gets expensive quickly. Production systems should track average prompt tokens, p95 latency, output length, cache memory pressure, retrieval accuracy, and cost per user.
+
+<Example title="Engineering questions">
+- Is the full chat history sent, or only a summary?
+- Are retrieved chunks truly relevant to the question?
+- Is the output token budget realistic?
+- Does the longer prompt measurably improve answer quality?
+</Example>
+
+<Takeaway>
+The context window defines what the model can see; KV cache makes that context practical during generation. Good LLM architecture sends the right tokens, not simply more tokens.
+</Takeaway>
+

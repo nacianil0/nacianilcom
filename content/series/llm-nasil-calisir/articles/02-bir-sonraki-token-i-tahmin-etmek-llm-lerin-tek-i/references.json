@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Language Models are Unsupervised Multitask Learners",
+    "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+    "author": "Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya Sutskever",
+    "year": 2019
+  },
+  {
+    "title": "A Mathematical Theory of Communication",
+    "url": "https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf",
+    "author": "Claude E. Shannon",
+    "year": 1948
+  }
+]

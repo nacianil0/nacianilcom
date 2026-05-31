@@ -1,0 +1,35 @@
+{
+  "topic": "Attention Mekanizması: LLM'in Neye Odaklandığını Anlamak",
+  "seriesContext": "LLM'ler Nasıl Çalışır serisinin 4. yazısı — Transformer'ların kalbi; 'how llms work' temasının merkez parçası",
+  "targetAudience": "Mimariyi derinlemesine anlamak isteyen ileri seviye okuyucular",
+  "learningObjectives": [
+    "Self-attention'ı QKV analojisiyle, matematiği sezgiye çevirerek anlatma",
+    "Kaynak temeli: Vaswani et al. 2017 'Attention Is All You Need'; Bahdanau et al. 2015 (attention'ın kökeni)"
+  ],
+  "readerQuestions": [
+    "Attention Mekanizması: LLM'in Neye Odaklandığını Anlamak ne demek?",
+    "Bu kavram neden önemli?",
+    "Pratikte nerede karşıma çıkar?"
+  ],
+  "outOfScope": [
+    "Düşük"
+  ],
+  "suggestedExamples": [
+    "Çok yüksek — attention ağırlık matrisi ısı haritası, QKV akış diyagramı",
+    "QKV matematiği, attention heatmap görselleştirmesi"
+  ],
+  "draftStructure": [
+    "Attention Mekanizması: Giriş",
+    "Self-attention'ı QKV analojisiyle, matematiği sezgiye çevirerek anlatma",
+    "Somut örnek",
+    "Pratikte ne anlama geliyor?",
+    "Özet ve sonraki adım"
+  ],
+  "estimatedReadingTime": 14,
+  "planRef": {
+    "whyNow": "Transformer'ların kalbi; 'how llms work' temasının merkez parçası",
+    "sourceBasis": "Vaswani et al. 2017 'Attention Is All You Need'; Bahdanau et al. 2015 (attention'ın kökeni)",
+    "nextAction": "visual-diagram-suggestion erkenden çalıştır",
+    "suggestedPublishWeek": 2
+  }
+}

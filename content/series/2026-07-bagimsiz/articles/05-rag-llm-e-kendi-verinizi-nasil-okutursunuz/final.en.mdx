@@ -1,0 +1,127 @@
+---
+title: "RAG: How to Ground an LLM in Your Own Data"
+description: "Learn RAG through retrieve, augment, generate, plus chunking, metadata, reranking, fine-tuning tradeoffs, and production risks."
+summary: "RAG is a practical way to bring external knowledge into generation without retraining the model. A good RAG system is not just vector search; it is data preparation, context selection, citation, and evaluation design."
+faq:
+  - q: "What is RAG?"
+    a: "Retrieval-Augmented Generation, an architecture that retrieves relevant source chunks and adds them to the model context before generation."
+  - q: "Can RAG replace fine-tuning?"
+    a: "Often yes for fresh knowledge and source-backed answers; fine-tuning is still useful when behavior, tone, or format must change."
+  - q: "Does RAG eliminate hallucination?"
+    a: "No. It reduces risk and improves auditability, but retrieval quality, prompt design, and evaluation still matter."
+---
+
+## What problem RAG solves
+
+An LLM does not automatically know your company documents, product records, or support articles. Training data is fixed; organizational knowledge changes. RAG finds the right external information and adds it as context without retraining the model.
+
+<Definition term="RAG">
+Retrieval-Augmented Generation, an architecture that retrieves relevant information before asking the model to generate an answer.
+</Definition>
+
+The value of RAG is not merely "letting the model read private data." It also lets the product show which sources support the answer, update knowledge without model training, and manage hallucination risk more visibly.
+
+<Callout title="Fine-tuning distinction">
+Fine-tuning is often useful for behavior, tone, or task format. For fresh, auditable knowledge, RAG is usually the first architecture to evaluate.
+</Callout>
+
+## The core flow: retrieve, augment, generate
+
+A RAG system does not send the user's question straight to the model. It first turns the question into a search problem. That search may use embeddings, keywords, or a hybrid method. The retrieval layer finds the most relevant source chunks.
+
+The augmentation step places those chunks into the model context. This is not just copy and paste. Source order, length, title, date, and trust level all affect the final answer. The generation step asks the model to answer from the supplied evidence.
+
+<Example title="A three-step product flow">
+A user asks, "Did the leave policy change?" The system searches HR documents, inserts current policy chunks with source metadata, and asks the model for a concise answer grounded in those sources.
+</Example>
+
+## Preparing data: chunking and metadata
+
+In RAG, the searchable unit is usually not a whole document but a meaningful chunk. If chunks are too small, context disappears. If they are too large, search precision drops and the context window fills with extra text.
+
+Metadata matters in production. Title, section, date, department, permission level, source URL, and document version support filtering and citation. Bad OCR, repeated headers, stale documents, and conflicting sources directly reduce answer quality.
+
+<CodeBlock language="typescript" title="A simple chunking sketch">
+{`type Chunk = {
+  id: string;
+  text: string;
+  metadata: {
+    source: string;
+    section: string;
+    updatedAt: string;
+  };
+};
+
+function createChunks(documentId: string, paragraphs: string[]): Chunk[] {
+  return paragraphs
+    .filter((paragraph) => paragraph.trim().length > 80)
+    .map((paragraph, index) => ({
+      id: documentId + '-' + index,
+      text: paragraph.trim(),
+      metadata: {
+        source: documentId,
+        section: 'policy',
+        updatedAt: '2026-07-01',
+      },
+    }));
+}`}
+</CodeBlock>
+
+## Embeddings, vector search, and reranking
+
+An embedding converts text into a numerical representation. That allows search to find semantically related chunks even when the exact words differ. A vector database or search layer stores embeddings, text, and metadata together.
+
+The first retrieval result is rarely the final context. Reranking reorders candidates according to the question. Increasing top-k does not automatically improve quality; too many weak chunks can distract the model and blur the answer.
+
+<Warning title="More sources are not always better">
+Too much context can dilute the best evidence. RAG quality is often about the right few chunks, not the largest pile of documents.
+</Warning>
+
+## When to choose RAG over fine-tuning
+
+If sources change frequently, RAG is usually faster and cheaper to update. If the answer must cite its evidence, RAG gives a more auditable architecture. If data access depends on user permissions, retrieval is a natural control point.
+
+Fine-tuning can make sense when the model must specialize in a format, tone, or task behavior. The approaches are not enemies: a fine-tuned model can still use RAG for fresh and source-backed knowledge.
+
+<Example title="Decision criteria">
+- Knowledge changes often: RAG.
+- Sources must be shown: RAG.
+- The model must always answer in a specific format: consider fine-tuning.
+- Both behavior and evidence matter: evaluate fine-tuning plus RAG.
+</Example>
+
+## Production risks
+
+RAG quality is not measured only by whether the final answer sounds good. Did retrieval find the right source? Does the source actually answer the question? Did the model go beyond the evidence? Did the system place a document into context that the user is not allowed to see?
+
+You need golden question sets, retrieval recall, answer faithfulness, and source attribution checks. Prompt injection, stale documents, conflicting sources, and missing metadata are common production failure modes.
+
+<CodeBlock language="typescript" title="A grounded answer skeleton">
+{`type RetrievedChunk = {
+  text: string;
+  source: string;
+  score: number;
+};
+
+async function answerWithRag(question: string) {
+  const chunks: RetrievedChunk[] = await retrieveRelevantChunks(question);
+  const trustedContext = chunks
+    .filter((chunk) => chunk.score > 0.72)
+    .slice(0, 4);
+
+  return generateAnswer({
+    question,
+    context: trustedContext,
+    instruction: 'Answer only from the supplied sources. Say when evidence is missing.',
+  });
+}`}
+</CodeBlock>
+
+## Do not think of RAG as just search
+
+Successful RAG projects usually start with a small, measurable knowledge area. The first target is not "chat with the entire company archive." It is reliably answering a few critical question types. That keeps data preparation and evaluation manageable.
+
+<Takeaway>
+RAG is about showing the right information to the model at the right time. A strong system combines retrieval, context design, citation, permissions, and evaluation.
+</Takeaway>
+

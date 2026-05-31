@@ -1,0 +1,83 @@
+---
+title: "Temperature and Top-p: Tuning LLM Creativity"
+description: "Learn how temperature and top-p change LLM outputs, when to use low or creative settings, and why sampling is not a truth switch."
+summary: "An LLM does not have to answer the same prompt the same way every time. Temperature and top-p control how narrowly or freely the model samples from possible next tokens."
+faq:
+  - q: "What is temperature?"
+    a: "A sampling parameter that controls how sharply or freely the model uses its next-token probability distribution."
+  - q: "What is top-p?"
+    a: "Also called nucleus sampling; it limits choices to the smallest token set whose cumulative probability reaches the chosen threshold."
+  - q: "Should temperature and top-p be changed together?"
+    a: "Usually no. In production, choose one main control first so output changes remain measurable."
+---
+
+## What sampling changes
+
+An LLM does not draft a whole answer in one step. At each step it estimates a probability distribution for the next token, samples one token, appends it to the context, and repeats the process. Sampling settings decide whether that choice stays narrow, balanced, or more surprising.
+
+<Definition term="sampling">
+The process of choosing the token that will enter the actual output from the model's next-token probabilities.
+</Definition>
+
+When you need consistency, you want the model to stay close to the strongest candidates. When you need brainstorms, alternate slogans, or rough drafts, it can be useful to let more candidates compete. The important boundary is simple: these settings do not add knowledge to the model. They only change how the model chooses from its probability distribution.
+
+<Callout title="Short rule">
+Temperature and top-p are not truth controls. They affect tone, variety, and repetition risk; they do not replace grounding or verification.
+</Callout>
+
+## Temperature: sharpening or softening choices
+
+Low temperature makes the highest-probability tokens more dominant. The model tends to be steadier, more deterministic, and less surprising. Higher temperature softens the distribution, giving lower-probability but still possible candidates more room.
+
+<Example title="Same prompt, different behavior">
+Prompt: "Suggest three launch headlines for a product." With low temperature, the answers are usually safe and similar. As temperature rises, the headlines become more varied, sometimes more vivid, and sometimes less controlled.
+</Example>
+
+<CodeBlock language="typescript" title="A simplified sampling intuition">
+{`type Candidate = {
+  token: string;
+  probability: number;
+};
+
+const nextTokens: Candidate[] = [
+  { token: 'efficient', probability: 0.42 },
+  { token: 'fast', probability: 0.25 },
+  { token: 'creative', probability: 0.12 },
+  { token: 'unexpected', probability: 0.04 },
+];
+
+function explainTemperature(value: number) {
+  if (value <= 0.3) return 'stay close to high-probability candidates';
+  if (value <= 0.8) return 'produce balanced variation';
+  return 'allow more surprising candidates';
+}`}
+</CodeBlock>
+
+There is no universal temperature value. Extraction, classification, and strict-format responses usually benefit from lower settings. Drafting, ideation, and alternate wording often work better with moderate settings. Very high values can make text livelier, but they also increase the chance of drift.
+
+## Top-p: cutting the long tail
+
+Top-p answers "which candidates should be considered?" using cumulative probability rather than a fixed number. With `top_p: 0.9`, the model considers the most likely candidates until their cumulative probability reaches 90 percent. The long tail is left out.
+
+This idea became widely known through nucleus sampling. The goal is to avoid the repetitive feel of purely greedy decoding while still filtering out very unlikely candidates that can damage quality.
+
+<Warning title="Do not turn both knobs aggressively">
+If temperature and top-p are both changed at once, it becomes hard to tell which setting improved or damaged the output. Pick one primary control when tuning production behavior.
+</Warning>
+
+## A practical starting recipe
+
+For code generation, JSON output, extraction, or classification, a low temperature is usually a good starting point. For explanations and documentation, moderate-low settings often balance clarity and naturalness. For brainstorming, use a higher setting only after checking output quality on representative prompts.
+
+<Example title="Three production modes">
+- Classification: low temperature, default top-p.
+- Explanation and documentation: moderate-low temperature, default top-p.
+- Brainstorming: moderate-high temperature, controlled top-p only if needed.
+</Example>
+
+The most useful workflow is a small comparison set. Pick a few representative prompts, run them with several settings, then score accuracy, format fit, repetition, tone, and usefulness. That turns "make it more creative" into something you can actually evaluate.
+
+<Takeaway>
+Temperature controls how freely the model samples; top-p controls how wide the candidate pool remains. Both are useful, but increasing both at once usually increases noise too.
+</Takeaway>
+

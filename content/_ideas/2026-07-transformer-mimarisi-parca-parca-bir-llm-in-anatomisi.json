@@ -1,0 +1,32 @@
+{
+  "month": "2026-07",
+  "topic": {
+    "title": "Transformer Mimarisi: Parça Parça Bir LLM'in Anatomisi",
+    "angle": "Encoder/decoder, katmanlar, residual ve normalizasyonun kuş bakışı haritası",
+    "whyNow": "Attention'ı gördükten sonra tüm mimariyi birleştiren parça",
+    "targetAudience": "Mimari resmi bütün olarak görmek isteyen geliştiriciler",
+    "seriesFit": "llm-nasil-calisir",
+    "difficulty": "intermediate",
+    "estimatedReadingTime": 12,
+    "suggestedPublishWeek": 2,
+    "contentType": "architecture",
+    "seoPotential": "Yüksek — 'transformer architecture' istikrarlı arama hacmi",
+    "geoPotential": "Yüksek — bileşen tanımları sıkça alıntılanır",
+    "visualPotential": "Çok yüksek — katmanlı blok diyagramı",
+    "riskOfRepetition": "Orta — attention parçasıyla örtüşmemeye dikkat",
+    "requiredResearch": "Decoder-only (GPT) vs encoder-decoder ayrımı",
+    "sourceBasis": "Vaswani et al. 2017; Radford et al. 2018/2019 (GPT, decoder-only)",
+    "nextAction": "outline; attention makalesiyle sınırları netleştir",
+    "scores": {
+      "relevance": 9,
+      "seriesFit": 10,
+      "novelty": 5,
+      "riskOfRepetition": 4,
+      "seoPotential": 8,
+      "geoPotential": 8,
+      "difficulty": 6,
+      "estimatedEffort": 7,
+      "visualPotential": 9
+    }
+  }
+}

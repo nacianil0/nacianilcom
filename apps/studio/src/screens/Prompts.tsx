@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { StudioSpinner, StatusBanner, EmptyState } from '../ui';
 
 interface PromptMeta { name: string; title: string }
 
@@ -7,6 +8,7 @@ export function Prompts() {
   const [selected, setSelected] = useState<string | null>(null);
   const [content, setContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [banner, setBanner] = useState<{ ok: boolean; msg: string } | null>(null);
 
   useEffect(() => {
     fetch('/api/prompts')
@@ -19,13 +21,29 @@ export function Prompts() {
     setSelected(name);
     setLoading(true);
     setContent(null);
+    setBanner(null);
     const res = await fetch(`/api/prompts/${name}`).catch(() => null);
     if (res?.ok) {
       const data = await res.json() as { content: string };
       setContent(data.content);
+    } else {
+      setBanner({ ok: false, msg: 'Prompt yüklenemedi' });
     }
     setLoading(false);
   }
+
+  async function handleCopy() {
+    if (!content) return;
+    try {
+      await navigator.clipboard.writeText(content);
+      setBanner({ ok: true, msg: 'Kopyalandı ✓' });
+      setTimeout(() => setBanner(null), 2000);
+    } catch {
+      setBanner({ ok: false, msg: 'Kopyalama başarısız — manuel kopyalayın' });
+    }
+  }
+
+  const selectedMeta = list.find(p => p.name === selected);
 
   return (
     <div className="flex gap-6 h-full">
@@ -56,27 +74,53 @@ export function Prompts() {
       </aside>
 
       {/* Content pane */}
-      <div className="flex-1 overflow-auto rounded-card border border-hairline bg-card p-5">
+      <div className="flex-1 overflow-auto rounded-card border border-hairline bg-card p-5 flex flex-col gap-3">
         {!selected && (
-          <p className="font-sans text-sm text-ink-secondary/60">Select a prompt template.</p>
+          <EmptyState
+            title="Soldan bir prompt şablonu seç"
+            steps={[
+              { label: 'Listeden istediğin şablona tıkla' },
+              { label: 'Copy ile panoya al' },
+              { label: 'Claude Code\'a yapıştır' },
+            ]}
+            hint="Kaynak: apps/studio/prompts/"
+          />
         )}
+
         {loading && (
-          <p className="font-sans text-sm text-ink-secondary">Loading…</p>
+          <div className="flex items-center gap-2 text-ink-secondary">
+            <StudioSpinner />
+            <span className="font-sans text-sm">Yükleniyor…</span>
+          </div>
         )}
+
+        {banner && (
+          <StatusBanner
+            variant={banner.ok ? 'success' : 'error'}
+            title={banner.msg}
+            onDismiss={() => setBanner(null)}
+          />
+        )}
+
         {content && (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-mono text-xs uppercase tracking-[0.15em] text-ink-secondary/60">
-                {selected}
-              </h3>
+          <div className="flex flex-col gap-2 flex-1">
+            <div className="flex items-center justify-between">
+              <div className="space-y-0.5">
+                <h3 className="font-mono text-xs uppercase tracking-[0.15em] text-ink-secondary/60">
+                  {selectedMeta?.title ?? selected}
+                </h3>
+                <p className="font-mono text-[10px] text-ink-secondary/40">
+                  Kaynak: apps/studio/prompts/{selected}.md
+                </p>
+              </div>
               <button
-                onClick={() => navigator.clipboard.writeText(content ?? '')}
+                onClick={handleCopy}
                 className="rounded border border-hairline px-3 py-1 font-sans text-xs text-ink-secondary hover:border-ink-secondary/40 hover:text-ink transition-colors"
               >
                 Copy
               </button>
             </div>
-            <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-ink-secondary overflow-auto">
+            <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-ink-secondary overflow-auto flex-1">
               {content}
             </pre>
           </div>

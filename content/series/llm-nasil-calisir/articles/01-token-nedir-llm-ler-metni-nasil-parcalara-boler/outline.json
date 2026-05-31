@@ -1,0 +1,91 @@
+{
+  "id": "01-token-nedir-llm-ler-metni-nasil-parcalara-boler",
+  "title": "Token Nedir? LLM'ler Metni Nasıl Parçalara Böler",
+  "intro": "LLM'ler metni bizim gibi kelime kelime okumaz; önce metni token adı verilen küçük parçalara ayırır. Bu yazıda token'ın ne olduğunu, BPE mantığının neden ortaya çıktığını ve token sayısının pratikte maliyet, bağlam penceresi ve Türkçe metinler açısından ne değiştirdiğini somut örneklerle göreceğiz.",
+  "sections": [
+    {
+      "heading": "Token Nedir: Giriş",
+      "subheadings": [
+        "Karakter, kelime ve token farkı",
+        "LLM neden doğrudan cümleyle çalışmaz?"
+      ],
+      "keyPoints": [
+        "Token'ın metnin model tarafından işlenebilir en küçük pratik parçalarından biri olduğunu açıkla.",
+        "Token'ın her zaman kelime olmadığını; bazen kelime parçası, noktalama, boşluk veya özel karakter dizisi olabileceğini göster.",
+        "Modelin metni sayısal dizilere çevirmeden önce token sınırlarına ihtiyaç duyduğunu anlat.",
+        "Okuyucunun token kavramını sonraki yazılardaki tahmin, embedding ve attention konularının zemini olarak görmesini sağla."
+      ],
+      "estimatedWords": 260,
+      "visualHint": "flowchart"
+    },
+    {
+      "heading": "Tokenization ve BPE Mantığı",
+      "subheadings": [
+        "BPE'nin sezgisel fikri",
+        "Sık görülen parçalar neden birleştirilir?"
+      ],
+      "keyPoints": [
+        "BPE'nin nadir kelimeleri tamamen bilinmeyen saymak yerine anlamlı alt parçalara bölmeye yarayan pratik bir yaklaşım olduğunu anlat.",
+        "Basit bir oyuncak örnekle önce karakterlerden başlanıp sık görülen çiftlerin aşamalı olarak birleştirildiğini göster.",
+        "Sennrich et al. 2016 çalışmasının BPE'yi nadir kelime problemini azaltmak için popülerleştirdiğini kısaca konumlandır.",
+        "Tokenization'ın modelin sözlüğünü sabit tutarken yeni kelimelerle başa çıkmasını sağladığını vurgula.",
+        "BPE'nin semantik bir dil bilgisi kuralı değil, istatistiksel ve pratik bir sıkıştırma benzeri strateji olduğunu netleştir."
+      ],
+      "estimatedWords": 320,
+      "visualHint": "graph"
+    },
+    {
+      "heading": "Somut Örnek: Bir Cümle Nasıl Token'lara Bölünür?",
+      "subheadings": [
+        "Kısa Türkçe cümle örneği",
+        "Boşluk ve noktalama etkisi",
+        "Aynı metnin farklı tokenizer'larda değişmesi"
+      ],
+      "keyPoints": [
+        "\"LLM'ler metni parçalara böler.\" gibi kısa bir cümleyi token parçalarına ayrılmış şekilde anlat.",
+        "Türkçe eklerin ve apostrof kullanımının token sayısını nasıl etkileyebileceğini örnekle.",
+        "Boşlukların, noktalamanın ve büyük/küçük harf farklarının bazen ayrı token davranışı üretebileceğini göster.",
+        "OpenAI tiktoken gibi araçların aynı metin için token sayısını ölçmeye yaradığına değin.",
+        "Tokenizer sonucunun model ailesine göre değişebileceğini, bu yüzden token sayısını tahmin etmek yerine ölçmenin daha güvenli olduğunu belirt."
+      ],
+      "estimatedWords": 300,
+      "codeExample": {
+        "lang": "typescript",
+        "description": "tiktoken benzeri bir araçla kısa Türkçe ve İngilizce cümlelerin token sayısını karşılaştırma"
+      },
+      "visualHint": "flowchart"
+    },
+    {
+      "heading": "Pratikte Ne Anlama Geliyor?",
+      "subheadings": [
+        "Maliyet ve hız",
+        "Context window sınırı",
+        "Türkçe metinlerde token maliyeti"
+      ],
+      "keyPoints": [
+        "API maliyeti, gecikme ve bağlam penceresi sınırlarının çoğunlukla token sayısı üzerinden düşünüldüğünü açıkla.",
+        "Uzun prompt, sistem mesajı, kullanıcı girdisi ve model cevabının aynı token bütçesini paylaştığını anlat.",
+        "Türkçe gibi eklemeli dillerde bazı ifadelerin İngilizceye göre daha fazla token üretebileceğini dikkatli ve genellemeden örnekle.",
+        "Prompt tasarlarken gereksiz tekrarları azaltmanın ve yapılandırılmış, kısa girdiler kullanmanın neden işe yaradığını bağla.",
+        "Token sayısının kaliteyi tek başına belirlemediğini; ama maliyet, bağlam ve yanıt uzunluğu için temel planlama birimi olduğunu vurgula."
+      ],
+      "estimatedWords": 280
+    },
+    {
+      "heading": "Özet ve Sonraki Adım",
+      "subheadings": [
+        "Bu yazıdan kalması gerekenler",
+        "Sonraki yazıya köprü"
+      ],
+      "keyPoints": [
+        "Token'ın kelimeyle aynı şey olmadığını, modelin metni işlemek için kullandığı parça düzeyi olduğunu özetle.",
+        "BPE'nin sık görülen parçaları birleştirerek açık uçlu metni yönetilebilir bir sözlüğe bağladığını tekrar et.",
+        "Token sayısının maliyet, context window ve pratik prompt tasarımı üzerindeki etkisini kısa maddelerle toparla.",
+        "Bir sonraki yazıda modelin bu token dizisi üzerinden neden 'bir sonraki token'ı tahmin etmeye çalıştığını haber ver."
+      ],
+      "estimatedWords": 200
+    }
+  ],
+  "conclusion": "Token'ı anladığımızda LLM'in metni nasıl gördüğünü de anlamaya başlarız. Bir sonraki adımda bu parçaların modele nasıl bir tahmin problemine dönüştüğünü, yani 'bir sonraki token' fikrini ele alacağız.",
+  "totalEstimatedWords": 1600
+}

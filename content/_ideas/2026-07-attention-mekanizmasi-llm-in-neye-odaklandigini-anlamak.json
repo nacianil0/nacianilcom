@@ -1,0 +1,32 @@
+{
+  "month": "2026-07",
+  "topic": {
+    "title": "Attention Mekanizması: LLM'in Neye Odaklandığını Anlamak",
+    "angle": "Self-attention'ı QKV analojisiyle, matematiği sezgiye çevirerek anlatma",
+    "whyNow": "Transformer'ların kalbi; 'how llms work' temasının merkez parçası",
+    "targetAudience": "Mimariyi derinlemesine anlamak isteyen ileri seviye okuyucular",
+    "seriesFit": "llm-nasil-calisir",
+    "difficulty": "advanced",
+    "estimatedReadingTime": 14,
+    "suggestedPublishWeek": 2,
+    "contentType": "architecture",
+    "seoPotential": "Orta-Yüksek — rekabetli ama derin içerik öne çıkar",
+    "geoPotential": "Yüksek — temel mekanizma, doğru açıklama alıntı potansiyeli yüksek",
+    "visualPotential": "Çok yüksek — attention ağırlık matrisi ısı haritası, QKV akış diyagramı",
+    "riskOfRepetition": "Düşük",
+    "requiredResearch": "QKV matematiği, attention heatmap görselleştirmesi",
+    "sourceBasis": "Vaswani et al. 2017 'Attention Is All You Need'; Bahdanau et al. 2015 (attention'ın kökeni)",
+    "nextAction": "visual-diagram-suggestion erkenden çalıştır",
+    "scores": {
+      "relevance": 10,
+      "seriesFit": 10,
+      "novelty": 7,
+      "riskOfRepetition": 2,
+      "seoPotential": 7,
+      "geoPotential": 9,
+      "difficulty": 9,
+      "estimatedEffort": 8,
+      "visualPotential": 10
+    }
+  }
+}

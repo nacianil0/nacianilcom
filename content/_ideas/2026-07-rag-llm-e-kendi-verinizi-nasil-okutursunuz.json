@@ -1,0 +1,32 @@
+{
+  "month": "2026-07",
+  "topic": {
+    "title": "RAG: LLM'e Kendi Verinizi Nasıl 'Okutursunuz'",
+    "angle": "Retrieval-Augmented Generation'ın çalışma mantığı ve ne zaman fine-tune yerine seçileceği",
+    "whyNow": "En çok sorulan üretim deseni; embedding parçasıyla doğal bağ",
+    "targetAudience": "Kurumsal/özel veriyle LLM uygulaması kuran geliştiriciler",
+    "seriesFit": "standalone",
+    "difficulty": "advanced",
+    "estimatedReadingTime": 14,
+    "suggestedPublishWeek": 4,
+    "contentType": "architecture",
+    "seoPotential": "Çok yüksek — 'RAG' yüksek ve istikrarlı arama",
+    "geoPotential": "Yüksek — mimari tanımı alıntılanır",
+    "visualPotential": "Çok yüksek — retrieve→augment→generate akış diyagramı",
+    "riskOfRepetition": "Düşük",
+    "requiredResearch": "Vektör DB, chunking, reranking; fine-tune vs RAG kıyası",
+    "sourceBasis": "Lewis et al. 2020 'Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks'; Gao et al. 2023 'Retrieval-Augmented Generation for LLMs: A Survey'",
+    "nextAction": "article-brief; embedding makalesine iç bağ",
+    "scores": {
+      "relevance": 9,
+      "seriesFit": 4,
+      "novelty": 7,
+      "riskOfRepetition": 2,
+      "seoPotential": 10,
+      "geoPotential": 9,
+      "difficulty": 8,
+      "estimatedEffort": 8,
+      "visualPotential": 10
+    }
+  }
+}

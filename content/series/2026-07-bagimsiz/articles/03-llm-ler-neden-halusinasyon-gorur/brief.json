@@ -1,0 +1,35 @@
+{
+  "topic": "LLM'ler Neden 'Halüsinasyon' Görür?",
+  "seriesContext": "2026-07 planındaki bağımsız yazı — En çok yanlış anlaşılan konu; deneme formatında özgün açı",
+  "targetAudience": "LLM çıktısına neden güvenilemeyeceğini anlamak isteyenler",
+  "learningObjectives": [
+    "Halüsinasyonun bir hata değil, next-token mimarisinin doğal sonucu oluşu",
+    "Kaynak temeli: Ji et al. 2023 'Survey of Hallucination in Natural Language Generation'; Kalai & Vempala 2024 (kalibrasyon ve halüsinasyon)"
+  ],
+  "readerQuestions": [
+    "LLM'ler Neden 'Halüsinasyon' Görür ne demek?",
+    "Bu kavram neden önemli?",
+    "Pratikte nerede karşıma çıkar?"
+  ],
+  "outOfScope": [
+    "Düşük"
+  ],
+  "suggestedExamples": [
+    "Orta — kavramsal şema, somut örnek kutuları",
+    "Halüsinasyon taksonomisi, kalibrasyon kavramı"
+  ],
+  "draftStructure": [
+    "LLM'ler Neden 'Halüsinasyon' Görür: Giriş",
+    "Halüsinasyonun bir hata değil, next-token mimarisinin doğal sonucu oluşu",
+    "Somut örnek",
+    "Pratikte ne anlama geliyor?",
+    "Özet ve sonraki adım"
+  ],
+  "estimatedReadingTime": 10,
+  "planRef": {
+    "whyNow": "En çok yanlış anlaşılan konu; deneme formatında özgün açı",
+    "sourceBasis": "Ji et al. 2023 'Survey of Hallucination in Natural Language Generation'; Kalai & Vempala 2024 (kalibrasyon ve halüsinasyon)",
+    "nextAction": "outline; örnek vakalar topla; next-token makalesine iç bağ",
+    "suggestedPublishWeek": 3
+  }
+}

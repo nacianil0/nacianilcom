@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Attention Is All You Need",
+    "url": "https://arxiv.org/abs/1706.03762",
+    "author": "Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin",
+    "year": 2017
+  },
+  {
+    "title": "Efficiently Scaling Transformer Inference",
+    "url": "https://arxiv.org/abs/2211.05102",
+    "author": "Reiner Pope, Sholto Douglas, Aakanksha Chowdhery, Jacob Devlin, James Bradbury, Anselm Levskaya, Jonathan Heek, Kefan Xiao, Shivani Agrawal, Jeff Dean",
+    "year": 2022
+  }
+]

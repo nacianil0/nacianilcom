@@ -3,6 +3,10 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 01:08 | Studio end-to-end wiring fix | MonthlyPlan.tsx, server/index.ts | useCallback+useEffect mount load, loadPlan(month), revalidate paths fixed | ~800 tok |
+| 01:08 | 13 prompts rewritten production-grade | apps/studio/prompts/*.md | all 13 prompts now have rol/read-paths/schema/steps/output/rules | ~2500 tok |
+| 01:08 | typecheck + tests | apps/studio | 0 errors, 37/37 tests pass | ~100 tok |
+
 ## Session: 2026-05-29 21:30
 
 | Time | Action | File(s) | Outcome | ~Tokens |
@@ -572,3 +576,88 @@
 | 00:34 | Adjusted fallback copy to always show copied feedback after fallback attempt | packages/ui/src/components/CodeBlock.tsx | ui build and web typecheck passed | ~350 |
 | 00:36 | designqc: captured 6 screenshots (259KB, ~15000 tok) | / | ready for eval | ~0 |
 | 00:36 | Final browser/designqc verification of CodeBlock on target article | .wolf/designqc-captures, apps/web | zebra/highlight/wrap/copy/mobile scroll checked | ~900 |
+| 00:37 | Stopped stale preview servers and kept final preview URL alive | ports 3002-3007 | stopped 3002-3006; 3007 remains for user preview | ~250 |
+| 00:38 | Updated OpenWolf cerebrum and buglog with CodeBlock/session learnings | .wolf/cerebrum.md, .wolf/buglog.json | gotchas recorded | ~1200 |
+
+## Session: 2026-05-30 00:50
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 01:00 | Edited apps/studio/src/screens/MonthlyPlan.tsx | inline fix | ~17 |
+| 01:00 | Edited apps/studio/src/screens/MonthlyPlan.tsx | added error handling | ~264 |
+| 01:00 | Edited apps/studio/src/screens/MonthlyPlan.tsx | inline fix | ~15 |
+| 01:01 | Edited apps/studio/server/index.ts | modified if() | ~281 |
+| 01:01 | Created apps/studio/prompts/monthly-plan.md | — | ~1374 |
+| 01:02 | Created apps/studio/prompts/article-brief.md | — | ~1272 |
+| 01:03 | Created apps/studio/prompts/outline.md | — | ~882 |
+| 01:03 | Created apps/studio/prompts/tr-draft.md | — | ~743 |
+| 01:04 | Created apps/studio/prompts/revision.md | — | ~529 |
+| 01:04 | Created apps/studio/prompts/ai-smell-cleaning.md | — | ~752 |
+| 01:05 | Created apps/studio/prompts/tr-final-mdx.md | — | ~1147 |
+| 01:05 | Created apps/studio/prompts/en-adaptation.md | — | ~829 |
+| 01:06 | Created apps/studio/prompts/seo-qc-review.md | — | ~943 |
+| 01:06 | Created apps/studio/prompts/pre-publish-qc.md | — | ~1017 |
+| 01:07 | Created apps/studio/prompts/idea-series-plan.md | — | ~1052 |
+| 01:07 | Created apps/studio/prompts/visual-diagram-suggestion.md | — | ~1032 |
+| 01:08 | Created apps/studio/prompts/resume-case-study.md | — | ~1201 |
+| 01:09 | Session end: 17 writes across 15 files (MonthlyPlan.tsx, index.ts, monthly-plan.md, article-brief.md, outline.md) | 30 reads | ~42011 tok |
+
+## Session: 2026-05-31 14:44
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:52 | Created apps/studio/src/ui/StudioSpinner.tsx | — | ~93 |
+| 14:52 | Created apps/studio/src/ui/StatusBanner.tsx | — | ~445 |
+| 14:52 | Created apps/studio/src/ui/LoadingOverlay.tsx | — | ~120 |
+| 14:53 | Created apps/studio/src/ui/EmptyState.tsx | — | ~278 |
+| 14:53 | Created apps/studio/src/ui/useAsyncAction.ts | — | ~351 |
+| 14:53 | Created apps/studio/src/ui/index.ts | — | ~94 |
+| 14:54 | Created apps/studio/src/screens/MonthlyPlan.tsx | — | ~6914 |
+| 14:55 | Created apps/studio/src/screens/Prompts.tsx | — | ~1283 |
+| 14:55 | Created apps/studio/src/screens/Inbox.tsx | — | ~2420 |
+| 14:56 | Created apps/studio/src/screens/Publisher.tsx | — | ~2656 |
+| 14:56 | Created apps/studio/src/screens/DraftReview.tsx | — | ~1900 |
+| 14:57 | Created apps/studio/src/screens/SeoCheck.tsx | — | ~2524 |
+| 14:58 | Created apps/studio/src/screens/VisualStudio.tsx | — | ~3253 |
+| 14:58 | Created apps/studio/src/screens/ResumeStudio.tsx | — | ~1518 |
+| 14:58 | Edited apps/studio/src/App.tsx | 10→10 lines | ~203 |
+| 14:58 | Edited apps/studio/src/App.tsx | added optional chaining | ~87 |
+| 14:58 | Edited apps/studio/src/App.tsx | 14→14 lines | ~163 |
+| 14:59 | Edited apps/studio/src/ui/StatusBanner.tsx | 7→7 lines | ~48 |
+
+| 11:59 | Studio UX overhaul | src/ui/ + 8 screens | TypeCheck+37 tests pass | ~18k || 15:00 | Session end: 18 writes across 15 files (StudioSpinner.tsx, StatusBanner.tsx, LoadingOverlay.tsx, EmptyState.tsx, useAsyncAction.ts) | 9 reads | ~40022 tok |
+
+## Session: 2026-05-31 16:18
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 16:24 | Created content/_inbox/monthlyPlan-2026-07.json | — | ~12945 |
+| 16:24 | Generate 2026-07 monthly editorial plan (theme: how LLMs work) | content/_inbox/monthlyPlan-2026-07.json | 28 candidates, 10 balanced picks dropped to inbox status:detected | ~9k |
+| 16:25 | Session end: 1 writes across 1 files (monthlyPlan-2026-07.json) | 0 reads | ~12945 tok |
+| 17:12 | Added anatomy entry for new prompt outline | .wolf/anatomy.md; content/_prompts/2026-07-bagimsiz/02-rlhf-chatgpt-yi-yardimsever-yapan-sey/outline.md | ready to inspect target | ~250 |
+| 17:12 | Indexed remaining content prompt outline seeds before reading linked prompt | .wolf/anatomy.md, content/_prompts/**/outline.md | Added lightweight anatomy entries for 8 prompt outlines | ~0.2k |
+| 17:12 | Indexed target LLM series source files before outline generation | .wolf/anatomy.md, content/series/llm-nasil-calisir/** | Added anatomy entries for series/brief/meta | ~0.1k |
+| 17:12 | Generated outline for first LLM series article | content/series/llm-nasil-calisir/articles/01-token-nedir-llm-ler-metni-nasil-parcalara-boler/outline.json, .wolf/anatomy.md | Created 1600-word target outline and indexed it | ~0.8k |
+| 17:12 | Validated generated outline JSON | content/series/llm-nasil-calisir/articles/01-token-nedir-llm-ler-metni-nasil-parcalara-boler/outline.json | JSON parse OK; 5 sections; totalEstimatedWords=1600 | ~0.1k |
+| 17:12 | Session end: executed linked outline prompt | content/series/llm-nasil-calisir/articles/01-token-nedir-llm-ler-metni-nasil-parcalara-boler/outline.json | Outline ready for review; no tests beyond JSON parse needed | ~1.2k |
+| 17:13 | Indexed new prompt outline in anatomy | .wolf/anatomy.md; content/_prompts/2026-07-bagimsiz/03-llm-ler-neden-halusinasyon-gorur/outline.md | added missing anatomy entry | ~80 |
+| 17:13 | Added anatomy entries for target series source files | .wolf/anatomy.md; content/series/2026-07-bagimsiz | ready to read brief/meta/series | ~300 |
+| 17:13 | Read RLHF outline sources | content/series/2026-07-bagimsiz/articles/02-rlhf-chatgpt-yi-yardimsever-yapan-sey/{brief,meta}.json; content/series/2026-07-bagimsiz/series.json | source context loaded | ~900 |
+| 17:14 | Indexed 2026-07 standalone series files in anatomy | .wolf/anatomy.md; content/series/2026-07-bagimsiz | added missing series/brief/meta entries | ~120 |
+| 17:16 | Created hallucination article outline | content/series/2026-07-bagimsiz/articles/03-llm-ler-neden-halusinasyon-gorur/outline.json; .wolf/anatomy.md | wrote outline and indexed it | ~900 |
+| 17:16 | Generated RAG article outline and updated OpenWolf anatomy/cerebrum | content/series/2026-07-bagimsiz/articles/05-rag-llm-e-kendi-verinizi-nasil-okutursunuz/outline.json; .wolf/anatomy.md; .wolf/cerebrum.md | outline JSON created and parsed successfully | ~2158 |
+| 17:16 | Validated hallucination outline JSON | content/series/2026-07-bagimsiz/articles/03-llm-ler-neden-halusinasyon-gorur/outline.json | JSON parse passed: 5 sections, 2000 words | ~40 |
+| 17:16 | Logged patch-context tooling error per OpenWolf bug policy | .wolf/buglog.json | bug-007 added and JSON validated | ~120 |
+| 17:16 | Recorded Studio prompt folder convention | .wolf/cerebrum.md | added key learning for executable prompt handoffs | ~60 |
+| 17:17 | Wrote RLHF outline and OpenWolf housekeeping | content/series/2026-07-bagimsiz/articles/02-rlhf-chatgpt-yi-yardimsever-yapan-sey/outline.json; .wolf/anatomy.md; .wolf/buglog.json; .wolf/cerebrum.md | outline created; anatomy/buglog/cerebrum updated | ~2400 |
+| 17:18 | Validated generated RLHF outline JSON | content/series/2026-07-bagimsiz/articles/02-rlhf-chatgpt-yi-yardimsever-yapan-sey/outline.json | JSON parses; id/section bounds/total target OK | ~350 |
+| 17:18 | Session summary: generated RLHF article outline from provided prompt path | content/series/2026-07-bagimsiz/articles/02-rlhf-chatgpt-yi-yardimsever-yapan-sey/outline.json | delivered requested outline; validation passed | ~250 |
+| 17:18 | Generated attention article outline from llm-nasil-calisir prompt; validated JSON/word target and updated OpenWolf records | content/series/llm-nasil-calisir/articles/04-attention-mekanizmasi-llm-in-neye-odaklandigini/outline.json; .wolf/anatomy.md; .wolf/cerebrum.md; .wolf/buglog.json | done | ~4000 |
+| 17:30 | Loaded pasted batch QC request and OpenWolf context | pasted-text.txt; .wolf/OPENWOLF.md; .wolf/anatomy.md; .wolf/cerebrum.md; .wolf/buglog.json | identified five-article Publisher QC task | ~9k |
+| 17:36 | Created bilingual final MDX and references for 5 standalone articles | content/series/2026-07-bagimsiz/articles/01-05 | added 10 final MDX files, 5 references files, and normalized article 04 slugBase | ~13k |
+| 17:38 | Validated 2026-07 standalone articles and content-core tests | content/series/2026-07-bagimsiz; packages/content-core | targeted QC 0 blockers/0 warnings; MDX compile OK; 127 tests passed | ~2k |
+| 17:38 | Updated OpenWolf records for batch QC | .wolf/anatomy.md; .wolf/cerebrum.md; .wolf/buglog.json; .wolf/memory.md | indexed new files and logged validation/patch gotchas | ~1k |
+| 18:42 | Loaded pasted llm-nasil-calisir batch QC request and inspected series state | content/series/llm-nasil-calisir; .wolf/cerebrum.md; .wolf/buglog.json; .wolf/anatomy.md | confirmed refs/final MDX missing across all five articles | ~9k |
+| 18:43 | Added references for llm-nasil-calisir articles 01-05 | content/series/llm-nasil-calisir/articles/*/references.json | reference blockers fixed; no MDX generated per prompt | ~0.7k |
+| 18:44 | Validated llm-nasil-calisir QC and tests | content/series/llm-nasil-calisir; packages/content-core | blockers 0; expected MDX warnings remain; 127 tests passed | ~1k |
+| 18:44 | Updated OpenWolf records for llm-nasil-calisir QC | .wolf/anatomy.md; .wolf/cerebrum.md; .wolf/buglog.json; .wolf/memory.md | indexed references and logged Publisher refs bug | ~0.6k |

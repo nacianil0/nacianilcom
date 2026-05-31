@@ -1,0 +1,32 @@
+{
+  "month": "2026-07",
+  "topic": {
+    "title": "Embedding'ler: Kelimeleri Sayılara Çevirmenin Sihri",
+    "angle": "Anlamın vektör uzayında nasıl temsil edildiğini sezgisel olarak açıklama",
+    "whyNow": "Token'dan sonraki doğal adım; ileride RAG parçasının zemini",
+    "targetAudience": "Temel kavramları öğrenmek isteyen geliştiriciler",
+    "seriesFit": "llm-nasil-calisir",
+    "difficulty": "intermediate",
+    "estimatedReadingTime": 10,
+    "suggestedPublishWeek": 2,
+    "contentType": "explainer",
+    "seoPotential": "Yüksek — 'embedding nedir', semantik arama bağlamı",
+    "geoPotential": "Yüksek — vektör benzerliği tanımı alıntılanır",
+    "visualPotential": "Yüksek — 2D'ye indirgenmiş vektör uzayı, benzer kelimelerin kümelenmesi",
+    "riskOfRepetition": "Düşük",
+    "requiredResearch": "word2vec/GloVe sezgisi, cosine similarity örneği",
+    "sourceBasis": "Mikolov et al. 2013 'Efficient Estimation of Word Representations' (word2vec); Pennington et al. 2014 (GloVe)",
+    "nextAction": "article-brief üret; RAG parçasına iç bağ planı",
+    "scores": {
+      "relevance": 9,
+      "seriesFit": 10,
+      "novelty": 6,
+      "riskOfRepetition": 2,
+      "seoPotential": 8,
+      "geoPotential": 8,
+      "difficulty": 5,
+      "estimatedEffort": 5,
+      "visualPotential": 9
+    }
+  }
+}
