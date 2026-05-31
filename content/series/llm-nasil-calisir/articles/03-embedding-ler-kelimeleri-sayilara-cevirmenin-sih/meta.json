@@ -1,0 +1,22 @@
+{
+  "id": "03-embedding-ler-kelimeleri-sayilara-cevirmenin-sih",
+  "series": "llm-nasil-calisir",
+  "order": 3,
+  "slugBase": "embedding-ler-kelimeleri-sayilara-cevirmenin-sihri",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "intermediate",
+  "status": "scheduled",
+  "publishDate": "2026-06-02",
+  "schemaType": "TechArticle",
+  "contentType": "explainer",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}

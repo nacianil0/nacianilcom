@@ -1,0 +1,22 @@
+{
+  "id": "04-attention-mekanizmasi-llm-in-neye-odaklandigini",
+  "series": "llm-nasil-calisir",
+  "order": 4,
+  "slugBase": "attention-mekanizmasi-llm-in-neye-odaklandigini-anlamak",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "advanced",
+  "status": "scheduled",
+  "publishDate": "2026-06-03",
+  "schemaType": "TechArticle",
+  "contentType": "architecture",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}

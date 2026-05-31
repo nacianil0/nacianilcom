@@ -1,0 +1,22 @@
+{
+  "id": "02-bir-sonraki-token-i-tahmin-etmek-llm-lerin-tek-i",
+  "series": "llm-nasil-calisir",
+  "order": 2,
+  "slugBase": "bir-sonraki-token-i-tahmin-etmek-llm-lerin-tek-isi",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "beginner",
+  "status": "scheduled",
+  "publishDate": "2026-06-01",
+  "schemaType": "TechArticle",
+  "contentType": "explainer",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}

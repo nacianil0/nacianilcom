@@ -1,0 +1,22 @@
+{
+  "id": "05-transformer-mimarisi-parca-parca-bir-llm-in-anat",
+  "series": "llm-nasil-calisir",
+  "order": 5,
+  "slugBase": "transformer-mimarisi-parca-parca-bir-llm-in-anatomisi",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "intermediate",
+  "status": "scheduled",
+  "publishDate": "2026-06-04",
+  "schemaType": "TechArticle",
+  "contentType": "architecture",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}

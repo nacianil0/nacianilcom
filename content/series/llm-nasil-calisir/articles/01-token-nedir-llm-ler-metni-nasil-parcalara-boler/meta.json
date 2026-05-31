@@ -1,0 +1,22 @@
+{
+  "id": "01-token-nedir-llm-ler-metni-nasil-parcalara-boler",
+  "series": "llm-nasil-calisir",
+  "order": 1,
+  "slugBase": "token-nedir-llm-ler-metni-nasil-parcalara-boler",
+  "category": "programlama-temelleri",
+  "tags": [
+    "temel-kavramlar"
+  ],
+  "difficulty": "beginner",
+  "status": "published",
+  "publishDate": "2026-05-31",
+  "schemaType": "TechArticle",
+  "contentType": "explainer",
+  "languages": [
+    "tr",
+    "en"
+  ],
+  "assets": {
+    "diagrams": []
+  }
+}
