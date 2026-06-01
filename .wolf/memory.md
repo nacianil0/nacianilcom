@@ -661,3 +661,13 @@
 | 18:43 | Added references for llm-nasil-calisir articles 01-05 | content/series/llm-nasil-calisir/articles/*/references.json | reference blockers fixed; no MDX generated per prompt | ~0.7k |
 | 18:44 | Validated llm-nasil-calisir QC and tests | content/series/llm-nasil-calisir; packages/content-core | blockers 0; expected MDX warnings remain; 127 tests passed | ~1k |
 | 18:44 | Updated OpenWolf records for llm-nasil-calisir QC | .wolf/anatomy.md; .wolf/cerebrum.md; .wolf/buglog.json; .wolf/memory.md | indexed references and logged Publisher refs bug | ~0.6k |
+
+## Session: 2026-06-01 08:13
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-01 08:14
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

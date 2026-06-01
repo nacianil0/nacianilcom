@@ -15,8 +15,10 @@
     "dev:web": "pnpm --filter @nacianilcom/web dev",
     "dev:studio": "pnpm --filter @nacianilcom/studio dev",
     "smoke": "node scripts/smoke.js",
+    "check:secrets": "node scripts/check-secrets.js --ci",
     "credentials:generate": "node scripts/generate-credential-previews.mjs",
-    "audit": "pnpm audit"
+    "audit": "pnpm audit",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
@@ -24,6 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
     "eslint": "^9.18.0",
+    "husky": "^9.1.7",
     "pdfjs-dist": "^4.10.38",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2"
