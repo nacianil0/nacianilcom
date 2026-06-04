@@ -261,6 +261,75 @@
       "related_bugs": [],
       "occurrences": 2,
       "last_seen": "2026-06-04T06:38:17.5396648Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-06-04T07:06:50.9808515Z",
+      "error_message": "Cannot find module '../lib/password-gate' imported from apps/web/src/__tests__/password-gate.test.ts",
+      "file": "apps/web/src/lib/password-gate.ts",
+      "root_cause": "TDD RED step intentionally added tests before the password-gate helper existed.",
+      "fix": "Implemented apps/web/src/lib/password-gate.ts with SHA-256 password verification, HMAC signed sessions, expiry checks, and safe next paths; targeted vitest now passes.",
+      "tags": [
+        "tdd",
+        "password-gate",
+        "vitest",
+        "expected-red"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-04T07:06:50.9808515Z"
+    },
+    {
+      "id": "bug-017",
+      "timestamp": "2026-06-04T07:06:50.9808515Z",
+      "error_message": "Get-Content : An object at the specified path apps/web/app/[lang]/page.tsx does not exist, or has been filtered by the -Include or -Exclude parameter.",
+      "file": "PowerShell file reads for apps/web/app/[lang] route files",
+      "root_cause": "PowerShell treated the bracketed Next.js route folder `[lang]` as a wildcard pattern.",
+      "fix": "Re-read bracketed route files with Get-Content -LiteralPath.",
+      "tags": [
+        "powershell",
+        "nextjs",
+        "route-groups",
+        "literal-path"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-04T07:06:50.9808515Z"
+    },
+    {
+      "id": "bug-018",
+      "timestamp": "2026-06-04T07:14:24.1049220Z",
+      "error_message": "Module not found: playwright; Cannot find package 'playwright-core' imported from bundled playwright index.mjs",
+      "file": "login flow verification tooling",
+      "root_cause": "The Node REPL environment did not have project Playwright installed, and the bundled runtime exposed playwright without the matching playwright-core package.",
+      "fix": "Verified the password gate via HTTP-level checks instead: unauthenticated redirect, login page password input render, and signed-cookie access to /tr.",
+      "tags": [
+        "verification",
+        "playwright",
+        "tooling",
+        "fallback"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-04T07:14:24.1049220Z"
+    },
+    {
+      "id": "bug-019",
+      "timestamp": "2026-06-04T07:14:24.1049220Z",
+      "error_message": "Error [ERR_UNSUPPORTED_ESM_URL_SCHEME]: On Windows, absolute paths must be valid file:// URLs. Received protocol 'c:'",
+      "file": "inline HTTP verification script",
+      "root_cause": "The script tried to dynamic-import a Windows absolute path without converting it to a file:// URL.",
+      "fix": "Removed the TS module import from the verification script and generated the signed cookie inline with Web Crypto.",
+      "tags": [
+        "windows",
+        "node-esm",
+        "verification"
+      ],
+      "related_bugs": [
+        "bug-015"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-06-04T07:14:24.1049220Z"
     }
   ]
 }

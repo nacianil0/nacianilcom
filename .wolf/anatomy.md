@@ -14,6 +14,7 @@
 
 ## ./
 
+- `.gitignore` - Root ignore rules including local env files (`.env.*`) (~120 tok)
 - `package.json` — Node.js package manifest (~208 tok)
 - `README.md` — Project documentation (~2758 tok)
 
@@ -116,6 +117,9 @@
 
 ## apps/web/
 
+- `.env.example` - Web env examples including revalidate, cron, origin, and password gate vars (~175 tok)
+- `.env.local` - Ignored local web env for active password gate hash and cookie secret; do not commit (~35 tok)
+- `middleware.ts` - Password gate middleware; skips login/API/assets and redirects protected pages to /login (~360 tok)
 - `eslint.config.mjs` — ', 'node_modules/**'] }, (~116 tok)
 - `next.config.ts` — Declares loadRedirects (~760 tok)
 - `package.json` — Node.js package manifest (~264 tok)
@@ -136,6 +140,11 @@
 
 - `layout.tsx` — VALID_LANGS (~411 tok)
 - `page.tsx` — VALID_LANGS (~1562 tok)
+
+## apps/web/app/login/
+
+- `actions.ts` - Server action for password-only login, signed auth cookie, and safe redirect (~350 tok)
+- `page.tsx` - Minimal noindex password form; username-free private gate UI (~560 tok)
 
 ## apps/web/app/[lang]/cv/
 
@@ -188,6 +197,7 @@
 
 ## apps/web/src/__tests__/
 
+- `password-gate.test.ts` - Tests password hashing, signed cookie expiry/tamper checks, and safe next paths (~600 tok)
 - `revalidate-targets.test.ts` — Declares params (~1166 tok)
 - `security.test.ts` — ─── Open Redirect Guard ────────────────────────────────────────────────────── (~1205 tok)
 
@@ -214,6 +224,7 @@
 - `jsonld.ts` — Exports websiteJsonLd, personJsonLd, breadcrumbJsonLd, ArticleJsonLdOptions + 4 more (~696 tok)
 - `messages.ts` — Exports WebMessages, getMessages (~146 tok)
 - `origin.ts` — Resolve the origin to advertise inside the printable CV (link + QR). (~386 tok)
+- `password-gate.ts` - Web Crypto helpers for SHA-256 password checks, HMAC signed 1h session cookies, and safe redirects (~1030 tok)
 - `qr.ts` — Render `text` as an inline QR-code SVG string (server-only). (~184 tok)
 - `revalidate-targets.ts` — Explicit tag/path matrix for a published article. (~418 tok)
 - `site.ts` — Exports SITE_URL, SITE_NAME, SITE_AUTHOR, SITE_TWITTER, localeToOgLocale (~79 tok)
@@ -423,6 +434,14 @@
 ## docs/
 
 - `design-reference.md` — Design Reference (~1863 tok)
+
+## docs/superpowers/plans/
+
+- `2026-06-04-password-gate.md` - Implementation plan for password-only signed-cookie web gate (~520 tok)
+
+## docs/superpowers/specs/
+
+- `2026-06-04-password-gate-design.md` - Approved mini design for hash password + 1h cookie gate (~360 tok)
 
 ## docs/work-packages/
 
