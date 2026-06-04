@@ -224,7 +224,7 @@
 - `jsonld.ts` — Exports websiteJsonLd, personJsonLd, breadcrumbJsonLd, ArticleJsonLdOptions + 4 more (~696 tok)
 - `messages.ts` — Exports WebMessages, getMessages (~146 tok)
 - `origin.ts` — Resolve the origin to advertise inside the printable CV (link + QR). (~386 tok)
-- `password-gate.ts` - Web Crypto helpers for SHA-256 password checks, HMAC signed 1h session cookies, and safe redirects (~1030 tok)
+- `password-gate.ts` - Web Crypto helpers for SHA-256 password checks, fallback live gate config, HMAC signed 1h session cookies, and safe redirects (~1120 tok)
 - `qr.ts` — Render `text` as an inline QR-code SVG string (server-only). (~184 tok)
 - `revalidate-targets.ts` — Explicit tag/path matrix for a published article. (~418 tok)
 - `site.ts` — Exports SITE_URL, SITE_NAME, SITE_AUTHOR, SITE_TWITTER, localeToOgLocale (~79 tok)
