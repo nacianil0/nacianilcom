@@ -298,6 +298,10 @@
 
 - `case.json` — Declares everyone (~1125 tok)
 
+## content/resume/portfolio/mail-agent/
+
+- `case.json` — Mail Agent enterprise email assistant case study for Eroğlu Global Holding (~1250 tok)
+
 ## content/resume/portfolio/seyahat-projesi/
 
 - `case.json` — Declares looked (~1112 tok)

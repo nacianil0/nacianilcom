@@ -11,6 +11,7 @@
 - Kullanıcı **Türkçe** iletişim kuruyor; master plan TR + İngilizce teknik terim karışımı. Üretilen plan/doküman çıktılarını bu dile uydur (Türkçe gövde + İngilizce teknik terim + İngilizce section başlıkları).
 - **Plan-first**: kullanıcı planlama istediğinde kod yazma/implemente etme. Bu oturumda açıkça belirtti: "Şu an kod yazmanı veya projeyi implemente etmeni istemiyorum." Önce uygulanabilir, sıralı, bağımsız çalıştırılabilir plan üret.
 - **CV/yazı tonu**: klişe yasak (passionate, hard-working, dynamic, team player). Deneyim maddeleri sonuç/etki odaklı (güçlü fiil + yapılan iş + etki). Rakam uydurma — yoksa nitel anlat ve `needsReview: true` bırak. ATS anahtar kelimeleri doğal yedir (.NET, ASP.NET Core, C#, React, TypeScript, SQL Server, EF, REST API, dashboard, portal, authentication, permission management, reporting, migration, AI/API integration, product ownership, end-to-end delivery). Konumlandırma: Eroğlu = amiral/güncel (enterprise), Kansuk = enterprise destek, Digitallica = müşteri/ürün/startup.
+- **Mail Agent CV/case-study source handling (2026-06-04):** `C:\dev\Eroglu.Agent` currently has no application code in the inspected source tree, only product/architecture documentation. Public CV/case content must describe Mail Agent as development-stage product and architecture design; do not invent deployment, user count, or production metrics. Do not carry internal planning/source terms such as work packages, handoff, OpenWolf, Claude, or prompt language into CV content.
 
 ## Key Learnings
 

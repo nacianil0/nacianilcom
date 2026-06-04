@@ -244,6 +244,23 @@
       ],
       "occurrences": 1,
       "last_seen": "2026-05-31T15:44:12.5661155Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-06-04T06:38:17.5396648Z",
+      "error_message": "Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\\dev\\nacianilcom\\packages\\content-core\\dist\\schemas\\index' imported from C:\\dev\\nacianilcom\\packages\\content-core\\dist\\index.js",
+      "file": "packages/content-core/dist/index.js",
+      "root_cause": "Direct Node ESM import of the compiled content-core dist entry cannot resolve extensionless internal dist imports in this environment; a separate root-level inline validation also could not resolve zod because pnpm strict layout does not expose package dependencies from the repository root.",
+      "fix": "Validated actual resume and case JSON from packages/content-core working directory with an inline Zod schema matching packages/content-core/src/schemas/resume.ts; targeted vitest resume tests also passed.",
+      "tags": [
+        "validation",
+        "node-esm",
+        "pnpm",
+        "content-core"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-04T06:38:17.5396648Z"
     }
   ]
 }

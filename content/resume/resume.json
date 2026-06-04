@@ -23,6 +23,8 @@
         "description": "Holding'in şirket içi kurumsal uygulamalarını geliştiriyorum: kurumsal erişim paneli (Dashboard/Portal), seyahat yönetim sistemi ve İK avans modülü. Türkiye ve Mısır'daki grup şirketlerinde tek giriş, ortak yetkilendirme ve ortak bir arayüzle çalışıyorum; işin tamamını üstleniyorum.",
         "highlights": [
           "Kurumsal erişim panelini (Portal) sıfırdan kurdum; duyuru, yemek menüsü, uygulama kataloğu ve yetki yönetimini tek girişte topladım.",
+          "Mail Agent için geliştirme aşamasındaki kurumsal e-posta asistanının ürün ve mimarisini tasarladım; Graph/IMAP bağlantı stratejisi, EF Core + SQL Server veri modeli, Hangfire job akışı, Qdrant vektör arama, SignalR ve OpenAI entegrasyonunu güvenlik sınırlarıyla tanımladım.",
+          "Satış ve operasyon e-postalarında kanıt paneli, güven/risk skoru, kullanıcı onayı, şifreli credential ve otomatik gönderim kapalı kuralını merkeze alan onaylı cevap taslağı modelini kurdum.",
           "Ayrı çalışan seyahat uygulamasını Dashboard'a taşıdım; tek giriş (SSO) ve ortak yetkilendirmeyle ikinci bir login ihtiyacını kaldırdım.",
           "Avans modülünde fiş/fatura okuma akışı kurdum (Datalab ve OpenAI ile OCR): belge tespiti, tutar ve tarih çıkarımı, güven skoru ve görsel doğrulama; manuel veri girişini azalttım.",
           "Çok şirketli avans sürecini baştan sona modelledim: talep, teslim, fiş onayı, taksit ve geri ödeme; kısmi teslim ve şirket bazlı yetki dahil."
@@ -240,6 +242,8 @@
         "description": "I build the holding's internal enterprise apps: the enterprise access panel (Dashboard/Portal), the travel management system, and the HR advance module. I work across group companies in Turkey and Egypt with single sign-on, shared authorization, and one shared interface, and I own the whole job.",
         "highlights": [
           "Built the enterprise access panel (Portal) from scratch — announcements, meal menu, application catalog, and permissions, all behind one login.",
+          "Designed the product and architecture for Mail Agent, an enterprise email assistant in development; defined the Graph/IMAP connectivity strategy, EF Core + SQL Server model, Hangfire jobs, Qdrant vector search, SignalR, and OpenAI integration with clear security boundaries.",
+          "Shaped the approved reply-draft model for sales and operations email around evidence, confidence/risk scoring, user approval, encrypted credentials, and automatic sending disabled by default.",
           "Moved the separate travel app into the Dashboard; single sign-on (SSO) and shared authorization removed the need for a second login.",
           "Built receipt/invoice reading in the advance module (OCR with Datalab and OpenAI): document detection, amount and date extraction, confidence scoring, and visual checking, which cut manual data entry.",
           "Modeled the multi-company advance process end to end: request, delivery, receipt approval, installments, and repayment — including partial delivery and per-company permissions."

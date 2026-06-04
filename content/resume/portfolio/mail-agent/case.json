@@ -1,0 +1,58 @@
+{
+  "tr": {
+    "slug": "mail-agent",
+    "title": "Mail Agent — Eroğlu Global Holding",
+    "summary": "Eroğlu Global Holding için geliştirme aşamasında olan kurumsal e-posta asistanı. Satış ve operasyon yazışmalarında geçmiş thread, müşteri hafızası ve kanıt kaynaklarına dayanarak cevap taslakları üretir; kullanıcı son metni inceleyip onaylamadan gönderim yapılmaz.",
+    "problem": "Satış ve operasyon ekiplerinde müşteri e-postalarına verilen yanıtlar geçmiş yazışma, termin, stok, fiyat bağlamı ve kişisel yazım tarzı gibi dağınık sinyallere bağlıydı. Yanıt bekleyen thread'leri, daha önce verilmiş taahhütleri ve güvenilir kaynakları tek ekranda görmek zordu; otomasyon tarafında da gizlilik ve yetki sınırları baştan çözülmeden ürünleşme riskliydi.",
+    "context": "Proje 2026'da Eroğlu Global Holding için ürün ve mimari tasarım aşamasında başladı. Kaynak repoda uygulama kodu yok; teknik kararlar, ürün akışları ve güvenlik sınırları ayrıntılı olarak tanımlanmış durumda. Hedef kullanım, kullanıcının kendi mailbox'ı üzerinde çalışan, Outlook benzeri bir inbox ve e-posta composer deneyimi.",
+    "role": "Full Stack Developer olarak ürün akışını, mimari kararları ve güvenlik sınırlarını uçtan uca tasarladım; React/TypeScript arayüz, .NET API, EF Core/MSSQL veri modeli, arka plan işleri, LLM entegrasyonu ve vektör arama katmanlarını birlikte planladım.",
+    "stack": [
+      "React",
+      "TypeScript",
+      ".NET",
+      "ASP.NET Core",
+      "Entity Framework Core",
+      "SQL Server",
+      "Hangfire",
+      "SignalR",
+      "Microsoft Graph",
+      "IMAP",
+      "Qdrant",
+      "OpenAI",
+      "Datalab OCR"
+    ],
+    "constraints": "Ürün kişisel veya kurumsal mailbox içeriklerini gizli izleme aracı olarak kullanamaz: kullanıcı onayı, yetki kapsamı, denetim izi ve açık delegation olmadan ham mail erişimi yok. Otomatik gönderim kapalı; LLM yalnızca taslak önerir, gönderim backend kontrolleri ve kullanıcının açık onayıyla yapılır. Credential, token ve fallback şifreleri şifreli saklanır; secret değerler log, response veya frontend'e taşınmaz.",
+    "solution": "MSSQL'i canonical store olarak, Qdrant'ı yalnızca vektör index ve metadata filtre katmanı olarak konumlandırdım; EF Core Code First şema, Hangfire job pipeline ve MSSQL tabanlı workflow/state takibiyle mail sync, normalize, classification, attachment/OCR, embedding, retrieval, taslak üretimi ve doğrulamayı ayrıştırdım. Mail erişiminde Microsoft Graph delegated OAuth birincil kanal; IMAP OAuth2 ve admin onaylı IMAP Basic fallback olarak tasarlandı. React/TypeScript tarafında Outlook benzeri üç panelli inbox, Needs Reply akıllı klasörü, taslak kuyruğu, evidence/confidence/risk panelleri, müşteri brief kartı, ilişki sağlığı, açık taahhütler ve email-safe composer öne çıktı. Taslak üretim akışı retrieval scope builder, müşteri hafızası, kullanıcı stil profili, risk policy, structured LLM output, verifier ve evidence panel ile çalışacak şekilde tasarlandı.",
+    "impact": "Kod tabanı henüz geliştirme aşamasında olduğu için deploy, kullanıcı sayısı veya üretim metriği yazmıyorum. Etki şu an ürün ve mimari netlik üzerinden: kurumsal mail asistanının güvenli sınırları, veri modeli, job akışı, yetki/denetim politikası ve ilk ürün deneyimi tek bir uygulanabilir tasarıma indirildi; satış ve operasyon yazışmalarında kanıta dayalı, onaylı cevap taslağı üretimi için temel kuruldu.",
+    "assets": [],
+    "visibility": "public"
+  },
+  "en": {
+    "slug": "mail-agent",
+    "title": "Mail Agent — Eroğlu Global Holding",
+    "summary": "An enterprise email assistant in development for Eroğlu Global Holding. It drafts replies for sales and operations email by grounding the answer in previous threads, customer memory, and evidence sources; nothing is sent until the user reviews and approves the final message.",
+    "problem": "Sales and operations replies depended on scattered signals: prior correspondence, delivery dates, stock or pricing context, and the user's writing style. It was hard to see unanswered threads, previous commitments, and reliable sources in one place; without privacy and permission boundaries defined up front, automation would create real product risk.",
+    "context": "The project started in 2026 for Eroğlu Global Holding as product and architecture design. The source repository does not contain application code yet; it documents technical decisions, product flows, and security boundaries in detail. The target experience is an Outlook-like inbox and email composer that works over the user's own mailbox.",
+    "role": "As the Full Stack Developer, I shaped the product flow, architecture, and security boundaries end to end; I planned the React/TypeScript interface, .NET API, EF Core/MSSQL data model, background jobs, LLM integration, and vector search layer together.",
+    "stack": [
+      "React",
+      "TypeScript",
+      ".NET",
+      "ASP.NET Core",
+      "Entity Framework Core",
+      "SQL Server",
+      "Hangfire",
+      "SignalR",
+      "Microsoft Graph",
+      "IMAP",
+      "Qdrant",
+      "OpenAI",
+      "Datalab OCR"
+    ],
+    "constraints": "The product cannot be used as a hidden monitoring tool for personal or corporate mailbox content: raw email access requires user consent, explicit scope, auditability, and explicit delegation. Automatic sending is off; the LLM only suggests drafts, while sending runs through backend checks and explicit user approval. Credentials, tokens, and fallback passwords are stored encrypted; secrets must not appear in logs, API responses, or frontend code.",
+    "solution": "I positioned MSSQL as the canonical store and Qdrant only as a vector index with metadata filters; with EF Core Code First, a Hangfire job pipeline, and MSSQL-backed workflow/state tracking, I separated mail sync, normalization, classification, attachment/OCR, embedding, retrieval, draft generation, and verification. Microsoft Graph delegated OAuth is the primary mail channel; IMAP OAuth2 and admin-enabled IMAP Basic are fallback paths. On the React/TypeScript side, the core experience is a three-pane Outlook-like inbox with a Needs Reply smart folder, draft queue, evidence/confidence/risk panels, customer brief card, relationship health, open commitments, and an email-safe composer. The draft flow is designed around a retrieval scope builder, customer memory, user style profile, risk policy, structured LLM output, verifier, and evidence panel.",
+    "impact": "Because the codebase is still in development, I am not claiming deployment, user count, or production metrics. The current impact is product and architecture clarity: the secure boundaries, data model, job flow, permission/audit policy, and first product experience for an enterprise email assistant were reduced to an implementable design; the foundation is in place for evidence-backed, approved reply drafting in sales and operations email.",
+    "assets": [],
+    "visibility": "public"
+  }
+}

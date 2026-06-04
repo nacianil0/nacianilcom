@@ -671,3 +671,12 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+
+## Session: 2026-06-04 09:29
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 09:29 | OpenWolf session instructions reviewed | `.wolf/OPENWOLF.md`, `.wolf/anatomy.md`, `.wolf/cerebrum.md` | Active rules and CV tone constraints loaded | ~9000 |
+| 09:32 | Inspected target resume schema, example case, and source Mail Agent architecture docs | `packages/content-core/src/schemas/resume.ts`, `content/resume/portfolio/kurumsal-dashboard/case.json`, `C:\dev\Eroglu.Agent\ai-mail-copilot-handoff.md` | confirmed source has no app code; case should state development/product architecture stage | ~18000 |
+| 09:34 | Created Mail Agent case and updated Eroğlu resume highlights | `content/resume/portfolio/mail-agent/case.json`, `content/resume/resume.json` | bilingual public case added; only Eroğlu experience bullets changed | ~2500 |
+| 09:38 | Validated resume/case content and updated OpenWolf records | `.wolf/anatomy.md`, `.wolf/cerebrum.md`, `.wolf/buglog.json`, `.wolf/memory.md` | targeted resume tests passed; real JSON parsed against resume/case schema shape; validation tooling issue logged | ~2500 |
