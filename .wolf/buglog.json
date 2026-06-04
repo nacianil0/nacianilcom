@@ -330,6 +330,22 @@
       ],
       "occurrences": 1,
       "last_seen": "2026-06-04T07:14:24.1049220Z"
+    },
+    {
+      "id": "bug-020",
+      "timestamp": "2026-06-04T07:24:33.3482456Z",
+      "error_message": "app/login/actions.ts(23,40): error TS2559: Type 'ProcessEnv' has no properties in common with type 'PasswordGateEnv'.",
+      "file": "apps/web/src/lib/password-gate.ts",
+      "root_cause": "PasswordGateEnv had only optional named properties, so exact TypeScript checking did not consider ProcessEnv assignable.",
+      "fix": "Added a string index signature to PasswordGateEnv so process.env can be passed to getPasswordGateConfig.",
+      "tags": [
+        "typescript",
+        "process-env",
+        "password-gate"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-04T07:24:33.3482456Z"
     }
   ]
 }

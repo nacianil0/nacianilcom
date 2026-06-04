@@ -690,3 +690,4 @@
 | 10:15 | Verified password gate over HTTP and recorded verification tooling gotchas | apps/web/middleware.ts; apps/web/app/login; .wolf/buglog.json; .wolf/cerebrum.md | redirect/login/signed-cookie flow verified | ~900 |
 | 10:15 | Stopped envless 3010 dev server and kept gate-enabled 3011 preview running | local dev server | 3011 listening with test password letmein | ~120 |
 | 10:19 | Set local password gate env from requested password hash and restarted 3011 preview | apps/web/.env.local; local dev server | new password hash verified; plaintext not recorded in tracked docs | ~350 |
+| 10:24 | Added bundled live fallback gate config so GitHub/Vercel deploy works without Vercel env setup | apps/web/src/lib/password-gate.ts; apps/web/app/login; apps/web/middleware.ts | tests/typecheck/lint/build passing | ~900 |

@@ -137,7 +137,7 @@
 ## Decision Log
 
 - **Private web password gate (2026-06-04):** `apps/web/middleware.ts` protects public page routes only when both `SITE_PASSWORD_SHA256` and `AUTH_COOKIE_SECRET` are set. Login is username-free at `/login`; session cookie `nacianil_auth` is httpOnly/sameSite=lax, HMAC signed, and valid for 1 hour.
-- **Password gate secret hygiene (2026-06-04):** If the user gives the actual web gate password, write only its SHA-256 hash to ignored local/deploy env; do not record the plaintext password in tracked docs, OpenWolf memory, or examples.
+- **Password gate secret hygiene (2026-06-04):** If the user gives the actual web gate password, write only its SHA-256 hash to ignored local/deploy env or the agreed fallback config; do not record the plaintext password in tracked docs, OpenWolf memory, or examples. User accepted a low-security "dumenden" gate, so the live fallback hash/secret may live in code when Vercel env cannot be set from the workspace.
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->
 
