@@ -12,6 +12,7 @@
 - **Plan-first**: kullanıcı planlama istediğinde kod yazma/implemente etme. Bu oturumda açıkça belirtti: "Şu an kod yazmanı veya projeyi implemente etmeni istemiyorum." Önce uygulanabilir, sıralı, bağımsız çalıştırılabilir plan üret.
 - **CV/yazı tonu**: klişe yasak (passionate, hard-working, dynamic, team player). Deneyim maddeleri sonuç/etki odaklı (güçlü fiil + yapılan iş + etki). Rakam uydurma — yoksa nitel anlat ve `needsReview: true` bırak. ATS anahtar kelimeleri doğal yedir (.NET, ASP.NET Core, C#, React, TypeScript, SQL Server, EF, REST API, dashboard, portal, authentication, permission management, reporting, migration, AI/API integration, product ownership, end-to-end delivery). Konumlandırma: Eroğlu = amiral/güncel (enterprise), Kansuk = enterprise destek, Digitallica = müşteri/ürün/startup.
 - **Mail Agent CV/case-study source handling (2026-06-04):** `C:\dev\Eroglu.Agent` currently has no application code in the inspected source tree, only product/architecture documentation. Public CV/case content must describe Mail Agent as development-stage product and architecture design; do not invent deployment, user count, or production metrics. Do not carry internal planning/source terms such as work packages, handoff, OpenWolf, Claude, or prompt language into CV content.
+- **Quick privacy gates:** Kullanici "dumenden/basit" login istediginde username sormayan, tek sifreli, hash tabanli ve kisa omurlu cookie'li cozum tercih ediyor; gereksiz auth sistemi kurma.
 
 ## Key Learnings
 
@@ -30,6 +31,8 @@
 <!-- Format: [YYYY-MM-DD] Description of what went wrong and what to do instead. -->
 
 - **[2026-05-31] Do not pass Next dev host/port via `pnpm --filter @nacianilcom/web dev -- --hostname ...`.** In this workspace that forwarded `--hostname` as a project directory. Use `pnpm --filter @nacianilcom/web exec next dev --hostname 127.0.0.1 --port <port>` or `exec next start ...` for preview.
+- **[2026-06-04] PowerShell treats Next route folders such as `[lang]` as wildcard patterns.** Use `Get-Content -LiteralPath 'apps/web/app/[lang]/page.tsx'` for bracketed route files.
+- **[2026-06-04] Windows dynamic import needs `file://` URLs for absolute local paths.** For inline Node ESM validation, convert with `pathToFileURL(...)` or avoid importing TS files directly.
 - **[2026-05-31] `networkidle` is not supported by this in-app Browser Playwright surface.** Use `waitForLoadState({ state: 'load' })` for local Next page checks.
 - **[2026-05-31] Windows PowerShell here does not support `Get-Date -AsUTC`.** Use `(Get-Date).ToUniversalTime().ToString('o')` for ISO UTC timestamps.
 - **[2026-05-31] Avoid raw Turkish regex literals in PowerShell-fed inline Node scripts.** PowerShell/console encoding can corrupt characters like dotless-i into `?`, producing invalid regex such as `/?/g`. Use Unicode escapes (`\u0131`, `\u0130`, etc.) in validation scripts.
@@ -132,6 +135,9 @@
 - **LLM series prompt execution (2026-05-31):** `content/_prompts/llm-nasil-calisir/*/outline.md` prompts are intended to be run directly into `content/series/llm-nasil-calisir/articles/<id>/outline.json`. At this stage the earlier LLM articles may have only `brief.json`/`meta.json` and no `final.tr.mdx`, so use the earlier briefs as anti-repetition context when finals are absent.
 
 ## Decision Log
+
+- **Private web password gate (2026-06-04):** `apps/web/middleware.ts` protects public page routes only when both `SITE_PASSWORD_SHA256` and `AUTH_COOKIE_SECRET` are set. Login is username-free at `/login`; session cookie `nacianil_auth` is httpOnly/sameSite=lax, HMAC signed, and valid for 1 hour.
+- **Password gate secret hygiene (2026-06-04):** If the user gives the actual web gate password, write only its SHA-256 hash to ignored local/deploy env; do not record the plaintext password in tracked docs, OpenWolf memory, or examples.
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->
 
