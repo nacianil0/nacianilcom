@@ -166,7 +166,7 @@ export default async function CvPrintPage({
                         </ul>
                       )}
                       {exp.stack.length > 0 && (
-                        <p className="mt-1.5 font-mono text-[7.5px] uppercase tracking-[0.08em] text-ink-secondary/70">
+                        <p className="mt-1.5 font-mono text-[7.5px] tracking-[0.08em] text-ink-secondary/70">
                           {exp.stack.join('  ·  ')}
                         </p>
                       )}
@@ -180,7 +180,7 @@ export default async function CvPrintPage({
           {/* Selected Projects — two columns to bank vertical space */}
           {resume.projects.length > 0 && (
             <section className="break-inside-avoid">
-              <SectionLabel>{tr ? 'Seçili Projeler' : 'Selected Projects'}</SectionLabel>
+              <SectionLabel>{tr ? 'Başlıca Projeler' : 'Main Projects'}</SectionLabel>
               <div className="grid grid-cols-2 gap-x-7 gap-y-2">
                 {resume.projects.map((proj) => (
                   <div key={proj.id} className="break-inside-avoid">
@@ -193,7 +193,7 @@ export default async function CvPrintPage({
                       </p>
                     )}
                     {proj.stack.length > 0 && (
-                      <p className="mt-1 font-mono text-[7px] uppercase tracking-[0.06em] text-ink-secondary/65">
+                      <p className="mt-1 font-mono text-[7px] tracking-[0.06em] text-ink-secondary/65">
                         {proj.stack.slice(0, 6).join('  ·  ')}
                       </p>
                     )}

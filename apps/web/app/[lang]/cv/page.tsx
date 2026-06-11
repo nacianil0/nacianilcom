@@ -297,7 +297,7 @@ export default async function CvPage({
             {resume.projects.length > 0 && (
               <SectionRail
                 dividerTop
-                label={tr ? 'Seçili Projeler' : 'Selected Projects'}
+                label={tr ? 'Başlıca Projeler' : 'Main Projects'}
                 id="cv-projects"
                 aside={String(resume.projects.length).padStart(2, '0')}
               >
