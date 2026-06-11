@@ -97,15 +97,14 @@ export default async function CvPrintPage({
         </header>
 
         {/* ── Body ─────────────────────────────────────────────────── */}
-        <div className="mt-3 flex flex-1 flex-col gap-3">
+        <div className="mt-4 flex flex-1 flex-col gap-5">
           {/* Experience */}
           {resume.experience.length > 0 && (
             <section className="break-inside-avoid">
               <SectionLabel>{tr ? 'Deneyim' : 'Experience'}</SectionLabel>
-              <div className="flex flex-col gap-2.5">
-                {resume.experience.map((exp, i) => {
-                  // Prioritise for one page: most-recent role gets more bullets.
-                  const shown = exp.highlights.slice(0, i === 0 ? 3 : 2);
+              <div className="flex flex-col gap-4">
+                {resume.experience.map((exp) => {
+                  const shown = exp.highlights;
                   const dur = fmtDuration(exp.startDate, exp.endDate, locale);
                   return (
                     <div key={exp.id} className="break-inside-avoid">
@@ -125,8 +124,15 @@ export default async function CvPrintPage({
                           )}
                         </div>
                       </div>
-                      {shown.length > 0 ? (
-                        <ul className="mt-1 flex flex-col gap-0.5">
+
+                      {exp.description && (
+                        <p className="mt-1.5 font-sans text-[10px] leading-[1.4] text-ink-secondary">
+                          {exp.description}
+                        </p>
+                      )}
+
+                      {shown.length > 0 && (
+                        <ul className="mt-1.5 flex flex-col gap-0.5">
                           {shown.map((h, j) => (
                             <li
                               key={j}
@@ -137,13 +143,9 @@ export default async function CvPrintPage({
                             </li>
                           ))}
                         </ul>
-                      ) : (
-                        <p className="mt-1 font-sans text-[10px] leading-[1.4] text-ink-secondary">
-                          {exp.description}
-                        </p>
                       )}
                       {exp.stack.length > 0 && (
-                        <p className="mt-1 font-mono text-[8px] tracking-[0.02em] text-ink-secondary/75">
+                        <p className="mt-1.5 font-mono text-[8px] tracking-[0.02em] text-ink-secondary/75">
                           {exp.stack.join('  ·  ')}
                         </p>
                       )}
@@ -154,19 +156,48 @@ export default async function CvPrintPage({
             </section>
           )}
 
-          {/* Selected Projects — condensed to one line each on print */}
+          {/* Earlier Experience */}
+          {resume.earlierExperience && resume.earlierExperience.entries.length > 0 && (
+            <section className="break-inside-avoid">
+              <SectionLabel>{tr ? 'Önceki Deneyimler' : 'Earlier Experience'}</SectionLabel>
+              <div className="flex flex-col gap-1.5">
+                <p className="font-sans text-[10px] leading-[1.4] text-ink-secondary">
+                  {resume.earlierExperience.summary}
+                </p>
+                <div className="mt-1 flex flex-wrap gap-x-6 gap-y-1">
+                  {resume.earlierExperience.entries.map((entry, idx) => (
+                    <div key={idx} className="font-sans text-[9px] text-ink-secondary">
+                      <span className="font-medium text-ink">{entry.company}</span> · {entry.role}{' '}
+                      <span className="font-mono text-[8px] tracking-[0.02em] text-ink-secondary/80">
+                        ({fmtRange(entry.startDate, entry.endDate, locale)})
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Selected Projects */}
           {resume.projects.length > 0 && (
             <section className="break-inside-avoid">
               <SectionLabel>{tr ? 'Seçili Projeler' : 'Selected Projects'}</SectionLabel>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-3">
                 {resume.projects.map((proj) => (
-                  <div key={proj.id} className="flex items-baseline justify-between gap-4">
-                    <span className="min-w-0 truncate font-serif text-[11px] font-medium text-ink">
-                      {proj.title}
-                    </span>
-                    <span className="shrink-0 font-mono text-[8px] tracking-[0.02em] text-ink-secondary/80">
-                      {proj.stack.slice(0, 4).join(' · ')}
-                    </span>
+                  <div key={proj.id} className="break-inside-avoid">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <span className="font-serif text-[11px] font-medium text-ink">
+                        {proj.title}
+                      </span>
+                      <span className="shrink-0 font-mono text-[8px] tracking-[0.02em] text-ink-secondary/80">
+                        {proj.stack.join(' · ')}
+                      </span>
+                    </div>
+                    {proj.summary && (
+                      <p className="mt-0.5 font-sans text-[10px] leading-[1.4] text-ink-secondary">
+                        {proj.summary}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
