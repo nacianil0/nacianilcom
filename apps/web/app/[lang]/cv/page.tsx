@@ -161,10 +161,10 @@ export default async function CvPage({
               )}
 
               <div className="mt-7 flex flex-wrap items-center gap-2.5">
-                <Link href={buildUrl(locale, 'cvPrint')} target="_blank" rel="noopener" className={actionClass}>
+                <a href={`/Naci_Anil_Akman_CV_${locale.toUpperCase()}.pdf`} download target="_blank" rel="noopener noreferrer" className={actionClass}>
                   {tr ? 'PDF indir' : 'Download PDF'}
                   <span aria-hidden="true">↓</span>
-                </Link>
+                </a>
                 <Link href={buildUrl(locale, 'work')} className={actionClass}>
                   {tr ? 'Projeler' : 'Selected work'}
                   <span aria-hidden="true">→</span>
