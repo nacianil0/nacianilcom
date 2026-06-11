@@ -18,7 +18,7 @@ for exp in data["tr"]["experience"]:
             "Avans sürecini dijitalleştirerek modelledim: talep, onay, taksitlendirme ve geri ödeme. Sisteme çoklu şirket desteği ve şirket bazlı yetkilendirme özellikleri kazandırdım."
         ]
     elif exp["id"] == "kansuk-2025":
-        exp["description"] = "Şirket içi İK portalı ve yönetim paneli projelerini ASP.NET MVC ile geliştirdim. Access veritabanları ve masaüstü uygulamalarına dağılmış olan İK verilerini merkezileştirerek web tabanlı tek bir sisteme (SQL Server) taşıdım."
+        exp["description"] = "Şirket içi İK portalı ve yönetim paneli projelerini ASP.NET MVC ile geliştirdim. Access veritabanları ve masaüstü uygulamalara bağlı İK süreçlerini destekledim."
         exp["highlights"] = [
             "Performans değerlendirme, izin takibi ve çalışan yönetimi modüllerini iyileştirdim. Excel ile yürütülen operasyonları web ortamına aktardım.",
             "Farklı sistemlerdeki dağınık kayıtları ilişkisel bir veri modeline dönüştürerek SQL Server üzerinde birleştirdim.",
@@ -62,7 +62,7 @@ for exp in data["en"]["experience"]:
             "Digitalized the advance process end-to-end: request, approval, installments, and repayment. Added multi-company support and company-based authorization features."
         ]
     elif exp["id"] == "kansuk-2025":
-        exp["description"] = "I developed the internal HR portal and management panel using ASP.NET MVC. I centralized HR data scattered across Access databases and desktop applications, migrating it to a single web-based system (SQL Server)."
+        exp["description"] = "I developed the internal HR portal and management panel using ASP.NET MVC. I supported HR processes linked to Access databases and desktop applications."
         exp["highlights"] = [
             "Improved performance review, leave tracking, and employee management modules. Moved operations previously handled via Excel to the web environment.",
             "Consolidated scattered records from different systems into a relational data model on SQL Server.",
