@@ -2,16 +2,13 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Locale } from '@nacianilcom/content-core';
-import { buildUrl } from '@nacianilcom/content-core';
 import { loadResume } from '../../../../src/content/loader';
 import { fmtRange, fmtDuration } from '../../../../src/lib/dateRange';
 import { brandLabel } from '../../../../src/lib/brandLabel';
-import { resolveSiteOrigin, displayOrigin } from '../../../../src/lib/origin';
-import { QrTag } from '../../../../src/components/QrTag';
 
 const VALID_LANGS = new Set(['tr', 'en']);
 
-// The link + QR must reflect the live export origin, so render per request.
+// A print/source view rendered straight from resume.json.
 export const dynamic = 'force-dynamic';
 
 // A print/source view — keep it out of the index.
@@ -45,10 +42,8 @@ export default async function CvPrintPage({
   const role = resume.basics.title;
   const location = resume.basics.location;
 
-  // Link priority: runtime/export origin → NEXT_PUBLIC_SITE_URL → SITE_URL.
-  const origin = await resolveSiteOrigin();
-  const cvUrl = `${origin}${buildUrl(locale, 'cv')}`;
-  const siteLabel = displayOrigin(origin);
+  // Canonical label for the printed CV — never the deploy/preview host.
+  const siteLabel = 'nacianil.com';
 
   return (
     <div className="min-h-screen bg-surface text-ink">
@@ -239,13 +234,12 @@ export default async function CvPrintPage({
           </section>
         </div>
 
-        {/* ── Footer: live link + QR ───────────────────────────────── */}
+        {/* ── Footer: live link ────────────────────────────────────── */}
         <footer className="mt-3 flex items-end justify-between gap-4 border-t-2 border-ink pt-2">
           <div className="font-mono text-[8px] uppercase leading-[1.6] tracking-[0.14em] text-ink-secondary">
             <p className="text-[9px] tracking-[0.1em] text-ink">{siteLabel}</p>
-            <p>{tr ? 'Güncel CV için kodu okutun' : 'Scan for the live CV'}</p>
+            <p>{tr ? 'Güncel CV için siteyi ziyaret edin' : 'Visit the site for the live CV'}</p>
           </div>
-          <QrTag value={cvUrl} size={52} />
         </footer>
       </main>
     </div>

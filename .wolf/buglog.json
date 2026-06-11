@@ -364,6 +364,70 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-11T07:54:22.160Z"
+    },
+    {
+      "id": "bug-022",
+      "timestamp": "2026-06-11T08:24:11.671Z",
+      "error_message": "Incorrect value in code",
+      "file": "content/resume/resume.json",
+      "root_cause": "Had \".NET ve React ile kurumsal portal, İK ve seyahat ",
+      "fix": "Changed to \".NET ve React ile kurumsal portal, İK ve seyahat ",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 12,
+      "last_seen": "2026-06-11T08:26:19.975Z"
+    },
+    {
+      "id": "bug-023",
+      "timestamp": "2026-06-11T08:26:28.248Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/components/SiteFooter.tsx",
+      "root_cause": "Had \"https://github.com/nacianilakman\"",
+      "fix": "Changed to \"https://github.com/nacianil0\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T08:26:28.248Z"
+    },
+    {
+      "id": "bug-024",
+      "timestamp": "2026-06-11T08:26:51.454Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/app/[lang]/cv/print/page.tsx",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 7→4 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T08:26:51.454Z"
+    },
+    {
+      "id": "bug-025",
+      "timestamp": "2026-06-11T08:27:08.486Z",
+      "error_message": "CSS fix: Footer",
+      "file": "apps/web/app/[lang]/cv/print/page.tsx",
+      "root_cause": "Footer: live link + QR ───────────────────────────────── */ → live link ────────────────────────────────────── */",
+      "fix": "Changed Footer: live link + QR ───────────────────────────────── */ → live link ────────────────────────────────────── */",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T08:27:08.486Z"
     }
   ]
 }

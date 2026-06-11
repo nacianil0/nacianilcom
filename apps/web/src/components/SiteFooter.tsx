@@ -37,7 +37,7 @@ export function SiteFooter({ lang }: SiteFooterProps) {
                 {n.label}
               </Link>
             ))}
-            <a href="https://github.com/nacianilakman" target="_blank" rel="noopener noreferrer" className={linkClass}>
+            <a href="https://github.com/nacianil0" target="_blank" rel="noopener noreferrer" className={linkClass}>
               {brandLabel('GitHub')}
             </a>
             <a href="https://www.linkedin.com/in/nacianilakman" target="_blank" rel="noopener noreferrer" className={linkClass}>

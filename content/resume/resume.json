@@ -3,8 +3,8 @@
     "basics": {
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "tagline": ".NET ve React ile kurumsal portal, İK ve seyahat sistemlerini analizden canlıya kadar uçtan uca geliştiriyorum; her projeyi product owner gibi sahipleniyorum.",
-      "summary": "Eroğlu Global Holding'de Türkiye ve Mısır'daki grup şirketleri için tek girişli kurumsal portal, seyahat yönetimi ve İK/avans sistemleri geliştiriyorum: ortak yetkilendirme, eski uygulamalardan veri taşıma, raporlama ve OCR ile belge okuma. Koda başlamadan önce problemi, kullanıcıyı ve süreci analiz ediyor; mimariyi, arayüzü, backend'i ve canlıya almayı birlikte yürütüyorum. Yan tarafta RAG, embedding ve vektör arama üzerine kurulu bir AI e-posta asistanı geliştiriyorum.",
+      "tagline": ".NET ve React ile kurumsal portal, İK ve seyahat sistemleri geliştiriyorum; devraldığım sistemleri analiz edip modernize ediyor, işi mimariden canlıya kadar sahipleniyorum.",
+      "summary": "Eroğlu Global Holding'de Türkiye ve Mısır'daki grup şirketleri için kurumsal portal, seyahat yönetimi ve İK/avans sistemleri üzerinde çalışıyorum. Devraldığım uygulamaları bakım seviyesinde tutmak yerine analiz edip mimari, arayüz, backend ve canlıya alma tarafıyla birlikte yeniden ele alıyorum; ayrı uygulamaları ortak auth, yetkilendirme ve Dashboard deneyimine yaklaştırıyorum. Yan tarafta RAG, embedding ve Qdrant tabanlı bir AI e-posta asistanı geliştiriyorum.",
       "primaryStack": [".NET", "ASP.NET Core", "C#", "React", "TypeScript", "SQL Server"],
       "photo": "/photo/naci.jpg",
       "location": "İstanbul, Türkiye"
@@ -20,11 +20,11 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "Holding'in şirket içi kurumsal uygulamalarını geliştiriyorum: kurumsal erişim paneli (Portal/Dashboard), seyahat yönetim sistemi ve İK avans modülü. Türkiye'de yaklaşık 200-300 holding çalışanı ve Mısır'daki 4 fabrika için tek giriş, ortak yetkilendirme ve ortak bir arayüzle çalışıyorum; tek geliştirici olarak işin tamamını üstleniyorum.",
+        "description": "Holding'in şirket içi kurumsal uygulamalarını geliştiriyorum: kurumsal erişim paneli (Portal/Dashboard), seyahat yönetim sistemi ve İK avans modülü. Türkiye'de yaklaşık 200-300 holding çalışanı ve Mısır'daki 4 fabrika için tek giriş, ortak yetkilendirme ve ortak bir arayüz hedefliyorum. Devraldığım sistemleri analiz edip Dashboard/İK omurgasına uyumlu hale getiriyor, ilgili modüllerde analizden uygulamaya kadar ana geliştirme sorumluluğunu taşıyorum.",
         "highlights": [
-          "Holding'in kurumsal erişim panelini (Portal) sıfırdan kurdum: izne göre uygulama kataloğu, hedefli duyuru akışı, yemek menüsü ve bildirim merkezini tek girişin arkasında topladım.",
-          "Önceki geliştiriciden devraldığım seyahat yönetim sistemini ayrı uygulamadan çıkarıp Dashboard omurgasına taşıdım; ikinci login ile kopuk yetki modelini kaldırıp SSO ve ortak izin modeline bağladım. Sistem, holding genelinde birkaç milyon dolarlık seyahat/bütçe sürecini yönetiyor.",
-          "İK avans modülünde fiş/fatura okuma akışını Datalab ve OpenAI OCR ile kurdum: belge tespiti, tutar/tarih çıkarımı, güven skoru ve görsel doğrulama; manuel veri girişini azalttı.",
+          "Devraldığım kurumsal erişim panelini (Portal/Dashboard) analiz edip modernize ettim: izne göre uygulama kataloğu, hedefli duyuru akışı, yemek menüsü ve bildirim merkezini tek girişin arkasında ortak bir arayüzde topladım.",
+          "Önceki geliştiriciden devraldığım seyahat yönetim sistemini ayrı uygulama ve ikinci login mantığından çıkarıp Dashboard omurgasına taşıdım; kopuk yetki modelini kaldırıp SSO ve ortak izin modeline bağladım, mevcut yapı yerine veri, UI ve backend tarafını yeniden ele aldım.",
+          "İK avans modülünde fiş/fatura okuma akışını Datalab ve OpenAI OCR ile geliştirdim: belge tespiti, tutar/tarih çıkarımı, güven skoru ve görsel doğrulama; manuel veri girişini azalttı.",
           "Çok şirketli avans sürecini uçtan uca modelledim: talep, teslim, fiş onayı, taksit ve geri ödeme; kısmi teslim ve şirket bazlı yetki dahil."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "ASP.NET Core", "Entity Framework Core", "SQL Server", "OpenAI"],
@@ -37,11 +37,11 @@
         "role": "Full Stack Developer",
         "startDate": "2025-10",
         "endDate": "2026-02",
-        "description": "Şirket içi İK portalı ve yönetim ekranları geliştirdim. Access ve masaüstündeki dağınık İK verisini web tabanlı tek bir sisteme taşıyarak üretim ve İK süreçlerini dijitalleştirdim.",
+        "description": "Devraldığım şirket içi İK portalı ve yönetim ekranlarını ASP.NET MVC ile geliştirdim. Access ve masaüstüne dağılmış İK verisinin web tabanlı tek bir sisteme taşınması ve SQL Server üzerinde toparlanması için geliştirmeler yaptım.",
         "highlights": [
-          "ASP.NET MVC ile performans değerlendirme, izin takibi ve çalışan yönetimi ekranları geliştirdim; Excel ve masaüstüne yayılmış İK süreçlerini tek web sisteminde topladım.",
-          "Access ve masaüstü uygulamalarındaki veriyi SQL Server'da tek kaynağa taşıdım; kopuk kayıtları ortak bir veri modelinde birleştirdim.",
-          "Yöneticiler için raporlama ekranları ve rol bazlı yetkilendirme kurdum; elle takip ve manuel raporlamayı azalttım."
+          "Performans değerlendirme, izin takibi ve çalışan yönetimi modüllerinde bakım, geliştirme ve süreç iyileştirmeleri yaptım; Excel ve masaüstüne yayılmış İK süreçlerini web tarafına taşıdım.",
+          "Access ve masaüstü uygulamalarındaki dağınık veriyi SQL Server'da tek kaynağa toparladım; kopuk kayıtları ortak bir veri modelinde birleştirdim.",
+          "Yöneticiler için raporlama ekranları ve rol bazlı yetkilendirme geliştirdim; elle takip ve manuel raporlamayı azalttım."
         ],
         "stack": ["C#", ".NET", "ASP.NET MVC", "Entity Framework", "SQL Server", "React"],
         "visibility": "public",
@@ -58,7 +58,8 @@
           "Oriento'yu baştan sona geliştirdik: onboarding/offboarding, interaktif eğitim, görev yönetimi ve raporlama. ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark ve Assan Grubu gibi kurumsal müşterilerde kullanıldı.",
           "FNSS için on-prem kurulan sürümden yola çıkarak bulut ortamına ayrı bir versiyon uyarladık: rol bazlı yönetim, oryantasyon, onboarding/offboarding akışları ve personel görevlerinin buddy eşleştirmesiyle takibi.",
           "REST API ve Entity Framework ile veri katmanını kurduk; modülleri farklı müşterilere uyarlanabilir biçimde tasarladık.",
-          "Turkcell iş birliğiyle yürütülen projelerde çalıştık: çocuklar için internet güvenliği oyunu (Galaksel), yapay zeka destekli ödül platformu (Awarder AI) ve bir sohbet botu (LunaBuddy)."
+          "Turkcell iş birliğiyle yürütülen projelerde çalıştık; çocuklar için internet güvenliği oyunu (Galaksel) bunlardan biriydi.",
+          "Awarder AI ve LunaBuddy gibi erken AI ürün denemelerinde yer aldım; metin işleme ve PDF tabanlı chatbot yaklaşımlarının sınırlı kaldığı noktaları görerek RAG, embedding ve vektör arama ihtiyacını netleştirdim."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "Entity Framework", "Tailwind CSS", "WordPress"],
         "visibility": "public",
@@ -66,7 +67,7 @@
       }
     ],
     "earlierExperience": {
-      "summary": "Digitallica öncesinde farklı şirketlerde kısa süreli roller; JavaScript, HTML/CSS, Delphi ve Oracle ile web geliştirme.",
+      "summary": "Digitallica öncesinde Arcadias Tech, Bizmed — Sinerji Bilişim ve Yüce Yazılım'da junior/stajyer rollerde çalıştım; JavaScript, HTML/CSS, Delphi ve Oracle ile web geliştirme, arayüz iyileştirme ve backend görevleri.",
       "entries": [
         {
           "company": "Bizmed — Sinerji Bilişim",
@@ -133,7 +134,7 @@
       {
         "id": "kurumsal-dashboard",
         "title": "Kurumsal Dashboard (Portal)",
-        "summary": "Holding çalışanları için tek girişli kurumsal erişim paneli. Duyuru, yemek menüsü, uygulama kataloğu ve rol bazlı yetkiyi tek yerde toplar; Türkiye ve Mısır'daki grup şirketlerini kapsar.",
+        "summary": "Devralıp modernize ettiğim, holding çalışanları için tek girişli kurumsal erişim paneli (Portal/Dashboard). Duyuru, yemek menüsü, uygulama kataloğu ve rol bazlı yetkiyi tek yerde toplar; Türkiye ve Mısır'daki grup şirketlerini kapsar.",
         "caseSlug": "kurumsal-dashboard",
         "stack": ["React", "TypeScript", ".NET", "ASP.NET Core", "SQL Server"],
         "visibility": "public"
@@ -149,9 +150,9 @@
       {
         "id": "mail-agent",
         "title": "AI Mail Copilot",
-        "summary": "Kişisel olarak geliştirdiğim AI e-posta asistanı. Geçmiş e-postaları, müşteri bağlamını ve kurum içi cevap örüntülerini embedding'lerle vektör aramaya açıp kanıt destekli cevap taslağı üretir. Otomatik gönderim kapalı; her taslak kullanıcı onayından geçer.",
+        "summary": "Kişisel/hafta sonu projesi olarak geliştirdiğim, geliştirme aşamasındaki AI e-posta asistanı. Geçmiş e-postaları, müşteri bağlamını ve kurum içi cevap örüntülerini embedding modelleriyle temsil edip Qdrant üzerinde semantik aramaya açıyor, RAG ile kanıt destekli cevap taslakları üretmeyi hedefliyor. Aynı müşteri ve benzer talep çoğu zaman aynı kelimelerle gelmediğinden keyword arama yetersiz kalır; embedding + vektör arama, geçmiş iletişim hafızasını anlam bazlı geri çağırmak için daha doğru mimaridir. Mailbox indeksleme, memory ve kanıt (evidence) katmanı mevcut; otomatik gönderim kapalı, her taslak insan onayından (human-in-the-loop) geçer.",
         "caseSlug": "mail-agent",
-        "stack": ["OpenAI", "RAG", "Qdrant", "Microsoft Graph", ".NET", "React", "TypeScript", "Entity Framework Core", "SQL Server"],
+        "stack": ["OpenAI", "RAG", "Embedding", "Qdrant", "Microsoft Graph", ".NET", "React", "TypeScript", "Entity Framework Core", "SQL Server"],
         "visibility": "public"
       },
       {
@@ -164,7 +165,7 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/nacianilakman", "visibility": "public" },
+      { "label": "GitHub", "url": "https://github.com/nacianil0", "visibility": "public" },
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/nacianilakman", "visibility": "public" }
     ],
     "credentials": [
@@ -228,8 +229,8 @@
     "basics": {
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "tagline": "I build enterprise portal, HR, and travel systems end to end with .NET and React — from analysis to production — and I own each project like a product owner.",
-      "summary": "At Eroğlu Global Holding I build single sign-on enterprise portal, travel management, and HR/advance systems for the group companies in Turkey and Egypt: shared authorization, data migration from legacy apps, reporting, and document reading with OCR. Before writing code I analyze the problem, the user, and the process; I handle the architecture, UI, backend, and release together. On the side I'm building an AI email assistant grounded in RAG, embeddings, and vector search.",
+      "tagline": "I build enterprise portal, HR, and travel systems with .NET and React; I take over existing systems, analyze and modernize them, and own the work from architecture to release.",
+      "summary": "At Eroğlu Global Holding I work on enterprise portal, travel management, and HR/advance systems for the group companies in Turkey and Egypt. Instead of keeping the apps I inherited at maintenance level, I analyze them and rework the architecture, UI, backend, and release together; I pull standalone apps toward shared auth, permissions, and one Dashboard experience. On the side I'm building an AI email assistant grounded in RAG, embeddings, and Qdrant vector search.",
       "primaryStack": [".NET", "ASP.NET Core", "C#", "React", "TypeScript", "SQL Server"],
       "photo": "/photo/naci.jpg",
       "location": "İstanbul, Türkiye"
@@ -245,10 +246,10 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "I build the holding's internal enterprise apps: the enterprise access panel (Portal/Dashboard), the travel management system, and the HR advance module. I work across roughly 200-300 holding employees in Turkey and 4 factories in Egypt with single sign-on, shared authorization, and one shared interface, and as the sole developer I own the whole job.",
+        "description": "I build the holding's internal enterprise apps: the enterprise access panel (Portal/Dashboard), the travel management system, and the HR advance module. For roughly 200-300 holding employees in Turkey and the factories in Egypt, I'm working toward single sign-on, shared authorization, and one shared interface. I analyze the systems I inherited and align them with the Dashboard/HR backbone, owning the main development — analysis to implementation — across these modules.",
         "highlights": [
-          "Built the holding's enterprise access panel (Portal) from scratch: a permission-based application catalog, a targeted announcement feed, the meal menu, and a notification center, all behind one login.",
-          "Took over the travel management system from the previous developer, pulled it out of its standalone app, and moved it onto the Dashboard backbone; removed the second login and the disconnected permission model and tied it to SSO and the shared authorization model. The system runs a multi-million-dollar travel/budget process across the holding.",
+          "Analyzed and modernized the enterprise access panel (Portal/Dashboard) I took over: brought a permission-based application catalog, a targeted announcement feed, the meal menu, and a notification center into one shared interface behind a single login.",
+          "Took over the travel management system from the previous developer, pulled it out of its standalone app and second-login model, and moved it onto the Dashboard backbone; removed the disconnected permission model, tied it to SSO and shared permissions, and reworked the data, UI, and backend instead of keeping the old structure.",
           "Built receipt/invoice reading in the HR advance module with Datalab and OpenAI OCR: document detection, amount/date extraction, confidence scoring, and visual checking, which cut manual data entry.",
           "Modeled the multi-company advance process end to end: request, delivery, receipt approval, installments, and repayment — including partial delivery and per-company permissions."
         ],
@@ -262,11 +263,11 @@
         "role": "Full Stack Developer",
         "startDate": "2025-10",
         "endDate": "2026-02",
-        "description": "I built an internal HR portal and management screens. I moved scattered HR data from Access and desktop tools into a single web-based system, digitizing production and HR processes.",
+        "description": "I developed the internal HR portal and management screens I took over, using ASP.NET MVC. I worked on moving HR data scattered across Access and desktop tools into a single web-based system and consolidating it on SQL Server.",
         "highlights": [
-          "Built performance review, leave tracking, and employee management screens with ASP.NET MVC, bringing HR processes scattered across Excel and desktop tools into one web system.",
-          "Moved data from Access and desktop apps into a single source on SQL Server, merging disconnected records into one shared data model.",
-          "Built reporting screens and role-based permissions for managers, cutting manual tracking and hand-built reports."
+          "Maintained, developed, and improved the performance-review, leave-tracking, and employee-management modules; moved HR processes scattered across Excel and desktop tools onto the web.",
+          "Consolidated scattered data from Access and desktop apps into a single source on SQL Server, merging disconnected records into one shared data model.",
+          "Developed reporting screens and role-based permissions for managers, cutting manual tracking and hand-built reports."
         ],
         "stack": ["C#", ".NET", "ASP.NET MVC", "Entity Framework", "SQL Server", "React"],
         "visibility": "public",
@@ -283,7 +284,8 @@
           "Built Oriento end to end: onboarding/offboarding, interactive training, task management, and reporting. Used by enterprise clients including ING Bank, Kibar Holding, FNSS, SoftTech (İş Bankası), Neqsol, Inspark, and Assan Group.",
           "For FNSS, adapted a separate cloud version from the existing on-prem deployment: role-based administration, orientation, onboarding/offboarding workflows, and employee tasks with buddy pairing and tracking.",
           "Set up the data layer with REST APIs and Entity Framework, and designed the modules so they could be adapted per client.",
-          "Worked on Turkcell partnership projects: an internet-safety game for kids (Galaksel), an AI-assisted rewards platform (Awarder AI), and a chatbot (LunaBuddy)."
+          "Worked on Turkcell partnership projects, including an internet-safety game for kids (Galaksel).",
+          "Took part in early AI product experiments such as Awarder AI and LunaBuddy; seeing where plain text processing and PDF-based chatbots fell short clarified the need for RAG, embeddings, and vector search."
         ],
         "stack": ["React", "TypeScript", ".NET", "C#", "Entity Framework", "Tailwind CSS", "WordPress"],
         "visibility": "public",
@@ -291,7 +293,7 @@
       }
     ],
     "earlierExperience": {
-      "summary": "Short roles at a few companies before Digitallica; web development with JavaScript, HTML/CSS, Delphi, and Oracle.",
+      "summary": "Before Digitallica, junior/intern roles at Arcadias Tech, Bizmed — Sinerji Bilişim, and Yüce Yazılım; web development, UI improvements, and backend work with JavaScript, HTML/CSS, Delphi, and Oracle.",
       "entries": [
         {
           "company": "Bizmed — Sinerji Bilişim",
@@ -358,7 +360,7 @@
       {
         "id": "kurumsal-dashboard",
         "title": "Enterprise Dashboard (Portal)",
-        "summary": "Single sign-on access panel for holding employees. Brings announcements, the meal menu, the application catalog, and role-based permissions into one place; spans the group companies in Turkey and Egypt.",
+        "summary": "An enterprise access panel (Portal/Dashboard) I took over and modernized — single sign-on for holding employees. Brings announcements, the meal menu, the application catalog, and role-based permissions into one place; spans the group companies in Turkey and Egypt.",
         "caseSlug": "kurumsal-dashboard",
         "stack": ["React", "TypeScript", ".NET", "ASP.NET Core", "SQL Server"],
         "visibility": "public"
@@ -374,9 +376,9 @@
       {
         "id": "mail-agent",
         "title": "AI Mail Copilot",
-        "summary": "A self-initiated AI email assistant. It turns past emails, customer context, and in-house reply patterns into searchable embeddings and drafts evidence-backed replies. Auto-send is off; every draft goes through user approval.",
+        "summary": "An AI email assistant I'm building as a personal/weekend project — still in development. It represents past emails, customer context, and in-house reply patterns with embedding models and opens them to semantic search on Qdrant, aiming to draft evidence-backed replies with RAG. Since the same customer and similar requests rarely arrive in the same words, keyword search falls short; embeddings plus vector search are a better fit for recalling past-communication memory by meaning. It includes mailbox indexing, a memory layer, and an evidence layer; auto-send is off and every draft goes through human-in-the-loop approval.",
         "caseSlug": "mail-agent",
-        "stack": ["OpenAI", "RAG", "Qdrant", "Microsoft Graph", ".NET", "React", "TypeScript", "Entity Framework Core", "SQL Server"],
+        "stack": ["OpenAI", "RAG", "Embedding", "Qdrant", "Microsoft Graph", ".NET", "React", "TypeScript", "Entity Framework Core", "SQL Server"],
         "visibility": "public"
       },
       {
@@ -389,7 +391,7 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/nacianilakman", "visibility": "public" },
+      { "label": "GitHub", "url": "https://github.com/nacianil0", "visibility": "public" },
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/nacianilakman", "visibility": "public" }
     ],
     "credentials": [

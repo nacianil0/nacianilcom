@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-11T07:57:53.327Z
-> Files: 6 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-11T08:27:08.468Z
+> Files: 8 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
@@ -58,6 +58,7 @@
 
 ## apps/web/app/[lang]/cv/print/
 
+- `page.tsx` — Accent mono section label — replaces the web's left rail to save print width. (~3103 tok)
 
 ## apps/web/app/[lang]/feed.xml/
 
@@ -97,6 +98,7 @@
 
 ## apps/web/src/components/
 
+- `SiteFooter.tsx` — SiteFooter (~667 tok)
 
 ## apps/web/src/content/
 
@@ -157,7 +159,7 @@
 
 ## content/resume/
 
-- `resume.json` (~6818 tok)
+- `resume.json` (~7360 tok)
 
 ## content/resume/portfolio/kurumsal-dashboard/
 

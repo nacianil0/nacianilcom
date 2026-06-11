@@ -712,3 +712,30 @@
 | 10:55 | Mail Agent doğrulama | C:\dev\Eroglu.Agent | Grep ile gerçek RAG kodu doğrulandı: RetrievalService, QdrantVectorStore, OpenAiEmbeddingProvider, EmbeddingJob, GraphMailProvider/Sender, DraftGenerationJob, EfRetrievalScopeBuilder, AiIndexedChunk + EF migrations. Dev-stage (production değil). Cerebrum'daki "no application code" notu eskidi | ~1500 |
 | 10:57 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_cv_strengthen.md | — | ~550 |
 | 10:57 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | 1→2 lines | ~99 |
+| 10:58 | Session end: 8 writes across 4 files (resume.json, case.json, project_cv_strengthen.md, MEMORY.md) | 17 reads | ~12578 tok |
+
+## Session: 2026-06-11 11:15
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 11:24 | Edited content/resume/resume.json | 2→2 lines | ~194 |
+| 11:24 | Edited content/resume/resume.json | 7→7 lines | ~396 |
+| 11:24 | Edited content/resume/resume.json | 6→6 lines | ~224 |
+| 11:24 | Edited content/resume/resume.json | 1→2 lines | ~102 |
+| 11:24 | Edited content/resume/resume.json | inline fix | ~67 |
+| 11:25 | Edited content/resume/resume.json | inline fix | ~74 |
+| 11:25 | Edited content/resume/resume.json | inline fix | ~192 |
+| 11:25 | Edited content/resume/resume.json | inline fix | ~26 |
+| 11:25 | Edited content/resume/resume.json | inline fix | ~42 |
+| 11:25 | Edited content/resume/resume.json | 2→2 lines | ~196 |
+| 11:25 | Edited content/resume/resume.json | 7→7 lines | ~441 |
+| 11:25 | Edited content/resume/resume.json | 6→6 lines | ~222 |
+| 11:26 | Edited content/resume/resume.json | 1→2 lines | ~93 |
+| 11:26 | Edited content/resume/resume.json | inline fix | ~63 |
+| 11:26 | Edited content/resume/resume.json | inline fix | ~82 |
+| 11:26 | Edited content/resume/resume.json | inline fix | ~186 |
+| 11:26 | Edited apps/web/src/components/SiteFooter.tsx | "https://github.com/nacian" → "https://github.com/nacian" | ~33 |
+| 11:26 | Edited apps/web/app/[lang]/cv/print/page.tsx | 7→4 lines | ~72 |
+| 11:26 | Edited apps/web/app/[lang]/cv/print/page.tsx | 2→2 lines | ~28 |
+| 11:27 | Edited apps/web/app/[lang]/cv/print/page.tsx | 4→2 lines | ~31 |
+| 11:27 | Edited apps/web/app/[lang]/cv/print/page.tsx | 8→7 lines | ~142 |
