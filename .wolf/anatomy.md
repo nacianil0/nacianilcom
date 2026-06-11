@@ -1,12 +1,12 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-11T15:54:21.685Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-11T19:41:02.810Z
 > Files: 9 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
-- `MEMORY.md` — Memory Index (~376 tok)
-- `project_cv_strengthen.md` (~535 tok)
+- `MEMORY.md` — Memory Index (~394 tok)
+- `project_cv_strengthen.md` (~933 tok)
 
 ## ./
 
@@ -55,7 +55,7 @@
 
 ## apps/web/app/[lang]/cv/
 
-- `page.tsx` — Web CV (SSG, web-visibility). Masthead hero: name+accent period, serif tagline, summary, primaryStack chips, photo + hairline-ruled `<dl>` spec aside (Şu an/Deneyim). SectionRail sections: Experience / Projects (case-study + external links, arrow-shift hover) / Skills / Earlier / Education / Credentials. (~6500 tok)
+- `page.tsx` — VALID_LANGS (~6522 tok)
 
 ## apps/web/app/[lang]/cv/print/
 
@@ -160,11 +160,11 @@
 
 ## content/resume/
 
-- `resume.json` (~7360 tok)
+- `resume.json` (~7737 tok)
 
 ## content/resume/portfolio/kurumsal-dashboard/
 
-- `case.json` — Declares everyone (~1216 tok)
+- `case.json` — Declares everyone (~1181 tok)
 
 ## content/resume/portfolio/mail-agent/
 
@@ -172,7 +172,7 @@
 
 ## content/resume/portfolio/seyahat-projesi/
 
-- `case.json` — Declares looked (~1475 tok)
+- `case.json` — Declares looked (~1458 tok)
 
 ## content/series/
 

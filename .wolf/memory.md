@@ -764,3 +764,49 @@
 | 18:48 | CV design refresh (frontend-design): PRINT -> single-A4 CV core (HIGHLIGHT_CAP [3,2,1], desc on lead role only, 2-col projects+edu/certs, hairline rails, footer) + screenshot appendix via break-before-page (each figure break-inside-avoid); WEB -> hairline-ruled dl spec aside + project-link arrow-shift hover | apps/web/app/[lang]/cv/print/page.tsx, apps/web/app/[lang]/cv/page.tsx | page-1 fits A4: TR 1081px / EN 1095px (<=1122.5); typecheck clean; no console/server errors | ~12000 |
 | 18:54 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | inline fix | ~44 |
 | 18:55 | Session end: 18 writes across 2 files (page.tsx, MEMORY.md) | 21 reads | ~16561 tok |
+| 22:16 | CV evaluation with grill-me style | content/resume/resume.json; content/resume/portfolio/*.json | identified strengths, risks, and first target-role question; no code changes | ~9000 |
+
+## Session: 2026-06-11 22:22
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:33 | Edited content/resume/resume.json | inline fix | ~61 |
+| 22:33 | Edited content/resume/resume.json | inline fix | ~217 |
+| 22:33 | Edited content/resume/resume.json | inline fix | ~77 |
+| 22:33 | Edited content/resume/resume.json | "Bağımsız çalışan seyahat " → "Önceki geliştiriciden dev" | ~66 |
+| 22:33 | Edited content/resume/resume.json | "İK avans modülüne Datalab" → "İK avans modülüne Datalab" | ~57 |
+| 22:33 | Edited content/resume/resume.json | "Personel performans değer" → "Personel performans değer" | ~32 |
+| 22:33 | Edited content/resume/resume.json | inline fix | ~61 |
+| 22:33 | Edited content/resume/resume.json | "Oriento platformunda onbo" → "Oriento" | ~61 |
+| 22:33 | Edited content/resume/resume.json | "FNSS için mevcut on-prem " → "FNSS için on-prem platfor" | ~50 |
+| 22:33 | Edited content/resume/resume.json | "Veri katmanını REST API v" → "Veri katmanını REST API v" | ~38 |
+| 22:34 | Edited content/resume/resume.json | inline fix | ~12 |
+| 22:34 | Edited content/resume/resume.json | 2→2 lines | ~19 |
+| 22:34 | Edited content/resume/resume.json | inline fix | ~57 |
+| 22:34 | Edited content/resume/resume.json | inline fix | ~224 |
+| 22:34 | Edited content/resume/resume.json | inline fix | ~81 |
+| 22:34 | Edited content/resume/resume.json | "Integrated the standalone" → "Moved the standalone trav" | ~77 |
+| 22:34 | Edited content/resume/resume.json | "Integrated Datalab and Op" → "Added Datalab and OpenAI " | ~58 |
+| 22:34 | Edited content/resume/resume.json | "Worked on the employee pe" → "On the employee performan" | ~29 |
+| 22:34 | Edited content/resume/resume.json | inline fix | ~61 |
+| 22:34 | Edited content/resume/resume.json | "Built the orientation/off" → "Did full stack work on th" | ~64 |
+| 22:34 | Edited content/resume/resume.json | "Adapted the existing on-p" → "Worked on the cloud versi" | ~50 |
+| 22:34 | Edited content/resume/resume.json | "Built the data layer with" → "Built the data layer with" | ~36 |
+| 22:34 | Edited content/resume/resume.json | inline fix | ~14 |
+| 22:34 | Edited content/resume/resume.json | 2→2 lines | ~19 |
+| 22:34 | Edited content/resume/portfolio/kurumsal-dashboard/case.json | inline fix | ~41 |
+| 22:34 | Edited content/resume/portfolio/kurumsal-dashboard/case.json | inline fix | ~52 |
+| 22:34 | Edited content/resume/portfolio/kurumsal-dashboard/case.json | inline fix | ~47 |
+| 22:34 | Edited content/resume/portfolio/kurumsal-dashboard/case.json | inline fix | ~55 |
+| 22:34 | Edited content/resume/portfolio/seyahat-projesi/case.json | inline fix | ~61 |
+| 22:34 | Edited content/resume/portfolio/seyahat-projesi/case.json | inline fix | ~75 |
+| 22:35 | Edited content/resume/portfolio/seyahat-projesi/case.json | inline fix | ~76 |
+| 22:35 | Edited content/resume/portfolio/seyahat-projesi/case.json | inline fix | ~90 |
+| 22:35 | Edited apps/web/app/[lang]/cv/page.tsx | 2→2 lines | ~99 |
+
+| 22:37 | CV text revision: Eroglu over-claim + SSO fix, Digitallica to backbone, AI-smell cleanup | content/resume/resume.json, portfolio/{kurumsal-dashboard,seyahat-projesi}/case.json, apps/web cv/page.tsx | 33 edits (TR+EN), JSON valid; mail-agent untouched | ~3500 tok |
+| 22:40 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | inline fix | ~108 |
+| 22:40 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_cv_strengthen.md | "CV güçlendirme (2026-06-1" → "CV güçlendirme (2026-06-1" | ~91 |
+| 22:40 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_cv_strengthen.md | amiral() → rma() | ~404 |
+| 22:41 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_cv_strengthen.md | "ler content-core Zod" → "JSON.parse" | ~137 |
+| 22:41 | Session end: 37 writes across 5 files (resume.json, case.json, page.tsx, MEMORY.md, project_cv_strengthen.md) | 7 reads | ~14330 tok |

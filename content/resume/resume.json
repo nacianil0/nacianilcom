@@ -3,8 +3,8 @@
     "basics": {
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "tagline": ".NET ve React ile kurumsal portal, İK ve seyahat sistemleri geliştiriyorum. Mevcut projeleri analiz edip mimariden canlıya alınmasına kadar tüm süreçleri yönetiyorum.",
-      "summary": "Eroğlu Global Holding bünyesindeki grup şirketleri ve Mısır'daki 4 fabrika (EMS, EG, DNM vb.) için kurumsal portal, seyahat yönetimi ve İK/avans sistemleri geliştiriyorum. Mısır'daki yerel operasyonlar ve uluslararası kullanıcı gruplarıyla çalışarak onlara özel çok dilli geliştirmeler yapıyor; mevcut uygulamaları mimari ve arayüz olarak yenileyip ortak bir yetki modeli altında birleştiriyorum. Geçmişte Digitallica'da çok kiracılı (multi-tenant) kurumsal oryantasyon platformu Oriento'yu geliştirme deneyimi edindim. Eş zamanlı olarak RAG ve Qdrant tabanlı bir yapay zeka e-posta asistanı projesi üzerinde çalışıyorum.",
+      "tagline": "Ağırlıklı .NET, React ve SQL Server ile kurumsal web uygulamaları, iç portallar ve multi-tenant ürünler geliştiriyorum; yetkilendirme, migration ve sistem entegrasyonu tarafında deneyimliyim.",
+      "summary": "Kurumsal web uygulamaları, iç portallar ve multi-tenant ürünler tarafında çalışan bir full stack developer'ım; ağırlık .NET, React ve SQL Server'da. En uzun durağım Digitallica oldu (2021–2025): çok kiracılı oryantasyon/eğitim platformu Oriento'da onboarding, eğitim, görev yönetimi ve raporlama modüllerinde full stack geliştirme yaptım; ürün ING Bank, Kibar Holding, FNSS ve SoftTech gibi şirketlerde kullanıldı. Şu an Eroğlu Global Holding'de Türkiye ve Mısır operasyonları için kurumsal Dashboard, seyahat ve İK avans modülleri geliştiriyorum; ayrı çalışan uygulamaları mevcut tek giriş ve ortak yetki modeli altında toparlıyorum. Bunların dışında, RAG ve Qdrant tabanlı bir AI e-posta asistanını kişisel proje olarak geliştiriyorum.",
       "primaryStack": [
         ".NET",
         "ASP.NET Core",
@@ -39,11 +39,11 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "Holdingin kurumsal erişim paneli, seyahat yönetimi ve İK avans modüllerini geliştiriyorum. Türkiye ve Mısır'daki operasyonlar için tek giriş (SSO) ve merkezi yetkilendirme altyapısı kuruyorum. Mevcut sistemleri analiz ederek bu yeni yapıya entegre ediyor ve tüm geliştirme süreçlerini yürütüyorum.",
+        "description": "Türkiye ve Mısır operasyonları için kurumsal Dashboard, seyahat ve İK avans modüllerini geliştiriyorum. Ayrı çalışan uygulamaları mevcut tek giriş ve ortak yetki modeli altında toparlıyor, holdingin İK sistemine (Eroglu.HR) entegre ediyorum.",
         "highlights": [
           "Mevcut kurumsal erişim panelini yenileyerek; rol bazlı uygulama kataloğu, hedefli duyuru akışı, yemek menüsü ve bildirim merkezini tek giriş üzerinden hizmet veren merkezi bir arayüzde topladım.",
-          "Bağımsız çalışan seyahat yönetim sistemini ana panele entegre ettim. İkinci login gereksinimini kaldırarak SSO altyapısına geçirdim, veri ve yetki modelini holdingin ortak yapısına uyumlu hale getirdim.",
-          "İK avans modülüne Datalab ve OpenAI OCR entegrasyonu ekledim. Fiş ve faturalardan tutar/tarih çıkarımı, güven skoru hesaplama ve görsel doğrulama özellikleriyle manuel veri girişini büyük ölçüde azalttım.",
+          "Önceki geliştiriciden devraldığım, ayrı çalışan seyahat sistemini ana panele taşıdım: ikinci login'i kaldırıp mevcut tek giriş ve ortak yetki modeline bağladım, veri modelini holdingin yapısına uyumlu hale getirdim.",
+          "İK avans modülüne Datalab ve OpenAI OCR entegrasyonu ekledim: fiş ve faturalardan tutar/tarih çıkarımı, güven skoru ve görsel doğrulama ile çoğu alanın elle girilmesine gerek kalmıyor.",
           "Avans sürecini dijitalleştirerek modelledim: talep, onay, taksitlendirme ve geri ödeme. Sisteme çoklu şirket desteği ve şirket bazlı yetkilendirme özellikleri kazandırdım."
         ],
         "stack": [
@@ -69,7 +69,7 @@
         "highlights": [
           "Performans değerlendirme, izin takibi ve çalışan yönetimi modüllerini iyileştirdim. Excel ile yürütülen operasyonları web ortamına aktardım.",
           "Farklı sistemlerdeki dağınık kayıtları ilişkisel bir veri modeline dönüştürerek tek bir merkezde birleştirdim.",
-          "Personel performans değerlendirme sistemi üzerinde çalışarak yöneticiler için rol bazlı raporlama ekranları tasarladım ve manuel süreçleri azalttım."
+          "Personel performans değerlendirme tarafında yöneticiler için rol bazlı raporlama ekranları yaptım."
         ],
         "stack": [
           "C#",
@@ -88,11 +88,11 @@
         "role": "Full Stack Developer",
         "startDate": "2021-05",
         "endDate": "2025-10",
-        "description": "Kurumsal müşterilere özel web uygulamaları geliştirdim. Temel odak noktam, çok kiracılı (multi-tenant) bir oryantasyon ve eğitim platformu olan Oriento'nun .NET ve React kullanılarak geliştirilmesiydi.",
+        "description": "Yaklaşık 4,5 yıl kurumsal müşterilere özel web uygulamaları geliştirdim. Ana işim, çok kiracılı (multi-tenant) oryantasyon ve eğitim platformu Oriento'yu .NET ve React ile geliştirmekti.",
         "highlights": [
-          "Oriento platformunda onboarding/offboarding, interaktif eğitim, görev yönetimi ve raporlama modüllerini oluşturduk. Ürün; ING Bank, Kibar Holding, FNSS ve SoftTech gibi firmalar tarafından kullanıldı.",
-          "FNSS için mevcut on-prem platformun bulut versiyonunu hazırladık. Rol bazlı yönetim, oryantasyon akışları ve 'buddy' eşleştirmesi ile görev takibi özelliklerini ekledik.",
-          "Veri katmanını REST API ve Entity Framework ile inşa ederek, modülleri farklı müşterilerin ihtiyaçlarına kolayca uyarlanabilecek şekilde tasarladık.",
+          "Oriento'da onboarding/offboarding, interaktif eğitim, görev yönetimi ve raporlama modüllerinde full stack geliştirme yaptım. Ürün ING Bank, Kibar Holding, FNSS ve SoftTech gibi firmalarda kullanıldı.",
+          "FNSS için on-prem platformun bulut sürümünde çalıştım; rol bazlı yönetim, oryantasyon akışları ve 'buddy' eşleştirmeli görev takibi tarafında geliştirme yaptım.",
+          "Veri katmanını REST API ve Entity Framework ile kurduk; modüller farklı müşterilerin ihtiyacına göre uyarlanabiliyordu.",
           "Turkcell iş birliğinde yürütülen çocuklara yönelik internet güvenliği oyunu (Galaksel) gibi projelerde görev aldım.",
           "Awarder AI ve LunaBuddy gibi yapay zeka ürün prototiplerinde çalıştım. Temel metin işleme yöntemlerinin yetersiz kaldığı senaryoları analiz ederek RAG ve vektör tabanlı arama çözümleri üzerine yoğunlaştım."
         ],
@@ -195,14 +195,14 @@
         ]
       },
       {
-        "group": "Mimari & Ürün Sahipliği",
+        "group": "Mimari & Entegrasyon",
         "items": [
           "Authentication & yetki yönetimi",
           "SSO",
           "Multi-tenant mimari",
           "Migration",
           "Raporlama / dashboard",
-          "Uygulama yaşam döngüsü"
+          "Sistem entegrasyonu"
         ]
       },
       {
@@ -350,8 +350,8 @@
     "basics": {
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "tagline": "I build enterprise portal, HR, and travel systems with .NET and React. I analyze existing projects and manage all processes from architecture to deployment.",
-      "summary": "I develop enterprise portal, travel management, and HR/advance systems for Eroğlu Global Holding companies and 4 factories in Egypt (EMS, EG, DNM, etc.). Working with local operations and international user groups in Egypt, I deliver tailored and multilingual solutions, modernizing existing applications and unifying them under a shared authorization model. Previously at Digitallica, I built Oriento, a multi-tenant enterprise orientation platform. Concurrently, I am developing an AI email assistant using RAG and Qdrant.",
+      "tagline": "I build enterprise web apps, internal portals, and multi-tenant products with .NET, React, and SQL Server; experienced with authorization, data migration, and system integration.",
+      "summary": "I'm a full stack developer working on enterprise web apps, internal portals, and multi-tenant products, mostly with .NET, React, and SQL Server. My longest stint was at Digitallica (2021–2025): on Oriento, a multi-tenant orientation and training platform, I did full stack work on the onboarding, training, task-management, and reporting modules; the product was used by companies like ING Bank, Kibar Holding, FNSS, and SoftTech. I'm currently at Eroğlu Global Holding, building the enterprise Dashboard, travel, and HR advance modules for the Turkey and Egypt operations, and bringing separate apps together under the existing single sign-on and a shared permission model. On the side, I'm building an AI email assistant on RAG and Qdrant as a personal project.",
       "primaryStack": [
         ".NET",
         "ASP.NET Core",
@@ -386,11 +386,11 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "I develop the holding's internal enterprise access panel, travel management, and HR advance modules. I am establishing a single sign-on (SSO) and centralized authorization infrastructure for operations in Turkey and Egypt. I analyze existing systems, integrate them into this unified structure, and manage all development processes.",
+        "description": "I build the enterprise Dashboard, travel, and HR advance modules for the Turkey and Egypt operations. I bring separate apps together under the existing single sign-on and a shared permission model, integrating them into the holding's HR system (Eroglu.HR).",
         "highlights": [
           "Modernized the enterprise access panel; consolidated the role-based application catalog, targeted announcements, meal menu, and notification center into a centralized interface behind a single login.",
-          "Integrated the standalone travel management system into the main panel. Removed the need for a second login by migrating to the SSO infrastructure, and aligned the data and permission model with the holding's shared structure.",
-          "Integrated Datalab and OpenAI OCR into the HR advance module. Significantly reduced manual data entry with features like amount/date extraction from receipts, confidence scoring, and visual validation.",
+          "Moved the standalone travel system — which I took over from the previous developer — into the main panel: removed the second login, tied it to the existing single sign-on and shared permission model, and aligned its data model with the holding's structure.",
+          "Added Datalab and OpenAI OCR to the HR advance module: amount/date extraction from receipts, confidence scoring, and visual validation mean most fields no longer have to be typed in by hand.",
           "Digitalized the advance process end-to-end: request, approval, installments, and repayment. Added multi-company support and company-based authorization features."
         ],
         "stack": [
@@ -416,7 +416,7 @@
         "highlights": [
           "Improved performance review, leave tracking, and employee management modules. Moved operations previously handled via Excel to the web environment.",
           "Consolidated scattered records from different systems into a relational data model in a single center.",
-          "Worked on the employee performance evaluation system, designing role-based reporting screens for managers and reducing manual processes."
+          "On the employee performance review side, built role-based reporting screens for managers."
         ],
         "stack": [
           "C#",
@@ -435,11 +435,11 @@
         "role": "Full Stack Developer",
         "startDate": "2021-05",
         "endDate": "2025-10",
-        "description": "I developed custom web applications for enterprise clients. My primary focus was building Oriento, a multi-tenant orientation and training platform, using .NET and React.",
+        "description": "For about 4.5 years I developed custom web applications for enterprise clients. My main work was building Oriento, a multi-tenant orientation and training platform, with .NET and React.",
         "highlights": [
-          "Built the orientation/offboarding, interactive training, task management, and reporting modules for Oriento. The platform was used by companies like ING Bank, Kibar Holding, FNSS, and SoftTech.",
-          "Adapted the existing on-prem platform into a cloud version for FNSS. Added features such as role-based management, orientation workflows, and task tracking with buddy pairing.",
-          "Built the data layer with REST APIs and Entity Framework, designing the modules to be easily adaptable to different client needs.",
+          "Did full stack work on the onboarding/offboarding, interactive training, task management, and reporting modules in Oriento. The platform was used by companies like ING Bank, Kibar Holding, FNSS, and SoftTech.",
+          "Worked on the cloud version of the on-prem platform for FNSS; built features around role-based management, orientation workflows, and buddy-paired task tracking.",
+          "Built the data layer with REST APIs and Entity Framework; the modules could be adapted to different client needs.",
           "Took part in collaborative projects with Turkcell, such as an internet safety game for kids (Galaksel).",
           "Worked on AI product prototypes like Awarder AI and LunaBuddy. Analyzed scenarios where basic text processing methods fell short, focusing on RAG and vector-based search solutions."
         ],
@@ -542,14 +542,14 @@
         ]
       },
       {
-        "group": "Architecture & Product Ownership",
+        "group": "Architecture & Integration",
         "items": [
           "Authentication & permissions",
           "SSO",
           "Multi-tenant architecture",
           "Migration",
           "Reporting / dashboards",
-          "Application lifecycle"
+          "System integration"
         ]
       },
       {

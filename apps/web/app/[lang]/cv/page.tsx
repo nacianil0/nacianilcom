@@ -40,8 +40,8 @@ export async function generateMetadata({
   const title = 'CV — Naci Anıl Akman';
   const description =
     locale === 'tr'
-      ? 'Full Stack Developer. .NET ve React ile kurumsal portal/dashboard sistemleri ve ürünleşebilir web uygulamaları; uçtan uca ürün sahipliği.'
-      : 'Full Stack Developer. Enterprise portal/dashboard systems and productizable web apps with .NET and React; end-to-end product ownership.';
+      ? 'Full Stack Developer. .NET, React ve SQL Server ile kurumsal portal/dashboard sistemleri ve multi-tenant web uygulamaları; yetkilendirme, migration ve entegrasyon.'
+      : 'Full Stack Developer. Enterprise portal/dashboard systems and multi-tenant web apps with .NET, React, and SQL Server; authorization, migration, and integration.';
 
   return {
     title,

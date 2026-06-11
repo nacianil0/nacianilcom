@@ -468,10 +468,87 @@
       "file": "apps/web/app/[lang]/cv/print/page.tsx",
       "root_cause": "Print rendered every experience highlight + all role descriptions in a single column, projects single-column, plus an appended screenshots section with no break-before-page / break-inside-avoid; total content far exceeded one A4",
       "fix": "Rebuilt as single-A4 CV core + screenshot appendix. HIGHLIGHT_CAP [3,2,1] per role, role description only on the most-recent role, 2-col projects + 2-col education/certs, hairline section rails, baseline footer, tightened gaps (no base-font shrink). Appendix moved to a sibling <section> with break-before-page; each figure break-inside-avoid. Verified page-1 natural height TR 1081px / EN 1095px (<=1122.5px A4) at 210mm width.",
-      "tags": ["cv", "print", "pdf", "overflow", "page-break", "a4", "layout"],
-      "related_bugs": ["bug-024", "bug-025", "bug-026", "bug-027"],
+      "tags": [
+        "cv",
+        "print",
+        "pdf",
+        "overflow",
+        "page-break",
+        "a4",
+        "layout"
+      ],
+      "related_bugs": [
+        "bug-024",
+        "bug-025",
+        "bug-026",
+        "bug-027"
+      ],
       "occurrences": 1,
       "last_seen": "2026-06-11T15:48:50.579Z"
+    },
+    {
+      "id": "bug-029",
+      "timestamp": "2026-06-11T19:33:22.032Z",
+      "error_message": "Incorrect value in code",
+      "file": "content/resume/resume.json",
+      "root_cause": "Had \".NET ve React ile kurumsal portal, İK ve seyahat ",
+      "fix": "Changed to \"Ağırlıklı .NET, React ve SQL Server ile kurumsal ",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 24,
+      "last_seen": "2026-06-11T19:34:33.689Z"
+    },
+    {
+      "id": "bug-030",
+      "timestamp": "2026-06-11T19:34:43.090Z",
+      "error_message": "Incorrect value in code",
+      "file": "content/resume/portfolio/kurumsal-dashboard/case.json",
+      "root_cause": "Had \"Tek geliştirici olarak işin tamamını ben yürüttüm",
+      "fix": "Changed to \"Bu modülde tek geliştiriciydim: mimari kararlar, ",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 8,
+      "last_seen": "2026-06-11T19:35:04.433Z"
+    },
+    {
+      "id": "bug-031",
+      "timestamp": "2026-06-11T19:35:08.153Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/app/[lang]/cv/page.tsx",
+      "root_cause": "Had 'Full Stack Developer. .NET ve React ile kurumsal ",
+      "fix": "Changed to 'Full Stack Developer. .NET, React ve SQL Server i",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T19:35:08.153Z"
+    },
+    {
+      "id": "bug-032",
+      "timestamp": "2026-06-11T19:40:50.364Z",
+      "error_message": "Incorrect value in code",
+      "file": "../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_cv_strengthen.md",
+      "root_cause": "Had \"CV güçlendirme (2026-06-11): product-minded .NET+",
+      "fix": "Changed to \"CV güçlendirme (2026-06-11): dengeli kariyer konu",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-06-11T19:41:02.824Z"
     }
   ]
 }
