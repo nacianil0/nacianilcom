@@ -43,8 +43,7 @@ export default async function CvPrintPage({
   const role = resume.basics.title;
   const location = resume.basics.location;
 
-  // Canonical label for the printed CV — never the deploy/preview host.
-  const siteLabel = 'nacianil.com';
+  // Canonical label for the printed CV — removed.
 
   return (
     <div className="min-h-screen bg-surface text-ink">
@@ -96,9 +95,6 @@ export default async function CvPrintPage({
                 {brandLabel(l.label)} {l.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
               </span>
             ))}
-            <span className="text-ink before:mr-3 before:text-hairline before:content-['/']">
-              {siteLabel}
-            </span>
           </div>
         </header>
 
@@ -271,13 +267,42 @@ export default async function CvPrintPage({
           </section>
         </div>
 
-        {/* ── Footer: live link ────────────────────────────────────── */}
-        <footer className="mt-3 flex items-end justify-between gap-4 border-t-2 border-ink pt-2">
-          <div className="font-mono text-[8px] uppercase leading-[1.6] tracking-[0.14em] text-ink-secondary">
-            <p className="text-[9px] tracking-[0.1em] text-ink">{siteLabel}</p>
-            <p>{tr ? 'Güncel CV için siteyi ziyaret edin' : 'Visit the site for the live CV'}</p>
+
+      </main>
+
+      {/* ── Screenshots Page ─────────────────────────────────────── */}
+      <main className="mx-auto flex min-h-[297mm] w-full max-w-[210mm] flex-col bg-surface px-[15mm] py-[11mm] break-before-page shadow-sm mt-8 print:mt-0 print:shadow-none">
+        <header className="border-b-2 border-ink pb-3 mb-6">
+          <h2 className="font-serif text-[18px] font-medium leading-tight text-ink">
+            {tr ? 'Proje Ekran Görüntüleri' : 'Project Screenshots'}
+          </h2>
+        </header>
+
+        <div className="flex flex-col gap-5 flex-1 justify-center">
+          {/* Dashboard Login */}
+          <div className="flex flex-col gap-1.5 w-full">
+            <h3 className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-secondary">Eroğlu Portal — Login</h3>
+            <div className="relative w-full h-[70mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
+              <Image src="/screenshots/dashboard-login.png" alt="Dashboard Login" fill className="object-contain" />
+            </div>
           </div>
-        </footer>
+
+          {/* Dashboard */}
+          <div className="flex flex-col gap-1.5 w-full">
+            <h3 className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-secondary">Eroğlu Portal — Dashboard</h3>
+            <div className="relative w-full h-[70mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
+              <Image src="/screenshots/dashboard.png" alt="Dashboard" fill className="object-cover object-top" />
+            </div>
+          </div>
+
+          {/* Travel Yeni */}
+          <div className="flex flex-col gap-1.5 w-full">
+            <h3 className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-secondary">Travel Management</h3>
+            <div className="relative w-full h-[70mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
+              <Image src="/screenshots/travel-yeni.png" alt="Travel System" fill className="object-cover object-top" />
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   );
