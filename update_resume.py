@@ -21,7 +21,7 @@ for exp in data["tr"]["experience"]:
         exp["description"] = "Şirket içi İK portalı ve yönetim paneli projelerini ASP.NET MVC ile geliştirdim. Access veritabanları ve masaüstü uygulamalara bağlı İK süreçlerini destekledim."
         exp["highlights"] = [
             "Performans değerlendirme, izin takibi ve çalışan yönetimi modüllerini iyileştirdim. Excel ile yürütülen operasyonları web ortamına aktardım.",
-            "Farklı sistemlerdeki dağınık kayıtları ilişkisel bir veri modeline dönüştürerek SQL Server üzerinde birleştirdim.",
+            "Access tabanlı ve masaüstü İK uygulamalarının bakımını ve iyileştirmesini üstlendim; web portalı geliştirmeleriyle birlikte yürüttüm.",
             "Yöneticiler için rol bazlı raporlama ekranları tasarlayarak manuel raporlama iş yükünü hafiflettim."
         ]
     elif exp["id"] == "digitallica":
@@ -65,7 +65,7 @@ for exp in data["en"]["experience"]:
         exp["description"] = "I developed the internal HR portal and management panel using ASP.NET MVC. I supported HR processes linked to Access databases and desktop applications."
         exp["highlights"] = [
             "Improved performance review, leave tracking, and employee management modules. Moved operations previously handled via Excel to the web environment.",
-            "Consolidated scattered records from different systems into a relational data model on SQL Server.",
+            "Maintained and improved Access-based and desktop HR applications, working in parallel with web portal development.",
             "Designed role-based reporting screens for managers, alleviating the workload of manual reporting."
         ]
     elif exp["id"] == "digitallica":
