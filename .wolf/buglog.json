@@ -428,6 +428,50 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-11T08:27:08.486Z"
+    },
+    {
+      "id": "bug-026",
+      "timestamp": "2026-06-11T15:34:04.077Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/app/[lang]/cv/print/page.tsx",
+      "root_cause": "Had \"flex flex-col gap-1\"",
+      "fix": "Changed to \"flex flex-col gap-0.5\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 7,
+      "last_seen": "2026-06-11T15:37:57.421Z"
+    },
+    {
+      "id": "bug-027",
+      "timestamp": "2026-06-11T15:42:33.337Z",
+      "error_message": "CSS fix: sm",
+      "file": "apps/web/app/[lang]/cv/page.tsx",
+      "root_cause": "sm: items-end sm:text-right\"> → w-[8.75rem] sm:text-right\">",
+      "fix": "Changed sm: items-end sm:text-right\"> → w-[8.75rem] sm:text-right\">",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-11T15:44:29.687Z"
+    },
+    {
+      "id": "bug-028",
+      "timestamp": "2026-06-11T15:48:50.579Z",
+      "error_message": "CV print/PDF overflowed to ~2.66 A4 pages; CV body alone was 1.29 pages (1451px vs 1123px A4); page breaks fell mid-section and project screenshots split across pages",
+      "file": "apps/web/app/[lang]/cv/print/page.tsx",
+      "root_cause": "Print rendered every experience highlight + all role descriptions in a single column, projects single-column, plus an appended screenshots section with no break-before-page / break-inside-avoid; total content far exceeded one A4",
+      "fix": "Rebuilt as single-A4 CV core + screenshot appendix. HIGHLIGHT_CAP [3,2,1] per role, role description only on the most-recent role, 2-col projects + 2-col education/certs, hairline section rails, baseline footer, tightened gaps (no base-font shrink). Appendix moved to a sibling <section> with break-before-page; each figure break-inside-avoid. Verified page-1 natural height TR 1081px / EN 1095px (<=1122.5px A4) at 210mm width.",
+      "tags": ["cv", "print", "pdf", "overflow", "page-break", "a4", "layout"],
+      "related_bugs": ["bug-024", "bug-025", "bug-026", "bug-027"],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T15:48:50.579Z"
     }
   ]
 }

@@ -192,34 +192,38 @@ export default async function CvPage({
             </div>
 
             {(resume.basics.photo || currentCompany || totalExperience) && (
-              <div className="flex shrink-0 flex-row items-center gap-5 sm:flex-col sm:items-end sm:gap-4">
+              <div className="flex shrink-0 flex-row items-start gap-6 sm:flex-col sm:items-end sm:gap-5">
                 {resume.basics.photo && (
-                  <div className="relative h-[7.5rem] w-[7.5rem] overflow-hidden rounded-xl border border-ink/15 bg-surface-sunk shadow-sm ring-1 ring-hairline sm:h-[8.5rem] sm:w-[8.5rem]">
+                  <div className="relative h-[7.5rem] w-[7.5rem] shrink-0 overflow-hidden rounded-2xl border border-ink/10 bg-surface-sunk shadow-[0_1px_3px_rgba(27,26,24,0.07)] ring-1 ring-hairline sm:h-[8.75rem] sm:w-[8.75rem]">
                     <Image
                       src={resume.basics.photo}
                       alt={resume.basics.name}
                       fill
-                      sizes="136px"
+                      sizes="140px"
                       className="object-cover"
                       priority
                     />
                   </div>
                 )}
                 {(currentCompany || totalExperience) && (
-                  <div className="flex flex-col gap-3 text-left sm:items-end sm:text-right">
+                  <dl className="flex flex-col divide-y divide-hairline border-t border-hairline text-left sm:w-[8.75rem] sm:text-right">
                     {currentCompany && (
-                      <div>
-                        <MonoLabel>{tr ? 'Şu an' : 'Currently'}</MonoLabel>
-                        <p className="mt-1 font-serif text-[15px] leading-tight text-ink">{currentCompany}</p>
+                      <div className="py-2.5">
+                        <dt>
+                          <MonoLabel>{tr ? 'Şu an' : 'Currently'}</MonoLabel>
+                        </dt>
+                        <dd className="mt-1 font-serif text-[14.5px] leading-[1.25] text-ink">{currentCompany}</dd>
                       </div>
                     )}
                     {totalExperience && (
-                      <div>
-                        <MonoLabel>{tr ? 'Deneyim' : 'Experience'}</MonoLabel>
-                        <p className="mt-1 font-serif text-[15px] leading-tight text-ink">{totalExperience}</p>
+                      <div className="py-2.5">
+                        <dt>
+                          <MonoLabel>{tr ? 'Deneyim' : 'Experience'}</MonoLabel>
+                        </dt>
+                        <dd className="mt-1 font-serif text-[14.5px] leading-[1.25] text-ink">{totalExperience}</dd>
                       </div>
                     )}
-                  </div>
+                  </dl>
                 )}
               </div>
             )}
@@ -317,18 +321,24 @@ export default async function CvPage({
                           {proj.caseSlug ? (
                             <Link
                               href={buildUrl(locale, 'workCase', { caseSlug: proj.caseSlug })}
-                              className="text-accent transition-opacity hover:opacity-70"
+                              className="group/link inline-flex items-center gap-1 text-accent transition-colors hover:text-ink"
                             >
-                              {tr ? 'Vaka çalışması →' : 'Case study →'}
+                              <span>{tr ? 'Vaka çalışması' : 'Case study'}</span>
+                              <span aria-hidden="true" className="transition-transform duration-200 group-hover/link:translate-x-0.5">
+                                →
+                              </span>
                             </Link>
                           ) : proj.url ? (
                             <a
                               href={proj.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="normal-case tracking-normal text-accent transition-opacity hover:opacity-70"
+                              className="group/link inline-flex items-center gap-1 normal-case tracking-normal text-accent transition-colors hover:text-ink"
                             >
-                              {external} ↗
+                              <span>{external}</span>
+                              <span aria-hidden="true" className="transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">
+                                ↗
+                              </span>
                             </a>
                           ) : null}
                         </div>

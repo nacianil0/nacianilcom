@@ -739,3 +739,28 @@
 | 11:26 | Edited apps/web/app/[lang]/cv/print/page.tsx | 2→2 lines | ~28 |
 | 11:27 | Edited apps/web/app/[lang]/cv/print/page.tsx | 4→2 lines | ~31 |
 | 11:27 | Edited apps/web/app/[lang]/cv/print/page.tsx | 8→7 lines | ~142 |
+
+## Session: 2026-06-11 16:41
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 16:58 | Created apps/web/app/[lang]/cv/print/page.tsx | — | ~4285 |
+| 18:33 | Edited apps/web/app/[lang]/cv/print/page.tsx | 5→5 lines | ~73 |
+| 18:33 | Edited apps/web/app/[lang]/cv/print/page.tsx | 6→6 lines | ~83 |
+| 18:33 | Edited apps/web/app/[lang]/cv/print/page.tsx | 11→11 lines | ~167 |
+| 18:34 | Edited apps/web/app/[lang]/cv/print/page.tsx | 2→2 lines | ~37 |
+| 18:35 | Edited apps/web/app/[lang]/cv/print/page.tsx | 4 → 3 | ~10 |
+| 18:35 | Edited apps/web/app/[lang]/cv/print/page.tsx | "mt-0.5 line-clamp-3 font-" → "mt-0.5 line-clamp-2 font-" | ~33 |
+| 18:35 | Edited apps/web/app/[lang]/cv/print/page.tsx | "mt-[15px] flex flex-1 fle" → "mt-[13px] flex flex-1 fle" | ~20 |
+| 18:35 | Edited apps/web/app/[lang]/cv/print/page.tsx | 6→6 lines | ~105 |
+| 18:35 | Edited apps/web/app/[lang]/cv/print/page.tsx | "mt-6 flex items-center ju" → "mt-4 flex items-center ju" | ~48 |
+| 18:37 | Edited apps/web/app/[lang]/cv/print/page.tsx | inline fix | ~10 |
+| 18:37 | Edited apps/web/app/[lang]/cv/print/page.tsx | "mt-[13px] flex flex-1 fle" → "mt-[13px] flex flex-1 fle" | ~20 |
+| 18:37 | Edited apps/web/app/[lang]/cv/print/page.tsx | 3→3 lines | ~49 |
+| 18:37 | Edited apps/web/app/[lang]/cv/print/page.tsx | "mt-4 flex items-center ju" → "mt-3 flex items-center ju" | ~48 |
+| 18:42 | Edited apps/web/app/[lang]/cv/page.tsx | 32→36 lines | ~530 |
+| 18:44 | Edited apps/web/app/[lang]/cv/page.tsx | CSS: link, link, link | ~449 |
+| 18:46 | Edited apps/web/app/[lang]/cv/print/page.tsx | 5→4 lines | ~84 |
+| 18:48 | CV design refresh (frontend-design): PRINT -> single-A4 CV core (HIGHLIGHT_CAP [3,2,1], desc on lead role only, 2-col projects+edu/certs, hairline rails, footer) + screenshot appendix via break-before-page (each figure break-inside-avoid); WEB -> hairline-ruled dl spec aside + project-link arrow-shift hover | apps/web/app/[lang]/cv/print/page.tsx, apps/web/app/[lang]/cv/page.tsx | page-1 fits A4: TR 1081px / EN 1095px (<=1122.5); typecheck clean; no console/server errors | ~12000 |
+| 18:54 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | inline fix | ~44 |
+| 18:55 | Session end: 18 writes across 2 files (page.tsx, MEMORY.md) | 21 reads | ~16561 tok |

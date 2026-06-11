@@ -1,11 +1,11 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-11T08:27:08.468Z
-> Files: 8 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-11T15:54:21.685Z
+> Files: 9 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/
 
-- `MEMORY.md` — Memory Index (~352 tok)
+- `MEMORY.md` — Memory Index (~376 tok)
 - `project_cv_strengthen.md` (~535 tok)
 
 ## ./
@@ -55,10 +55,11 @@
 
 ## apps/web/app/[lang]/cv/
 
+- `page.tsx` — Web CV (SSG, web-visibility). Masthead hero: name+accent period, serif tagline, summary, primaryStack chips, photo + hairline-ruled `<dl>` spec aside (Şu an/Deneyim). SectionRail sections: Experience / Projects (case-study + external links, arrow-shift hover) / Skills / Earlier / Education / Credentials. (~6500 tok)
 
 ## apps/web/app/[lang]/cv/print/
 
-- `page.tsx` — Accent mono section label — replaces the web's left rail to save print width. (~3103 tok)
+- `page.tsx` — Single-A4 print/PDF CV (force-dynamic, pdf-visibility, noindex). Page 1 = CV core: HIGHLIGHT_CAP [3,2,1], description on lead role only, 2-col projects + 2-col education/certs, hairline rails, footer; `<main>` min-h-296mm. Page 2+ = screenshot appendix sibling `<section break-before-page>`, each figure break-inside-avoid. (~4270 tok)
 
 ## apps/web/app/[lang]/feed.xml/
 
