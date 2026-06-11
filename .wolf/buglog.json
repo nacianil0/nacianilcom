@@ -346,6 +346,24 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-04T07:24:33.3482456Z"
+    },
+    {
+      "id": "bug-021",
+      "timestamp": "2026-06-11T07:54:22.160Z",
+      "error_message": "resume.json AI skills listed 'Chroma (vektör DB)' but Eroglu.Agent uses Qdrant, not Chroma — wrong technology on the public CV",
+      "file": "content/resume/resume.json",
+      "root_cause": "Earlier CV authoring guessed the vector DB; the real Mail Agent repo (C:\\dev\\Eroglu.Agent) implements QdrantVectorStore (Qdrant Cloud) and has no Chroma anywhere.",
+      "fix": "Replaced 'Chroma (vektör DB)' with 'Vektör arama (Qdrant)' (TR) / 'Vector search (Qdrant)' (EN) and added Qdrant to the AI Mail Copilot project stack; verified rendered CV has no 'Chroma' string.",
+      "tags": [
+        "cv",
+        "resume",
+        "accuracy",
+        "mail-agent",
+        "qdrant"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-11T07:54:22.160Z"
     }
   ]
 }

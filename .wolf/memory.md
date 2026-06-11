@@ -691,3 +691,24 @@
 | 10:15 | Stopped envless 3010 dev server and kept gate-enabled 3011 preview running | local dev server | 3011 listening with test password letmein | ~120 |
 | 10:19 | Set local password gate env from requested password hash and restarted 3011 preview | apps/web/.env.local; local dev server | new password hash verified; plaintext not recorded in tracked docs | ~350 |
 | 10:24 | Added bundled live fallback gate config so GitHub/Vercel deploy works without Vercel env setup | apps/web/src/lib/password-gate.ts; apps/web/app/login; apps/web/middleware.ts | tests/typecheck/lint/build passing | ~900 |
+
+## Session: 2026-06-11 10:10
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-11 10:29
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 10:41 | Created content/resume/resume.json | — | ~6656 |
+| 10:41 | Edited content/resume/resume.json | expanded (+8 lines) | ~155 |
+| 10:42 | Edited content/resume/resume.json | expanded (+8 lines) | ~151 |
+| 10:42 | Created content/resume/portfolio/seyahat-projesi/case.json | — | ~1475 |
+| 10:42 | Created content/resume/portfolio/kurumsal-dashboard/case.json | — | ~1216 |
+| 10:44 | Created content/resume/portfolio/mail-agent/case.json | — | ~2230 |
+| 10:55 | CV güçlendirme: özet/tagline (product-owner konumlandırma), Eroğlu (Mail Agent maddeleri çıkarıldı, Travel devralma+migration+birkaç milyon $ süreç, TR~200-300+Mısır 4 fabrika ölçeği), Kansuk fiil güçlendirme, skills Chroma→Qdrant + "AI & Entegrasyon" + Hangfire, projects'e AI Mail Copilot eklendi | resume.json + 3 case.json | TR+EN yeniden yazıldı | ~12000 |
+| 10:55 | Doğrulama | apps/web | JSON+Zod şema geçti; web build yeşil (48 SSG); TR+EN /cv/print = 1123px (tam 1 A4, taşma 0); console temiz; Chroma sızıntısı yok | ~600 |
+| 10:55 | Mail Agent doğrulama | C:\dev\Eroglu.Agent | Grep ile gerçek RAG kodu doğrulandı: RetrievalService, QdrantVectorStore, OpenAiEmbeddingProvider, EmbeddingJob, GraphMailProvider/Sender, DraftGenerationJob, EfRetrievalScopeBuilder, AiIndexedChunk + EF migrations. Dev-stage (production değil). Cerebrum'daki "no application code" notu eskidi | ~1500 |
+| 10:57 | Created ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_cv_strengthen.md | — | ~550 |
+| 10:57 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/MEMORY.md | 1→2 lines | ~99 |
