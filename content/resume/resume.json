@@ -4,7 +4,7 @@
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
       "tagline": ".NET ve React ile kurumsal portal, İK ve seyahat sistemleri geliştiriyorum. Mevcut projeleri analiz edip mimariden canlıya alınmasına kadar tüm süreçleri yönetiyorum.",
-      "summary": "Eroğlu Global Holding bünyesindeki şirketler için kurumsal portal, seyahat yönetimi ve İK/avans sistemleri geliştiriyorum. Mevcut uygulamaları sadece sürdürmek yerine; mimari, arayüz ve altyapılarını yenileyerek ortak bir yetki ve erişim modeli altında birleştiriyorum. Eş zamanlı olarak RAG ve Qdrant tabanlı bir yapay zeka e-posta asistanı projesi üzerinde çalışıyorum.",
+      "summary": "Eroğlu Global Holding bünyesindeki grup şirketleri ve Mısır'daki 4 fabrika (EMS, EG, DNM vb.) için kurumsal portal, seyahat yönetimi ve İK/avans sistemleri geliştiriyorum. Mısır'daki yerel operasyonlar ve Türk olmayan kullanıcı gruplarıyla çalışarak onlara özel çok dilli geliştirmeler yapıyor; mevcut uygulamaları mimari ve arayüz olarak yenileyip ortak bir yetki modeli altında birleştiriyorum. Geçmişte Digitallica'da çok kiracılı (multi-tenant) kurumsal oryantasyon platformu Oriento'yu geliştirme deneyimi edindim. Eş zamanlı olarak RAG ve Qdrant tabanlı bir yapay zeka e-posta asistanı projesi üzerinde çalışıyorum.",
       "primaryStack": [
         ".NET",
         "ASP.NET Core",
@@ -65,11 +65,11 @@
         "role": "Full Stack Developer",
         "startDate": "2025-10",
         "endDate": "2026-02",
-        "description": "Şirket içi İK portalı ve yönetim paneli projelerini ASP.NET MVC ile geliştirdim. Access veritabanları ve masaüstü uygulamalarına dağılmış olan İK verilerini merkezileştirerek web tabanlı tek bir sisteme (SQL Server) taşıdım.",
+        "description": "Şirket içi İK portalı ve yönetim paneli projelerini ASP.NET MVC ile geliştirdim. Access veritabanları ve masaüstü uygulamalarına dağılmış olan İK verilerini merkezileştirerek web tabanlı tek bir sisteme taşıdım.",
         "highlights": [
           "Performans değerlendirme, izin takibi ve çalışan yönetimi modüllerini iyileştirdim. Excel ile yürütülen operasyonları web ortamına aktardım.",
-          "Farklı sistemlerdeki dağınık kayıtları ilişkisel bir veri modeline dönüştürerek SQL Server üzerinde birleştirdim.",
-          "Yöneticiler için rol bazlı raporlama ekranları tasarlayarak manuel raporlama iş yükünü hafiflettim."
+          "Farklı sistemlerdeki dağınık kayıtları ilişkisel bir veri modeline dönüştürerek tek bir merkezde birleştirdim.",
+          "Personel performans değerlendirme sistemi üzerinde çalışarak yöneticiler için rol bazlı raporlama ekranları tasarladım ve manuel süreçleri azalttım."
         ],
         "stack": [
           "C#",
@@ -88,7 +88,7 @@
         "role": "Full Stack Developer",
         "startDate": "2021-05",
         "endDate": "2025-10",
-        "description": "Kurumsal müşterilere özel web uygulamaları geliştirdim. Temel odak noktam, çok kiracılı (multi-tenant) bir işe alıştırma ve eğitim platformu olan Oriento'nun .NET ve React kullanılarak geliştirilmesiydi.",
+        "description": "Kurumsal müşterilere özel web uygulamaları geliştirdim. Temel odak noktam, çok kiracılı (multi-tenant) bir oryantasyon ve eğitim platformu olan Oriento'nun .NET ve React kullanılarak geliştirilmesiydi.",
         "highlights": [
           "Oriento platformunda onboarding/offboarding, interaktif eğitim, görev yönetimi ve raporlama modüllerini oluşturduk. Ürün; ING Bank, Kibar Holding, FNSS ve SoftTech gibi firmalar tarafından kullanıldı.",
           "FNSS için mevcut on-prem platformun bulut versiyonunu hazırladık. Rol bazlı yönetim, oryantasyon akışları ve 'buddy' eşleştirmesi ile görev takibi özelliklerini ekledik.",
@@ -266,7 +266,7 @@
       {
         "id": "oriento",
         "title": "Oriento — İşe Alıştırma & Eğitim Platformu",
-        "summary": "Çok kiracılı (multi-tenant) işe alıştırma ve eğitim platformu. .NET ve React kullanılarak geliştirildi; ING Bank, Kibar Holding ve SoftTech gibi firmalarda kullanıldı. Rol bazlı yönetim, oryantasyon akışları ve görev takibi özelliklerini barındırır.",
+        "summary": "Çok kiracılı (multi-tenant) oryantasyon ve eğitim platformu. .NET ve React kullanılarak geliştirildi; ING Bank, Kibar Holding ve SoftTech gibi firmalarda kullanıldı. Rol bazlı yönetim, oryantasyon akışları ve görev takibi özelliklerini barındırır.",
         "url": "https://orientoapp.com",
         "stack": [
           "React",
@@ -351,7 +351,7 @@
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
       "tagline": "I build enterprise portal, HR, and travel systems with .NET and React. I analyze existing projects and manage all processes from architecture to deployment.",
-      "summary": "I build enterprise portal, travel management, and HR/advance systems for Eroğlu Global Holding companies. Instead of merely maintaining existing apps, I modernize their architecture, UI, and infrastructure, unifying them under a shared access and authorization model. Concurrently, I am developing an AI email assistant using RAG and Qdrant.",
+      "summary": "I develop enterprise portal, travel management, and HR/advance systems for Eroğlu Global Holding companies and 4 factories in Egypt (EMS, EG, DNM, etc.). Working with local operations and non-Turkish user groups in Egypt, I deliver tailored and multilingual solutions, modernizing existing applications and unifying them under a shared authorization model. Previously at Digitallica, I built Oriento, a multi-tenant enterprise orientation platform. Concurrently, I am developing an AI email assistant using RAG and Qdrant.",
       "primaryStack": [
         ".NET",
         "ASP.NET Core",
@@ -412,11 +412,11 @@
         "role": "Full Stack Developer",
         "startDate": "2025-10",
         "endDate": "2026-02",
-        "description": "I developed the internal HR portal and management panel using ASP.NET MVC. I centralized HR data scattered across Access databases and desktop applications, migrating it to a single web-based system (SQL Server).",
+        "description": "I developed the internal HR portal and management panel using ASP.NET MVC. I centralized HR data scattered across Access databases and desktop applications, migrating it to a single web-based system.",
         "highlights": [
           "Improved performance review, leave tracking, and employee management modules. Moved operations previously handled via Excel to the web environment.",
-          "Consolidated scattered records from different systems into a relational data model on SQL Server.",
-          "Designed role-based reporting screens for managers, alleviating the workload of manual reporting."
+          "Consolidated scattered records from different systems into a relational data model in a single center.",
+          "Worked on the employee performance evaluation system, designing role-based reporting screens for managers and reducing manual processes."
         ],
         "stack": [
           "C#",
@@ -435,9 +435,9 @@
         "role": "Full Stack Developer",
         "startDate": "2021-05",
         "endDate": "2025-10",
-        "description": "I developed custom web applications for enterprise clients. My primary focus was building Oriento, a multi-tenant onboarding and training platform, using .NET and React.",
+        "description": "I developed custom web applications for enterprise clients. My primary focus was building Oriento, a multi-tenant orientation and training platform, using .NET and React.",
         "highlights": [
-          "Built the onboarding/offboarding, interactive training, task management, and reporting modules for Oriento. The platform was used by companies like ING Bank, Kibar Holding, FNSS, and SoftTech.",
+          "Built the orientation/offboarding, interactive training, task management, and reporting modules for Oriento. The platform was used by companies like ING Bank, Kibar Holding, FNSS, and SoftTech.",
           "Adapted the existing on-prem platform into a cloud version for FNSS. Added features such as role-based management, orientation workflows, and task tracking with buddy pairing.",
           "Built the data layer with REST APIs and Entity Framework, designing the modules to be easily adaptable to different client needs.",
           "Took part in collaborative projects with Turkcell, such as an internet safety game for kids (Galaksel).",
@@ -613,7 +613,7 @@
       {
         "id": "oriento",
         "title": "Oriento — Onboarding & Training Platform",
-        "summary": "A multi-tenant onboarding and training platform. Developed using .NET and React; utilized by companies like ING Bank, Kibar Holding, and SoftTech. Features role-based management, orientation workflows, and task tracking.",
+        "summary": "A multi-tenant orientation and training platform. Developed using .NET and React; utilized by companies like ING Bank, Kibar Holding, and SoftTech. Features role-based management, orientation workflows, and task tracking.",
         "url": "https://orientoapp.com",
         "stack": [
           "React",
