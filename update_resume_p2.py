@@ -11,12 +11,12 @@ data["tr"]["basics"]["summary"] = "Eroğlu Global Holding bünyesindeki grup şi
 # 2. Kansuk İlaç
 for exp in data["tr"]["experience"]:
     if exp["id"] == "kansuk-2025":
-        exp["description"] = "Şirket içi İK portalı ve yönetim paneli projelerini ASP.NET MVC ile geliştirdim. Access veritabanları ve masaüstü uygulamalarına dağılmış olan İK verilerini merkezileştirerek web tabanlı tek bir sisteme taşıdım."
+        exp["description"] = "Şirket içi İK portalı ve yönetim paneli projelerini ASP.NET MVC ile geliştirdim. Access veritabanları ve masaüstü uygulamalara bağlı İK süreçlerini destekledim."
         
         # Modify specific highlights
         for i, highlight in enumerate(exp["highlights"]):
-            if "SQL Server" in highlight:
-                exp["highlights"][i] = "Farklı sistemlerdeki dağınık kayıtları ilişkisel bir veri modeline dönüştürerek tek bir merkezde birleştirdim."
+            if "dağınık kayıtları" in highlight or "merkezde birleştirdim" in highlight:
+                exp["highlights"][i] = "Access tabanlı ve masaüstü İK uygulamalarının bakımını ve iyileştirmesini üstlendim; web portalı geliştirmeleriyle birlikte yürüttüm."
             if "Yöneticiler için rol bazlı raporlama ekranları" in highlight:
                 exp["highlights"][i] = "Personel performans değerlendirme sistemi üzerinde çalışarak yöneticiler için rol bazlı raporlama ekranları tasarladım ve manuel süreçleri azalttım."
                 
@@ -34,11 +34,11 @@ data["en"]["basics"]["summary"] = "I develop enterprise portal, travel managemen
 
 for exp in data["en"]["experience"]:
     if exp["id"] == "kansuk-2025":
-        exp["description"] = "I developed the internal HR portal and management panel using ASP.NET MVC. I centralized HR data scattered across Access databases and desktop applications, migrating it to a single web-based system."
+        exp["description"] = "I developed the internal HR portal and management panel using ASP.NET MVC. I supported HR processes linked to Access databases and desktop applications."
         
         for i, highlight in enumerate(exp["highlights"]):
-            if "SQL Server" in highlight:
-                exp["highlights"][i] = "Consolidated scattered records from different systems into a relational data model in a single center."
+            if "Consolidated scattered" in highlight or "single center" in highlight:
+                exp["highlights"][i] = "Maintained and improved Access-based and desktop HR applications, working in parallel with web portal development."
             if "Designed role-based reporting screens" in highlight:
                 exp["highlights"][i] = "Worked on the employee performance evaluation system, designing role-based reporting screens for managers and reducing manual processes."
                 
