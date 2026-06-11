@@ -102,7 +102,7 @@ export default async function CvPrintPage({
         <div className="mt-4 flex flex-1 flex-col gap-5">
           {/* Experience */}
           {resume.experience.length > 0 && (
-            <section className="break-inside-avoid">
+            <section>
               <SectionLabel>{tr ? 'Deneyim' : 'Experience'}</SectionLabel>
               <div className="flex flex-col gap-4">
                 {resume.experience.map((exp) => {
@@ -160,7 +160,7 @@ export default async function CvPrintPage({
 
           {/* Earlier Experience */}
           {resume.earlierExperience && resume.earlierExperience.entries.length > 0 && (
-            <section className="break-inside-avoid">
+            <section>
               <SectionLabel>{tr ? 'Önceki Deneyimler' : 'Earlier Experience'}</SectionLabel>
               <div className="flex flex-col gap-1.5">
                 <p className="font-sans text-[10px] leading-[1.4] text-ink-secondary">
@@ -182,7 +182,7 @@ export default async function CvPrintPage({
 
           {/* Selected Projects */}
           {resume.projects.length > 0 && (
-            <section className="break-inside-avoid">
+            <section>
               <SectionLabel>{tr ? 'Seçili Projeler' : 'Selected Projects'}</SectionLabel>
               <div className="flex flex-col gap-3">
                 {resume.projects.map((proj) => (
@@ -267,42 +267,41 @@ export default async function CvPrintPage({
           </section>
         </div>
 
+        {/* ── Screenshots ─────────────────────────────────────── */}
+        <section className="mt-8 pt-6 border-t-2 border-ink">
+          <header className="pb-4">
+            <h2 className="font-serif text-[16px] font-medium leading-tight text-ink">
+              {tr ? 'Proje Ekran Görüntüleri' : 'Project Screenshots'}
+            </h2>
+          </header>
 
-      </main>
+          <div className="flex flex-col gap-6">
+            {/* Dashboard Login */}
+            <div className="flex flex-col gap-1.5 break-inside-avoid">
+              <h3 className="font-mono text-[9px] uppercase tracking-[0.14em] text-ink-secondary">Eroğlu Portal — Login</h3>
+              <div className="w-full flex justify-center bg-surface-sunk border border-ink/15 rounded p-2">
+                <img src="/screenshots/dashboard-login-cropped.png" alt="Dashboard Login" className="max-h-[80mm] w-auto object-contain rounded-sm" />
+              </div>
+            </div>
 
-      {/* ── Screenshots Page ─────────────────────────────────────── */}
-      <main className="mx-auto flex min-h-[297mm] w-full max-w-[210mm] flex-col bg-surface px-[15mm] py-[11mm] break-before-page shadow-sm mt-8 print:mt-0 print:shadow-none">
-        <header className="border-b-2 border-ink pb-3 mb-6">
-          <h2 className="font-serif text-[18px] font-medium leading-tight text-ink">
-            {tr ? 'Proje Ekran Görüntüleri' : 'Project Screenshots'}
-          </h2>
-        </header>
+            {/* Dashboard */}
+            <div className="flex flex-col gap-1.5 break-inside-avoid">
+              <h3 className="font-mono text-[9px] uppercase tracking-[0.14em] text-ink-secondary">Eroğlu Portal — Dashboard</h3>
+              <div className="w-full bg-surface-sunk border border-ink/15 rounded overflow-hidden">
+                <img src="/screenshots/dashboard-cropped.png" alt="Dashboard" className="w-full h-auto block" />
+              </div>
+            </div>
 
-        <div className="flex flex-col gap-5 flex-1 justify-center">
-          {/* Dashboard Login */}
-          <div className="flex flex-col gap-1.5 w-full">
-            <h3 className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-secondary">Eroğlu Portal — Login</h3>
-            <div className="relative w-full h-[80mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
-              <Image src="/screenshots/dashboard-login-cropped.png" alt="Dashboard Login" fill className="object-contain" />
+            {/* Travel Yeni */}
+            <div className="flex flex-col gap-1.5 break-inside-avoid">
+              <h3 className="font-mono text-[9px] uppercase tracking-[0.14em] text-ink-secondary">Travel Management</h3>
+              <div className="w-full bg-surface-sunk border border-ink/15 rounded overflow-hidden">
+                <img src="/screenshots/travel-yeni-cropped.png" alt="Travel System" className="w-full h-auto block" />
+              </div>
             </div>
           </div>
+        </section>
 
-          {/* Dashboard */}
-          <div className="flex flex-col gap-1.5 w-full">
-            <h3 className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-secondary">Eroğlu Portal — Dashboard</h3>
-            <div className="relative w-full h-[80mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
-              <Image src="/screenshots/dashboard-cropped.png" alt="Dashboard" fill className="object-contain" />
-            </div>
-          </div>
-
-          {/* Travel Yeni */}
-          <div className="flex flex-col gap-1.5 w-full">
-            <h3 className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-secondary">Travel Management</h3>
-            <div className="relative w-full h-[80mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
-              <Image src="/screenshots/travel-yeni-cropped.png" alt="Travel System" fill className="object-contain" />
-            </div>
-          </div>
-        </div>
       </main>
     </div>
   );
