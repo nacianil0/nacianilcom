@@ -91,6 +91,7 @@ export default async function CvPage({
   ]);
 
   const publicEmail = resume.contact.find((c) => c.key === 'email')?.value;
+  const publicPhone = resume.contact.find((c) => c.key === 'phone' && c.visibility === 'public')?.value;
   const role = resume.basics.title;
   const location = resume.basics.location;
   const currentCompany = resume.experience[0]?.company;
@@ -174,6 +175,11 @@ export default async function CvPage({
                 {publicEmail && (
                   <a href={`mailto:${publicEmail}`} className={contactClass}>
                     {publicEmail}
+                  </a>
+                )}
+                {publicPhone && (
+                  <a href={`tel:${publicPhone.replace(/\s/g, '')}`} className={contactClass}>
+                    {publicPhone}
                   </a>
                 )}
                 {resume.links.map((l) => (

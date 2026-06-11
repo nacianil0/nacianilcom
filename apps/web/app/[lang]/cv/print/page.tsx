@@ -39,6 +39,7 @@ export default async function CvPrintPage({
 
   const tr = locale === 'tr';
   const publicEmail = resume.contact.find((c) => c.key === 'email')?.value;
+  const publicPhone = resume.contact.find((c) => c.key === 'phone' && c.visibility === 'public')?.value;
   const role = resume.basics.title;
   const location = resume.basics.location;
 
@@ -82,6 +83,11 @@ export default async function CvPrintPage({
 
           <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 font-mono text-[8.5px] tracking-[0.04em] text-ink-secondary">
             {publicEmail && <span className="text-ink">{publicEmail}</span>}
+            {publicPhone && (
+              <span className="text-ink before:mr-3 before:text-hairline before:content-['/']">
+                {publicPhone}
+              </span>
+            )}
             {resume.links.map((l) => (
               <span
                 key={l.label}
