@@ -282,7 +282,7 @@ export default async function CvPrintPage({
           {/* Dashboard Login */}
           <div className="flex flex-col gap-1.5 w-full">
             <h3 className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-secondary">Eroğlu Portal — Login</h3>
-            <div className="relative w-full h-[70mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
+            <div className="relative w-full h-[80mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
               <Image src="/screenshots/dashboard-login.png" alt="Dashboard Login" fill className="object-contain" />
             </div>
           </div>
@@ -290,16 +290,16 @@ export default async function CvPrintPage({
           {/* Dashboard */}
           <div className="flex flex-col gap-1.5 w-full">
             <h3 className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-secondary">Eroğlu Portal — Dashboard</h3>
-            <div className="relative w-full h-[70mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
-              <Image src="/screenshots/dashboard.png" alt="Dashboard" fill className="object-cover object-top" />
+            <div className="relative w-full h-[80mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
+              <Image src="/screenshots/dashboard.png" alt="Dashboard" fill className="object-contain" />
             </div>
           </div>
 
           {/* Travel Yeni */}
           <div className="flex flex-col gap-1.5 w-full">
             <h3 className="font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-secondary">Travel Management</h3>
-            <div className="relative w-full h-[70mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
-              <Image src="/screenshots/travel-yeni.png" alt="Travel System" fill className="object-cover object-top" />
+            <div className="relative w-full h-[80mm] rounded border border-ink/15 bg-surface-sunk overflow-hidden">
+              <Image src="/screenshots/travel-yeni.png" alt="Travel System" fill className="object-contain" />
             </div>
           </div>
         </div>
