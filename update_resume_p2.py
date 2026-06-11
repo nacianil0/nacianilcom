@@ -6,7 +6,7 @@ with open(file_path, "r", encoding="utf-8") as f:
 
 # TR updates
 # 1. Summary
-data["tr"]["basics"]["summary"] = "Eroğlu Global Holding bünyesindeki grup şirketleri ve Mısır'daki 4 fabrika (EMS, EG, DNM vb.) için kurumsal portal, seyahat yönetimi ve İK/avans sistemleri geliştiriyorum. Mısır'daki yerel operasyonlar ve Türk olmayan kullanıcı gruplarıyla çalışarak onlara özel çok dilli geliştirmeler yapıyor; mevcut uygulamaları mimari ve arayüz olarak yenileyip ortak bir yetki modeli altında birleştiriyorum. Geçmişte Digitallica'da çok kiracılı (multi-tenant) kurumsal oryantasyon platformu Oriento'yu geliştirme deneyimi edindim. Eş zamanlı olarak RAG ve Qdrant tabanlı bir yapay zeka e-posta asistanı projesi üzerinde çalışıyorum."
+data["tr"]["basics"]["summary"] = "Eroğlu Global Holding bünyesindeki grup şirketleri ve Mısır'daki 4 fabrika (EMS, EG, DNM vb.) için kurumsal portal, seyahat yönetimi ve İK/avans sistemleri geliştiriyorum. Mısır'daki yerel operasyonlar ve uluslararası kullanıcı gruplarıyla çalışarak onlara özel çok dilli geliştirmeler yapıyor; mevcut uygulamaları mimari ve arayüz olarak yenileyip ortak bir yetki modeli altında birleştiriyorum. Geçmişte Digitallica'da çok kiracılı (multi-tenant) kurumsal oryantasyon platformu Oriento'yu geliştirme deneyimi edindim. Eş zamanlı olarak RAG ve Qdrant tabanlı bir yapay zeka e-posta asistanı projesi üzerinde çalışıyorum."
 
 # 2. Kansuk İlaç
 for exp in data["tr"]["experience"]:
@@ -30,7 +30,7 @@ for proj in data["tr"]["projects"]:
         proj["summary"] = proj["summary"].replace("işe alıştırma", "oryantasyon")
 
 # EN updates
-data["en"]["basics"]["summary"] = "I develop enterprise portal, travel management, and HR/advance systems for Eroğlu Global Holding companies and 4 factories in Egypt (EMS, EG, DNM, etc.). Working with local operations and non-Turkish user groups in Egypt, I deliver tailored and multilingual solutions, modernizing existing applications and unifying them under a shared authorization model. Previously at Digitallica, I built Oriento, a multi-tenant enterprise orientation platform. Concurrently, I am developing an AI email assistant using RAG and Qdrant."
+data["en"]["basics"]["summary"] = "I develop enterprise portal, travel management, and HR/advance systems for Eroğlu Global Holding companies and 4 factories in Egypt (EMS, EG, DNM, etc.). Working with local operations and international user groups in Egypt, I deliver tailored and multilingual solutions, modernizing existing applications and unifying them under a shared authorization model. Previously at Digitallica, I built Oriento, a multi-tenant enterprise orientation platform. Concurrently, I am developing an AI email assistant using RAG and Qdrant."
 
 for exp in data["en"]["experience"]:
     if exp["id"] == "kansuk-2025":

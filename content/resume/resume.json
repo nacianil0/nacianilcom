@@ -4,7 +4,7 @@
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
       "tagline": ".NET ve React ile kurumsal portal, İK ve seyahat sistemleri geliştiriyorum. Mevcut projeleri analiz edip mimariden canlıya alınmasına kadar tüm süreçleri yönetiyorum.",
-      "summary": "Eroğlu Global Holding bünyesindeki grup şirketleri ve Mısır'daki 4 fabrika (EMS, EG, DNM vb.) için kurumsal portal, seyahat yönetimi ve İK/avans sistemleri geliştiriyorum. Mısır'daki yerel operasyonlar ve Türk olmayan kullanıcı gruplarıyla çalışarak onlara özel çok dilli geliştirmeler yapıyor; mevcut uygulamaları mimari ve arayüz olarak yenileyip ortak bir yetki modeli altında birleştiriyorum. Geçmişte Digitallica'da çok kiracılı (multi-tenant) kurumsal oryantasyon platformu Oriento'yu geliştirme deneyimi edindim. Eş zamanlı olarak RAG ve Qdrant tabanlı bir yapay zeka e-posta asistanı projesi üzerinde çalışıyorum.",
+      "summary": "Eroğlu Global Holding bünyesindeki grup şirketleri ve Mısır'daki 4 fabrika (EMS, EG, DNM vb.) için kurumsal portal, seyahat yönetimi ve İK/avans sistemleri geliştiriyorum. Mısır'daki yerel operasyonlar ve uluslararası kullanıcı gruplarıyla çalışarak onlara özel çok dilli geliştirmeler yapıyor; mevcut uygulamaları mimari ve arayüz olarak yenileyip ortak bir yetki modeli altında birleştiriyorum. Geçmişte Digitallica'da çok kiracılı (multi-tenant) kurumsal oryantasyon platformu Oriento'yu geliştirme deneyimi edindim. Eş zamanlı olarak RAG ve Qdrant tabanlı bir yapay zeka e-posta asistanı projesi üzerinde çalışıyorum.",
       "primaryStack": [
         ".NET",
         "ASP.NET Core",
@@ -351,7 +351,7 @@
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
       "tagline": "I build enterprise portal, HR, and travel systems with .NET and React. I analyze existing projects and manage all processes from architecture to deployment.",
-      "summary": "I develop enterprise portal, travel management, and HR/advance systems for Eroğlu Global Holding companies and 4 factories in Egypt (EMS, EG, DNM, etc.). Working with local operations and non-Turkish user groups in Egypt, I deliver tailored and multilingual solutions, modernizing existing applications and unifying them under a shared authorization model. Previously at Digitallica, I built Oriento, a multi-tenant enterprise orientation platform. Concurrently, I am developing an AI email assistant using RAG and Qdrant.",
+      "summary": "I develop enterprise portal, travel management, and HR/advance systems for Eroğlu Global Holding companies and 4 factories in Egypt (EMS, EG, DNM, etc.). Working with local operations and international user groups in Egypt, I deliver tailored and multilingual solutions, modernizing existing applications and unifying them under a shared authorization model. Previously at Digitallica, I built Oriento, a multi-tenant enterprise orientation platform. Concurrently, I am developing an AI email assistant using RAG and Qdrant.",
       "primaryStack": [
         ".NET",
         "ASP.NET Core",
