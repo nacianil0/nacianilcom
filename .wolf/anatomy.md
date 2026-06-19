@@ -10,6 +10,15 @@
 
 ## ./
 
+- `skills-lock.json` - skills CLI lockfile pinning installed dbs-goal source, path, and computed hash. (~90 tok)
+
+## .codex/
+
+- `hooks.json` - OpenWolf/Claude-style tool hooks for reads, writes, session start, and stop events. (~260 tok)
+
+## .agents/skills/dbs-goal/
+
+- `SKILL.md` - Installed dontbesilent dbs-goal skill: Wittgenstein-style fuzzy goal audit into checkable deliverables; Chinese body with bilingual trigger metadata. (~3000 tok)
 
 ## .claude/
 
@@ -18,6 +27,13 @@
 
 
 ## .wolf/
+
+- `OPENWOLF.md` - Project operating protocol: anatomy-first reads, cerebrum-before-code, memory and buglog updates, design QC workflow. (~1450 tok)
+- `anatomy.md` - OpenWolf file map and token estimates for repo navigation. (~6200 tok)
+- `buglog.json` - Structured project bug history with root cause/fix metadata. (~9000 tok)
+- `cerebrum.md` - Long-lived project/user memory: preferences, learnings, do-not-repeat notes, decisions. (~17000 tok)
+- `designqc-captures/cv-print-tr-after.png` - Playwright screenshot of `/tr/cv/print` after CV wording pass; used for visual fit/overflow check. (image)
+- `memory.md` - Session action log table appended during work. (~6000 tok)
 
 
 ## apps/studio/
@@ -106,6 +122,7 @@
 
 ## apps/web/src/lib/
 
+- `password-gate.ts` - Password gate helpers: cookie name, fallback hash/secret, password hash verification, signed session build/verify, and safe next-path handling. (~1700 tok)
 
 ## apps/web/src/mdx/
 
@@ -301,4 +318,3 @@
 
 
 ## scripts/
-

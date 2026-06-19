@@ -3,8 +3,8 @@
     "basics": {
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "tagline": "Ağırlıklı .NET, React ve SQL Server ile kurumsal web uygulamaları, iç portallar ve multi-tenant ürünler geliştiriyorum; yetkilendirme, migration ve sistem entegrasyonu tarafında deneyimliyim.",
-      "summary": "Kurumsal web uygulamaları, iç portallar ve multi-tenant ürünler tarafında çalışan bir full stack developer'ım; ağırlık .NET, React ve SQL Server'da. En uzun durağım Digitallica oldu (2021–2025): çok kiracılı oryantasyon/eğitim platformu Oriento'da onboarding, eğitim, görev yönetimi ve raporlama modüllerinde full stack geliştirme yaptım; ürün ING Bank, Kibar Holding, FNSS ve SoftTech gibi şirketlerde kullanıldı. Şu an Eroğlu Global Holding'de Türkiye ve Mısır operasyonları için kurumsal Dashboard, seyahat ve İK avans modülleri geliştiriyorum; ayrı çalışan uygulamaları mevcut tek giriş ve ortak yetki modeli altında toparlıyorum. Bunların dışında, RAG ve Qdrant tabanlı bir AI e-posta asistanını kişisel proje olarak geliştiriyorum.",
+      "tagline": "Kurumsal portal, iç uygulama ve multi-tenant ürünlerde ağırlıklı .NET, React ve SQL Server ile full stack geliştirme.",
+      "summary": "Kurumsal web uygulamaları, iç portallar ve multi-tenant ürünler tarafında çalışan bir full stack developer'ım; ağırlık .NET, React ve SQL Server'da. En uzun durağım Digitallica oldu (2021–2025): çok kiracılı oryantasyon/eğitim platformu Oriento'da onboarding, eğitim, görev yönetimi ve raporlama modüllerinde full stack geliştirme yaptım; ürün ING Bank, Kibar Holding, FNSS ve SoftTech gibi şirketlerde kullanıldı. Şu an Eroğlu Global Holding'de Türkiye ve Mısır'daki grup şirketleri için kurumsal Dashboard, seyahat ve İK avans modülleri geliştiriyorum; ayrı uygulama deneyimlerini mevcut tek giriş, ortak yetki modeli ve Eroglu.HR omurgası üzerinde aynı portal diline bağlıyorum. Bunların dışında, RAG ve Qdrant tabanlı bir AI e-posta asistanını kişisel proje olarak geliştiriyorum.",
       "primaryStack": [
         ".NET",
         "ASP.NET Core",
@@ -39,12 +39,12 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "Türkiye ve Mısır operasyonları için kurumsal Dashboard, seyahat ve İK avans modüllerini geliştiriyorum. Ayrı çalışan uygulamaları mevcut tek giriş ve ortak yetki modeli altında toparlıyor, holdingin İK sistemine (Eroglu.HR) entegre ediyorum.",
+        "description": "Türkiye ve Mısır'daki grup şirketleri için kurumsal Dashboard, seyahat ve İK avans modüllerini geliştiriyorum. Ayrı uygulama deneyimlerini mevcut tek giriş, ortak yetki modeli ve Eroglu.HR omurgası üzerinde aynı portal diline bağlıyorum.",
         "highlights": [
-          "Mevcut kurumsal erişim panelini yenileyerek; rol bazlı uygulama kataloğu, hedefli duyuru akışı, yemek menüsü ve bildirim merkezini tek giriş üzerinden hizmet veren merkezi bir arayüzde topladım.",
-          "Önceki geliştiriciden devraldığım, ayrı çalışan seyahat sistemini ana panele taşıdım: ikinci login'i kaldırıp mevcut tek giriş ve ortak yetki modeline bağladım, veri modelini holdingin yapısına uyumlu hale getirdim.",
-          "İK avans modülüne Datalab ve OpenAI OCR entegrasyonu ekledim: fiş ve faturalardan tutar/tarih çıkarımı, güven skoru ve görsel doğrulama ile çoğu alanın elle girilmesine gerek kalmıyor.",
-          "Avans sürecini dijitalleştirerek modelledim: talep, onay, taksitlendirme ve geri ödeme. Sisteme çoklu şirket desteği ve şirket bazlı yetkilendirme özellikleri kazandırdım."
+          "Kurumsal erişim panelini yenileyerek çalışanların giriş sonrası kullandığı ana çalışma alanını geliştirdim; rol bazlı uygulama erişimi, yönetilebilir içerik alanları, bildirimler ve yönetici ekranları aynı portal deneyimine taşındı.",
+          "Önceki geliştiriciden devraldığım seyahat sistemini ayrı uygulama olmaktan çıkarıp Dashboard içinde çalışacak hale getirdim; ikinci login'i kaldırdım, izin modelini mevcut portal yapısıyla hizaladım ve veri modelini holding yapısına göre düzenledim.",
+          "İK avans modülüne Datalab ve OpenAI OCR desteği ekledim: fiş ve faturalardan tutar/tarih çıkarımı, güven skoru ve görsel doğrulama ile çoğu alanın elle girilmesine gerek kalmıyor.",
+          "Avans sürecini dijitalleştirerek modelledim: talep, onay, taksitlendirme ve geri ödeme. Sisteme çoklu şirket desteği ve şirket bazlı erişim kuralları kazandırdım."
         ],
         "stack": [
           "React",
@@ -67,7 +67,7 @@
         "endDate": "2026-02",
         "description": "Şirket içi İK portalı ve yönetim paneli projelerini ASP.NET MVC ile geliştirdim. Access veritabanları ve masaüstü uygulamalara bağlı İK süreçlerini destekledim.",
         "highlights": [
-          "Performans değerlendirme, izin takibi ve çalışan yönetimi modüllerini iyileştirdim. Excel ile yürütülen operasyonları web ortamına aktardım.",
+          "Performans değerlendirme, izin takibi ve çalışan yönetimi modüllerini iyileştirdim. Excel ile yürütülen takip ve raporlama işlerini web ortamına aktardım.",
           "Access tabanlı ve masaüstü İK uygulamalarının bakımını ve iyileştirmesini üstlendim; web portalı geliştirmeleriyle birlikte yürüttüm.",
           "Personel performans değerlendirme tarafında yöneticiler için rol bazlı raporlama ekranları yaptım."
         ],
@@ -178,13 +178,13 @@
         "items": [
           "SQL Server",
           "T-SQL",
-          "EF Core Migrations",
+          "Veri modelleme",
           "PostgreSQL",
           "MySQL"
         ]
       },
       {
-        "group": "AI & Entegrasyon",
+        "group": "AI & Harici Servisler",
         "items": [
           "OpenAI",
           "RAG",
@@ -195,14 +195,14 @@
         ]
       },
       {
-        "group": "Mimari & Entegrasyon",
+        "group": "Mimari & Platform",
         "items": [
-          "Authentication & yetki yönetimi",
-          "SSO",
-          "Multi-tenant mimari",
-          "Migration",
+          "Rol bazlı erişim",
+          "SSO uyumu",
+          "Multi-tenant yapı",
+          "Veri modeli düzenleme",
           "Raporlama / dashboard",
-          "Sistem entegrasyonu"
+          "Kurumsal portal mimarisi"
         ]
       },
       {
@@ -219,7 +219,7 @@
       {
         "id": "kurumsal-dashboard",
         "title": "Kurumsal Dashboard (Portal)",
-        "summary": "Holding çalışanları için geliştirilen tek girişli kurumsal erişim paneli. Duyuru, yemek menüsü ve uygulama kataloğunu rol bazlı yetkilendirmeyle tek ekranda sunarak Türkiye ve Mısır'daki şirket operasyonlarını birleştirir.",
+        "summary": "Holding çalışanları için geliştirilen tek girişli kurumsal portal. Rol bazlı uygulama erişimi, yönetilebilir içerik alanları ve bildirimleri aynı ürün diliyle sunarak Türkiye ve Mısır'daki grup şirketleri için ortak başlangıç noktası oluşturur.",
         "caseSlug": "kurumsal-dashboard",
         "stack": [
           "React",
@@ -233,7 +233,7 @@
       {
         "id": "seyahat-projesi",
         "title": "Seyahat Yönetim Sistemi",
-        "summary": "Holding genelindeki seyahat talep, onay ve bütçe süreçlerini yöneten sistem. Merkezi erişim paneline entegre edilerek SSO ve ortak yetki modeliyle Türkiye ve Mısır operasyonlarında kullanıma sunulmuştur.",
+        "summary": "Holding genelindeki seyahat talep, onay ve bütçe süreçlerini yöneten sistem. Ayrı uygulama yapısından çıkarılıp merkezi Dashboard içinde, mevcut tek giriş ve ortak yetki modeliyle çalışacak şekilde geliştirildi.",
         "caseSlug": "seyahat-projesi",
         "stack": [
           "React",
@@ -350,8 +350,8 @@
     "basics": {
       "name": "Naci Anıl Akman",
       "title": "Full Stack Developer",
-      "tagline": "I build enterprise web apps, internal portals, and multi-tenant products with .NET, React, and SQL Server; experienced with authorization, data migration, and system integration.",
-      "summary": "I'm a full stack developer working on enterprise web apps, internal portals, and multi-tenant products, mostly with .NET, React, and SQL Server. My longest stint was at Digitallica (2021–2025): on Oriento, a multi-tenant orientation and training platform, I did full stack work on the onboarding, training, task-management, and reporting modules; the product was used by companies like ING Bank, Kibar Holding, FNSS, and SoftTech. I'm currently at Eroğlu Global Holding, building the enterprise Dashboard, travel, and HR advance modules for the Turkey and Egypt operations, and bringing separate apps together under the existing single sign-on and a shared permission model. On the side, I'm building an AI email assistant on RAG and Qdrant as a personal project.",
+      "tagline": "Full stack development for enterprise portals, internal applications, and multi-tenant products, mostly with .NET, React, and SQL Server.",
+      "summary": "I'm a full stack developer working on enterprise web apps, internal portals, and multi-tenant products, mostly with .NET, React, and SQL Server. My longest stint was at Digitallica (2021–2025): on Oriento, a multi-tenant orientation and training platform, I did full stack work on the onboarding, training, task-management, and reporting modules; the product was used by companies like ING Bank, Kibar Holding, FNSS, and SoftTech. I'm currently at Eroğlu Global Holding, building the enterprise Dashboard, travel, and HR advance modules for group companies in Turkey and Egypt, aligning separate application experiences with the existing single sign-on, shared permission model, and Eroglu.HR backbone. On the side, I'm building an AI email assistant on RAG and Qdrant as a personal project.",
       "primaryStack": [
         ".NET",
         "ASP.NET Core",
@@ -386,12 +386,12 @@
         "company": "Eroğlu Global Holding",
         "role": "Full Stack Developer",
         "startDate": "2026-03",
-        "description": "I build the enterprise Dashboard, travel, and HR advance modules for the Turkey and Egypt operations. I bring separate apps together under the existing single sign-on and a shared permission model, integrating them into the holding's HR system (Eroglu.HR).",
+        "description": "I build the enterprise Dashboard, travel, and HR advance modules for group companies in Turkey and Egypt. I align separate application experiences with the existing single sign-on, shared permission model, and Eroglu.HR backbone.",
         "highlights": [
-          "Modernized the enterprise access panel; consolidated the role-based application catalog, targeted announcements, meal menu, and notification center into a centralized interface behind a single login.",
-          "Moved the standalone travel system — which I took over from the previous developer — into the main panel: removed the second login, tied it to the existing single sign-on and shared permission model, and aligned its data model with the holding's structure.",
-          "Added Datalab and OpenAI OCR to the HR advance module: amount/date extraction from receipts, confidence scoring, and visual validation mean most fields no longer have to be typed in by hand.",
-          "Digitalized the advance process end-to-end: request, approval, installments, and repayment. Added multi-company support and company-based authorization features."
+          "Modernized the enterprise access panel into the main post-login workspace for employees; role-based application access, manageable content areas, notifications, and admin screens now share the same portal experience.",
+          "Moved the travel system I took over from the previous developer out of its standalone shell and into the Dashboard; removed the second login, aligned permissions with the existing portal model, and adjusted the data model to the holding structure.",
+          "Added Datalab and OpenAI OCR support to the HR advance module: amount/date extraction from receipts, confidence scoring, and visual validation mean most fields no longer have to be typed in by hand.",
+          "Digitalized the advance process end-to-end: request, approval, installments, and repayment. Added multi-company support and company-based access rules."
         ],
         "stack": [
           "React",
@@ -414,7 +414,7 @@
         "endDate": "2026-02",
         "description": "I developed the internal HR portal and management panel using ASP.NET MVC. I supported HR processes linked to Access databases and desktop applications.",
         "highlights": [
-          "Improved performance review, leave tracking, and employee management modules. Moved operations previously handled via Excel to the web environment.",
+          "Improved performance review, leave tracking, and employee management modules. Moved Excel-based tracking and reporting work into the web environment.",
           "Maintained and improved Access-based and desktop HR applications, working in parallel with web portal development.",
           "On the employee performance review side, built role-based reporting screens for managers."
         ],
@@ -525,13 +525,13 @@
         "items": [
           "SQL Server",
           "T-SQL",
-          "EF Core Migrations",
+          "Data modeling",
           "PostgreSQL",
           "MySQL"
         ]
       },
       {
-        "group": "AI & Integration",
+        "group": "AI & External Services",
         "items": [
           "OpenAI",
           "RAG",
@@ -542,14 +542,14 @@
         ]
       },
       {
-        "group": "Architecture & Integration",
+        "group": "Architecture & Platform",
         "items": [
-          "Authentication & permissions",
-          "SSO",
+          "Role-based access",
+          "SSO alignment",
           "Multi-tenant architecture",
-          "Migration",
+          "Data model alignment",
           "Reporting / dashboards",
-          "System integration"
+          "Enterprise portal architecture"
         ]
       },
       {
@@ -566,7 +566,7 @@
       {
         "id": "kurumsal-dashboard",
         "title": "Enterprise Dashboard (Portal)",
-        "summary": "A single-login enterprise access panel developed for holding employees. Unifies company operations in Turkey and Egypt by offering announcements, meal menus, and an application catalog on a single screen with role-based authorization.",
+        "summary": "A single-login enterprise portal developed for holding employees. Provides role-based application access, manageable content areas, and notifications in a shared product language for group companies in Turkey and Egypt.",
         "caseSlug": "kurumsal-dashboard",
         "stack": [
           "React",
@@ -580,7 +580,7 @@
       {
         "id": "seyahat-projesi",
         "title": "Travel Management System",
-        "summary": "A system managing travel requests, approvals, and budget processes across the holding. Integrated into the central access panel with SSO and a shared permission model for operations in Turkey and Egypt.",
+        "summary": "A system managing travel requests, approvals, and budget processes across the holding. Moved from a standalone application into the central Dashboard, using the existing single sign-on and shared permission model.",
         "caseSlug": "seyahat-projesi",
         "stack": [
           "React",

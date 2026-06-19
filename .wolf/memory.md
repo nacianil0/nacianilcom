@@ -718,6 +718,14 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+| 14:06 | CV wording audit for /tr/cv/print | content/resume/resume.json, apps/web/app/[lang]/cv/print/page.tsx, .wolf/cerebrum.md | Located weak TR copy and recorded wording preferences before resume edits | ~3600 tok |
+| 14:11 | CV wording pass and print verification | content/resume/resume.json, apps/web/app/[lang]/cv/page.tsx, .wolf/anatomy.md, .wolf/buglog.json | Rewrote weak TR/EN CV copy, removed disliked target terms from CV source, JSON/typecheck passed, TR print height 1069px | ~4300 tok |
+| 14:15 | Final CV print wording verification | content/resume/resume.json, .wolf/designqc-captures/cv-print-tr-after.png | Removed generic migration/authorization/integration wording from skill labels too; rendered /tr/cv/print disliked-term scan empty, height 1069px | ~1800 tok |
+| 13:58 | Added global Codex skills for brainstorm and frontend design | C:\Users\anil.akman\.agents\skills\brainstorm\SKILL.md; C:\Users\anil.akman\.agents\skills\frontend-design\SKILL.md | Both validated with quick_validate.py; grill-me already available in .codex skills | ~3000 |
+| 13:58 | Recorded skill setup learnings and validator gotchas | .wolf/anatomy.md, .wolf/cerebrum.md, .wolf/buglog.json, .wolf/memory.md | Logged global skill paths, New-Item -LiteralPath issue, and PyYAML validator dependency | ~900 |
+| 14:00 | Installed dbs-goal skill via npx skills add | .agents/skills/dbs-goal/SKILL.md | Installed from dontbesilent2025/dbskill; validator passed with PYTHONUTF8=1 | ~1200 |
+| 14:00 | Recorded dbs-goal anatomy and UTF-8 validator gotcha | .wolf/anatomy.md, .wolf/cerebrum.md, .wolf/buglog.json, .wolf/memory.md | Added .agents entry and buglog for cp1252 UnicodeDecodeError | ~700 |
+| 14:01 | Inspected skills lockfile from installer | skills-lock.json, .wolf/anatomy.md, .wolf/memory.md | Lockfile pins dbs-goal source/hash; JSON valid | ~250 |
 | 11:24 | Edited content/resume/resume.json | 2→2 lines | ~194 |
 | 11:24 | Edited content/resume/resume.json | 7→7 lines | ~396 |
 | 11:24 | Edited content/resume/resume.json | 6→6 lines | ~224 |
@@ -810,3 +818,8 @@
 | 22:40 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_cv_strengthen.md | amiral() → rma() | ~404 |
 | 22:41 | Edited ../../Users/anil.akman/.claude/projects/C--dev-nacianilcom/memory/project_cv_strengthen.md | "ler content-core Zod" → "JSON.parse" | ~137 |
 | 22:41 | Session end: 37 writes across 5 files (resume.json, case.json, page.tsx, MEMORY.md, project_cv_strengthen.md) | 7 reads | ~14330 tok |
+
+## Session: 2026-06-12 08:54
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

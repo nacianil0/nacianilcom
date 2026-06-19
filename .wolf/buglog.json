@@ -549,6 +549,73 @@
       "related_bugs": [],
       "occurrences": 3,
       "last_seen": "2026-06-11T19:41:02.824Z"
+    },
+    {
+      "id": "bug-033",
+      "timestamp": "2026-06-19T10:58:18.0778193Z",
+      "error_message": "New-Item : A parameter cannot be found that matches parameter name 'LiteralPath'.",
+      "file": "global skill directory creation command",
+      "root_cause": "This PowerShell/New-Item surface does not expose the -LiteralPath parameter.",
+      "fix": "Created the frontend-design skill directory with New-Item -ItemType Directory -Force -Path instead.",
+      "tags": [
+        "powershell",
+        "skill-setup",
+        "openwolf"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-19T10:58:18.0778193Z"
+    },
+    {
+      "id": "bug-034",
+      "timestamp": "2026-06-19T10:58:18.0778193Z",
+      "error_message": "ModuleNotFoundError: No module named 'yaml' while running skill-creator quick_validate.py",
+      "file": "C:\\Users\\anil.akman\\.codex\\skills\\.system\\skill-creator\\scripts\\quick_validate.py",
+      "root_cause": "The active Python environments did not have the PyYAML dependency required by the skill validator.",
+      "fix": "Installed PyYAML 6.0.3 with python -m pip install --user PyYAML and reran quick_validate.py successfully for brainstorm and frontend-design.",
+      "tags": [
+        "python",
+        "pyyaml",
+        "skill-validation"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-19T10:58:18.0778193Z"
+    },
+    {
+      "id": "bug-035",
+      "timestamp": "2026-06-19T11:00:45.8536963Z",
+      "error_message": "UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 86 while validating .agents\\skills\\dbs-goal",
+      "file": ".agents/skills/dbs-goal/SKILL.md",
+      "root_cause": "The skill file contains UTF-8 Chinese text, while quick_validate.py read it through Python's Windows cp1252 default encoding.",
+      "fix": "Re-ran the validator with PYTHONUTF8=1; validation passed.",
+      "tags": [
+        "skill-validation",
+        "windows",
+        "utf8",
+        "encoding"
+      ],
+      "related_bugs": [
+        "bug-034"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-06-19T11:00:45.8536963Z"
+    },
+    {
+      "id": "bug-036",
+      "timestamp": "2026-06-19T11:11:41.0602632Z",
+      "error_message": "browserContext.addCookies: Cookie should have either url or path",
+      "file": "inline Playwright CV print measurement script",
+      "root_cause": "The measurement helper passed both url and path in the Playwright cookie object; Playwright expects either url alone or domain/path fields.",
+      "fix": "Removed the extra path field and reran the measurement successfully for /tr/cv/print and /en/cv/print.",
+      "tags": [
+        "playwright",
+        "cv-print",
+        "verification"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-19T11:11:41.0602632Z"
     }
   ]
 }
